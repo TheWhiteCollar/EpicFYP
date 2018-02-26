@@ -13,8 +13,17 @@
     </head>
     <body>
         <h1>Login here! </h1>
-
-        <form action="src\\java\\Controller\\loginServlet.java" method="post">
+        
+        <%
+            String ErrorMsg = (String) request.getAttribute("ErrorMsg");
+            if (ErrorMsg != null) {
+                out.println(ErrorMsg);
+            }
+        %>
+        
+        <br>
+        
+        <form action="loginServlet" method="post">
             Userid:<br>
             <input type="text" name="userid" value="yijing">
             <br>

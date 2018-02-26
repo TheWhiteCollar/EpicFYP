@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author User
  */
-@WebServlet(name = "login", urlPatterns = {"/login"})
+@WebServlet(name = "loginServlet", urlPatterns = {"/loginServlet"})
 public class loginServlet extends HttpServlet {
 
     /**
@@ -35,19 +35,29 @@ public class loginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet login</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet login at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+
+        // retrieve userid and password
+        String userid = request.getParameter("userid");
+        String password = request.getParameter("password");
+        System.out.println(userid + " " + password);
+
+        // Create user
+        User user = null;
+
+        // send user back to login.jsp if they try to access servlet directly
+        if (!userid.equals("") || !password.equals("")) {
+            // Validate login
+            user = UserDAO.getUserByLogin(userid, password);
+            if (user != null) {
+                request.getSession().setAttribute("user", user);
+                response.sendRedirect("index.html");
+                return;
+            }
         }
+
+        request.setAttribute("ErrorMsg", "Invalid userid/password");
+        request.getRequestDispatcher("login.jsp").forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -62,7 +72,8 @@ public class loginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        response.sendRedirect("login.jsp");
     }
 
     /**
@@ -77,27 +88,6 @@ public class loginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
-        // retrieve userid and password
-        String userid = request.getParameter("userid");
-        String password = request.getParameter("password");
-        
-        // create session to store
-        HttpSession session = request.getSession(true);
-
-        // send user back to login.jsp if they try to access servlet directly
-        if (userid == null || password == null) {
-            response.sendRedirect("login.jsp");
-            return;
-        }
-
-        // Validate login
-        User user = UserDAO.getUserByLogin(userid,password);
-        if (user != null) {
-            session.setAttribute("user", user);
-            response.sendRedirect("index.html");
-        } 
-        
     }
 
     /**

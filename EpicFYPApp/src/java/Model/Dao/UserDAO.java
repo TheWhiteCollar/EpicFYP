@@ -35,7 +35,7 @@ public class UserDAO {
     public static User getUserByLogin(String userid, String password) {
 
         User user = null;
-        String sql = "SELECT * FROM user WHERE BINARY userid LIKE ? AND BINARY password LIKE ?";
+        String sql = "SELECT * FROM user WHERE userid LIKE ? AND password LIKE ?";
 
         try (Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {

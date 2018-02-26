@@ -5,24 +5,21 @@
  */
 package Controller;
 
-import Model.Dao.UserDAO;
 import Model.Entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author User
  */
-@WebServlet(name = "loginServlet", urlPatterns = {"/loginServlet"})
-public class loginServlet extends HttpServlet {
+@WebServlet(name = "ForgetPassword", urlPatterns = {"/ForgetPassword"})
+public class forgetPasswordServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,27 +33,21 @@ public class loginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // retrieve userid and password
-        String userid = request.getParameter("userid");
-        String password = request.getParameter("password");
-        System.out.println(userid + " " + password);
+        // get session to make sure user exist
+        User user = (User) request.getAttribute("User");
+        if (user != null) {
+            String email = user.getEmail();
+            String firstname = user.getFirstname();
+            String lastname = user.getLastname();
 
-        // Create user
-        User user = null;
+            // Insert code to send password reset email
+            
+            // After reset email is successfully change
+            request.getSession().setAttribute("PasswordSent", "An email has been send to " + email + " for you to reset your password.");
+            response.sendRedirect("forgetpassword.jsp");
+            return;
 
-        // send user back to login.jsp if they try to access servlet directly
-        if (!userid.equals("") || !password.equals("")) {
-            // Validate login
-            user = UserDAO.getUserByLogin(userid, password);
-            if (user != null) {
-                request.getSession().setAttribute("User", user);
-                response.sendRedirect("index.html");
-                return;
-            }
         }
-
-        request.setAttribute("ErrorMsg", "Invalid userid/password");
-        request.getRequestDispatcher("login.jsp").forward(request, response);
 
     }
 

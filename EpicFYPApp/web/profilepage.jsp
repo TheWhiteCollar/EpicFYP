@@ -33,7 +33,8 @@
         <input type ="text" name ="highest qualification"><br><br>
         Expected Graduation<br> 
       <label for="specialQuery">Select Date & Time:</label>
-
+        <input type ="text" name ="gradmonth">
+        <input type ="text" name ="gradyear"><br><br>
         Field of Study      : <br/>
         <input name="field of Study" 
              type="checkbox" 

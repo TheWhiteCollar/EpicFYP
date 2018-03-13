@@ -9,20 +9,18 @@ import Model.Dao.UserDAO;
 import Model.Entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author User
  */
-@WebServlet(name = "loginServlet", urlPatterns = {"/loginServlet"})
-public class loginServlet extends HttpServlet {
+@WebServlet(name = "signupServlet", urlPatterns = {"/signupServlet"})
+public class signupServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,26 +34,32 @@ public class loginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // retrieve userid and password
-        String userid = request.getParameter("userid");
+        // retrieve user input
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String phone = request.getParameter("phone");
+        int phoneNum = Integer.parseInt(phone);
+        String occupation = request.getParameter("occupation");
 
-        // Create user
-        User user = null;
+        // validate fields are not empty and insert into database
+        if (!firstName.equals("") && !lastName.equals("") && !email.equals("") && !password.equals("") && !phone.equals("") && !occupation.equals("")) {
 
-        // send user back to login.jsp if they try to access servlet directly
-        if (!userid.equals("") || !password.equals("")) {
-            // Validate login
-            user = UserDAO.getUserByLogin(userid, password);
-            if (user != null) {
-                request.getSession().setAttribute("User", user);
+            // Insert into database
+            Boolean inserted = UserDAO.updateUser(email, firstName, lastName, phoneNum, occupation, password);
+
+            if (inserted == true) {
                 response.sendRedirect("index.jsp");
+                return;
+            } else {
+                response.sendRedirect("signuppage.jsp");
                 return;
             }
         }
 
-        request.setAttribute("ErrorMsg", "Invalid userid/password");
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+        request.setAttribute("ErrorMsg", "Missing fields");
+        request.getRequestDispatcher("signuppage.jsp").forward(request, response);
 
     }
 

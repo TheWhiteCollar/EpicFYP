@@ -1,0 +1,130 @@
+<%-- 
+    Document   : profilepage
+    Created on : 27 Feb, 2018, 10:48:02 AM
+    Author     : Lenovo
+--%>
+
+<%@ include file = "navBar.jsp" %>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sign up here</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+
+    <body>
+        <h1>Sign up here</h1>
+
+        <%
+            String ErrorMsg = (String) request.getAttribute("ErrorMsg");
+            if (ErrorMsg != null) {
+                out.println(ErrorMsg);
+            }
+        %>
+
+
+        <form action="signupServlet" method="post">
+
+            First name * : <input type ="text" name ="firstName">  Last name * : <input type ="text" name ="lastName"> <br><br>
+
+            Email * : <input type ="text" name ="email"> <br><br>
+
+            <!-- To use javascript to validate both password is the same -->
+            Password * : <input type ="password" name ="password"> <br><br>
+            Re-enter Password * : <input type ="password" name ="reenterPassword"> <br><br>
+
+            Phone * : <input type ="text" name ="phone"> <br><br>
+
+            Occupation * :  <input type ="text" name ="occupation"> <br><br>
+
+            Citizenship : <input type ="text" name ="citizenship"><br><br>
+
+            Age : <input type ="text" name ="Age"><br><br>
+
+            Company/School : <input type ="text" name ="school"><br><br>
+
+            Highest Qualification : <input type ="text" name ="highest qualification"><br><br>
+
+            Expected Graduation<br> 
+            <label for="specialQuery">Select Date (MM/YY):</label>
+            <input type ="text" name ="gradmonth" value="MM">
+            <input type ="text" name ="gradyear" value="YY"><br><br>
+
+            Field of Study      : <br/>
+            <input name="field of Study" 
+                   type="checkbox" 
+                   value="OPS" />
+            Operations System
+            <br />
+            <input name="field of Study" 
+                   type="checkbox" 
+                   value="IT" />
+            Information Technology
+            <br />
+            <input name="field of Study" 
+                   type="checkbox" 
+                   value="M101" />
+            Marketing
+            <br />
+            <input name="field of Study" 
+                   type="checkbox" 
+                   value="F101" />
+            Finance <br><br>
+            Language proficiency (Spoken and Written):<br>
+            <input name="language" 
+                   type="checkbox" 
+                   value="Bahasa Melayu" />
+            Bahasa Melayu
+            <br />
+            <input name="language" 
+                   type="checkbox" 
+                   value="Mandarin" />
+            Mandarin
+            <br />
+            <input name="language" 
+                   type="checkbox" 
+                   value="English" />
+            English
+            <br /><br>
+
+            Looking for:<br>
+            <input name="looking for" 
+                   type="checkbox" 
+                   value="Internship" />
+            Internship
+            <br />
+            <input name="looking for" 
+                   type="checkbox" 
+                   value="Study Trip" />
+            Study Trip<br><br>
+
+            Interest:<br>
+            <input name="interest" 
+                   type="checkbox" 
+                   value="Banks / Funds" />
+            Banks / Funds
+            <br />
+            <input name="interest" 
+                   type="checkbox" 
+                   value="Engineering" />
+            Engineering<br><br>
+
+            Add bio:<br>
+            <textarea name="message" rows="10" cols="30"></textarea><br><br>
+
+            Upload Resume: <br>
+            Please choose a file: <br>
+            <input name="uploadedfile" type="file" /><br /><br /> 
+
+            Upload Photo: <br>
+            Please choose a file: <br>
+            <input name="uploadedfile" type="file" /><br /><br /> 
+
+            <input type="submit" value="Submit" /><br><br>
+
+        </form>
+
+

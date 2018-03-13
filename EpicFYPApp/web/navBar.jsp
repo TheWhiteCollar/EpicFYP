@@ -17,6 +17,6 @@
         <a href="login.jsp">Login</a>
         <a href="logout.jsp">Logout</a>
         <a href="forgetpassword.jsp">Forget password</a>
-        <a href="profilepage.jsp">Profile Page</a>
+        <a href="signuppage.jsp">Sign up Page</a>
     </body>
 </html>

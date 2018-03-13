@@ -20,8 +20,8 @@ import java.util.ArrayList;
     #10: userInterest (varchar)
     #11: userPassword (varchar)
     #12: userRole (varchar)
+    #13: userOccupation (varchar)
  */
-
 public class User {
 
     private String userEmail;
@@ -37,8 +37,9 @@ public class User {
     private String userInterest;
     private String userPassword;
     private String userRole;
+    private String userOccupation;
 
-    public User(String userEmail, String userFirstName, String userLastName, int userPhone, String userGender, String userCitizenship, int userAge, String userDescription, byte userProfilePic, String userInterest, String userPassword, String userRole) {
+    public User(String userEmail, String userFirstName, String userLastName, int userPhone, String userGender, String userCitizenship, int userAge, String userDescription, byte userProfilePic, String userInterest, String userPassword, String userRole, String userOccupation) {
         this.userEmail = userEmail;
         this.userFirstName = userFirstName;
         this.userLastName = userLastName;
@@ -51,6 +52,7 @@ public class User {
         this.userInterest = userInterest;
         this.userPassword = userPassword;
         this.userRole = userRole;
+        this.userOccupation = userOccupation;
     }
 
     public String getUserEmail() {
@@ -147,6 +149,14 @@ public class User {
 
     public void setUserRole(String userRole) {
         this.userRole = userRole;
+    }
+
+    public String getUserOccupation() {
+        return userOccupation;
+    }
+
+    public void setUserOccupation(String userOccupation) {
+        this.userOccupation = userOccupation;
     }
 
 }

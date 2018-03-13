@@ -34,7 +34,7 @@ public class UserDAO {
     #10: userInterest (varchar)
     #11: userPassword (varchar)
     #12: userRole (varchar)
-     */
+    */
     
     // Get user and their details with userid and password
     public static User getUserByLogin(String userid, String password) {
@@ -49,7 +49,7 @@ public class UserDAO {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 if (user == null) {
-                    user = new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getString(8), rs.getByte(9), rs.getString(10), rs.getString(11), rs.getString(12));
+                    user = new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getString(8), rs.getByte(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13));
                 }
             }
         } catch (SQLException ex) {
@@ -57,6 +57,30 @@ public class UserDAO {
         }
 
         return user;
+    }
+
+    // Update user table
+    public static boolean updateUser(String userEmail, String userFirstName, String userLastName, int userPhone, String userOccupation, String userPassword) {
+
+        String sql = "INSERT INTO user (userEmail, userFirstName, userLastName, userPhone, userOccupation, userPassword, userRole) VALUES (?,?,?,?,?,?,?)";
+
+        try (Connection conn = ConnectionManager.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);) {
+            stmt.setString(1, userEmail);
+            stmt.setString(2, userFirstName);
+            stmt.setString(3, userLastName);
+            stmt.setInt(4, userPhone);
+            stmt.setString(5, userOccupation);
+            stmt.setString(6, userPassword);
+            stmt.setString(7, "member");
+            int result = stmt.executeUpdate();
+            if (result == 0) {
+                return false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.WARNING, "Email is already registered!", ex);
+        }
+        return true;
     }
 
 }

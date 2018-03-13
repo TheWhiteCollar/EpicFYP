@@ -50,7 +50,7 @@ public class loginServlet extends HttpServlet {
             user = UserDAO.getUserByLogin(userid, password);
             if (user != null) {
                 request.getSession().setAttribute("User", user);
-                response.sendRedirect("index.html");
+                response.sendRedirect("profilepage.jsp");
                 return;
             }
         }

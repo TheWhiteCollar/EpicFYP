@@ -3,7 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Lenovo/Desktop/EpicFYP/EpicFYPApp/web/profilepage.jsp</file>
+            <file>file:/C:/Users/User/Desktop/FYP/EpicFYP/EpicFYPApp/src/java/Controller/loginServlet.java</file>
+            <file>file:/C:/Users/User/Desktop/FYP/EpicFYP/EpicFYPApp/src/java/Model/Dao/UserDAO.java</file>
+            <file>file:/C:/Users/User/Desktop/FYP/EpicFYP/EpicFYPApp/src/java/Model/Entity/User.java</file>
+            <file>file:/C:/Users/User/Desktop/FYP/EpicFYP/EpicFYPApp/src/java/connection.properties</file>
         </group>
     </open-files>
 </project-private>

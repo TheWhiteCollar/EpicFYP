@@ -28,8 +28,8 @@
             <% // To get user
                 User user = (User) request.getAttribute("User");
                 if (user != null) {
-                    String firstname = user.getFirstname();
-                    String lastname = user.getLastname();
+                    String firstname = user.getUserFirstName();
+                    String lastname = user.getUserLastName();
                     out.println("Hi " + firstname + " " + lastname + ", <br>");
                 }
             %>

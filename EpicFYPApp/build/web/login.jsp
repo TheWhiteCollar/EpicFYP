@@ -4,6 +4,8 @@
     Author     : User
 --%>
 
+<%@ include file = "navBar.jsp" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -21,7 +23,7 @@
             }
         %>
         
-        <br>
+        <br><br>
         
         <form action="loginServlet" method="post">
             Userid:<br>

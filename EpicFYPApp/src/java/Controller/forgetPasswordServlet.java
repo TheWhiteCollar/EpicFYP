@@ -36,9 +36,9 @@ public class forgetPasswordServlet extends HttpServlet {
         // get session to make sure user exist
         User user = (User) request.getAttribute("User");
         if (user != null) {
-            String email = user.getEmail();
-            String firstname = user.getFirstname();
-            String lastname = user.getLastname();
+            String email = user.getUserEmail();
+            String firstname = user.getUserFirstName();
+            String lastname = user.getUserLastName();
 
             // Insert code to send password reset email
             

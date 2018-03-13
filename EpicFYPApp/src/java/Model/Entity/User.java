@@ -7,94 +7,146 @@ package Model.Entity;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author User
+/* Database sequence
+    #1: userEmail (varchar)
+    #2: userFirstName (varchar)
+    #3: userLastName (varchar)
+    #4: userPhone (int)
+    #5: userGender (varchar)
+    #6: userCitizenship (varchar)
+    #7: userAge (int)
+    #8: userDescription (varchar)
+    #9: userProfilePic (blob)
+    #10: userInterest (varchar)
+    #11: userPassword (varchar)
+    #12: userRole (varchar)
  */
+
 public class User {
 
-    /* Database sequence
-    #1: userid (varchar)
-    #2: firstname (varchar)
-    #3: lastname (varchar)
-    #4: contactnumber (int)
-    #5: email (varchar)
-    #6: password (varchar)
-    #7: role (varchar)
-     */
-    
-    private String userid;
-    private String firstname;
-    private String lastname;
-    private int contactnumber;
-    private String email;
-    private String password;
-    private String role;
+    private String userEmail;
+    private String userFirstName;
+    private String userLastName;
+    private int userPhone;
+    private String userGender;
+    private String userCitizenship;
+    private int userAge;
+    private String userDescription;
+    // private byte[] userProfilePic;
+    private byte userProfilePic;
+    private String userInterest;
+    private String userPassword;
+    private String userRole;
 
-    public User(String userid, String firstname, String lastname, int contactnumber, String email, String password, String role) {
-        this.userid = userid;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.contactnumber = contactnumber;
-        this.email = email;
-        this.password = password;
-        this.role = role;
+    public User(String userEmail, String userFirstName, String userLastName, int userPhone, String userGender, String userCitizenship, int userAge, String userDescription, byte userProfilePic, String userInterest, String userPassword, String userRole) {
+        this.userEmail = userEmail;
+        this.userFirstName = userFirstName;
+        this.userLastName = userLastName;
+        this.userPhone = userPhone;
+        this.userGender = userGender;
+        this.userCitizenship = userCitizenship;
+        this.userAge = userAge;
+        this.userDescription = userDescription;
+        this.userProfilePic = userProfilePic;
+        this.userInterest = userInterest;
+        this.userPassword = userPassword;
+        this.userRole = userRole;
     }
 
-    public String getUserid() {
-        return userid;
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public void setUserid(String userid) {
-        this.userid = userid;
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getUserFirstName() {
+        return userFirstName;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setUserFirstName(String userFirstName) {
+        this.userFirstName = userFirstName;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getUserLastName() {
+        return userLastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setUserLastName(String userLastName) {
+        this.userLastName = userLastName;
     }
 
-    public int getContactnumber() {
-        return contactnumber;
+    public int getUserPhone() {
+        return userPhone;
     }
 
-    public void setContactnumber(int contactnumber) {
-        this.contactnumber = contactnumber;
+    public void setUserPhone(int userPhone) {
+        this.userPhone = userPhone;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUserGender() {
+        return userGender;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUserGender(String userGender) {
+        this.userGender = userGender;
     }
 
-    public String getPassword() {
-        return password;
+    public String getUserCitizenship() {
+        return userCitizenship;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUserCitizenship(String userCitizenship) {
+        this.userCitizenship = userCitizenship;
     }
 
-    public String getRole() {
-        return role;
+    public int getUserAge() {
+        return userAge;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setUserAge(int userAge) {
+        this.userAge = userAge;
+    }
+
+    public String getUserDescription() {
+        return userDescription;
+    }
+
+    public void setUserDescription(String userDescription) {
+        this.userDescription = userDescription;
+    }
+
+    public byte getUserProfilePic() {
+        return userProfilePic;
+    }
+
+    public void setUserProfilePic(byte userProfilePic) {
+        this.userProfilePic = userProfilePic;
+    }
+
+    public String getUserInterest() {
+        return userInterest;
+    }
+
+    public void setUserInterest(String userInterest) {
+        this.userInterest = userInterest;
+    }
+
+    public String getUserPassword() {
+        return userPassword;
+    }
+
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
+    }
+
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
     }
 
 }

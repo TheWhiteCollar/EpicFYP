@@ -1,9 +1,11 @@
+<%-- 
+    Document   : navBar
+    Created on : 13 Mar, 2018, 4:39:29 PM
+    Author     : User
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <title>EPIC FYP</title>
@@ -11,7 +13,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        
+
         <a href="login.jsp">Login</a>
         <a href="logout.jsp">Logout</a>
         <a href="forgetpassword.jsp">Forget password</a>

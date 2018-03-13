@@ -22,20 +22,25 @@ import java.util.logging.Logger;
 public class UserDAO {
 
     /* Database sequence
-    #1: userid (varchar)
-    #2: firstname (varchar)
-    #3: lastname (varchar)
-    #4: contactnumber (int)
-    #5: email (varchar)
-    #6: password (varchar)
-    #7: role (varchar)
+    #1: userEmail (varchar)
+    #2: userFirstName (varchar)
+    #3: userLastName (varchar)
+    #4: userPhone (int)
+    #5: userGender (varchar)
+    #6: userCitizenship (varchar)
+    #7: userAge (int)
+    #8: userDescription (varchar)
+    #9: userProfilePic (blob)
+    #10: userInterest (varchar)
+    #11: userPassword (varchar)
+    #12: userRole (varchar)
      */
     
     // Get user and their details with userid and password
     public static User getUserByLogin(String userid, String password) {
 
         User user = null;
-        String sql = "SELECT * FROM user WHERE userid LIKE ? AND password LIKE ?";
+        String sql = "SELECT * FROM user WHERE userEmail LIKE ? AND userPassword LIKE ?";
 
         try (Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
@@ -44,7 +49,7 @@ public class UserDAO {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 if (user == null) {
-                    user = new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7));
+                    user = new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getString(8), rs.getByte(9), rs.getString(10), rs.getString(11), rs.getString(12));
                 }
             }
         } catch (SQLException ex) {
@@ -53,5 +58,5 @@ public class UserDAO {
 
         return user;
     }
-  
+
 }

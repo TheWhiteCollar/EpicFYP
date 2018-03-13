@@ -5,6 +5,7 @@
 --%>
 
 <%@page import="Model.Entity.User"%>
+<%@ include file = "navBar.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -25,15 +26,6 @@
         <br>
 
         <p> 
-            <% // To get user
-                User user = (User) request.getAttribute("User");
-                if (user != null) {
-                    String firstname = user.getUserFirstName();
-                    String lastname = user.getUserLastName();
-                    out.println("Hi " + firstname + " " + lastname + ", <br>");
-                }
-            %>
-
             If you have forgotten your password, <br>
 
         <form action="forgetPasswordServlet" method="post">
@@ -47,7 +39,7 @@
         <% // to retrieve reset password message 
             String PasswordSent = (String) request.getAttribute("PasswordSent");
             if (PasswordSent != null) {
-                out.println(PasswordSent);
+                out.println("<h1>" + PasswordSent + "</h1>");
             }
         %>
 

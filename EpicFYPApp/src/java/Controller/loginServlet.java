@@ -39,7 +39,6 @@ public class loginServlet extends HttpServlet {
         // retrieve userid and password
         String userid = request.getParameter("userid");
         String password = request.getParameter("password");
-        System.out.println(userid + " " + password);
 
         // Create user
         User user = null;

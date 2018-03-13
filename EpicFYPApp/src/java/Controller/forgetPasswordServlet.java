@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author User
  */
-@WebServlet(name = "ForgetPassword", urlPatterns = {"/ForgetPassword"})
+@WebServlet(name = "forgetPasswordServlet", urlPatterns = {"/forgetPasswordServlet"})
 public class forgetPasswordServlet extends HttpServlet {
 
     /**
@@ -33,21 +33,20 @@ public class forgetPasswordServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // get session to make sure user exist
-        User user = (User) request.getAttribute("User");
-        if (user != null) {
-            String email = user.getUserEmail();
-            String firstname = user.getUserFirstName();
-            String lastname = user.getUserLastName();
+        // retrieve email address
+        String email = request.getParameter("email");
 
+        // make sure email is not null
+        if (email != null) {
             // Insert code to send password reset email
-            
             // After reset email is successfully change
-            request.getSession().setAttribute("PasswordSent", "An email has been send to " + email + " for you to reset your password.");
-            response.sendRedirect("forgetpassword.jsp");
+            request.setAttribute("PasswordSent", "An email has been send to " + email + " for you to reset your password.");
+            request.getRequestDispatcher("forgetpassword.jsp").forward(request, response);
             return;
-
         }
+
+        request.setAttribute("ErrorMsg", "Email not found!");
+        request.getRequestDispatcher("forgetpassword.jsp").forward(request, response);
 
     }
 

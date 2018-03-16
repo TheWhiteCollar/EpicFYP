@@ -33,6 +33,7 @@
             Email * : <input type ="text" name ="email"> <br><br>
 
             <!-- To use javascript to validate both password is the same -->
+            
             Password * : <input type ="password" name ="password"> <br><br>
             Re-enter Password * : <input type ="password" name ="reenterPassword"> <br><br>
 

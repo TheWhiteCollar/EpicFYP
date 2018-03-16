@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 27, 2018 at 05:31 AM
+-- Generation Time: Mar 13, 2018 at 12:47 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -120,19 +120,28 @@ CREATE TABLE IF NOT EXISTS `student` (
 
 CREATE TABLE IF NOT EXISTS `user` (
   `userEmail` varchar(50) NOT NULL,
-  `userFirstName` varchar(50) DEFAULT NULL,
-  `userLastName` varchar(50) DEFAULT NULL,
-  `userPhone` int(20) DEFAULT NULL,
+  `userFirstName` varchar(50) NOT NULL,
+  `userLastName` varchar(50) NOT NULL,
+  `userPhone` int(20) NOT NULL,
   `userGender` varchar(100) DEFAULT NULL,
   `userCitizenship` varchar(100) DEFAULT NULL,
-  `userAge` varchar(100) DEFAULT NULL,
+  `userAge` int(3) DEFAULT NULL,
   `userDescription` varchar(1000) DEFAULT NULL,
   `userProfilePic` blob,
   `userInterest` varchar(1000) DEFAULT NULL,
   `userPassword` varchar(15) NOT NULL,
   `userRole` varchar(50) NOT NULL,
+  `userOccupation` varchar(1000) NOT NULL,
   PRIMARY KEY (`userEmail`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`userEmail`, `userFirstName`, `userLastName`, `userPhone`, `userGender`, `userCitizenship`, `userAge`, `userDescription`, `userProfilePic`, `userInterest`, `userPassword`, `userRole`, `userOccupation`) VALUES
+('alan@gmail.com', 'Alan', 'Goh', 98769876, NULL, NULL, NULL, NULL, NULL, NULL, '1234', 'member', 'Student'),
+('yijing.oon.2015@smu.edu.sg', '', '', 0, NULL, NULL, NULL, NULL, NULL, NULL, 'oonyijing', 'user', '');
 
 -- --------------------------------------------------------
 

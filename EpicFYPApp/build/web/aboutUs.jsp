@@ -1,10 +1,8 @@
-
-<%@page import="Model.Entity.User"%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
 <html lang="en">
+
     <head>
         <meta charset="UTF-8">
         <title>Epic- Overseas study missions/internships for all</title>
@@ -16,18 +14,24 @@
         <script src="js/skel.min.js"></script>
         <script src="js/skel-layers.min.js"></script>
         <script src="js/init.js"></script>
+
+
         <noscript>
         <link rel="stylesheet" href="css/skel.css" />
         <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="css/style-xlarge.css" />
+
+
         </noscript>
         <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
-    </head>
 
+    </head>
     <body>
+
         <!-- Header -->
         <header id="header">
             <a href="index.jsp"><img src="images/icon.png" srcset="images/icon.png 1000w, images/icon.png 2000w" alt="Epic Journey"></a>
+
             <nav id="nav">
                 <ul>
                     <li><a href="index.jsp">Home</a></li>
@@ -41,35 +45,74 @@
         </header>
 
         <!-- Main -->
-        <section id="login" class="wrapper">
+        <section id="main" class="wrapper align-center">
             <div class="container">
+
                 <header class="major">
-                    <h2>Reset your password</h2>
-                </header> 
+                    <h2>About Us</h2>
+                    <p><i>Developing entrepreneurship and character in the youths of our future</i></p>
 
-                <% // To retrieve error message
-                    String ErrorMsg = (String) request.getAttribute("ErrorMsg");
-                    if (ErrorMsg != null) {
-                        out.println(ErrorMsg);
-                    }
-                %>
+                </header>
+                <p>Wanting to give more, 3 big hearted educators decided to take it upon themselves to help young adults to explore new business potential, hone entrepreneurial spirits and build life skills and resilience in new emerging markets.</p>
+                <div class="box alt">
+                    <div class="row 50% uniform">						
+                        <div class="4u"><span class="image fit"><img src="images/pic05.jpg" alt="" /></span></div>
+                        <div class="4u"><span class="image fit"><img src="images/pic06.jpg" alt="" /></span></div>
+                        <div class="4u$"><span class="image fit"><img src="images/pic07.jpg" alt="" /></span></div>						
+                    </div>
+                </div>	
 
-                <form action="forgetPasswordServlet" method="post">
-                    Enter your email address:<br>
-                    <input type="text" name="email" placeholder="xxx@gmail.com">
-                    <br>
-                    <input type="submit" value="Click here to reset your password">
-                </form>
-
-
-                <% // to retrieve reset password message 
-                    String PasswordSent = (String) request.getAttribute("PasswordSent");
-                    if (PasswordSent != null) {
-                        out.println("<h1>" + PasswordSent + "</h1>");
-                    }
-                %>
             </div>
         </section>
+
+        <!--vision-->
+        <section id="vision" class="wrapper style1 align-center">
+            <div class="container">
+
+                <header class="major">
+                    <h2>EPIC Vision</h2>
+                    <p><i>The youths of today, is the future of our tomorrow</i></p>						
+                </header>
+
+                <p>Educating youths to be work-ready, world-ready and future-ready. As a team comprising of experienced educators and industry practitioners, we are well aware of the requirements, expectations of the fast-changing global economies and industries. </p>
+                <p>We present opportunities for youths partake first-hand, in emerging business opportunities through various means (business networking, interning in fast-growing startups and established organizations overseas). thereby equipping them with skills, knowledge and attributes ready for the future of business, career and our generations ahead.</p>
+
+            </div>
+        </section>
+
+        <!-- Value proposition-->
+        <section id="value" class="wrapper align-center">
+            <div class="container">
+
+                <header class="major">
+                    <h2>EPIC Value Proposition</h2>
+                    <p><i>EPIC adopts the Blue Ocean Strategy and is committed to developing in our talents, the skills, knowledge, courage, resilience and leadership to be a first mover into the Emerging Markets.</i></p>						
+                </header>
+                <p>EPIC provides entrepreneurship training, global career exposure, life skills and character building through business, internship and career development programmes and social entrepreneurial mission and community services in Emerging Markets in ASEAN – Cambodia, Laos, Myanmar, Vietnam, India, Indonesia, Thailand, as well as in Asia – Japan and China.</p>
+
+                <a href="#" class="image fit"><img src="images/pic08.jpg" alt="" /></a>
+
+                <p>We create the ‘once in-a-lifetime opportunity’ for our talents to work closely through dedicated partners who are experienced entrepreneurs, business people, professionals, dedicated volunteers and trustworthy locals of the land, to expand their life experience, enhance their global business acumen, sharpen their cultural awareness and develop their global employability through rewarding internships and innovative projects around the world.</p>
+
+            </div>
+        </section>
+
+        <!-- Corporate Partner-->
+        <section id="corporate" class="wrapper style1 align-center">
+            <div class="container">
+
+                <header class="major">
+                    <h2>Partner with Us</h2>
+                    <p><i>"It takes a village to raise a child."</i></p>						
+                </header>
+
+                <p>Together we will jointly develop the youths of our future - With our specialisation in in Emerging Markets, and the strong friendships with our Corporate and Community Partners.</p>
+                <p>The benefits are twofold: Providing guidance for youths, and giving back to the community and corporations that we work with.</p>
+
+            </div>
+        </section>	
+        <!-- Testimonal Split -->
+
 
         <!-- Footer -->
         <footer id="footer">
@@ -91,6 +134,7 @@
                             <li><a href="aboutUs.jsp#vision">Our Vision</a></li>
                             <li><a href="aboutUs.jsp#value">Our Value Proposition</a></li>
                             <li><a href="aboutUs.jsp#corporate">Partner With Us</a></li>
+
                         </ul>
                     </section>
                     <section class="4u$ 12u$(medium) 12u$(small)">
@@ -133,5 +177,6 @@
                 -->
             </div>
         </footer>
+
     </body>
-</html> 
+</html>

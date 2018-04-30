@@ -1,9 +1,10 @@
-
-<%@page import="Model.Entity.User"%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
+<!--
+        Interphase by TEMPLATED
+        templated.co @templatedco
+        Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -23,11 +24,12 @@
         </noscript>
         <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
     </head>
-
     <body>
+
         <!-- Header -->
         <header id="header">
             <a href="index.jsp"><img src="images/icon.png" srcset="images/icon.png 1000w, images/icon.png 2000w" alt="Epic Journey"></a>
+
             <nav id="nav">
                 <ul>
                     <li><a href="index.jsp">Home</a></li>
@@ -41,35 +43,36 @@
         </header>
 
         <!-- Main -->
-        <section id="login" class="wrapper">
+        <section id="main" class="wrapper">
             <div class="container">
+
                 <header class="major">
-                    <h2>Reset your password</h2>
-                </header> 
+                    <h2>Partner with Us</h2>
+                    <p><i>"If you want to go fast, go alone. <b>If you want to go far, go together"</b></i></p>
+                </header>
+                <p>We have strong partnerships in multi-disciplines and specialization, including engineering & manufacturing, education, tourism, F&B, hospitality and service industry in ASEAN countries including (but not limited to) Philippines, Cambodia, Laos, Myanmar, Vietnam, India, Indonesia, Thailand and in Asia â Japan, Korea and China. We believe through strong business networks and creative program tie-up, EPIC will be able to build a talent pool ready for a robust economy of the future in Emerging markets in Asia and Asean. </p>
+                <p>Partners can either be SMEs, startups, business owners and government agencies or NGOs in various fields.</p>
 
-                <% // To retrieve error message
-                    String ErrorMsg = (String) request.getAttribute("ErrorMsg");
-                    if (ErrorMsg != null) {
-                        out.println(ErrorMsg);
-                    }
-                %>
+                <div>Partners are carefully selected based on:</div>
+                <ol>						
+                    <li>Experience as a Business owner/Entrepreneur in the Emerging Market</li>
+                    <li>Passion to provide opportunities to develop our students including:</li>
+                    <ul>
+                        <li>Business Networking</li>
+                        <li>Customer Service</li>
+                        <li>Negotiation and Business Development</li>
+                        <li>Cultural Awareness and Language</li>
+                        <li>Diversity adaptability</li>
+                    </ul>
+                </ol>
 
-                <form action="forgetPasswordServlet" method="post">
-                    Enter your email address:<br>
-                    <input type="text" name="email" placeholder="xxx@gmail.com">
-                    <br>
-                    <input type="submit" value="Click here to reset your password">
-                </form>
-
-
-                <% // to retrieve reset password message 
-                    String PasswordSent = (String) request.getAttribute("PasswordSent");
-                    if (PasswordSent != null) {
-                        out.println("<h1>" + PasswordSent + "</h1>");
-                    }
-                %>
+                <p>Contact us if you are passionate about developing youths for the future of your business, your community, and generations ahead.</p>
             </div>
         </section>
+        <!--Partner testimony
+Our study tours to Myanmar have been serviced by our dedicated partner, Pro Niti Travel, based in Yangon.  EPIC and Pro Niti is committed to Professional and Ethical travel.  We not only create treasured memories, we aim to enhance our clientsâ life experience while bringing positive changes to the lives of others.
+
+        -->
 
         <!-- Footer -->
         <footer id="footer">
@@ -133,5 +136,6 @@
                 -->
             </div>
         </footer>
+
     </body>
-</html> 
+</html>

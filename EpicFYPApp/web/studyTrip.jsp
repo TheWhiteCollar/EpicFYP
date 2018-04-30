@@ -1,9 +1,10 @@
-
-<%@page import="Model.Entity.User"%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
+<!--
+        Interphase by TEMPLATED
+        templated.co @templatedco
+        Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -23,11 +24,12 @@
         </noscript>
         <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
     </head>
-
     <body>
+
         <!-- Header -->
         <header id="header">
             <a href="index.jsp"><img src="images/icon.png" srcset="images/icon.png 1000w, images/icon.png 2000w" alt="Epic Journey"></a>
+
             <nav id="nav">
                 <ul>
                     <li><a href="index.jsp">Home</a></li>
@@ -41,33 +43,13 @@
         </header>
 
         <!-- Main -->
-        <section id="login" class="wrapper">
+        <section id="main" class="wrapper">
             <div class="container">
+
                 <header class="major">
-                    <h2>Reset your password</h2>
-                </header> 
-
-                <% // To retrieve error message
-                    String ErrorMsg = (String) request.getAttribute("ErrorMsg");
-                    if (ErrorMsg != null) {
-                        out.println(ErrorMsg);
-                    }
-                %>
-
-                <form action="forgetPasswordServlet" method="post">
-                    Enter your email address:<br>
-                    <input type="text" name="email" placeholder="xxx@gmail.com">
-                    <br>
-                    <input type="submit" value="Click here to reset your password">
-                </form>
-
-
-                <% // to retrieve reset password message 
-                    String PasswordSent = (String) request.getAttribute("PasswordSent");
-                    if (PasswordSent != null) {
-                        out.println("<h1>" + PasswordSent + "</h1>");
-                    }
-                %>
+                    <h2>Oversea Study Trips</h2>
+                    <p>Oops. It seems that the webpage has yet to be constructed.</p>
+                </header>
             </div>
         </section>
 
@@ -91,6 +73,7 @@
                             <li><a href="aboutUs.jsp#vision">Our Vision</a></li>
                             <li><a href="aboutUs.jsp#value">Our Value Proposition</a></li>
                             <li><a href="aboutUs.jsp#corporate">Partner With Us</a></li>
+
                         </ul>
                     </section>
                     <section class="4u$ 12u$(medium) 12u$(small)">
@@ -133,5 +116,6 @@
                 -->
             </div>
         </footer>
+
     </body>
-</html> 
+</html>

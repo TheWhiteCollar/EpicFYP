@@ -103,7 +103,7 @@
 
                 <header class="major">
                     <h2>Partner with Us</h2>
-                    <p><i>"It takes a village to raise a child."</i></p>						
+                    <p><i><a href="partnerWithUs.jsp"><font color="#ffffff">"It takes a village to raise a child."</font></a></i></p>						
                 </header>
 
                 <p>Together we will jointly develop the youths of our future - With our specialisation in in Emerging Markets, and the strong friendships with our Corporate and Community Partners.</p>
@@ -111,7 +111,55 @@
 
             </div>
         </section>	
-        <!-- Testimonal Split -->
+        
+        <!-- Testimonal Split 
+
+            see if can use blockquotes
+            or try the image and modal thing?-->
+        <section id="testimony" class="wrapper align-center">
+            <div class="container">
+
+                <header class="major">
+                    <h2>What our customers say</h2>
+                                          
+                </header>
+                <!--try to use span for the image of 3 in a row-->
+              
+                <div class="overlaidcontainer 4u">
+                  <img src="images/pic05.jpg" alt="Avatar" class="image fit overlaidimage">
+                  <div class="overlay">
+                    <div class="overlaytext">Hello World</div>
+                  </div>
+                </div>
+                <div class="overlaidcontainer 4u">
+                  <img src="images/pic05.jpg" alt="Avatar" class="image fit overlaidimage">
+                  <div class="overlay">
+                    <div class="overlaytext">Hello World1</div>
+                  </div>
+                </div>
+                <div class="overlaidcontainer 4u">
+                  <img src="images/pic05.jpg" alt="Avatar" class="image fit overlaidimage">
+                  <div class="overlay">
+                    <div class="overlaytext">Hello World2</div>
+                  </div>
+                </div>
+         
+
+
+                <div class="box alt">
+                    <div class="row 50% uniform">
+                        
+                        
+
+                        <div class="4u"><span class="image fit overlaidimage"><img src="images/pic05.jpg" alt="" /></span><div class="overlaytext">Hello World</div></div>
+                        <div class="4u"><span class="image fit"><img src="images/pic06.jpg" alt="" /></span></div>
+                        <div class="4u"><span class="image fit"><img src="images/pic06.jpg" alt="" /></span></div>
+                    </div>
+                </div>
+                
+
+            </div>
+        </section>
 
 
         <!-- Footer -->

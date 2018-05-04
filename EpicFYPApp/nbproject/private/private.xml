@@ -3,10 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/User/Desktop/FYP/EpicFYP/EpicFYPApp/src/java/Controller/loginServlet.java</file>
-            <file>file:/C:/Users/User/Desktop/FYP/EpicFYP/EpicFYPApp/src/java/Model/Dao/UserDAO.java</file>
-            <file>file:/C:/Users/User/Desktop/FYP/EpicFYP/EpicFYPApp/src/java/Model/Entity/User.java</file>
-            <file>file:/C:/Users/User/Desktop/FYP/EpicFYP/EpicFYPApp/src/java/connection.properties</file>
+            <file>file:/Users/xiuwenhime/Desktop/EpicFYP/EpicFYPApp/web/login.jsp</file>
+            <file>file:/Users/xiuwenhime/Desktop/EpicFYP/EpicFYPApp/web/studyTrip.jsp</file>
+            <file>file:/Users/xiuwenhime/Desktop/EpicFYP/EpicFYPApp/web/internship.jsp</file>
+            <file>file:/Users/xiuwenhime/Desktop/EpicFYP/EpicFYPApp/web/partnerWithUs.jsp</file>
+            <file>file:/Users/xiuwenhime/Desktop/EpicFYP/EpicFYPApp/web/signuppage.jsp</file>
+            <file>file:/Users/xiuwenhime/Desktop/EpicFYP/EpicFYPApp/web/aboutUs.jsp</file>
+            <file>file:/Users/xiuwenhime/Desktop/EpicFYP/EpicFYPApp/web/css/style.css</file>
+            <file>file:/Users/xiuwenhime/Desktop/EpicFYP/EpicFYPApp/web/forgetpassword.jsp</file>
+            <file>file:/Users/xiuwenhime/Desktop/EpicFYP/EpicFYPApp/web/logout.jsp</file>
         </group>
     </open-files>
 </project-private>

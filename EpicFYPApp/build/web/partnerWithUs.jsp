@@ -66,13 +66,22 @@
                     </ul>
                 </ol>
 
-                <p>Contact us if you are passionate about developing youths for the future of your business, your community, and generations ahead.</p>
+                <p><a href="partnerWithUs.jsp#footer">Contact us</a> if you are passionate about developing youths for the future of your business, your community, and generations ahead.</p>
             </div>
         </section>
-        <!--Partner testimony
-Our study tours to Myanmar have been serviced by our dedicated partner, Pro Niti Travel, based in Yangon.  EPIC and Pro Niti is committed to Professional and Ethical travel.  We not only create treasured memories, we aim to enhance our clientsâ life experience while bringing positive changes to the lives of others.
+        <!--Partner testimony -->
+        <section id="partnertestimony" class="wrapper style1 align-center">
+            <div class="container box alt">
 
-        -->
+                <header class="major">
+                    <h2>Our Global Partners</h2>                       
+                </header>
+                <a href="#" class="image fit"><img src="images/ProNitiTravel.jpg" alt="Picture of Pro Niti Travel"/></a>
+                <p>Our study tours to Myanmar have been serviced by our dedicated partner, Pro Niti Travel, based in Yangon.  EPIC and Pro Niti is committed to Professional and Ethical travel.  We not only create treasured memories, we aim to enhance our clientsâ life experience while bringing positive changes to the lives of others.</p>
+                
+
+            </div>
+        </section>
 
         <!-- Footer -->
         <footer id="footer">

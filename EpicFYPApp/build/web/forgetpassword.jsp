@@ -7,7 +7,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Epic- Overseas study missions/internships for all</title>
+        <title>Epic Journey - Overseas study missions/internships for all</title>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="description" content="Imparting life skills through overseas exposure via internships and study missions. Countries of focus: Cambodia, Laos, Myanmar, Vietnam, India, Indonesia, Thailand, Japan and China." />
         <meta name="keywords" content="overseas, study missions, internships, training, life skills, career exposure" />
@@ -75,7 +75,7 @@
         <footer id="footer">
             <div class="container">
                 <div class="row">
-                    <section class="4u 6u(medium) 12u$(small)">
+                    <section class="4u 6u(medium) 12u(small)">
                         <h3>Programmes we offer</h3>
                         <p>Interested in having a customised trip for a group of people? Just drop us an email, and we can work something out!</p>
                         <ul class="alt">
@@ -83,7 +83,7 @@
                             <li><a href="internship.jsp">Overseas Internships</a></li>							
                         </ul>
                     </section>
-                    <section class="4u 6u$(medium) 12u$(small)">
+                    <section class="4u 6u(medium) 12u(small)">
                         <h3>About Us</h3>
                         <ul class="alt">
                             <!-- <a href="http://url.to.site/index.html#target">Link</a>-->
@@ -93,7 +93,7 @@
                             <li><a href="aboutUs.jsp#corporate">Partner With Us</a></li>
                         </ul>
                     </section>
-                    <section class="4u$ 12u$(medium) 12u$(small)">
+                    <section class="4u 12u(medium) 12u(small)">
                         <h3>Contact Us</h3>
                         <!--
                         <ul class="icons">

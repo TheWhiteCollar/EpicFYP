@@ -4,7 +4,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Epic Journey - Overseas study missions/internships for all</title>
+        <title>Epic- Overseas study missions/internships for all</title>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="description" content="Imparting life skills through overseas exposure via internships and study missions. Countries of focus: Cambodia, Laos, Myanmar, Vietnam, India, Indonesia, Thailand, Japan and China." />
         <meta name="keywords" content="overseas, study missions, internships, training, life skills, career exposure" />
@@ -47,7 +47,7 @@
 
         <!-- Banner -->
         <section id="banner">
-            <h2>Life is one <span class="red bold">Epic Journey</span></h2>
+            <h2>Life is one <span class="red bold">Epic</span> Journey</h2>
             <p>And you are in the driver's seat</p>
             <ul class="actions">
                 <li>

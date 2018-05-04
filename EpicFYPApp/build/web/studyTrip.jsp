@@ -8,7 +8,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Epic- Overseas study missions/internships for all</title>
+        <title>Epic Journey - Overseas study missions/internships for all</title>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="description" content="Imparting life skills through overseas exposure via internships and study missions. Countries of focus: Cambodia, Laos, Myanmar, Vietnam, India, Indonesia, Thailand, Japan and China." />
         <meta name="keywords" content="overseas, study missions, internships, training, life skills, career exposure" />

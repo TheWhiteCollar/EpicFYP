@@ -47,6 +47,7 @@
 
         <!-- Banner -->
         <section id="banner">
+
             <h2>Life is one <span class="red bold">Epic Journey</span></h2>
             <p>And you are in the driver's seat</p>
             <ul class="actions">
@@ -54,6 +55,7 @@
                     <a href="login.jsp" class="button big">Take charge of your life now</a>
                 </li>
             </ul>
+
         </section>
 
         <!-- One -->

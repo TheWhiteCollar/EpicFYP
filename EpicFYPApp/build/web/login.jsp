@@ -62,7 +62,7 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     Not yet a user? <a href="signuppage.jsp">Sign up for an account!</a>
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="forgetpassword.jsp">Forget your password?</a>
+                    <a href="forgetpassword.jsp">Forget your password?</a>                    
                 </form> 
 
             </div>

@@ -5,21 +5,24 @@
  */
 package Controller;
 
+import Model.Dao.UserDAO;
 import Model.Entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author User
  */
-@WebServlet(name = "forgetPasswordServlet", urlPatterns = {"/forgetPasswordServlet"})
-public class forgetPasswordServlet extends HttpServlet {
+@WebServlet(name = "LoginServlet_student", urlPatterns = {"/LoginServlet_student"})
+public class LoginServlet_student extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,20 +36,26 @@ public class forgetPasswordServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // retrieve email address
-        String email = request.getParameter("email");
+        // retrieve userid and password
+        String userid = request.getParameter("userid");
+        String password = request.getParameter("password");
 
-        // make sure email is not null
-        if (email != null) {
-            // Insert code to send password reset email
-            // After reset email is successfully change
-            request.setAttribute("PasswordSent", "An email has been send to " + email + " for you to reset your password.");
-            request.getRequestDispatcher("forgetpassword.jsp").forward(request, response);
-            return;
+        // Create user
+        User user = null;
+
+        // send user back to login.jsp if they try to access servlet directly
+        if (!userid.equals("") || !password.equals("")) {
+            // Validate login
+            user = UserDAO.getUserByLogin(userid, password);
+            if (user != null) {
+                request.setAttribute("User", user);
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+                return;
+            }
         }
 
-        request.setAttribute("ErrorMsg", "Email not found!");
-        request.getRequestDispatcher("forgetpassword.jsp").forward(request, response);
+        request.setAttribute("ErrorMsg", "Invalid userid/password");
+        request.getRequestDispatcher("login.jsp").forward(request, response);
 
     }
 

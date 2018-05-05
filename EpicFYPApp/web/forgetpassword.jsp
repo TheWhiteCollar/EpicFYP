@@ -26,19 +26,7 @@
 
     <body>
         <!-- Header -->
-        <header id="header">
-            <a href="index.jsp"><img src="images/icon.png" srcset="images/icon.png 1000w, images/icon.png 2000w" alt="Epic Journey"></a>
-            <nav id="nav">
-                <ul>
-                    <li><a href="index.jsp">Home</a></li>
-                    <li><a href="aboutUs.jsp">About Us</a></li>
-                    <li><a href="studyTrip.jsp">Overseas Study Trips</a></li>
-                    <li><a href="internship.jsp">Overseas Internships</a></li>						
-                    <li><a href="partnerWithUs.jsp">Partner With Us</a></li>
-                    <li><a href="login.jsp">Log In</a></li>
-                </ul>
-            </nav>
-        </header>
+        <jsp:include page="header.jsp" />
 
         <!-- Main -->
         <section id="login" class="wrapper">

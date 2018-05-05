@@ -7,45 +7,6 @@
         templated.co @templatedco
         Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 */
-/*Extra*/
-.overlaidcontainer {
-    position: relative;
-    width: 50%;
-}
-
-.overlaidimage {
-    display: block;
-    width: 100%;
-    height: auto;
-}
-
-.overlay {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
-    opacity: 0;
-    transition: .5s ease;
-    background-color: #008CBA;
-}
-
-.overlaidcontainer:hover .overlay {
-    opacity: 1;
-}
-
-.overlaytext {
-    color: white;
-    font-size: 20px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    text-align: center;
-}
 
 /* Basic */
 
@@ -179,6 +140,10 @@ pre code {
 
 .align-center {
     text-align: center;
+}
+
+.align-justify {
+    text-align: justify;
 }
 
 .align-right {

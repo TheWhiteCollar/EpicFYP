@@ -29,20 +29,7 @@
     <body>
 
         <!-- Header -->
-        <header id="header">
-            <a href="index.jsp"><img src="images/icon.png" srcset="images/icon.png 1000w, images/icon.png 2000w" alt="Epic Journey"></a>
-
-            <nav id="nav">
-                <ul>
-                    <li><a href="index.jsp">Home</a></li>
-                    <li><a href="aboutUs.jsp">About Us</a></li>
-                    <li><a href="studyTrip.jsp">Overseas Study Trips</a></li>
-                    <li><a href="internship.jsp">Overseas Internships</a></li>						
-                    <li><a href="partnerWithUs.jsp">Partner With Us</a></li>
-                    <li><a href="login.jsp">Log In</a></li>
-                </ul>
-            </nav>
-        </header>
+        <jsp:include page="header.jsp" />
 
         <!-- Main -->
         <section id="main" class="wrapper align-center">
@@ -111,54 +98,46 @@
 
             </div>
         </section>	
-        
-        <!-- Testimonal Split 
 
-            see if can use blockquotes
-            or try the image and modal thing?-->
-        <section id="testimony" class="wrapper align-center">
+        <!-- Student Testimonal-->
+        <section id="testimony" class="wrapper">
             <div class="container">
 
-                <header class="major">
+                <header class="major align-center">
                     <h2>What our customers say</h2>
-                                          
+
                 </header>
-                <!--try to use span for the image of 3 in a row-->
-              
-                <div class="overlaidcontainer 4u">
-                  <img src="images/pic05.jpg" alt="Avatar" class="image fit overlaidimage">
-                  <div class="overlay">
-                    <div class="overlaytext">Hello World</div>
-                  </div>
-                </div>
-                <div class="overlaidcontainer 4u">
-                  <img src="images/pic05.jpg" alt="Avatar" class="image fit overlaidimage">
-                  <div class="overlay">
-                    <div class="overlaytext">Hello World1</div>
-                  </div>
-                </div>
-                <div class="overlaidcontainer 4u">
-                  <img src="images/pic05.jpg" alt="Avatar" class="image fit overlaidimage">
-                  <div class="overlay">
-                    <div class="overlaytext">Hello World2</div>
-                  </div>
-                </div>
-         
-
-
-                <div class="box alt">
-                    <div class="row 50% uniform">
-                        
-                        
-
-                        <div class="4u"><span class="image fit overlaidimage"><img src="images/pic05.jpg" alt="" /></span><div class="overlaytext">Hello World</div></div>
-                        <div class="4u"><span class="image fit"><img src="images/pic06.jpg" alt="" /></span></div>
-                        <div class="4u"><span class="image fit"><img src="images/pic06.jpg" alt="" /></span></div>
-                    </div>
+                <div class="row 50% uniform">                       
+                    <div class="4u"><span class="image fit"><img src="images/pic05.jpg" alt="" /></span></div>
+                    <div class="8u">
+                        <p class = "align-justify">“Thank you for organizing this amazing trip for students to get to know about the diverse range of opportunities in Myanmar.  The trip itself was very pleasant and comfortable and I had the chance to explore around the most promising companies in Myanmar like Telenor Myanmar and Yoma Strategic Holdings.  I like to encourage all students to reach out to EPIC for such a career drive and see the actual opportunities in developing countries.” </br><span style="float:right;">- Michael </span></p>
+                    </div>                 
                 </div>
                 
-
-            </div>
+                <div class="row 50% uniform">                       
+                    </br>
+                    <div class="8u">
+                        <p class = "align-justify"></br>“This career drive really give us an insight to the real working world, different company cultures and opportunities we could get if we step outside and look for it.  It also enables us to meet with employers so that we know what they are looking for and polish ourselves better to suit the position we want.”</br><span style="float:right;">- Amber </span></p>
+                    </div> 
+                    <div class="4u"><span class="image fit"><img src="images/pic05.jpg" alt="" /></span></div>
+                </div>
+                
+                <div class="row 50% uniform">                       
+                    </br>
+                    <div class="4u"><span class="image fit"><img src="images/pic05.jpg" alt="" /></span></div>
+                    <div class="8u">
+                        <p class = "align-justify"></br></br>“This trip is well organized and the organizers put sincere effort for students to get to learn, explore about each company we visited, and give the participants the chance to network with potential employers by encouraging students to speak up.”</br><span style="float:right;">- Kai </span></p>
+                    </div>                 
+                </div>
+                
+                <div class="row 50% uniform">                       
+                    </br>
+                    <div class="8u">
+                        <p class = "align-justify"></br>“The career drive is very well-organized and it has provided us with lots of opportunities in quite a number of local and international companies…..we are glad to have this chance to meet all the amazing and inspiring people from all these fastest growing companies.”</br><span style="float:right;">- Jasmine </span></p>
+                    </div> 
+                    <div class="4u"><span class="image fit"><img src="images/pic05.jpg" alt="" /></span></div>
+                </div>
+                
         </section>
 
 
@@ -177,7 +156,6 @@
                     <section class="4u 6u(medium) 12u(small)">
                         <h3>About Us</h3>
                         <ul class="alt">
-                            <!-- <a href="http://url.to.site/index.html#target">Link</a>-->
                             <li><a href="aboutUs.jsp#main">Our Founders</a></li>
                             <li><a href="aboutUs.jsp#vision">Our Vision</a></li>
                             <li><a href="aboutUs.jsp#value">Our Value Proposition</a></li>

@@ -30,23 +30,11 @@
     <body class="landing">
 
         <!-- Header -->
-        <header id="header">
-            <a href="index.jsp"><img src="images/icon.png" srcset="images/icon.png 1000w, images/icon.png 2000w" alt="Epic Journey"></a>
-
-            <nav id="nav">
-                <ul>
-                    <li><a href="index.jsp">Home</a></li>
-                    <li><a href="aboutUs.jsp">About Us</a></li>
-                    <li><a href="studyTrip.jsp">Overseas Study Trips</a></li>
-                    <li><a href="internship.jsp">Overseas Internships</a></li>						
-                    <li><a href="partnerWithUs.jsp">Partner With Us</a></li>
-                    <li><a href="login.jsp">Log In</a></li>
-                </ul>
-            </nav>
-        </header>
+        <jsp:include page="header.jsp" />
 
         <!-- Banner -->
         <section id="banner">
+
             <h2>Life is one <span class="red bold">Epic Journey</span></h2>
             <p>And you are in the driver's seat</p>
             <ul class="actions">
@@ -54,6 +42,7 @@
                     <a href="login.jsp" class="button big">Take charge of your life now</a>
                 </li>
             </ul>
+
         </section>
 
         <!-- One -->

@@ -34,8 +34,7 @@ public class UserDAO {
     #10: userInterest (varchar)
     #11: userPassword (varchar)
     #12: userRole (varchar)
-    */
-    
+     */
     // Get user and their details with userid and password
     public static User getUserByLogin(String userid, String password) {
 
@@ -65,7 +64,7 @@ public class UserDAO {
         String sql = "INSERT INTO user (userEmail, userFirstName, userLastName, userPhone, userOccupation, userPassword, userRole) VALUES (?,?,?,?,?,?,?)";
 
         try (Connection conn = ConnectionManager.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(sql);) {
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
             stmt.setString(1, userEmail);
             stmt.setString(2, userFirstName);
             stmt.setString(3, userLastName);
@@ -81,6 +80,38 @@ public class UserDAO {
             Logger.getLogger(UserDAO.class.getName()).log(Level.WARNING, "Email is already registered!", ex);
         }
         return true;
+    }
+
+    public static ArrayList<User> getAllUsers() {
+        ArrayList<User> result = new ArrayList<>();
+        try {
+            Connection conn = ConnectionManager.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("select * from user");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                String userEmail = rs.getString(1);
+                String userFirstName = rs.getString(2);
+                String userLastName = rs.getString(3);
+                int userPhone = rs.getInt(4);
+                String userGender = rs.getString(5);
+                String userCitizenship = rs.getString(6);
+                int userAge = rs.getInt(7);
+                byte userProfilePic = rs.getByte(7);
+                String userDescription = rs.getString(8);
+                String userInterest = rs.getString(9);
+                String userPassword = rs.getString(10);
+                String userRole = rs.getString(11);
+                String userOccupation = rs.getString(12);
+                result.add(new User(userEmail, userFirstName, userLastName, userPhone, userGender, userCitizenship, userAge, userDescription, userProfilePic, userInterest, userPassword, userRole, userOccupation));
+            }
+            rs.close();
+            stmt.close();
+            conn.close();
+            return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

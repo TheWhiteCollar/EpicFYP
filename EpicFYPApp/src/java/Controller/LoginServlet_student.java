@@ -43,13 +43,16 @@ public class LoginServlet_student extends HttpServlet {
         // Create user
         User user = null;
 
+        // Create session
+        HttpSession session = request.getSession(true);
+
         // send user back to login.jsp if they try to access servlet directly
         if (!userid.equals("") || !password.equals("")) {
             // Validate login
             user = UserDAO.getUserByLogin(userid, password);
             if (user != null) {
-                request.setAttribute("User", user);
-                request.getRequestDispatcher("index.jsp").forward(request, response);
+                session.setAttribute("User", user);
+                response.sendRedirect("index.jsp");
                 return;
             }
         }

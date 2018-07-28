@@ -25,27 +25,28 @@
                     <li><a href="partnerWithUs.jsp">Partner With Us</a></li>
 
                     <%
-                        User User = (User) request.getAttribute("User");
+                        User User = (User) session.getAttribute("User");
                         if (User != null) {
                             String Username = User.getUserFirstName();
                             if (Username != null && !Username.isEmpty()) {
-                        %>
-                                <li>
-                                    <div class="w3-dropdown-hover">
-                                        <button class="w3-button">Hello, <% out.println(Username); %></button>
-                                        <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                                            <a href="#" class="w3-bar-item w3-button">Edit Profile</a>
-                                            <a href="#" class="w3-bar-item w3-button"><a href="logout.jsp">Logout</a></a>
-                                        </div>
-                                    </div>
-                                </li>
-                            <%
-                            }
-                        } else {
-                        %>
-                        <li><a href="login.jsp">Log In</a></li>    
-                        <%
+                    %>
+                    <li>
+                        <div class="w3-dropdown-hover">
+                            <button class="w3-button">Hello, <% out.println(Username); %></button>
+                            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                                <!-- To include hyperlink for edit profile once we get the page done -->
+                                <a href="#" class="w3-bar-item w3-button">Edit Profile</a>
+                                <a href="#" class="w3-bar-item w3-button"><a href="logout.jsp">Logout</a></a>
+                            </div>
+                        </div>
+                    </li>
+                    <%
                         }
+                    } else {
+                    %>
+                    <li><a href="login.jsp">Log In</a></li>    
+                        <%
+                            }
                         %>
 
                 </ul>

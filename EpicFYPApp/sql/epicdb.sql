@@ -19,6 +19,9 @@ SET time_zone = "+00:00";
 --
 -- Database: `epicdb`
 --
+DROP DATABASE IF EXISTS epicdb;
+CREATE DATABASE IF NOT EXISTS epicdb;
+USE epicdb;
 
 -- --------------------------------------------------------
 
@@ -37,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
 --
 
 INSERT INTO `admin` (`adminName`, `adminPassword`) VALUES
-('admin', 'admin123');
+('admin1', 'admin123');
 
 -- --------------------------------------------------------
 
@@ -157,6 +160,37 @@ CREATE TABLE IF NOT EXISTS `workexperience` (
   `workPeriodEnd` date NOT NULL,
   `workDescription` varchar(2000) NOT NULL,
   PRIMARY KEY (`userEmail`,`workCompany`,`workJobTitle`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `trip`
+--
+
+CREATE TABLE IF NOT EXISTS `trip` (
+  `tripID` varchar(100) NOT NULL,
+  `programme` varchar(100) NOT NULL,
+  `price` varchar(200) NOT NULL,
+  `ratings` int(200) NOT NULL,
+  `country` varchar(200) NOT NULL,
+  `tripStart` date NOT NULL,
+  `tripEnd` date NOT NULL,
+  `tripDuration` int(200) NOT NULL,
+  PRIMARY KEY (`tripID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tripStudent`
+--
+
+CREATE TABLE IF NOT EXISTS `tripStudent` (
+  `tripID` varchar(100) NOT NULL,
+  `studentEmail` varchar(100) NOT NULL,
+  PRIMARY KEY (`tripID`, `studentEmail`),
+  FOREIGN KEY (tripID) REFERENCES trip(tripID)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

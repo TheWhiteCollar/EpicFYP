@@ -6,6 +6,11 @@
 <%@page import="Model.Entity.Trip"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<!--
+        Interphase by TEMPLATED
+        templated.co @templatedco
+        Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -56,6 +61,7 @@
     </head>
     <body>
         <!-- Header -->
+        <jsp:include page="header.jsp" />
         <header id="header">
             <a href="index.jsp"><img src="images/icon.png" srcset="images/icon.png 1000w, images/icon.png 2000w" alt="Epic Journey"></a>
             <nav id="nav">

@@ -12,6 +12,10 @@
         <servlet-name>getAllTripsServlet</servlet-name>
         <servlet-class>Controller.getAllTripsServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminDAO</servlet-name>
+        <servlet-class>Model.Dao.AdminDAO</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TripsDAO</servlet-name>
         <url-pattern>/TripsDAO</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>getAllTripsServlet</servlet-name>
         <url-pattern>/getAllTripsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminDAO</servlet-name>
+        <url-pattern>/AdminDAO</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

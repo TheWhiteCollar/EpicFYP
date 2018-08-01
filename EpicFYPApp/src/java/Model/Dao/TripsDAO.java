@@ -8,6 +8,7 @@ package Model.Dao;
 import Controller.ConnectionManager;
 import Model.Entity.Trip;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -118,6 +119,82 @@ public class TripsDAO {
             Logger.getLogger(TripsDAO.class.getName()).log(Level.WARNING, "Cannot get trip with tripID: " + tripID , ex);
         }
         return trip;
+    }
+    
+    public static boolean deleteTrip(String tripID) {
+        
+        //delete the students
+        String sql1 = "DELETE FROM tripstudent WHERE tripID=?";
+
+        try (
+                Connection conn = ConnectionManager.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql1);
+            ) {
+            stmt.setString(1, tripID);
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(TripsDAO.class.getName()).log(Level.WARNING, "Unable to delete trip, tripID = '" + tripID, ex);
+            return false;
+        }
+
+        //delete the trip
+        String sql2 = "DELETE FROM trip WHERE tripID=?";
+
+        try (
+                Connection conn = ConnectionManager.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql2);
+            ) {
+            stmt.setString(1, tripID);
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(TripsDAO.class.getName()).log(Level.WARNING, "Unable to delete trip, tripID = '" + tripID, ex);
+            return false;
+        }
+        
+        return true;
+    }
+    
+    public static boolean insertTrip(String country, String programme, String price, int rating, String duration, Date startDate, Date endDate) {
+        
+        //get max tripID
+        String sql1 = "SELECT MAX(tripID) FROM trip";
+
+        int tripID = 0;
+        try (
+                Connection conn = ConnectionManager.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql1);
+            ) {
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            tripID = Integer.parseInt(rs.getString(1));
+        } catch (SQLException ex) {
+            Logger.getLogger(TripsDAO.class.getName()).log(Level.WARNING, "Unable to insert trip", ex);
+            return false;
+        }
+
+        //insert the trip
+        String sql2 = "INSERT INTO `trip` (`tripID`, `programme`, `price`, `ratings`, `country`, `tripStart`, `tripEnd`, `tripDuration`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+        tripID++;
+        String tripIDString = "" + tripID;
+        try (
+                Connection conn = ConnectionManager.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql2);
+            ) {
+            stmt.setString(1, tripIDString);
+            stmt.setString(2, programme);
+            stmt.setString(3, price);
+            stmt.setInt(4, rating);
+            stmt.setString(5, country);
+            stmt.setDate(6, startDate);
+            stmt.setDate(7, endDate);
+            stmt.setString(8, duration);
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(TripsDAO.class.getName()).log(Level.WARNING, "Unable to insert trip", ex);
+            return false;
+        }
+        
+        return true;
     }
     
     public static ArrayList<String> convertEmailString(String emails) {

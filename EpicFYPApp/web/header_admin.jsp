@@ -60,7 +60,7 @@
                         }
 
                     } else {
-                    %>
+                    %>s
                     <li><a href="login.jsp">Log In</a></li>    
                         <%
                             }

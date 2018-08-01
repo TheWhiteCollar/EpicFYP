@@ -4,6 +4,7 @@
     Author     : User
 --%>
 
+<%@page import="Model.Entity.Admin"%>
 <%@page import="Model.Entity.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -24,6 +25,7 @@
 
                     <%
                         User User = (User) session.getAttribute("User");
+                        Admin admin = (Admin) session.getAttribute("Admin");
                         if (User != null) {
                             String Username = User.getUserFirstName();
                             if (Username != null && !Username.isEmpty()) {
@@ -40,6 +42,23 @@
                     </li>
                     <%
                         }
+                    } else if (admin != null) {
+                        String Username = admin.getAdminName();
+                        if (Username != null && !Username.isEmpty()) {
+                    %>
+                    <li>
+                        <div class="w3-dropdown-hover">
+                            <button class="w3-button">Hello, <% out.println(Username); %></button>
+                            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                                <!-- To include hyperlink for edit profile once we get the page done -->
+                                <a href="#" class="w3-bar-item w3-button">Edit Profile</a>
+                                <a href="#" class="w3-bar-item w3-button"><a href="logout.jsp">Logout</a></a>
+                            </div>
+                        </div>
+                    </li>
+                    <%
+                        }
+
                     } else {
                     %>
                     <li><a href="login.jsp">Log In</a></li>    

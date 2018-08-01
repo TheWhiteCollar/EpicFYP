@@ -5,7 +5,9 @@
  */
 package Controller;
 
+import Model.Dao.AdminDAO;
 import Model.Dao.UserDAO;
+import Model.Entity.Admin;
 import Model.Entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -41,7 +43,7 @@ public class LoginServlet_admin extends HttpServlet {
         String password = request.getParameter("password");
 
         // Create user
-        User user = null;
+        Admin admin = null;
         
         // Create session
         HttpSession session = request.getSession(true);
@@ -49,9 +51,9 @@ public class LoginServlet_admin extends HttpServlet {
         // send user back to login.jsp if they try to access servlet directly
         if (!userid.equals("") || !password.equals("")) {
             // Validate login
-            user = UserDAO.getUserByLogin(userid, password);
-            if (user != null) {
-                session.setAttribute("User", user);
+            admin = AdminDAO.getAdminByLogin(userid, password);
+            if (admin != null) {
+                session.setAttribute("Admin", admin);
                 response.sendRedirect("index_admin.jsp");
                 return;
             }

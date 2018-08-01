@@ -13,10 +13,6 @@
         <servlet-class>Controller.getAllTripsServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AdminDAO</servlet-name>
-        <servlet-class>Model.Dao.AdminDAO</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>applyForTrips</servlet-name>
         <servlet-class>Controller.applyForTrips</servlet-class>
     </servlet>
@@ -35,10 +31,6 @@
     <servlet-mapping>
         <servlet-name>getAllTripsServlet</servlet-name>
         <url-pattern>/getAllTripsServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AdminDAO</servlet-name>
-        <url-pattern>/AdminDAO</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>applyForTrips</servlet-name>

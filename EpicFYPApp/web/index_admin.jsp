@@ -26,7 +26,7 @@
     </head>
     <body>
 
-               <!-- Header -->
+        <!-- Header -->
         <jsp:include page="header_admin.jsp" />
 
         <!-- Main -->
@@ -39,6 +39,7 @@
                 </header>
             </div>
         </section>
+        
 
     </body>
 </html>

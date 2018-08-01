@@ -193,7 +193,6 @@ public class TripsDAO {
             Logger.getLogger(TripsDAO.class.getName()).log(Level.WARNING, "Unable to insert trip", ex);
             return false;
         }
-        
         return true;
     }
     

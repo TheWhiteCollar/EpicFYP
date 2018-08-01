@@ -90,12 +90,16 @@
 
                 <header class="major">
                     <h2>Partner with Us</h2>
-                    <p><i><a href="partnerWithUs.jsp"><font color="#ffffff">"It takes a village to raise a child."</font></a></i></p>						
+                    <p>"It takes a village to raise a child."</p>						
                 </header>
-
                 <p>Together we will jointly develop the youths of our future - With our specialisation in in Emerging Markets, and the strong friendships with our Corporate and Community Partners.</p>
                 <p>The benefits are twofold: Providing guidance for youths, and giving back to the community and corporations that we work with.</p>
-
+                
+                <ul class="actions">
+                <li>
+                    <a href="partnerWithUs.jsp" class="button big">Partner us in building a village of the future</a>
+                </li>
+            </ul>
             </div>
         </section>	
 

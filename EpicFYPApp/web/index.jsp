@@ -39,7 +39,7 @@
             <p>And you are in the driver's seat</p>
             <ul class="actions">
                 <li>
-                    <a href="login.jsp" class="button big">Take charge of your life now</a>
+                    <a href="login.jsp" class="button big"><font color="white">Take charge of your life now</font></a>
                 </li>
             </ul>
 

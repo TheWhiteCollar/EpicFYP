@@ -23,7 +23,7 @@
 
         <!-- For user to choose if they want to login as student or admin -->
         <style>
-            body {font-family: Arial;}
+            
 
             /* Style the tab */
             .tab {
@@ -92,7 +92,7 @@
                 <!-- For user to choose if they want to login as student or admin -->
                 <div id="Admin" class="tabcontent">
                     <form action="LoginServlet_admin" method="post">
-                        <input type="text" name="userid" placeholder="User ID">
+                        <input type="text" name="userid" placeholder="User Email">
                         <br>
                         <input type="password" name="password" placeholder="Password">
                         <br>
@@ -107,7 +107,7 @@
                 <!-- For user to choose if they want to login as student or admin -->
                 <div id="Students" class="tabcontent">
                     <form action="LoginServlet_student" method="post">
-                        <input type="text" name="userid" placeholder="User ID">
+                        <input type="text" name="userid" placeholder="User Email">
                         <br>
                         <input type="password" name="password" placeholder="Password">
                         <br>

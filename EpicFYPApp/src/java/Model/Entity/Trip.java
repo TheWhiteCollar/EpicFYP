@@ -52,6 +52,18 @@ public class Trip {
         }
         
     }
+    
+    // have 1 more trip constructor cause database dont have the column with Emails of signees
+    public Trip(String tripID, String programme, String price, int ratings, String country, String tripStart, String tripEnd, int tripDuration) {
+        this.tripID = tripID;
+        this.programme = programme;
+        this.price = price;
+        this.ratings = ratings;
+        this.country = country;
+        this.tripStart = tripStart;
+        this.tripEnd = tripEnd;
+        this.tripDuration = tripDuration;        
+    }
 
     public String getTripID() {
         return tripID;

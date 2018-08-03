@@ -72,38 +72,38 @@
                     <h1>Filter By </h1>
                     <%                String datetime = (String) request.getAttribute("inputdatetime");
                     %>
-                    <form action="applyForTrips" method="post" onsubmit="showLoader()">
+                    <form action="filterTrips.jsp" method="post" onsubmit="showLoader()">
                         <label for="specialQuery">Date From:&nbsp;&nbsp;&nbsp;&nbsp;
                             <input id="specialQuery" type="datetime-local" name="datetime" step=1 value = <%= (datetime != null) ? datetime : ""%>>
                             &nbsp;&nbsp;&nbsp;&nbsp;Date To:&nbsp;&nbsp;&nbsp;&nbsp;
                             <input id="specialQuery" type="datetime-local" name="datetime" step=1 value = <%= (datetime != null) ? datetime : ""%>></label><br/>
                         Country:
-                        <select name="category1">
+                        <select name="country">
                             <option value=null >--Choose Country--</option>
-                            <option value="gender" >Australia</option>
-                            <option value="school" >USA</option>
-                            <option value="year" >UK</option>
+                            <option value="australia" >Australia</option>
+                            <option value="usa" >USA</option>
+                            <option value="uk" >UK</option>
                         </select>
                         Price:
-                        <select name="category2">
+                        <select name="price">
                             <option value=null >--Price Range--</option>
-                            <option value="gender" >1000-2000</option>
-                            <option value="school" >2000-3000</option>
-                            <option value="year">3000 and above</option>
+                            <option value="1000" >1000-2000</option>
+                            <option value="2000" >2000-3000</option>
+                            <option value="3000">3000 and above</option>
                         </select>
                         Ratings:
-                        <select name="category3">
+                        <select name="rating">
                             <option value=null >--Rating--</option>
-                            <option value="gender" >Bad</option>
-                            <option value="school" >Average</option>
-                            <option value="year" >Excellent</option>
+                            <option value="bad" >Bad</option>
+                            <option value="average" >Average</option>
+                            <option value="excellent" >Excellent</option>
                         </select>
                         Programmes:
-                        <select name="category4">
+                        <select name="programmes">
                             <option value=null >--Programmes--</option>
-                            <option value="gender" >IT</option>
-                            <option value="school" >Supply Chain</option>
-                            <option value="year">Leadership</option>
+                            <option value="it" >IT</option>
+                            <option value="supplychain" >Supply Chain</option>
+                            <option value="leadership">Leadership</option>
                         </select>
                         <br/>
                         <input type="submit" value="Apply Filters!">                    

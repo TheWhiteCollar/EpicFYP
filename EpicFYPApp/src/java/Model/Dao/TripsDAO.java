@@ -205,4 +205,28 @@ public class TripsDAO {
         System.out.println(emailsAL.get(0));
         return emailsAL;
     }
+    
+    public static ArrayList<Trip> filterTrips(String country, String rating, String price, String programme) {
+        ArrayList<Trip> filteredTrips = new ArrayList<Trip>();
+        int ratingNum = 0;
+        if (rating.equals("Bad")) {
+            ratingNum = 3;
+        } else if (rating.equals("Good")) {
+            ratingNum = 7;
+        } else {
+            ratingNum = 10;
+        }
+        String sql1 = "SELECT * FROM trip WHERE country=" + country +" OR programme=" + programme + "OR price=" + price + "OR rating>=" + ratingNum;
+        try (Connection conn = ConnectionManager.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql1);) {
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+            Trip trip = new Trip(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8));
+            filteredTrips.add(trip);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(TripsDAO.class.getName()).log(Level.WARNING, "Cannot get trips with filters", ex);
+        }
+        return filteredTrips;
+    }
 }

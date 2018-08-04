@@ -22,46 +22,7 @@
         <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 
         <!-- For user to choose if they want to login as student or admin -->
-        <style>
-            
-
-            /* Style the tab */
-            .tab {
-                overflow: hidden;
-                border: 1px solid #ccc;
-                background-color: #f1f1f1;
-            }
-
-            /* Style the buttons inside the tab */
-            .tab button {
-                background-color: inherit;
-                float: left;
-                border: none;
-                outline: none;
-                cursor: pointer;
-                padding: 14px 16px;
-                transition: 0.3s;
-                font-size: 17px;
-            }
-
-            /* Change background color of buttons on hover */
-            .tab button:hover {
-                background-color: #ddd;
-            }
-
-            /* Create an active/current tablink class */
-            .tab button.active {
-                background-color: #ccc;
-            }
-
-            /* Style the tab content */
-            .tabcontent {
-                display: none;
-                padding: 6px 12px;
-                border: 1px solid #ccc;
-                border-top: none;
-            }
-        </style>
+       
 
     </head>
     <body>
@@ -85,22 +46,20 @@
 
                 <!-- For user to choose if they want to login as student or admin -->
                 <div class="tab">
-                    <button class="tablinks" onclick="openCity(event, 'Admin')">Admin</button>
-                    <button class="tablinks" onclick="openCity(event, 'Students')">Student</button>
+                    <button class="tablinks" onclick="openUser(event, 'Admin')">Admin</button>
+                    <button class="tablinks" onclick="openUser(event, 'Students')" id="defaultOpen">Student</button>
                 </div>
 
                 <!-- For user to choose if they want to login as student or admin -->
                 <div id="Admin" class="tabcontent">
                     <form action="LoginServlet_admin" method="post">
-                        <input type="text" name="userid" placeholder="User Email">
+                        <input type="text" name="userid" placeholder="Admin Email">
                         <br>
                         <input type="password" name="password" placeholder="Password">
                         <br>
                         <input type="submit" value="Login">
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        Not yet a user? <a href="signuppage.jsp">Sign up for an account!</a>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="forgetpassword.jsp">Forget your password?</a>                    
+                        <a href="forgetpassword.jsp">Forgot your password?</a>                    
                     </form> 
                 </div>
 
@@ -113,9 +72,9 @@
                         <br>
                         <input type="submit" value="Login">
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        Not yet a user? <a href="signuppage.jsp">Sign up for an account!</a>
+                        Not yet a user? <a href="signuppage.jsp">Click to sign up!</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="forgetpassword.jsp">Forget your password?</a>                    
+                        <a href="forgetpassword.jsp">Forgot your password?</a>                    
                     </form> 
                 </div>
             </div>
@@ -126,7 +85,7 @@
 
         <!-- For user to choose if they want to login as student or admin -->
         <script>
-            function openCity(evt, cityName) {
+            function openUser(evt, userName) {
                 var i, tabcontent, tablinks;
                 tabcontent = document.getElementsByClassName("tabcontent");
                 for (i = 0; i < tabcontent.length; i++) {
@@ -136,9 +95,10 @@
                 for (i = 0; i < tablinks.length; i++) {
                     tablinks[i].className = tablinks[i].className.replace(" active", "");
                 }
-                document.getElementById(cityName).style.display = "block";
+                document.getElementById(userName).style.display = "block";
                 evt.currentTarget.className += " active";
             }
+            document.getElementById("defaultOpen").click();
         </script>
 
     </body>

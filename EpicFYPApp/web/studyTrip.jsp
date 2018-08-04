@@ -68,14 +68,20 @@
                     <h2>Overseas Study Trips</h2>
                     <p>Let's Explore! Apply for your study trip here!</p>
                 </header>
+
+
                 <div id="content">
+                    
+                    
                     <h1>Filter By </h1>
-                    <%                String datetime = (String) request.getAttribute("inputdatetime");
+                    <%
+                        String datetime = (String) request.getAttribute("inputdatetime");
                     %>
                     <form action="filterTrips.jsp" method="post" onsubmit="showLoader()">
-                        <label for="specialQuery">Date From:&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label for="specialQuery">
+                            Date From:
                             <input id="specialQuery" type="datetime-local" name="datetime" step=1 value = <%= (datetime != null) ? datetime : ""%>>
-                            &nbsp;&nbsp;&nbsp;&nbsp;Date To:&nbsp;&nbsp;&nbsp;&nbsp;
+                            Date To:
                             <input id="specialQuery" type="datetime-local" name="datetime" step=1 value = <%= (datetime != null) ? datetime : ""%>></label><br/>
                         Country:
                         <select name="country">

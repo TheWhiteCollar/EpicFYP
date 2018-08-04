@@ -36,7 +36,8 @@
                             <div class="w3-dropdown-content w3-bar-block w3-card-4">
                                 <!-- To include hyperlink for edit profile once we get the page done -->
                                 <a href="#" class="w3-bar-item w3-button">Edit Profile</a>
-                                <a href="#" class="w3-bar-item w3-button"><a href="logout.jsp">Logout</a></a>
+                                <a href="#" class="w3-bar-item w3-button"></a>
+                                <a href="logout.jsp" class="w3-bar-item w3-button">Logout</a>
                             </div>
                         </div>
                     </li>
@@ -52,7 +53,8 @@
                             <div class="w3-dropdown-content w3-bar-block w3-card-4">
                                 <!-- To include hyperlink for edit profile once we get the page done -->
                                 <a href="#" class="w3-bar-item w3-button">Edit Profile</a>
-                                <a href="#" class="w3-bar-item w3-button"><a href="logout.jsp">Logout</a></a>
+                                <a href="#" class="w3-bar-item w3-button"></a>
+                                <a href="logout.jsp" class="w3-bar-item w3-button">Logout</a>
                             </div>
                         </div>
                     </li>

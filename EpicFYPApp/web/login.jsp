@@ -44,43 +44,39 @@
                     <button class="tablinks" onclick="openUser(event, 'Students')" id="defaultOpen">Student</button>
                 </div>
                 <div class = "outsidetab">
-                     
-                        <%
-                            String ErrorMsg = (String) request.getAttribute("ErrorMsg");
-                            if (ErrorMsg != null) {
-                                out.println(ErrorMsg);
-                            }
-                        %>
-                    
+                    <%
+                        String ErrorMsg = (String) request.getAttribute("ErrorMsg");
+                        if (ErrorMsg != null) {
+                            out.println(ErrorMsg);
+                        }
+                    %>
                 </div>
 
                 <!-- For user to choose if they want to login as student or admin -->
                 <div id="Admin" class="tabcontent">
                     <form action="LoginServlet_admin" method="post">
-                        <input type="text" name="userid" placeholder="Admin Email">
+                        <input type="text" name="userid" placeholder="- Enter Admin Email -" style="text-align:center">
                         <br>
-                        <input type="password" name="password" placeholder="Admin Password">
+                        <input type="password" name="password" placeholder="- Enter Admin Password -" style="text-align:center">
                         <br>
-                        <input type="submit" value="Login">
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="forgetpassword.jsp">Forgot your password?</a>                    
+                        <input type="submit" value="Login" style="width:100%">                                                          
                     </form> 
+                    <p style="text-align:center"><a href="forgetpassword.jsp">Forgot your password?</a></p>
                 </div>
 
                 <!-- For user to choose if they want to login as student or admin -->
                 <div id="Students" class="tabcontent">
                     <form action="LoginServlet_student" method="post">
-                        <input type="text" name="userid" placeholder="Student Email">
+                        <input type="text" name="userid" placeholder="- Enter Student Email -" style="text-align:center">
                         <br>
-                        <input type="password" name="password" placeholder="Student Password">
+                        <input type="password" name="password" placeholder="- Enter Student Password -" style="text-align:center">
                         <br>
-                        <input type="submit" value="Login">
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        Not yet a user? <a href="signuppage.jsp">Click to sign up!</a>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="forgetpassword.jsp">Forgot your password?</a>                    
+                        <input type="submit" value="Login" style="width:100%">
                     </form> 
-
+                    <p style="text-align:center">
+                        <a href="signuppage.jsp">Click to sign up!</a><br /> 
+                        <a href="forgetpassword.jsp">Forgot your password?</a>
+                    </p>
                 </div>
             </div>
         </section>
@@ -89,22 +85,6 @@
         <jsp:include page="footer.jsp" />
 
         <!-- For user to choose if they want to login as student or admin -->
-        <script>
-            function openUser(evt, userName) {
-                var i, tabcontent, tablinks;
-                tabcontent = document.getElementsByClassName("tabcontent");
-                for (i = 0; i < tabcontent.length; i++) {
-                    tabcontent[i].style.display = "none";
-                }
-                tablinks = document.getElementsByClassName("tablinks");
-                for (i = 0; i < tablinks.length; i++) {
-                    tablinks[i].className = tablinks[i].className.replace(" active", "");
-                }
-                document.getElementById(userName).style.display = "block";
-                evt.currentTarget.className += " active";
-            }
-            document.getElementById("defaultOpen").click();
-        </script>
-
+        <script src="js/tabs.js"></script>
     </body>
 </html>

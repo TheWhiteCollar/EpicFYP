@@ -22,7 +22,7 @@
         <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 
         <!-- For user to choose if they want to login as student or admin -->
-       
+
 
     </head>
     <body>
@@ -36,18 +36,22 @@
 
                 <header class="major">
                     <h2>Login to Epic</h2>
-                </header>                                       
-                <%
-                    String ErrorMsg = (String) request.getAttribute("ErrorMsg");
-                    if (ErrorMsg != null) {
-                        out.println(ErrorMsg);
-                    }
-                %>
+                </header>                                                    
 
                 <!-- For user to choose if they want to login as student or admin -->
                 <div class="tab">
                     <button class="tablinks" onclick="openUser(event, 'Admin')">Admin</button>
                     <button class="tablinks" onclick="openUser(event, 'Students')" id="defaultOpen">Student</button>
+                </div>
+                <div class = "outsidetab">
+                     
+                        <%
+                            String ErrorMsg = (String) request.getAttribute("ErrorMsg");
+                            if (ErrorMsg != null) {
+                                out.println(ErrorMsg);
+                            }
+                        %>
+                    
                 </div>
 
                 <!-- For user to choose if they want to login as student or admin -->
@@ -55,7 +59,7 @@
                     <form action="LoginServlet_admin" method="post">
                         <input type="text" name="userid" placeholder="Admin Email">
                         <br>
-                        <input type="password" name="password" placeholder="Password">
+                        <input type="password" name="password" placeholder="Admin Password">
                         <br>
                         <input type="submit" value="Login">
                         &nbsp;&nbsp;&nbsp;&nbsp;
@@ -66,9 +70,9 @@
                 <!-- For user to choose if they want to login as student or admin -->
                 <div id="Students" class="tabcontent">
                     <form action="LoginServlet_student" method="post">
-                        <input type="text" name="userid" placeholder="User Email">
+                        <input type="text" name="userid" placeholder="Student Email">
                         <br>
-                        <input type="password" name="password" placeholder="Password">
+                        <input type="password" name="password" placeholder="Student Password">
                         <br>
                         <input type="submit" value="Login">
                         &nbsp;&nbsp;&nbsp;&nbsp;
@@ -76,6 +80,7 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <a href="forgetpassword.jsp">Forgot your password?</a>                    
                     </form> 
+
                 </div>
             </div>
         </section>

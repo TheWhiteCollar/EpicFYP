@@ -74,8 +74,9 @@
                         <input type="submit" value="Login" style="width:100%">
                     </form> 
                     <p style="text-align:center">
-                        <a href="signuppage.jsp">Click to sign up!</a><br /> 
-                        <a href="forgetpassword.jsp">Forgot your password?</a>
+                        <a href="forgetpassword.jsp">Forgot your password?</a><br /> 
+                        <a href="signuppage.jsp">Click to sign up!</a>
+                        
                     </p>
                 </div>
             </div>

@@ -69,136 +69,163 @@
                     <p>Let's Explore! Apply for your study trip here!</p>
                 </header>
 
+                <div class="tab">
+                    <button class="tablinks" onclick="openUser(event, 'filter')">Click for more filtering options:</button>      
+                </div>
 
-                <div id="content">
-                    
-                    
-                    <h1>Filter By </h1>
+                <div id="filter" class="tabcontentFade">
+                    <span onclick="this.parentElement.style.display='none'" class="toprightClose">&times</span>
                     <%
                         String datetime = (String) request.getAttribute("inputdatetime");
                     %>
                     <form action="filterTrips.jsp" method="post" onsubmit="showLoader()">
-                        <label for="specialQuery">
-                            Date From:
-                            <input id="specialQuery" type="datetime-local" name="datetime" step=1 value = <%= (datetime != null) ? datetime : ""%>>
-                            Date To:
-                            <input id="specialQuery" type="datetime-local" name="datetime" step=1 value = <%= (datetime != null) ? datetime : ""%>></label><br/>
-                        Country:
-                        <select name="country">
-                            <option value=null >--Choose Country--</option>
-                            <option value="australia" >Australia</option>
-                            <option value="usa" >USA</option>
-                            <option value="uk" >UK</option>
-                        </select>
-                        Price:
-                        <select name="price">
-                            <option value=null >--Price Range--</option>
-                            <option value="1000" >1000-2000</option>
-                            <option value="2000" >2000-3000</option>
-                            <option value="3000">3000 and above</option>
-                        </select>
-                        Ratings:
-                        <select name="rating">
-                            <option value=null >--Rating--</option>
-                            <option value="bad" >Bad</option>
-                            <option value="average" >Average</option>
-                            <option value="excellent" >Excellent</option>
-                        </select>
-                        Programmes:
-                        <select name="programmes">
-                            <option value=null >--Programmes--</option>
-                            <option value="it" >IT</option>
-                            <option value="supplychain" >Supply Chain</option>
-                            <option value="leadership">Leadership</option>
-                        </select>
-                        <br/>
-                        <input type="submit" value="Apply Filters!">                    
+                        <div class = "row">
+                            <div class="3u">
+                                Date From:
+                                <input id="specialQuery" type="datetime-local" name="datetime" step=1 value = <%= (datetime != null) ? datetime : ""%>>
+                            </div>
+                            <div class="3u">
+                                Date To:
+                                <input id="specialQuery" type="datetime-local" name="datetime" step=1 value = <%= (datetime != null) ? datetime : ""%>></label><br/>
+                            </div> 
+                        </div>
+
+                        <div class = "row">
+                            <div class="1u">
+                                Country:
+                            </div>
+                            <div class="2u">                                   
+                                <input type="checkbox" id="Singapore" name="country" value="Singapore">
+                                <label for="Singapore">Singapore</label>
+                            </div>
+                            <div class="2u">                                   
+                                <input type="checkbox" id="Myanmar" name="country" value="Myanmar">
+                                <label for="Myanmar">Myanmar</label>
+                            </div>
+                            <div class="2u">                                   
+                                <input type="checkbox" id="China" name="country" value="China">
+                                <label for="China">China</label>
+                            </div>
+                            <div class="2u">                                   
+                                <input type="checkbox" id="Indonesia" name="country" value="Indonesia">
+                                <label for="Indonesia">Indonesia</label>
+                            </div>
+                        </div>
+
+                        <div class = "row">
+                            <div class="2u">
+                                Price (min):
+                                <input type="number" value = "min">
+                            </div>
+                            <div class="2u">
+                                Price (max):
+                                <input type="number" value = "max">
+                            </div>
+                            <div class="3u">
+                                Ratings:
+                                <select name="rating">
+                                    <option value=null >- Rating -</option>
+                                    <option value="bad" >Bad</option>
+                                    <option value="average" >Average</option>
+                                    <option value="excellent" >Excellent</option>
+                                </select>
+                            </div>
+                            <div class="4u">
+                                Programmes:
+                                <select name="programmes">
+                                    <option value=null >--Programmes--</option>
+                                    <option value="it" >IT</option>
+                                    <option value="supplychain" >Supply Chain</option>
+                                    <option value="leadership">Leadership</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <input type="submit" value="Apply" style="width:100%"> 
                     </form> 
                 </div>
-                <div id="trips"></div>
-                <div>Ongoing Trips</div><br>     
-                <div class="container-fluid">
-                    <div class="row">
-
-                        <div class="col-sm-4">
-                            <div class="card">
-                                <img class="card-img-top" src="images/Germany.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Germany Trip</h5>
-                                    <p class="card-text">From the heights of the Alps to the depths of the Black Forest, find yourself lost in a fairy tale come to life.</p>
-                                    <a href="tripDetail.jsp" class="btn btn-primary">View Details</a>
-                                    <div><br><a href="submitTrip.jsp" class="button small">Apply for Trip</a></div>
-                                </div>
+        </section>
+        <section class="wrapper">
+            <div id="trips"></div>   
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <img class="card-img-top" src="images/Germany.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Germany Trip</h5>
+                                <p class="card-text">From the heights of the Alps to the depths of the Black Forest, find yourself lost in a fairy tale come to life.</p>
+                                <a href="tripDetail.jsp" class="btn btn-primary">View Details</a>
+                                <div><br><a href="submitTrip.jsp" class="button small">Apply for Trip</a></div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="col-sm-4">
-                            <div class="card">
-                                <img class="card-img-top" src="images/Spain.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Spain Trip</h5>
-                                    <p class="card-text">Fiestas and holy weeks cram the Spanish calendar year, so no matter when you go there’s an event going on somewhere.</p>
-                                    <a href="tripDetail.jsp" class="btn btn-primary">View Details</a>
-                                    <div><br><a href="submitTrip.jsp" class="button small">Apply for Trip</a></div>
-                                </div>
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <img class="card-img-top" src="images/Spain.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Spain Trip</h5>
+                                <p class="card-text">Fiestas and holy weeks cram the Spanish calendar year, so no matter when you go there’s an event going on somewhere.</p>
+                                <a href="tripDetail.jsp" class="btn btn-primary">View Details</a>
+                                <div><br><a href="submitTrip.jsp" class="button small">Apply for Trip</a></div>
                             </div>
                         </div>
-                        <div class="col-sm-4">
-                            <div class="card">
-                                <img class="card-img-top" src="images/Norway.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Norway Trip</h5>
-                                    <p class="card-text">Embrace the wild outdoors learn new skills and enjoy independence like no other trip</p>
-                                    <a href="tripDetail.jsp" class="btn btn-primary">View Details</a>
-                                    <div><br><a href="submitTrip.jsp" class="button small">Apply for Trip</a></div>
-                                </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <img class="card-img-top" src="images/Norway.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Norway Trip</h5>
+                                <p class="card-text">Embrace the wild outdoors learn new skills and enjoy independence like no other trip</p>
+                                <a href="tripDetail.jsp" class="btn btn-primary">View Details</a>
+                                <div><br><a href="submitTrip.jsp" class="button small">Apply for Trip</a></div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="col-sm-4">
-                            <div class="card">
-                                <img class="card-img-top" src="images/Belgium.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Belgium</h5>
-                                    <p class="card-text">Discover the illusions of physics at Scientastic, or learn about the natural world at the Royal Belgian Institute.</p>
-                                    <a href="tripDetail.jsp" class="btn btn-primary">View Details</a>
-                                    <div><br><a href="submitTrip.jsp" class="button small">Apply for Trip</a></div>
-                                </div>
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <img class="card-img-top" src="images/Belgium.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Belgium</h5>
+                                <p class="card-text">Discover the illusions of physics at Scientastic, or learn about the natural world at the Royal Belgian Institute.</p>
+                                <a href="tripDetail.jsp" class="btn btn-primary">View Details</a>
+                                <div><br><a href="submitTrip.jsp" class="button small">Apply for Trip</a></div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="col-sm-4">
-                            <div class="card">
-                                <img class="card-img-top" src="images/Glasgow.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Glasgow</h5>
-                                    <p class="card-text">Conservation, photography, biology and cultural awareness are just a few of the topics available to study.</p>
-                                    <a href="tripDetail.jsp" class="btn btn-primary">View Details</a>
-                                    <div><br><a href="submitTrip.jsp" class="button small">Apply for Trip</a></div>
-                                </div>
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <img class="card-img-top" src="images/Glasgow.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Glasgow</h5>
+                                <p class="card-text">Conservation, photography, biology and cultural awareness are just a few of the topics available to study.</p>
+                                <a href="tripDetail.jsp" class="btn btn-primary">View Details</a>
+                                <div><br><a href="submitTrip.jsp" class="button small">Apply for Trip</a></div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="col-sm-4">
-                            <div class="card">
-                                <img class="card-img-top" src="images/Greece.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Greece</h5>
-                                    <p class="card-text">Picture yourself living in a place that has teetered with life for thousands and thousands of years.</p>
-                                    <a href="tripDetail.jsp" class="btn btn-primary">View Details</a>
-                                    <div><br><a href="submitTrip.jsp" class="button small">Apply for Trip</a></div>
-                                </div>
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <img class="card-img-top" src="images/Greece.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Greece</h5>
+                                <p class="card-text">Picture yourself living in a place that has teetered with life for thousands and thousands of years.</p>
+                                <a href="tripDetail.jsp" class="btn btn-primary">View Details</a>
+                                <div><br><a href="submitTrip.jsp" class="button small">Apply for Trip</a></div>
                             </div>
                         </div>
-
                     </div>
                 </div>
-            </div>                
-        </section>
+            </div>
+        </div>  
+    </section>
 
-
-        <<!-- Footer -->
-        <jsp:include page="footer.jsp" />
-
-    </body>
+    <<!-- Footer -->
+    <jsp:include page="footer.jsp" />
+    <script src="js/tabs.js"></script>
+</body>
 </html>

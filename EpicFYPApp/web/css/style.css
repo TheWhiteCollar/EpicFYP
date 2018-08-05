@@ -217,6 +217,7 @@ input[type="date"],
 input[type="datetime-local"], 
 input[type="month"], 
 input[type="time"],
+input[type="number"],
 select,
 textarea {
     -moz-appearance: none;
@@ -243,6 +244,7 @@ input[type="date"]:invalid,
 input[type="datetime-local"]:invalid, 
 input[type="month"]:invalid, 
 input[type="time"]:invalid,
+input[type="number"]:invalid,
 select:invalid,
 textarea:invalid {
     box-shadow: none;
@@ -255,6 +257,7 @@ input[type="date"]:focus,
 input[type="datetime-local"]:focus, 
 input[type="month"]:focus, 
 input[type="time"]:focus,
+input[type="number"]:focus,
 select:focus,
 textarea:focus {
     border-color: #BC8F8F;
@@ -297,6 +300,11 @@ textarea:focus {
 input[type="text"],
 input[type="password"],
 input[type="email"],
+input[type="date"], 
+input[type="datetime-local"], 
+input[type="month"], 
+input[type="time"],
+input[type="number"],
 select {
     height: 2.75em;
 }
@@ -827,7 +835,7 @@ input[type="submit"]:active,
 input[type="reset"]:active,
 input[type="button"]:active,
 .button:active {
-    background-color: #34935a;
+    background-color: #FA9189;
 }
 
 input[type="submit"].icon,
@@ -1211,3 +1219,30 @@ body.landing #header {
     padding: 20px 20px 0px;
     color: red
 }
+
+.tabcontentFade{
+    display: none;
+    padding: 20px 20px;
+    -webkit-animation: fadeEffect 1s;
+    animation: fadeEffect 1s;
+}
+
+/* Fade in tabs */
+@-webkit-keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+/* Style the close button */
+.toprightClose {
+    float: right;
+    cursor: pointer;
+    font-size: 28px;
+}
+
+.toprightClose:hover {color: red;}

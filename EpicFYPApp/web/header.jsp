@@ -1,9 +1,3 @@
-<%-- 
-    Document   : header
-    Created on : 29 Jul, 2018, 1:23:59 AM
-    Author     : User
---%>
-
 <%@page import="Model.Entity.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,6 +13,7 @@
 
             <nav id="nav">
                 <ul>
+                    <li><a href="index.jsp">Home</a></li>
                     <li><a href="aboutUs.jsp">About Us</a></li>
                     <li><a href="studyTrip.jsp">Overseas Study Trips</a></li>
                     <li><a href="internship.jsp">Overseas Internships</a></li>						

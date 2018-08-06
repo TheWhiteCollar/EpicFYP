@@ -26,7 +26,7 @@
     </head>
     <body>
 
-               <!-- Header -->
+        <!-- Header -->
         <jsp:include page="header.jsp" />
 
         <!-- Main -->
@@ -34,9 +34,19 @@
             <div class="container">
 
                 <header class="major">
-                    <h2>Overseas Internships</h2>
-                    <p>Oops. It seems that the webpage has yet to be constructed.</p>
+                    <h2>Work + Travel</h2>
+                    <p>Search for internship opportunities overseas</p> 
+                    
+                    <div class ="row">
+                        <div class ="11u">
+                            <input id="searchBar" type="text" name="searchbar" placeholder="Search for opportunities related to:"/>
+                        </div>
+                        <div class ="1u">
+                            <input type="submit">
+                        </div>
+                    </div>
                 </header>
+
             </div>
         </section>
 

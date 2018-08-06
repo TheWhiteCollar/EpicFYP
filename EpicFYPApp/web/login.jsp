@@ -43,7 +43,7 @@
                     <button class="tablinks" onclick="openUser(event, 'Admin')">Admin</button>
                     <button class="tablinks" onclick="openUser(event, 'Students')" id="defaultOpen">Student</button>
                 </div>
-                <div class = "outsidetab">
+                <div class = "outsidetab" style="text-align:center">
                     <%
                         String ErrorMsg = (String) request.getAttribute("ErrorMsg");
                         if (ErrorMsg != null) {

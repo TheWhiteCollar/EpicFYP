@@ -50,7 +50,9 @@
                     $("#trips").append("</table>");
                 });
             });
+
         </script>
+
         <noscript>
         <link rel="stylesheet" href="css/skel.css" />
         <link rel="stylesheet" href="css/style.css" />
@@ -61,7 +63,7 @@
         <!-- Header -->
         <jsp:include page="header.jsp" />
 
-        <!-- Main -->
+        <!-- Filter -->
         <section id="main" class="wrapper">
             <div class="container">
                 <header class="major">
@@ -74,66 +76,69 @@
                 </div>
 
                 <div id="filter" class="tabcontentFade">
-                    <span onclick="this.parentElement.style.display='none'" class="toprightClose">&times</span>
+                    <span onclick="this.parentElement.style.display = 'none'" class="toprightClose">&times</span>
                     <%
                         String datetime = (String) request.getAttribute("inputdatetime");
                     %>
+                    
                     <form action="filterTrips.jsp" method="post" onsubmit="showLoader()">
                         <div class = "row">
-                            <div class="3u">
+                            <div class="3u 12u(small)">
                                 Date From:
-                                <input id="specialQuery" type="datetime-local" name="datetime" step=1 value = <%= (datetime != null) ? datetime : ""%>>
+                                <input id="startDate" type="datetime-local" name="datetime" step=1 value = <%= (datetime != null) ? datetime : ""%>>
                             </div>
-                            <div class="3u">
+                            <div class="3u 12u(small)">
                                 Date To:
-                                <input id="specialQuery" type="datetime-local" name="datetime" step=1 value = <%= (datetime != null) ? datetime : ""%>></label><br/>
+                                <input id="endDate" type="datetime-local" name="datetime" step=1 value = <%= (datetime != null) ? datetime : ""%>></label><br/>
                             </div> 
                         </div>
 
+                        
+
                         <div class = "row">
-                            <div class="1u">
+                            <div class="1u 12u(small)">
                                 Country:
                             </div>
-                            <div class="2u">                                   
+                            <div class="2u 12u(small)">                                   
                                 <input type="checkbox" id="Singapore" name="country" value="Singapore">
                                 <label for="Singapore">Singapore</label>
                             </div>
-                            <div class="2u">                                   
+                            <div class="2u 12u(small)">                                   
                                 <input type="checkbox" id="Myanmar" name="country" value="Myanmar">
                                 <label for="Myanmar">Myanmar</label>
                             </div>
-                            <div class="2u">                                   
+                            <div class="2u 12u(small)">                                   
                                 <input type="checkbox" id="China" name="country" value="China">
                                 <label for="China">China</label>
                             </div>
-                            <div class="2u">                                   
+                            <div class="2u 12u(small)">                                   
                                 <input type="checkbox" id="Indonesia" name="country" value="Indonesia">
                                 <label for="Indonesia">Indonesia</label>
                             </div>
                         </div>
 
                         <div class = "row">
-                            <div class="2u">
+                            <div class="2u 12u(small)">
                                 Price (min):
                                 <input type="number" value = "min">
                             </div>
-                            <div class="2u">
+                            <div class="2u 12u(small)">
                                 Price (max):
                                 <input type="number" value = "max">
                             </div>
-                            <div class="3u">
+                            <div class="3u 12u(small)">
                                 Ratings:
                                 <select name="rating">
-                                    <option value=null >- Rating -</option>
+                                    <option value="null">- Rating -</option>
                                     <option value="bad" >Bad</option>
                                     <option value="average" >Average</option>
                                     <option value="excellent" >Excellent</option>
                                 </select>
                             </div>
-                            <div class="4u">
+                            <div class="4u 12u(small)">
                                 Programmes:
-                                <select name="programmes">
-                                    <option value=null >--Programmes--</option>
+                                <select name="programmes" >
+                                    <option value="null">- Programmes -</option>
                                     <option value="it" >IT</option>
                                     <option value="supplychain" >Supply Chain</option>
                                     <option value="leadership">Leadership</option>
@@ -145,8 +150,12 @@
                     </form> 
                 </div>
         </section>
+
+        <!-- Overseas trip populates -->
+        
         <section class="wrapper">
-            <div id="trips"></div>   
+            <div id="trips"></div>  
+            
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-4">
@@ -184,41 +193,7 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-4">
-                        <div class="card">
-                            <img class="card-img-top" src="images/Belgium.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Belgium</h5>
-                                <p class="card-text">Discover the illusions of physics at Scientastic, or learn about the natural world at the Royal Belgian Institute.</p>
-                                <a href="tripDetail.jsp" class="btn btn-primary">View Details</a>
-                                <div><br><a href="submitTrip.jsp" class="button small">Apply for Trip</a></div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="col-sm-4">
-                        <div class="card">
-                            <img class="card-img-top" src="images/Glasgow.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Glasgow</h5>
-                                <p class="card-text">Conservation, photography, biology and cultural awareness are just a few of the topics available to study.</p>
-                                <a href="tripDetail.jsp" class="btn btn-primary">View Details</a>
-                                <div><br><a href="submitTrip.jsp" class="button small">Apply for Trip</a></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4">
-                        <div class="card">
-                            <img class="card-img-top" src="images/Greece.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Greece</h5>
-                                <p class="card-text">Picture yourself living in a place that has teetered with life for thousands and thousands of years.</p>
-                                <a href="tripDetail.jsp" class="btn btn-primary">View Details</a>
-                                <div><br><a href="submitTrip.jsp" class="button small">Apply for Trip</a></div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>  

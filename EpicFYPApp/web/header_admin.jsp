@@ -1,9 +1,3 @@
-<%-- 
-    Document   : header
-    Created on : 29 Jul, 2018, 1:23:59 AM
-    Author     : User
---%>
-
 <%@page import="Model.Entity.Admin"%>
 <%@page import="Model.Entity.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -11,8 +5,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <title>Admin Header</title>
     </head>
     <body>
         <header id="header">
@@ -30,16 +23,12 @@
                             String Username = User.getUserFirstName();
                             if (Username != null && !Username.isEmpty()) {
                     %>
-                    <li>
-                        <div class="w3-dropdown-hover">
-                            <button class="w3-button">Hello, <% out.println(Username); %></button>
-                            <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                                <!-- To include hyperlink for edit profile once we get the page done -->
-                                <a href="#" class="w3-bar-item w3-button">Edit Profile</a>
-                                <a href="#" class="w3-bar-item w3-button"></a>
-                                <a href="logout.jsp" class="w3-bar-item w3-button">Logout</a>
-                            </div>
-                        </div>
+                    <li><a href="#">Hello, <% out.println(Username); %></a>
+                        <ul>
+                            <li><a href="#">Edit Profile</a></li>
+                            <li><a href="logout.jsp">Logout</a></li>
+                        </ul>
+                        
                     </li>
                     <%
                         }
@@ -47,16 +36,11 @@
                         String Username = admin.getAdminName();
                         if (Username != null && !Username.isEmpty()) {
                     %>
-                    <li>
-                        <div class="w3-dropdown-hover">
-                            <button class="w3-button">Hello, <% out.println(Username); %></button>
-                            <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                                <!-- To include hyperlink for edit profile once we get the page done -->
-                                <a href="#" class="w3-bar-item w3-button">Edit Profile</a>
-                                <a href="#" class="w3-bar-item w3-button"></a>
-                                <a href="logout.jsp" class="w3-bar-item w3-button">Logout</a>
-                            </div>
-                        </div>
+                    <li><a href="#">Hello, <% out.println(Username); %></a>
+                        <ul>
+                            <li><a href="#">Edit Profile</a></li>
+                            <li><a href="logout.jsp">Logout</a></li>
+                        </ul>
                     </li>
                     <%
                         }

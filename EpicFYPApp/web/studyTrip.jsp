@@ -33,7 +33,7 @@
         </style>
         <script>
             $(function () {
-                $.get('/Testing/getAllTripsServlet', function (tripJson) {
+                $.get('/EpicFYPApp/getAllTripsServlet', function (tripJson) {
                     var trips = JSON.parse(tripJson);
                     $("#trips").append("<table>");
                     $("#trips").append("<tr><th>Trip ID</th><th>Country</th><th>Cost</th><th>number of sign ups</th><th>activated</th><th></th></tr>");

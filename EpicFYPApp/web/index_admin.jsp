@@ -59,7 +59,7 @@
                         var deleteData = {
                             'id' : tripID
                         };
-                        $.post('/Testing/deleteTrip', deleteData, function(response){
+                        $.post('/EpicFYPApp/deleteTrip', deleteData, function(response){
                             if(response === "success"){
                                 $.notify({
                                     // options
@@ -101,7 +101,7 @@
                         "tripStart": tripStart,
                         "tripEnd": tripEnd,
                     }
-                    $.post('/Testing/addTrip', tripData, function(response){
+                    $.post('/EpicFYPApp/addTrip', tripData, function(response){
                         $('button[data-dismiss="modal"]').click();
                         reloadTable();
                         if(response === "success"){
@@ -126,7 +126,7 @@
                 });
                 
                 function reloadTable(){
-                    $.get('/Testing/getAllTripsServlet', function(tripJson) {
+                    $.get('/EpicFYPApp/getAllTripsServlet', function(tripJson) {
                         var trips = JSON.parse(tripJson);
                         $("#trips").empty();
                         $( "#trips" ).append( "<table>" );

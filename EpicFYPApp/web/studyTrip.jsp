@@ -1,3 +1,7 @@
+<%@page import="java.time.LocalDate"%>
+<%@page import="java.time.Instant"%>
+<%@page import="java.sql.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.HashMap"%>
@@ -33,7 +37,7 @@
         </style>
         <script>
             $(function () {
-                $.get('/Testing/getAllTripsServlet', function (tripJson) {
+                $.get('/EpicFYPApp/getAllTripsServlet', function (tripJson) {
                     var trips = JSON.parse(tripJson);
                     $("#trips").append("<table>");
                     $("#trips").append("<tr><th>Trip ID</th><th>Country</th><th>Cost</th><th>number of sign ups</th><th>activated</th><th></th></tr>");
@@ -77,24 +81,56 @@
 
                 <div id="filter" class="tabcontentFade">
                     <span onclick="this.parentElement.style.display = 'none'" class="toprightClose">&times</span>
-                    <%
-                        String datetime = (String) request.getAttribute("inputdatetime");
-                    %>
-                    
+
                     <form action="filterTrips.jsp" method="post" onsubmit="showLoader()">
+                        <p>
                         <div class = "row">
                             <div class="3u 12u(small)">
-                                Date From:
-                                <input id="startDate" type="datetime-local" name="datetime" step=1 value = <%= (datetime != null) ? datetime : ""%>>
+                                <% LocalDate todayDate = java.time.LocalDate.now(); %>
+                                Date From:                                                                        
+                                <input name = "startDate" type="date" min = "<% out.print(todayDate); %>" >
                             </div>
                             <div class="3u 12u(small)">
-                                Date To:
-                                <input id="endDate" type="datetime-local" name="datetime" step=1 value = <%= (datetime != null) ? datetime : ""%>></label><br/>
+                                Date To:                              
+                                <input name = "endDate" type="date" min = "<% out.print(todayDate); %>" >
                             </div> 
                         </div>
 
-                        
+                        </p>
 
+                        <p>
+                        <div class = "row">
+                            <div class="2u 12u(small)">
+                                Price (min):
+                                <input type="number" value = "min" min = "0">
+                            </div>
+                            <div class="2u 12u(small)">
+                                Price (max):
+                                <input type="number" value = "max" min = "0"tes
+                                       >
+                            </div>
+                            <div class="3u 12u(small)">
+                                Ratings:
+                                <select name="rating">
+                                    <option value="null">- Rating -</option>
+                                    <option value="bad" >Bad</option>
+                                    <option value="average" >Average</option>
+                                    <option value="excellent" >Excellent</option>
+                                </select>
+                            </div>
+                            <div class="4u 12u(small)">
+                                Programmes:
+                                <select name="programmes" >
+                                    <option value="null">- Programmes -</option>
+                                    <option value="it" >IT</option>
+                                    <option value="supplychain" >Supply Chain</option>
+                                    <option value="leadership">Leadership</option>
+                                </select>
+                            </div>
+                        </div>
+                        </p>
+
+                        <p>
                         <div class = "row">
                             <div class="1u 12u(small)">
                                 Country:
@@ -116,46 +152,18 @@
                                 <label for="Indonesia">Indonesia</label>
                             </div>
                         </div>
+                    </p>
 
-                        <div class = "row">
-                            <div class="2u 12u(small)">
-                                Price (min):
-                                <input type="number" value = "min">
-                            </div>
-                            <div class="2u 12u(small)">
-                                Price (max):
-                                <input type="number" value = "max">
-                            </div>
-                            <div class="3u 12u(small)">
-                                Ratings:
-                                <select name="rating">
-                                    <option value="null">- Rating -</option>
-                                    <option value="bad" >Bad</option>
-                                    <option value="average" >Average</option>
-                                    <option value="excellent" >Excellent</option>
-                                </select>
-                            </div>
-                            <div class="4u 12u(small)">
-                                Programmes:
-                                <select name="programmes" >
-                                    <option value="null">- Programmes -</option>
-                                    <option value="it" >IT</option>
-                                    <option value="supplychain" >Supply Chain</option>
-                                    <option value="leadership">Leadership</option>
-                                </select>
-                            </div>
-                        </div>
-                        <br>
                         <input type="submit" value="Apply" style="width:100%"> 
                     </form> 
                 </div>
         </section>
 
         <!-- Overseas trip populates -->
-        
+
         <section class="wrapper">
             <div id="trips"></div>  
-            
+
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-4">

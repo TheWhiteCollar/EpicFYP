@@ -21,14 +21,15 @@
                     </li>
 
                     <%
+                        //LoginServlet_student
                         User User = (User) session.getAttribute("User");
                         if (User != null) {
                             String Username = User.getUserFirstName();
                             if (Username != null && !Username.isEmpty()) {
                     %>
-                    <li><a href="#">Hello <% out.println(Username); %></a>
+                    <li><a href="studentPortal_main.jsp">Hello <% out.print(Username); %></a>
                         <ul>
-                            <li><a href="#">Edit Profile</a></li>
+                            <li><a href="studentPortal_profile.jsp">Profile</a></li>
                             <li><a href="logout.jsp">Logout</a></li>
                         </ul>
                         

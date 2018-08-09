@@ -3,15 +3,11 @@
 <%@page import="Model.Entity.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-        Interphase by TEMPLATED
-        templated.co @templatedco
-        Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
--->
+
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Epic Journey - View Students Profile</title>
+        <title>Epic Journey - Admin View Students Profile</title>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="description" content="Imparting life skills through overseas exposure via internships and study missions. Countries of focus: Cambodia, Laos, Myanmar, Vietnam, India, Indonesia, Thailand, Japan and China." />
         <meta name="keywords" content="overseas, study missions, internships, training, life skills, career exposure" />

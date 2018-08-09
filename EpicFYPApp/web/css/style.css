@@ -461,12 +461,13 @@ input[type="radio"] + label:before {
 /* style 1 */
 
 .inputfile-1 + label {
-    color: #ffffff;
-    background-color: #3ba666;
+    color: black;
+    background-color: #BC8F8F;
     cursor: pointer;
     font-family: "Lato", Helvetica, sans-serif;
     font-size: 13pt;
     line-height: 1.65em;
+    border-radius: 4px;
 }
 
 .inputfile-1:focus + label,
@@ -574,6 +575,9 @@ input[type="radio"] + label:before {
     width: 100%;
 }
 
+.avatar-image{
+    border-radius: 50%;
+}
 /* List */
 
 ol {
@@ -793,6 +797,35 @@ table.alt tfoot {
     border-top: 0;
 }
 
+table.blank {
+    border-collapse: separate;
+}
+
+table.blank tbody tr td {
+    border-left-width: 0;
+    border-top-width: 0;
+}
+
+table.blank tbody tr td:first-child {
+    border-left-width: 1px;
+}
+
+table.blank tbody tr:first-child td {
+    border-top-width: 1px;
+}
+
+table.blank thead {
+    border-bottom: 0;
+}
+
+table.blank tfoot {
+    border-top: 0;
+}
+
+table.blank tbody tr:nth-child(2n + 1) {
+    background-color: transparent;
+}
+
 /* Button */
 
 input[type="submit"],
@@ -910,7 +943,7 @@ input[type="reset"].special,
 input[type="button"].special,
 .button.special {
     background-color: #BC8F8F;
-    color: #ffffff !important;
+    color: black !important;
 }
 
 input[type="submit"].special:hover,

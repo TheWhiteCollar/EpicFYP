@@ -52,7 +52,7 @@ public class LoginServlet_student extends HttpServlet {
             user = UserDAO.getUserByLogin(userid, password);
             if (user != null) {
                 session.setAttribute("User", user);
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("studentPortal_main.jsp");
                 return;
             }
         }

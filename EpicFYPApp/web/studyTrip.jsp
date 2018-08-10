@@ -10,7 +10,16 @@
 <%@page import="Model.Entity.Trip"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
+<%
+    /*
+    Things undone:
+    - trip description
+    - actual filter
+    - trip itineary
+    -set a limit of trip shown
+    
+     */
+%>
 
 <html lang="en">
     <head>
@@ -28,40 +37,50 @@
         <script src="js/skel.min.js"></script>
         <script src="js/skel-layers.min.js"></script>
         <script src="js/init.js"></script>
-        <style>
-            table, th, td {
-                border: 1px solid black;
-                width: 90px;
-                text-align: center;
-            } 
-        </style>
-        <script>
-            $(function () {
-                $.get('/EpicFYPApp/getAllTripsServlet', function (tripJson) {
-                    var trips = JSON.parse(tripJson);
-                    $("#trips").append("<table>");
-                    $("#trips").append("<tr><th>Trip ID</th><th>Country</th><th>Cost</th><th>number of sign ups</th><th>activated</th><th></th></tr>");
-                    $.each(trips, function (index, trip) {
-                        var tripHTML = "<tr><td>" + trip.tripID + "</td><td>" + trip.country + "</td><td>$" + trip.price + "</td>";
-                        tripHTML += "<td>" + trip.signedUpEmails.length + "</td>" + "<td>" + trip.activated + "</td>"
-                        tripHTML += "<td><form action=\"applyForTrips\" method=\"post\">"
-                        tripHTML += "<input style=\"display: none\" type=\"text\" name=\"tripID\" value=\"" + trip.tripID + "\"/>"
-                        tripHTML += "<input style=\"display: none\" type=\"text\" name=\"email\" value=\"" + "${User.getUserEmail()}" + "\"/>"
-                        tripHTML += "<input type=\"submit\" value=\"Apply\"/></form></td></tr>"
-                        $("#trips").append(tripHTML);
-                        console.log(trip);
-                    });
-                    $("#trips").append("</table>");
-                });
-            });
 
-        </script>
+
 
         <noscript>
         <link rel="stylesheet" href="css/skel.css" />
         <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="css/style-xlarge.css" />
         </noscript> 
+        <script>
+
+
+            $(function () {
+                $.get('/EpicFYPApp/getAllTripsServlet', function (tripJson) {
+                    var trips = JSON.parse(tripJson);
+                    var tripHTML = '<p class="table-wrapper"><table>';
+                    $.each(trips, function (index, trip) {
+                        var number = 5 - trip.signedUpEmails.length;
+                        tripHTML += '<thead><tr><th colspan="4">' + trip.programme + "</th></tr></thead>";
+                        tripHTML += "<tr><td>Country : " + trip.country + "</td><td> Start : " + trip.tripStart + "</td><td>End : " + trip.tripEnd + "</td> <td>Price : $" + trip.price + "</td></tr>";
+                        tripHTML += '<tr><td colspan="3"> Trip Description?' + "</td><td>Trip Details (itinerary)</td></tr>";
+                        if (trip.activated) {
+                            tripHTML += "<tr><td>Activated</td>";
+                        } else {
+                            tripHTML += "<tr><td>Not Activated</td>";
+                        }
+
+                        tripHTML += '<td colspan="2">Number of sign ups to reach activation : ';
+                        if (number <= 0) {
+                            number = 0;
+
+                        }
+                        tripHTML += number + "</td>";
+                        tripHTML += "<td><form action=\"applyForTrips\" method=\"post\">";
+                        tripHTML += "<input style=\"display: none\" type=\"text\" name=\"tripID\" value=\"" + trip.tripID + "\"/>";
+                        tripHTML += "<input style=\"display: none\" type=\"text\" name=\"email\" value=\"" + "${User.getUserEmail()}" + "\"/>";
+                        tripHTML += "<input type=\"submit\" value=\"Apply\"/></form></td></tr>";
+
+                        console.log(trip);
+                    });
+                    tripHTML += '</table></p>';
+                    $("#trips").append(tripHTML);
+                });
+            });
+        </script>
     </head>
     <body>
         <!-- Header -->
@@ -87,12 +106,12 @@
                         <div class = "row">
                             <div class="3u 12u(small)">
                                 <% LocalDate todayDate = java.time.LocalDate.now(); %>
-                                Date From:                                                                        
+                                Date (min):                                                                       
                                 <input name = "startDate" type="date" min = "<% out.print(todayDate); %>" >
                             </div>
                             <div class="3u 12u(small)">
-                                Date To:                              
-                                <input name = "endDate" type="date" min = "<% out.print(todayDate); %>" >
+                                Date (max):                              
+                                <input name = "endDate" type="date" min = "<% out.print(todayDate);%>" >
                             </div> 
                         </div>
 
@@ -152,63 +171,26 @@
                                 <label for="Indonesia">Indonesia</label>
                             </div>
                         </div>
-                    </p>
+                        </p>
 
                         <input type="submit" value="Apply" style="width:100%"> 
                     </form> 
                 </div>
+                <!-- Overseas trip populates -->
+                <p id="trips"></p>
+
+
+
+
+
+            </div> 
         </section>
 
-        <!-- Overseas trip populates -->
-
-        <section class="wrapper">
-            <div id="trips"></div>  
-
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="card">
-                            <img class="card-img-top" src="images/Germany.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Germany Trip</h5>
-                                <p class="card-text">From the heights of the Alps to the depths of the Black Forest, find yourself lost in a fairy tale come to life.</p>
-                                <a href="tripDetail.jsp" class="btn btn-primary">View Details</a>
-                                <div><br><a href="submitTrip.jsp" class="button small">Apply for Trip</a></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4">
-                        <div class="card">
-                            <img class="card-img-top" src="images/Spain.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Spain Trip</h5>
-                                <p class="card-text">Fiestas and holy weeks cram the Spanish calendar year, so no matter when you go there’s an event going on somewhere.</p>
-                                <a href="tripDetail.jsp" class="btn btn-primary">View Details</a>
-                                <div><br><a href="submitTrip.jsp" class="button small">Apply for Trip</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="card">
-                            <img class="card-img-top" src="images/Norway.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Norway Trip</h5>
-                                <p class="card-text">Embrace the wild outdoors learn new skills and enjoy independence like no other trip</p>
-                                <a href="tripDetail.jsp" class="btn btn-primary">View Details</a>
-                                <div><br><a href="submitTrip.jsp" class="button small">Apply for Trip</a></div>
-                            </div>
-                        </div>
-                    </div>
 
 
-                </div>
-            </div>
-        </div>  
-    </section>
 
-    <<!-- Footer -->
-    <jsp:include page="footer.jsp" />
-    <script src="js/tabs.js"></script>
-</body>
+        <<!-- Footer -->
+        <jsp:include page="footer.jsp" />
+        <script src="js/tabs.js"></script>
+    </body>
 </html>

@@ -58,23 +58,14 @@
                         tripHTML += "<tr><td>Country : " + trip.country + "</td><td> Start : " + trip.tripStart + "</td><td>End : " + trip.tripEnd + "</td> <td>Price : $" + trip.price + "</td></tr>";
                         tripHTML += '<tr><td colspan="3"> Trip Description?' + "</td><td>Trip Details (itinerary)</td></tr>";
                         if (trip.activated) {
-                            tripHTML += "<tr><td>Activated</td>";
+                            tripHTML += '<tr><td colspan="3">Activated</td>';                           
                         } else {
-                            tripHTML += "<tr><td>Not Activated</td>";
+                            tripHTML += '<tr><td colspan="3">Not Activated : ' + number +" more to activate this trip</td>";                           
                         }
-
-                        tripHTML += '<td colspan="2">Number of sign ups to reach activation : ';
-                        if (number <= 0) {
-                            number = 0;
-
-                        }
-                        tripHTML += number + "</td>";
                         tripHTML += "<td><form action=\"applyForTrips\" method=\"post\">";
                         tripHTML += "<input style=\"display: none\" type=\"text\" name=\"tripID\" value=\"" + trip.tripID + "\"/>";
                         tripHTML += "<input style=\"display: none\" type=\"text\" name=\"email\" value=\"" + "${User.getUserEmail()}" + "\"/>";
                         tripHTML += "<input type=\"submit\" value=\"Apply\"/></form></td></tr>";
-
-                        console.log(trip);
                     });
                     tripHTML += '</table></p>';
                     $("#trips").append(tripHTML);

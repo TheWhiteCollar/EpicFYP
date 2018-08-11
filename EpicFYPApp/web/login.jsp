@@ -36,8 +36,8 @@
 
                 <header class="major">
                     <h2>Login to Epic</h2>
-                </header>                                                    
-
+                </header>           
+                
                 <!-- For user to choose if they want to login as student or admin -->
                 <div class="tab">
                     <button class="tablinks" onclick="openUser(event, 'Admin')">Admin</button>

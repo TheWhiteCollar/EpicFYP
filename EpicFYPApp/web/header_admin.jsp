@@ -13,8 +13,11 @@
 
             <nav id="nav">
                 <ul>
-                    <li><a href="index_admin.jsp">Pending Task</a></li>
-                    <li><a href="viewStudentProfile.jsp">View Students Profile</a></li>
+                    <li><a href="index.jsp">Home</a></li>
+                    <li><a href="aboutUs.jsp">About Us</a></li>
+                    <li><a href="studyTrip.jsp">Overseas Study Trips</a></li>
+                    <li><a href="internship.jsp">Overseas Internships</a></li>						                   
+                    <li><a href="partnerWithUs.jsp">Partner With Us</a>
 
                     <%
                         User User = (User) session.getAttribute("User");
@@ -23,9 +26,11 @@
                             String Username = User.getUserFirstName();
                             if (Username != null && !Username.isEmpty()) {
                     %>
-                    <li><a href="#">Hello, <% out.println(Username); %></a>
+                    <li><a href="index_admin.jsp">Hello, <% out.println(Username); %></a>
                         <ul>
-                            <li><a href="#">Edit Profile</a></li>
+                            <li><a href="index_admin.jsp">Pending Task</a></li>
+                            <li><a href="viewStudentProfile.jsp">Manage Students</a></li>
+                            <li><a href="#">Manage Admins</a></li>
                             <li><a href="logout.jsp">Logout</a></li>
                         </ul>
                         
@@ -36,9 +41,11 @@
                         String Username = admin.getAdminName();
                         if (Username != null && !Username.isEmpty()) {
                     %>
-                    <li><a href="#">Hello, <% out.println(Username); %></a>
+                    <li><a href="index_admin.jsp">Hello, <% out.println(Username); %></a>
                         <ul>
-                            <li><a href="#">Edit Profile</a></li>
+                            <li><a href="index_admin.jsp">Pending Task</a></li>
+                            <li><a href="viewStudentProfile.jsp">Manage Students</a></li>
+                            <li><a href="#">Manage Admins</a></li>
                             <li><a href="logout.jsp">Logout</a></li>
                         </ul>
                     </li>

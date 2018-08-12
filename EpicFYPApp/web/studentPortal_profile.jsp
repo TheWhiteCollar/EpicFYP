@@ -13,7 +13,7 @@
      */
 %>
 
-<html lang="en" class="no-js">
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <title>Epic- Overseas study missions/internships for all</title>

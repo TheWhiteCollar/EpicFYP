@@ -38,8 +38,6 @@
         <script src="js/skel-layers.min.js"></script>
         <script src="js/init.js"></script>
 
-
-
         <noscript>
         <link rel="stylesheet" href="css/skel.css" />
         <link rel="stylesheet" href="css/style.css" />
@@ -86,7 +84,7 @@
                 </header>
 
                 <div class="tab">
-                    <button class="tablinks" onclick="openUser(event, 'filter')">Click for more filtering options:</button>      
+                    <button class="tablinks" onclick="openUser(event, 'filter')">More filtering options:</button>      
                 </div>
 
                 <div id="filter" class="tabcontentFade">

@@ -4,3 +4,4 @@
 /EpicFYPApp/nbbuild/
 /EpicFYPApp/nbdist/
 /EpicFYPApp/.nb-gradle/
+!/EpicFYPApp/src/java/connection.properties

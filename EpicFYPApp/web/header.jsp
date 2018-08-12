@@ -19,7 +19,7 @@
                     <li><a href="partnerWithUs.jsp">Partner With Us</a>
                      
                     </li>
-
+                    
                     <%
                         //LoginServlet_student
                         User User = (User) session.getAttribute("User");

@@ -19,12 +19,35 @@
         </noscript>
         <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
     </head>
-    <body>
+    <!-- make a scriplet for the landing -->
+    <body class ="landing">
         <!-- Header -->
         <jsp:include page="header.jsp" />
 
-        <!-- Section -->
+        <!-- If user have not signed up -->
+        <section id="banner" >
+
+            <h2>You are not signed up to any trips</span></h2>
+            <ul class="actions">
+                <li>
+                    <a href="studyTrip.jsp" class="button big"><font color="white">Look for an overseas trip</font></a>
+                    <a href="internship.jsp" class="button big"><font color="white">Look for an overseas internship</font></a>
+                </li>
+            </ul>
+
+        </section>
         
+        <!-- If user have signed up for a trip -->
+        
+        <!-- Trip Customisation -->
+        <section id="customisation" class="wrapper align-center">
+            
+        </section>
+        
+        <!-- Trip Recommendations based on interest -->
+        <section id="recommendation" class="wrapper align-center">
+            
+        </section>
 
     </body>
 </html>

@@ -787,6 +787,10 @@ table.alt tbody tr:first-child td {
     border-top-width: 1px;
 }
 
+table.alt tbody tr:nth-child(2n + 1) {
+    background-color: #E0E0E0;
+}
+
 table.alt thead {
     border-bottom: 0;
 }

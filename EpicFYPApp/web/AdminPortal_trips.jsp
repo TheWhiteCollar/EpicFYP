@@ -57,7 +57,7 @@
                         tripHTML += "<tr><td><form class=\"deleteTrip\">";
                         tripHTML += "<input style=\"display: none\" type=\"text\" name=\"tripID\" value=\"" + trip.tripID + "\"/>";
                         tripHTML += "<button class = \"button\" type=\"submit\" id=\"asd" + index + "\">Delete Trip</button></form></td>";
-                        tripHTML += "<td>Edit Button</td>" + "<td>View users signed up</td>" + "</tr>";
+                        tripHTML += "<td>Edit Button</td>" + '<td><button type="button" class="button" data-toggle="modal" data-target="#myModal">View users signed up</button></td>' + "</tr>";
                     });
                     tripHTML += '</table></div>';
                     $("#trips").append(tripHTML);
@@ -213,7 +213,7 @@
                                        >
                             </div>
                             <div class="3u 12u(small)">
-                                Ratings:
+                                Rating:
                                 <select name="rating">                                      
                                     <option disabled selected value style="display:none"> - select a rating - </option>
                                     <option value="bad" >Bad</option>
@@ -222,9 +222,9 @@
                                 </select>
                             </div>
                             <div class="4u 12u(small)">
-                                Programmes:
+                                Programmes Category:
                                 <select name="programmes" >
-                                    <option disabled selected value style="display:none"> - select a programme - </option>
+                                    <option disabled selected value style="display:none"> - select a programme category - </option>
                                     <option value="it" >IT</option>
                                     <option value="supplychain" >Supply Chain</option>
                                     <option value="leadership">Leadership</option>
@@ -523,17 +523,17 @@
                         <div class = "row">
                             <div class = "3u 12u">
                                 <p>
-                                    Trip Start: <input name="tripStart" id="tripStart" required type="date" min = "<% out.print(todayDate); %>">
+                                    Trip Start (dd-mm-yyyy): <input name="tripStart" id="tripStart" required type="date" min = "<% out.print(todayDate); %>">
                                 </p>
                             </div>
                             <div class = "3u 12u">
                                 <p>
-                                    Trip End: <input name="tripEnd" id="tripEnd" required type="date" min = "<% out.print(todayDate);%>" ">
+                                    Trip End (dd-mm-yyyy): <input name="tripEnd" id="tripEnd" required type="date" min = "<% out.print(todayDate);%>" ">
                                 </p>
                             </div>
                             <div class = "3u 12u">
                                 <p>
-                                    Price: $<input name="price" required type="number" min="1" placeholder="e.g: 100">
+                                    Price ($): <input name="price" required type="number" min="1" placeholder="e.g: 100">
                                 </p>
                             </div>
                             <div class = "3u 12u">
@@ -559,7 +559,7 @@
                         <div class = "row">
                             <div class = "3u 12u">
                                 <p>
-                                    Trip Duration: 
+                                    Trip Duration (days): 
                                     <input required type="text" min="1" step="1" placeholder="days" name="duration" id="duration" value="0" onclick="dateDiff()">
                                 </p>
                             </div>
@@ -587,6 +587,50 @@
                 </div>
             </div>
 
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">List of Users</h4>
+                        </div>
+                        <div class="modal-body">
+
+                            <table class = "alt" id = "tripUsers">
+                                <thead>
+                                <td>Number</td> 
+                                <td>Name</td>
+                                <td>Email</td>
+                                <td>Phone</td>
+                                </thead>
+                                <tbody>
+
+                                    <tr>
+                                        <td>Number</td> 
+                                        <td>Name</td>
+                                        <td>Email</td>
+                                        <td>Phone</td> 
+                                    </tr>
+                                     <tr>
+                                        <td>Number</td> 
+                                        <td>Name</td>
+                                        <td>Email</td>
+                                        <td>Phone</td> 
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="button" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </section>
 
@@ -598,11 +642,9 @@
             date2 = new Date(date2);
             var timeDiff = Math.abs(date2 - date1);
             var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-            document.getElementById("duration").value = diffDays;           
+            diffDays += 1;
+            document.getElementById("duration").value = diffDays;
         }
-
-
-
     </script>
     <script src="js/custom-file-input.js"></script>
     <script src="js/tabs.js"></script>

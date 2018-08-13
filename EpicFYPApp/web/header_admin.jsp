@@ -26,11 +26,9 @@
                             String Username = User.getUserFirstName();
                             if (Username != null && !Username.isEmpty()) {
                     %>
-                    <li><a href="index_admin.jsp">Hello, <% out.println(Username); %></a>
+                    <li><a href="studentPortal_main.jsp">Hello, <% out.println(Username); %></a>
                         <ul>
-                            <li><a href="AdminPortal_trips.jsp">Manage Trips</a></li>
-                            <li><a href="viewStudentProfile.jsp">Manage Students</a></li>
-                            <li><a href="#">Manage Admins</a></li>
+                            <li><a href="studentPortal_profile.jsp">Profile</a></li>
                             <li><a href="logout.jsp">Logout</a></li>
                         </ul>
                         

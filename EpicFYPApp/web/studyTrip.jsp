@@ -114,22 +114,21 @@
                             </div>
                             <div class="2u 12u(small)">
                                 Price (max):
-                                <input type="number" value = "max" min = "0"tes
-                                       >
+                                <input type="number" value = "max" min = "0">                                       >
                             </div>
                             <div class="3u 12u(small)">
                                 Ratings:
                                 <select name="rating">
-                                    <option value="null">- Rating -</option>
-                                    <option value="bad" >Bad</option>
-                                    <option value="average" >Average</option>
-                                    <option value="excellent" >Excellent</option>
+                                    <option disabled selected value style="display:none"> - select a rating - </option>
+                                    <option value="bad">Bad</option>
+                                    <option value="average">Average</option>
+                                    <option value="excellent">Excellent</option>
                                 </select>
                             </div>
                             <div class="4u 12u(small)">
                                 Programmes:
                                 <select name="programmes" >
-                                    <option value="null">- Programmes -</option>
+                                    <option disabled selected value style="display:none"> - select a programme - </option>
                                     <option value="it" >IT</option>
                                     <option value="supplychain" >Supply Chain</option>
                                     <option value="leadership">Leadership</option>

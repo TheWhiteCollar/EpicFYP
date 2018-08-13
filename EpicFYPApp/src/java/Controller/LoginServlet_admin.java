@@ -59,7 +59,7 @@ public class LoginServlet_admin extends HttpServlet {
             }
         }
 
-        request.setAttribute("ErrorMsg", "Invalid userid/password");
+        request.setAttribute("Admin_ErrorMsg", "Invalid userid/password");
         request.getRequestDispatcher("login.jsp").forward(request, response);
 
     }

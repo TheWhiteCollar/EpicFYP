@@ -57,7 +57,7 @@ public class LoginServlet_student extends HttpServlet {
             }
         }
 
-        request.setAttribute("ErrorMsg", "Invalid userid/password");
+        request.setAttribute("Student_ErrorMsg", "Invalid userid/password");
         request.getRequestDispatcher("login.jsp").forward(request, response);
 
     }

@@ -51,7 +51,7 @@
                     var trips = JSON.parse(tripJson);
                     var tripHTML = '<p class="table-wrapper"><table>';
                     $.each(trips, function (index, trip) {
-                        var number = 5 - trip.signedUpEmails.length;
+                        var number = 6 - trip.signedUpEmails.length;
                         tripHTML += '<thead><tr><th colspan="4">' + trip.programme + "</th></tr></thead>";
                         tripHTML += "<tr><td>Country : " + trip.country + "</td><td> Start : " + trip.tripStart + "</td><td>End : " + trip.tripEnd + "</td> <td>Price : $" + trip.price + "</td></tr>";
                         tripHTML += '<tr><td colspan="3"> Trip Description?' + "</td><td>Trip Details (itinerary)</td></tr>";

@@ -66,12 +66,12 @@ public class addTrip extends HttpServlet {
         String country = request.getParameter("country");
         String price = request.getParameter("price");
         String programme = request.getParameter("programme");
-        int rating = Integer.parseInt(request.getParameter("rating"));
+        //int rating = Integer.parseInt(request.getParameter("rating"));
         String duration = request.getParameter("duration");
         Date startDate = Date.valueOf(request.getParameter("tripStart"));
         Date endDate = Date.valueOf(request.getParameter("tripEnd"));
         String text = "fail";
-        if(TripsDAO.insertTrip(country, programme, price, rating, duration, startDate, endDate)){
+        if(TripsDAO.insertTrip(country, programme, price, duration, startDate, endDate)){
             text = "success";
         }
         response.setContentType("text/plain");  // Set content type of the response so that jQuery knows what it can expect.

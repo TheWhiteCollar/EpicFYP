@@ -154,7 +154,7 @@ public class TripsDAO {
         return true;
     }
     
-    public static boolean insertTrip(String country, String programme, String price, int rating, String duration, Date startDate, Date endDate) {
+    public static boolean insertTrip(String country, String programme, String price, String duration, Date startDate, Date endDate) {
         
         //get max tripID
         String sql1 = "SELECT MAX(tripID) FROM trip";
@@ -183,7 +183,7 @@ public class TripsDAO {
             stmt.setString(1, tripIDString);
             stmt.setString(2, programme);
             stmt.setString(3, price);
-            stmt.setInt(4, rating);
+            stmt.setInt(4, 0);
             stmt.setString(5, country);
             stmt.setDate(6, startDate);
             stmt.setDate(7, endDate);

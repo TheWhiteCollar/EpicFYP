@@ -34,7 +34,7 @@ public class applyForTrips extends HttpServlet {
         String tripID = request.getParameter("tripID");
         String email = request.getParameter("email");
         if(TripsDAO.insertStudent(email, tripID)){
-            response.sendRedirect("studyTrip.jsp");
+            response.sendRedirect("payment.jsp");
         }
         
         response.setContentType("text/html;charset=UTF-8");

@@ -46,7 +46,7 @@
                         tripHTML += '<tr><td>Country : ' + trip.country + "</td><td> Start : " + trip.tripStart + "</td>";
                         tripHTML += "<td>End : " + trip.tripEnd + "</td><td>Price : $" + trip.price + "</tr>";
                         tripHTML += '<tr><td colspan="4"> Trip Description?</td></tr>';
-                        var number = 5 - trip.signedUpEmails.length;
+                        var number = 6 - trip.signedUpEmails.length;
                         if (trip.activated) {
                             tripHTML += '<tr><td colspan="3">Activated</td>';
                         } else {

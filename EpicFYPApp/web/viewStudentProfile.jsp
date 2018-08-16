@@ -26,7 +26,7 @@
     <body>
 
         <!-- Header -->
-        <jsp:include page="header_admin.jsp" />
+        <jsp:include page="header.jsp" />
 
         <!-- Main -->
         <section id="main" class="wrapper">
@@ -39,40 +39,45 @@
                 <!-- To add filter button -->
 
                 <table>
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>Contact</th>
-                        <th>Age</th>
-                        <th>Citizenship</th>
-                        <th>School</th>
-                        <th>Highest Qualification</th>
-                        <th>Expected Graduation</th>
-                        <th>Trips Taken</th>
-                        <th>Pending Trips</th>
-                        <th></th>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Contact</th>
+                            
+                            
+<!--                            <th>Age</th>
+                            <th>Citizenship</th>
+                            <th>School</th>
+                            <th>Highest Qualification</th>
+                            <th>Expected Graduation</th>
+                            <th>Trips Taken</th>
+                            <th>Pending Trips</th>-->
+                            
+                        </tr>
+                    </thead>
+
 
                     <%
                         ArrayList<User> allUsers = UserDAO.getAllUsers();
                         if (!allUsers.isEmpty()) {
                             for (User u : allUsers) {
                     %>
-                            <tr>
-                                <td><% out.println(u.getUserFirstName()); %></td>
-                                <td><% out.println(u.getUserLastName()); %></td>
-                                <td><% out.println(u.getUserEmail()); %></td>
-                                <td><% out.println(u.getUserPhone()); %></td>
-                                <td><% out.println(u.getUserAge()); %></td>
-                                <td><% out.println(u.getUserCitizenship()); %></td>
-                                <td>School</td>
-                                <td>Highest Qualification</td>
-                                <td>Expected Graduation</td>
-                                <td><a href="">3</a></td>
-                                <td>Pending Trips</td>
-                                <td><a href=""><button>View More</button></a></td>
-                            </tr>
+                    <tr>
+                        <td><% out.println(u.getUserFirstName()); %></td>
+                        <td><% out.println(u.getUserLastName()); %></td>
+                        <td><% out.println(u.getUserEmail()); %></td>
+                        <td><% out.println(u.getUserPhone()); %></td>
+<!--                        <td><% out.println(u.getUserAge()); %></td>
+                        <td><% out.println(u.getUserCitizenship()); %></td>
+                        <td>School</td>
+                        <td>Highest Qualification</td>
+                        <td>Expected Graduation</td>
+                        <td><a href="">3</a></td>
+                        <td>Pending Trips</td>-->
+                        <td><a href=""><button>View More</button></a></td>
+                    </tr>
                     <%
                             }
                         }

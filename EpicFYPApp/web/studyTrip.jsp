@@ -116,7 +116,7 @@
                                 Price (max):
                                 <input type="number" value = "max" min = "0">                                       >
                             </div>
-                            <div class="3u 12u(small)">
+<!--                            <div class="3u 12u(small)">
                                 Ratings:
                                 <select name="rating">
                                     <option disabled selected value style="display:none"> - select a rating - </option>
@@ -124,14 +124,14 @@
                                     <option value="average">Average</option>
                                     <option value="excellent">Excellent</option>
                                 </select>
-                            </div>
+                            </div>-->
                             <div class="4u 12u(small)">
                                 Programmes:
                                 <select name="programmes" >
                                     <option disabled selected value style="display:none"> - select a programme - </option>
-                                    <option value="it" >IT</option>
-                                    <option value="supplychain" >Supply Chain</option>
-                                    <option value="leadership">Leadership</option>
+                                    <option value="Nature and Culture" >Nature and Culture</option>
+                                    <option value="Academic & Business" >Academic & Business</option>
+                                    <option value="Service & Social Innovation">Service & Social Innovation</option>
                                 </select>
                             </div>
                         </div>

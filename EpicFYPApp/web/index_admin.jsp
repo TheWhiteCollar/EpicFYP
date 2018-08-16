@@ -35,7 +35,7 @@
     <body>
 
         <!-- Header -->
-        <jsp:include page="header_admin.jsp" />
+        <jsp:include page="header.jsp" />
 
         <!-- Main -->
         <section id="main" class="wrapper">

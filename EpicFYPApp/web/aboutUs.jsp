@@ -28,8 +28,7 @@
     </head>
     <body>
 
-        <!-- Header -->
-        
+        <!-- Header -->        
         <jsp:include page="header.jsp" />
 
         <!-- Main -->

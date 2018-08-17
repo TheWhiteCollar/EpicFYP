@@ -56,9 +56,9 @@
                         tripHTML += "<tr><td>Country : " + trip.country + "</td><td> Start : " + trip.tripStart + "</td><td>End : " + trip.tripEnd + "</td> <td>Price : $" + trip.price + "</td></tr>";
                         tripHTML += '<tr><td colspan="3"> Trip Description?' + "</td><td>Trip Details (itinerary)</td></tr>";
                         if (trip.activated) {
-                            tripHTML += '<tr><td colspan="3">Activated</td>';                           
+                            tripHTML += '<tr><td colspan="3">Activated</td>';
                         } else {
-                            tripHTML += '<tr><td colspan="3">Not Activated : ' + number +" more to activate this trip</td>";                           
+                            tripHTML += '<tr><td colspan="3">Not Activated : ' + number + " more to activate this trip</td>";
                         }
                         tripHTML += "<td><form action=\"applyForTrips\" method=\"post\">";
                         tripHTML += "<input style=\"display: none\" type=\"text\" name=\"tripID\" value=\"" + trip.tripID + "\"/>";
@@ -116,15 +116,15 @@
                                 Price (max):
                                 <input type="number" value = "max" min = "0">                                       >
                             </div>
-<!--                            <div class="3u 12u(small)">
-                                Ratings:
-                                <select name="rating">
-                                    <option disabled selected value style="display:none"> - select a rating - </option>
-                                    <option value="bad">Bad</option>
-                                    <option value="average">Average</option>
-                                    <option value="excellent">Excellent</option>
-                                </select>
-                            </div>-->
+                            <!--                            <div class="3u 12u(small)">
+                                                            Ratings:
+                                                            <select name="rating">
+                                                                <option disabled selected value style="display:none"> - select a rating - </option>
+                                                                <option value="bad">Bad</option>
+                                                                <option value="average">Average</option>
+                                                                <option value="excellent">Excellent</option>
+                                                            </select>
+                                                        </div>-->
                             <div class="4u 12u(small)">
                                 Programmes:
                                 <select name="programmes" >
@@ -167,7 +167,41 @@
                 <!-- Overseas trip populates -->
                 <p id="trips"></p>
 
-
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <img class="card-img-top" src="images/Germany.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Germany Trip</h5>
+                                <p class="card-text">From the heights of the Alps to the depths of the Black Forest, find yourself lost in a fairy tale come to life.</p>
+                                <a href="tripDetail.jsp" class="btn btn-primary">View Details</a>
+                                <div><br><a href="submitTrip.jsp" class="button small">Apply for Trip</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <img class="card-img-top" src="images/Spain.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Spain Trip</h5>
+                                <p class="card-text">Fiestas and holy weeks cram the Spanish calendar year, so no matter when you go there’s an event going on somewhere.</p>
+                                <a href="tripDetail.jsp" class="btn btn-primary">View Details</a>
+                                <div><br><a href="submitTrip.jsp" class="button small">Apply for Trip</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <img class="card-img-top" src="images/Norway.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Norway Trip</h5>
+                                <p class="card-text">Embrace the wild outdoors learn new skills and enjoy independence like no other trip</p>
+                                <a href="tripDetail.jsp" class="btn btn-primary">View Details</a>
+                                <div><br><a href="submitTrip.jsp" class="button small">Apply for Trip</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
 

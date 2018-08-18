@@ -1052,7 +1052,7 @@ body.landing #header {
     background-color: #202222;
     list-style-type: none;   
     width: 180px;
-    
+
 }
 
 #header nav > ul > li > ul > li a {
@@ -1313,4 +1313,25 @@ body.landing #header {
 .toprightClose:hover {color: red;}
 
 /* drop down header bar*/
+
+/*Grids */
+.grid-wrapper1 {
+    border: 2px solid #ffcccc;
+    border-radius: 5px;
+    background-color: #ffe6e6;
+    padding: 1em;
+    display: grid;
+}
+
+.grid-wrapper2{
+    border: 2px solid #b3d9ff;
+    border-radius: 5px;
+    background-color: #e6f2ff;
+    padding: 1em;
+    display: grid;
+}
+
+
+
+
 

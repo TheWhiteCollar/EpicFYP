@@ -114,8 +114,9 @@
                             </div>
                             <div class="2u 12u(small)">
                                 Price (max):
-                                <input type="number" value = "max" min = "0">                                       >
+                                <input type="number" value = "max" min = "0"> 
                             </div>
+                            
                             <!--                            <div class="3u 12u(small)">
                                                             Ratings:
                                                             <select name="rating">

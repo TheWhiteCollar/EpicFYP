@@ -209,8 +209,7 @@
                             </div>
                             <div class="2u 12u(small)">
                                 Price (max):
-                                <input type="number" value = "max" min = "0"tes
-                                       >
+                                <input type="number" value = "max" min = "0">
                             </div>
                             <div class="3u 12u(small)">
                                 Rating:

@@ -55,6 +55,20 @@ public class User {
         this.userOccupation = userOccupation;
     }
 
+    public User(String userEmail, String userFirstName, String userLastName, int userPhone, String userGender, String userCitizenship, int userAge, String userInterest, String userPassword, String userRole, String userOccupation) {
+        this.userEmail = userEmail;
+        this.userFirstName = userFirstName;
+        this.userLastName = userLastName;
+        this.userPhone = userPhone;
+        this.userGender = userGender;
+        this.userCitizenship = userCitizenship;
+        this.userAge = userAge;
+        this.userInterest = userInterest;
+        this.userPassword = userPassword;
+        this.userRole = userRole;
+        this.userOccupation = userOccupation;
+    }
+
     public String getUserEmail() {
         return userEmail;
     }

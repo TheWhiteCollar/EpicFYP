@@ -42,6 +42,7 @@
                     %>
                     <li><a href="AdminPortal_trips.jsp">Manage Trips</a></li>
                     <li><a href="viewStudentProfile.jsp">Manage Students</a></li>
+                    <li><a href="AdminPortal_bootstrap.jsp">Bulk Uploading</a></li>
                     <li><a href="index_admin.jsp">Hello, <% out.println(Username); %></a>
                         <ul>
 

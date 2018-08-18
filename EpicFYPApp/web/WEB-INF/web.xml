@@ -20,6 +20,10 @@
         <servlet-name>deleteTrip</servlet-name>
         <servlet-class>Controller.deleteTrip</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminBootstrapServlet</servlet-name>
+        <servlet-class>Controller.AdminBootstrapServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TripsDAO</servlet-name>
         <url-pattern>/TripsDAO</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>deleteTrip</servlet-name>
         <url-pattern>/deleteTrip</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminBootstrapServlet</servlet-name>
+        <url-pattern>/AdminBootstrapServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

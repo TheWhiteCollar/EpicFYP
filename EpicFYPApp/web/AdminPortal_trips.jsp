@@ -64,7 +64,7 @@
 
 
                     $(".deleteTrip").submit(function (event) {
-                        var tripID = "" + $('input[name=tripID]').val();
+                        var tripID = "" + $(this).children("input").val();
                         var deleteData = {
                             'id': tripID
                         };

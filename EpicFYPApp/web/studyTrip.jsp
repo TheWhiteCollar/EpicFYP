@@ -110,11 +110,11 @@
                         <div class = "row">
                             <div class="2u 12u(small)">
                                 Price (min):
-                                <input type="number" value = "min" min = "0">
+                                <input type="number" name ="price_min" placeholder = "0" min = "0">
                             </div>
                             <div class="2u 12u(small)">
                                 Price (max):
-                                <input type="number" value = "max" min = "0"> 
+                                <input type="number" name ="price_max" placeholder = "0" min = "0"> 
                             </div>
                             
                             <!--                            <div class="3u 12u(small)">

@@ -43,9 +43,9 @@
                 <p>Wanting to give more, 3 big hearted educators decided to take it upon themselves to help young adults to explore new business potential, hone entrepreneurial spirits and build life skills and resilience in new emerging markets.</p>
                 <div class="box alt">
                     <div class="row 50% uniform">						
-                        <div class="4u"><span class="image fit"><img src="images/pic05.jpg" alt="" /></span></div>
-                        <div class="4u"><span class="image fit"><img src="images/pic06.jpg" alt="" /></span></div>
-                        <div class="4u"><span class="image fit"><img src="images/pic07.jpg" alt="" /></span></div>						
+                        <div class="4u"><span class="image fit"><img src="images/man1.jpg" alt="" width="388px" height="254px" /></span></div>
+                        <div class="4u"><span class="image fit"><img src="images/man2.jpg" alt="" width="388px" height="254px"/></span></div>
+                        <div class="4u"><span class="image fit"><img src="images/man3.jpg" alt="" width="388px" height="254px"/></span></div>						
                     </div>
                 </div>	
 
@@ -77,7 +77,7 @@
                 </header>
                 <p>EPIC provides entrepreneurship training, global career exposure, life skills and character building through business, internship and career development programmes and social entrepreneurial mission and community services in Emerging Markets in ASEAN – Cambodia, Laos, Myanmar, Vietnam, India, Indonesia, Thailand, as well as in Asia – Japan and China.</p>
 
-                <a href="#" class="image fit"><img src="images/pic08.jpg" alt="" /></a>
+                <a href="#" class="image fit"><img src="images/valuepropositon.jpg" width="1200px" height="400px" alt="" /></a>
 
                 <p>We create the ‘once in-a-lifetime opportunity’ for our talents to work closely through dedicated partners who are experienced entrepreneurs, business people, professionals, dedicated volunteers and trustworthy locals of the land, to expand their life experience, enhance their global business acumen, sharpen their cultural awareness and develop their global employability through rewarding internships and innovative projects around the world.</p>
 
@@ -112,7 +112,7 @@
 
                 </header>
                 <div class="row 50% uniform">                       
-                    <div class="4u"><span class="image fit"><img src="images/pic05.jpg" alt="" /></span></div>
+                    <div class="4u"><span class="image fit"><img src="images/michael.jpg" alt="" width="388px" height="254px"/></span></div>
                     <div class="8u">
                         <p class = "align-justify">“Thank you for organizing this amazing trip for students to get to know about the diverse range of opportunities in Myanmar.  The trip itself was very pleasant and comfortable and I had the chance to explore around the most promising companies in Myanmar like Telenor Myanmar and Yoma Strategic Holdings.  I like to encourage all students to reach out to EPIC for such a career drive and see the actual opportunities in developing countries.” </br><span style="float:right;">- Michael </span></p>
                     </div>                 
@@ -123,12 +123,12 @@
                     <div class="8u">
                         <p class = "align-justify"></br>“This career drive really give us an insight to the real working world, different company cultures and opportunities we could get if we step outside and look for it.  It also enables us to meet with employers so that we know what they are looking for and polish ourselves better to suit the position we want.”</br><span style="float:right;">- Amber </span></p>
                     </div> 
-                    <div class="4u"><span class="image fit"><img src="images/pic05.jpg" alt="" /></span></div>
+                    <div class="4u"><span class="image fit"><img src="images/amber.jpg" alt="" width="388px" height="254px"/></span></div>
                 </div>
                 
                 <div class="row 50% uniform">                       
                     </br>
-                    <div class="4u"><span class="image fit"><img src="images/pic05.jpg" alt="" /></span></div>
+                    <div class="4u"><span class="image fit"><img src="images/kai.jpg" alt="" width="388px" height="254px"/></span></div>
                     <div class="8u">
                         <p class = "align-justify"></br></br>“This trip is well organized and the organizers put sincere effort for students to get to learn, explore about each company we visited, and give the participants the chance to network with potential employers by encouraging students to speak up.”</br><span style="float:right;">- Kai </span></p>
                     </div>                 
@@ -139,7 +139,7 @@
                     <div class="8u">
                         <p class = "align-justify"></br>“The career drive is very well-organized and it has provided us with lots of opportunities in quite a number of local and international companies…..we are glad to have this chance to meet all the amazing and inspiring people from all these fastest growing companies.”</br><span style="float:right;">- Jasmine </span></p>
                     </div> 
-                    <div class="4u"><span class="image fit"><img src="images/pic05.jpg" alt="" /></span></div>
+                    <div class="4u"><span class="image fit"><img src="images/jasmine.jpg" alt="" width="388px" height="254px"/></span></div>
                 </div>
                 
         </section>

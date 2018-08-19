@@ -155,15 +155,22 @@ public class TripsDAO {
     public static boolean insertTrip(String country, String programme, String price, String duration, Date startDate, Date endDate) {
 
         //get max tripID
-        String sql1 = "SELECT MAX(tripID) FROM trip";
+        String sql1 = "SELECT CONVERT(MAX(CONVERT(tripID,UNSIGNED INTEGER)),CHAR(200)) FROM trip ";
 
         int tripID = 0;
         try (
                 Connection conn = ConnectionManager.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(sql1);) {
+                PreparedStatement stmt = conn.prepareStatement(sql1);
+            ) {
             ResultSet rs = stmt.executeQuery();
             rs.next();
-            tripID = Integer.parseInt(rs.getString(1));
+            String maxTripID = rs.getString(1);
+            System.out.println("maxTrip " + maxTripID);
+            
+            if(maxTripID != null){
+                tripID = Integer.parseInt(maxTripID);
+            }
+            
         } catch (SQLException ex) {
             Logger.getLogger(TripsDAO.class.getName()).log(Level.WARNING, "Unable to insert trip", ex);
             return false;

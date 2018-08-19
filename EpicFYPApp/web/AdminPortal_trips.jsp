@@ -38,9 +38,12 @@
 
         <script>
             $(function () {
+                 //call get all trips using ajax get method. receives tripJson string
                 $.get('/EpicFYPApp/getAllTripsServlet', function (tripJson) {
+                     //parse string into JSON object
                     var trips = JSON.parse(tripJson);
                     var tripHTML = '<div class="table-wrapper"><table>';
+                    //loop through each trip and print out as rows in a table
                     $.each(trips, function (index, trip) {
                         tripHTML += '<thead><tr><th>Trip ID : ' + trip.tripID + '</th><th colspan="3">' + trip.programme + "</th></tr></thead>";
                         tripHTML += '<tr><td>Country : ' + trip.country + "</td><td> Start : " + trip.tripStart + "</td>";
@@ -60,14 +63,17 @@
                         tripHTML += "<td>Edit Button</td>" + '<td><button type="button" class="button" data-toggle="modal" data-target="#myModal">View users signed up</button></td>' + "</tr>";
                     });
                     tripHTML += '</table></div>';
+                    //adding table html tag into div which has the id "trips"
                     $("#trips").append(tripHTML);
 
-
+                    //wait for delete trip form to be submited
                     $(".deleteTrip").submit(function (event) {
+                        //store the tripid from the form
                         var tripID = "" + $(this).children("input").val();
                         var deleteData = {
                             'id': tripID
                         };
+                        //send an ajax post request to the delete trip servlet with delete data
                         $.post('/EpicFYPApp/deleteTrip', deleteData, function (response) {
                             if (response === "success") {
                                 $.notify({
@@ -88,10 +94,12 @@
                             }
                             reloadTable();
                         })
+                        //prevents form from being submitted
                         event.preventDefault();
                         // validate and process form here
                     });
                 });
+                // wait for add trip submit event 
                 $("#addTrip").submit(function (event) {
                     let country = $('input[name="country"]').val();
                     let price = $('input[name="price"]').val();
@@ -109,6 +117,8 @@
                         "tripStart": tripStart,
                         "tripEnd": tripEnd,
                     }
+                    
+                    //send ajax post request to addTrip servlet with tripData
                     $.post('/EpicFYPApp/addTrip', tripData, function (response) {
                         $('button[data-dismiss="modal"]').click();
                         reloadTable();

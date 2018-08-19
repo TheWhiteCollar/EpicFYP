@@ -82,6 +82,34 @@ public class UserDAO {
         return true;
     }
 
+    // Add existing users/bulk new users
+    public static boolean addUser(String userEmail, String userFirstName, String userLastName, int userPhone, String userGender, String userCitizenship, int userAge, String userInterest, String userPassword, String userRole, String userOccupation) {
+
+        String sql = "INSERT INTO user (userEmail, userFirstName, userLastName, userPhone, userGender, userCitizenship, userAge, userInterest, userPassword, userRole, userOccupation) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+
+        try (Connection conn = ConnectionManager.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
+            stmt.setString(1, userEmail);
+            stmt.setString(2, userFirstName);
+            stmt.setString(3, userLastName);
+            stmt.setInt(4, userPhone);
+            stmt.setString(5, userGender);
+            stmt.setString(6, userCitizenship);
+            stmt.setInt(7, userAge);
+            stmt.setString(8, userInterest);
+            stmt.setString(9, userPassword);
+            stmt.setString(10, "member");
+            stmt.setString(11, userOccupation);
+            int result = stmt.executeUpdate();
+            if (result == 0) {
+                return false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.WARNING, "Email is already registered!", ex);
+        }
+        return true;
+    }
+
     public static ArrayList<User> getAllUsers() {
         ArrayList<User> result = new ArrayList<>();
         try {

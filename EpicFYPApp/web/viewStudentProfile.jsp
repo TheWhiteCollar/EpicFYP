@@ -46,11 +46,11 @@
                 <table class = "alt">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th class = "align-center">#</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Contact</th>
-                            <th>More information</th>
+                            <th class = "align-center">Contact</th>
+                            <th class = "align-center">More information</th>
 
 
                             <!--                            <th>Age</th>
@@ -73,11 +73,11 @@
                                     count += 1;
                         %>
                         <tr>
-                            <td><%out.print(count);%></td>
+                            <td class = "align-center"><%out.print(count);%></td>
                             <td><% out.print(u.getUserFirstName() + " " + u.getUserLastName()); %></td>                      
                             <td><% out.print(u.getUserEmail()); %></td>
-                            <td><% out.print(u.getUserPhone()); %></td>
-                            <td><button type="button" class="button" data-toggle="modal" data-target="#myModal<%out.print(i);%>">View</button></td>
+                            <td class = "align-center"><% out.print(u.getUserPhone()); %></td>
+                            <td class = "align-center"><button type="button" class="button" data-toggle="modal" data-target="#myModal<%out.print(i);%>">View</button></td>
                         </tr>
                         <%
                                 }

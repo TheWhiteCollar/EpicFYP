@@ -29,6 +29,7 @@
                     <li><a href="studentPortal_main.jsp">Hello, <% out.println(Username); %></a>
                         <ul>
                             <li><a href="studentPortal_profile.jsp">Profile</a></li>
+                            <li><a href="studentPortal_customisation.jsp">Customise Trip</a></li>
                             <li><a href="logout.jsp">Logout</a></li>
                         </ul>
 

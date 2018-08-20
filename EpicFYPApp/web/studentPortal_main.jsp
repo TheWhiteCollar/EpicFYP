@@ -61,8 +61,7 @@
                 <li>
                     if picked the one then do it
                     <a href="studyTrip.jsp" class="button big"><font color="white">Look for an overseas trip</font></a>
-                    <a href="internship.jsp" class="button big"><font color="white">Look for an overseas internship</font></a>
-                
+                    <a href="internship.jsp" class="button big"><font color="white">Look for an overseas internship</font></a>             
                 </li>
             </ul>
         </section>
@@ -82,18 +81,23 @@
                 <div class="row 200%">
                     <section class="4u 12u(small)">
                         <i class="icon big rounded fa-map-marker"></i>
-                        <p>Tell us the places you would like to visit</p>
+                        <p>Tell us where you would like to visit</p>
                     </section>
                     <section class="4u 12u(small)">
                         <i class="icon big rounded fa-check-square-o"></i>
-                        <p>Pick an overseas programme (internship/study trip) of your choice</p>
+                        <p>Wait for the trip approval</p>
                     </section>
                     <section class="4u 12u(small)">
                         <i class="icon big rounded fa-user"></i>
-                        <p>Get friends to activate trip</p>
+                        <p>Get 4 other friends to activate trip</p>
                     </section>
                     <!-- click button to customisation-->
+                    
                 </div>
+                <ul class="actions">
+                <li>
+                    <a href="studentPortal_customisation.jsp" class="button big">Build your dream trip</a>
+                </li>
             </div>
         </section>
 

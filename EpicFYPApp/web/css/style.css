@@ -1345,7 +1345,6 @@ body.landing #header {
 /* Mark input boxes that gets an error on validation: */
 input.invalid {
   background-color: #ffdddd;
-  border: 1px solid red;
 }
 
 /* Hide all steps by default: */

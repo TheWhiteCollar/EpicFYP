@@ -6,8 +6,6 @@
     Things undone:
     - Edit button
     - neaten up the javascript files
-    -
-    
      */
 %>
 <html lang="en">
@@ -19,13 +17,7 @@
         <meta name="keywords" content="overseas, study missions, internships, training, life skills, career exposure" />
         <!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
         <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap-notify.min.js"></script>
         <script src="js/skel.min.js"></script>
         <script src="js/skel-layers.min.js"></script>
         <script src="js/init.js"></script>
@@ -48,7 +40,10 @@
 
             <div class="container">
 
-                <h1>Upload files here for bulk updates to database</h1>
+                <header class="major">
+                    <h2>Bulk uploads</h2>
+                    <p>Upload .xlsx or .csv files for bulk updates to database</p>
+                </header> 
 
                 <p style="text-align:center; color: red">
                     <%
@@ -59,22 +54,36 @@
                         }
                     %>
                 </p>
+                <div class ="align-center">
+                    <form action="AdminBootstrapServlet" method="post" enctype="multipart/form-data">
+                        
+                        <input type="file" name="updateTrips" id="updateTrips" class="inputfile inputfile-1" style="display:none"  accept=".xlsx, .csv"/>
+                        <label for="updateTrips"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> 
+                            <span>Update Trips</span>
+                        </label> 
 
-                <form action="AdminBootstrapServlet" method="post" enctype="multipart/form-data">
+                        <input type="file" name="updateUsers" id="updateUsers" class="inputfile inputfile-1" style="display:none" accept=".xlsx, .csv"/>
+                        <label for="updateUsers"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> 
+                            <span>Update Users</span>
+                        </label> 
 
-                    Update trips: <input type="file" name="updateTrips" id="updateTrips" accept=".csv*"><br>
-                    Update Users: <input type="file" name="updateUsers" accept=".csv*"><br>
-                    Update trips users signed up for: <input type="file" name="updateTripsUsersSignedUpFor" accept=".csv*"><br>
-
-                    <input type="submit">
-
-                </form>
-
+                        <input type="file" name="updateTripsUsersSignedUpFor" id="updateTripsUsersSignedUpFor" class="inputfile inputfile-1" style="display:none" accept=".xlsx, .csv"/>
+                        <label for="updateTripsUsersSignedUpFor"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> 
+                            <span>Update trips users signed up for</span>
+                        </label> 
+                        
+                        <div class="12u">
+                            <br/>
+                            <ul class="actions">
+                                <li><input type="submit" value="Submit" class="special" /></li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
             </div>
-
         </section>
 
-        <script src="js/custom-file-input.js"></script>
-        <script src="js/tabs.js"></script>
+        
     </body>
+    <script src="js/custom-file-input.js"></script>
 </html>

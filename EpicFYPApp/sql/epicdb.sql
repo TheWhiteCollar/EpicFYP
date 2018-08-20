@@ -122,15 +122,18 @@ CREATE TABLE `trip` (
   `country` varchar(200) NOT NULL,
   `tripStart` date NOT NULL,
   `tripEnd` date NOT NULL,
-  `tripDuration` int(200) NOT NULL
+  `tripDuration` int(200) NOT NULL,
+  `activation` int(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `trip`
 --
 
-INSERT INTO `trip` (`tripID`, `programme`, `price`, `ratings`, `country`, `tripStart`, `tripEnd`, `tripDuration`) VALUES
-('3', ' Winter Study Trip', '1234', 5, 'Singapore', '2018-08-20', '2018-09-09', 20);
+INSERT INTO `trip` (`tripID`, `programme`, `price`, `ratings`, `country`, `tripStart`, `tripEnd`, `tripDuration`, `activation`) VALUES
+('3', ' Winter Study Trip', '1234', 5, 'Singapore', '2018-08-20', '2018-09-09', 20, 4);
+INSERT INTO `trip` (`tripID`, `programme`, `price`, `ratings`, `country`, `tripStart`, `tripEnd`, `tripDuration`, `activation`) VALUES
+('2', ' Grad Trip', '324', 5, 'Malaysia', '2018-08-20', '2018-09-09', 20, 4);
 
 -- --------------------------------------------------------
 
@@ -148,7 +151,7 @@ CREATE TABLE `tripstudent` (
 --
 
 INSERT INTO `tripstudent` (`tripID`, `studentEmail`) VALUES
-('3', 'alan@gmail.com');
+('3', 'mediani.2015@sis.smu.edu.sg');
 
 -- --------------------------------------------------------
 
@@ -177,7 +180,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`userEmail`, `userFirstName`, `userLastName`, `userPhone`, `userGender`, `userCitizenship`, `userAge`, `userDescription`, `userProfilePic`, `userInterest`, `userPassword`, `userRole`, `userOccupation`) VALUES
-('alan@gmail.com', 'Alan', 'Goh', 98769876, 'Male', 'Singaporean', 25, NULL, NULL, NULL, '1234', 'member', 'Student'),
+('mediani.2015@sis.smu.edu.sg', 'Mediani', 'Law', 83036983, NULL, NULL, NULL, NULL, NULL, NULL, '1234', 'member', 'Student'),
 ('rachael.low.2015@sis.smu.edu.sg', 'Rachael', 'Low', 91234567, NULL, NULL, NULL, NULL, NULL, NULL, 'fyp1234', 'member', 'Student'),
 ('xiuwen.yeo@gmail.com', 'Xiu Wen', 'Yeo', 98769876, 'Female', NULL, NULL, NULL, NULL, NULL, '1234', 'member', 'Student'),
 ('yijing.oon.2015@smu.edu.sg', 'Yi Jing', 'Oon', 98766789, 'Female', 'Singapore PR', 24, NULL, NULL, NULL, 'oonyijing', 'user', '');

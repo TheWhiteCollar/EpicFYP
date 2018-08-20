@@ -77,7 +77,7 @@ public class TripsDAO {
                     emailString = tripstudent.get(tripID);
                 }
                 ArrayList<String> emails = convertEmailString(emailString);
-                Trip trip = new Trip(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8), emails);
+                Trip trip = new Trip(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8), emails,rs.getInt(9));
                 allTrips.add(trip);
             }
         } catch (SQLException ex) {
@@ -113,7 +113,7 @@ public class TripsDAO {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 ArrayList<String> emails = convertEmailString(emailString);
-                trip = new Trip(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8), emails);
+                trip = new Trip(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8), emails, rs.getInt(9));
             }
         } catch (SQLException ex) {
             Logger.getLogger(TripsDAO.class.getName()).log(Level.WARNING, "Cannot get trip with tripID: " + tripID, ex);
@@ -152,7 +152,7 @@ public class TripsDAO {
         return true;
     }
 
-    public static boolean insertTrip(String country, String programme, String price, String duration, Date startDate, Date endDate) {
+    public static boolean insertTrip(String country, String programme, String price, String duration, Date startDate, Date endDate, String activation) {
 
         //get max tripID
         String sql1 = "SELECT CONVERT(MAX(CONVERT(tripID,UNSIGNED INTEGER)),CHAR(200)) FROM trip ";
@@ -177,7 +177,7 @@ public class TripsDAO {
         }
 
         //insert the trip
-        String sql2 = "INSERT INTO `trip` (`tripID`, `programme`, `price`, `ratings`, `country`, `tripStart`, `tripEnd`, `tripDuration`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+        String sql2 = "INSERT INTO `trip` (`tripID`, `programme`, `price`, `ratings`, `country`, `tripStart`, `tripEnd`, `tripDuration`,`activation`) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?);";
         tripID++;
         String tripIDString = "" + tripID;
         try (
@@ -191,6 +191,7 @@ public class TripsDAO {
             stmt.setDate(6, startDate);
             stmt.setDate(7, endDate);
             stmt.setString(8, duration);
+            stmt.setString(9, activation);
             stmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(TripsDAO.class.getName()).log(Level.WARNING, "Unable to insert trip", ex);

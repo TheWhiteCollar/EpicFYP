@@ -53,7 +53,7 @@
                     var tripHTML = '';
                     var count = 1;
                     $.each(trips, function (index, trip) {
-                        var number = 5 - trip.signedUpEmails.length;
+                        var number = trip.studentNeededToActivate - trip.signedUpEmails.length;
 
                         switch (count % 3) {
                             case (1):
@@ -75,7 +75,7 @@
                             tripHTML += 'Not Activated (' + number + " more)</td></tr>";
                         }
                         tripHTML += '<tr><td>Travel to Myanmar and experience their beautiful scenery</td></tr>';
-
+                        
                         <%
                             User User = (User) session.getAttribute("User");
                             if (User != null) {

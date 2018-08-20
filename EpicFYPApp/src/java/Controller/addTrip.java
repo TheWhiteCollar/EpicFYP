@@ -70,8 +70,9 @@ public class addTrip extends HttpServlet {
         String duration = request.getParameter("duration");
         Date startDate = Date.valueOf(request.getParameter("tripStart"));
         Date endDate = Date.valueOf(request.getParameter("tripEnd"));
+        String activation = request.getParameter("activation");
         String text = "fail";
-        if(TripsDAO.insertTrip(country, programme, price, duration, startDate, endDate)){
+        if(TripsDAO.insertTrip(country, programme, price, duration, startDate, endDate, activation)){
             text = "success";
         }
         response.setContentType("text/plain");  // Set content type of the response so that jQuery knows what it can expect.

@@ -101,17 +101,17 @@
                             <div class="modal-body">
                                 <div class ="row">
 
-                                    <div class ="3u 12u">
+                                    <div class ="4u 12u">
                                         <p>
                                             Email : <% out.print(u.getUserEmail()); %>
                                         </p>                                           
                                     </div>
-                                    <div class ="3u 12u">
+                                    <div class ="4u 12u">
                                         <p>
                                             Contact : <% out.print(u.getUserPhone()); %>
                                         </p>                                           
                                     </div>
-                                    <div class ="3u 12u">
+                                    <div class ="4u 12u">
                                         <p>
                                             Year of birth : 1996
                                         </p>                                           

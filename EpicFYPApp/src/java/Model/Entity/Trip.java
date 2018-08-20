@@ -33,9 +33,10 @@ public class Trip {
     private String tripEnd;
     private int tripDuration;
     private boolean activated;
+    private int studentNeededToActivate;
     private ArrayList<String> signedUpEmails;
 
-    public Trip(String tripID, String programme, String price, int ratings, String country, String tripStart, String tripEnd, int tripDuration, ArrayList<String> signedUpEmails) {
+    public Trip(String tripID, String programme, String price, int ratings, String country, String tripStart, String tripEnd, int tripDuration, ArrayList<String> signedUpEmails, int studentActivation) {
         this.tripID = tripID;
         this.programme = programme;
         this.price = price;
@@ -45,7 +46,8 @@ public class Trip {
         this.tripEnd = tripEnd;
         this.tripDuration = tripDuration;
         this.signedUpEmails = signedUpEmails;
-        if(signedUpEmails.size()<=5){
+        this.studentNeededToActivate = studentActivation;
+        if(signedUpEmails.size()<studentActivation ){
             this.activated = false;
         } else {
             this.activated = true;
@@ -139,5 +141,14 @@ public class Trip {
     
     public void setActivated(boolean activated) {
         this.activated = activated;
+    }
+    
+    
+    public int getStudentNeededToActivate() {
+        return studentNeededToActivate;
+    }
+    
+    public void setStudentNeededToActivate(int studentNeededToActivate) {
+        this.studentNeededToActivate = studentNeededToActivate;
     }
 }

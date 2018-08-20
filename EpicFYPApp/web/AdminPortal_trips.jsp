@@ -49,7 +49,7 @@
                         tripHTML += '<tr><td>Country : ' + trip.country + "</td><td> Start : " + trip.tripStart + "</td>";
                         tripHTML += "<td>End : " + trip.tripEnd + "</td><td>Price : $" + trip.price + "</tr>";
                         tripHTML += '<tr><td colspan="4"> Trip Description?</td></tr>';
-                        var number = 6 - trip.signedUpEmails.length;
+                        var number = trip.studentNeededToActivate - trip.signedUpEmails.length;
                         if (trip.activated) {
                             tripHTML += '<tr><td colspan="3">Activated</td>';
                         } else {
@@ -108,6 +108,7 @@
                     let duration = $('input[name="duration"]').val();
                     let tripStart = $('input[name="tripStart"]').val();
                     let tripEnd = $('input[name="tripEnd"]').val();
+                    let activation = $('input[name="activation"]').val();
                     let tripData = {
                         "country": country,
                         "price": price,
@@ -116,6 +117,7 @@
                         "duration": duration,
                         "tripStart": tripStart,
                         "tripEnd": tripEnd,
+                        "activation": activation
                     }
                     
                     //send ajax post request to addTrip servlet with tripData
@@ -152,7 +154,7 @@
                             tripHTML += '<tr><td>Country : ' + trip.country + "</td><td> Start : " + trip.tripStart + "</td>";
                             tripHTML += "<td>End : " + trip.tripEnd + "</td><td>Price : $" + trip.price + "</tr>";
                             tripHTML += '<tr><td colspan="4"> Trip Description?</td></tr>';
-                            var number = 5 - trip.signedUpEmails.length;
+                            var number = trip.studentNeededToActivate - trip.signedUpEmails.length;
                             if (trip.activated) {
                                 tripHTML += '<tr><td colspan="3">Activated</td>';
                             } else {
@@ -543,6 +545,11 @@
                             <div class = "3u 12u">
                                 <p>
                                     Price ($): <input name="price" required type="number" min="1" placeholder="e.g: 100">
+                                </p>
+                            </div>
+                            <div class = "3u 12u">
+                                <p>
+                                    Min no. of students (activation): <input name="activation" required type="number" min="1" placeholder="e.g: 4">
                                 </p>
                             </div>
 <!--                            <div class = "3u 12u">

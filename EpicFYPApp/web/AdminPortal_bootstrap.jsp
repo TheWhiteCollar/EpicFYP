@@ -50,6 +50,16 @@
 
                 <h1>Upload files here for bulk updates to database</h1>
 
+                <p style="text-align:center; color: red">
+                    <%
+                        String Success_Message = (String) request.getAttribute("Success_Msg");
+
+                        if (Success_Message != null) {
+                            out.println(Success_Message);
+                        }
+                    %>
+                </p>
+
                 <form action="AdminBootstrapServlet" method="post" enctype="multipart/form-data">
 
                     Update trips: <input type="file" name="updateTrips" id="updateTrips" accept=".csv*"><br>
@@ -59,7 +69,7 @@
                     <input type="submit">
 
                 </form>
-                
+
             </div>
 
         </section>

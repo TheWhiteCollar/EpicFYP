@@ -20,7 +20,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-
 /**
  *
  * @author User
@@ -72,9 +71,11 @@ public class AdminBootstrapServlet extends HttpServlet {
                         writer.println("Not inserted into database");
                     }
                 }
+                request.setAttribute("Success_Msg", "Database successfully updated");
+                request.getRequestDispatcher("AdminPortal_bootstrap.jsp").forward(request, response);
             } else {
                 writer.println("Haiz");
-            } 
+            }
 
             // Create path components to save the file -- Trips
             final Part filePartTrip = request.getPart("updateTrips");
@@ -102,7 +103,7 @@ public class AdminBootstrapServlet extends HttpServlet {
             } else {
                 writer.println("Haiz");
             }
-            
+
             // Create path components to save the file -- tripstudent
             final Part filePartTripStudent = request.getPart("updateTripsUsersSignedUpFor");
             InputStream fileContentTripStudent = filePartTripStudent.getInputStream();

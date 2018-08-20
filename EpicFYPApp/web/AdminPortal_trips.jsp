@@ -38,9 +38,9 @@
 
         <script>
             $(function () {
-                 //call get all trips using ajax get method. receives tripJson string
+                //call get all trips using ajax get method. receives tripJson string
                 $.get('/EpicFYPApp/getAllTripsServlet', function (tripJson) {
-                     //parse string into JSON object
+                    //parse string into JSON object
                     var trips = JSON.parse(tripJson);
                     var tripHTML = '<div class="table-wrapper"><table>';
                     //loop through each trip and print out as rows in a table
@@ -119,7 +119,7 @@
                         "tripEnd": tripEnd,
                         "activation": activation
                     }
-                    
+
                     //send ajax post request to addTrip servlet with tripData
                     $.post('/EpicFYPApp/addTrip', tripData, function (response) {
                         $('button[data-dismiss="modal"]').click();
@@ -223,15 +223,15 @@
                                 Price (max):
                                 <input type="number" value = "max" min = "0">
                             </div>
-                            <div class="3u 12u(small)">
-                                Rating:
-                                <select name="rating">                                      
-                                    <option disabled selected value style="display:none"> - select a rating - </option>
-                                    <option value="bad" >Bad</option>
-                                    <option value="average" >Average</option>
-                                    <option value="excellent" >Excellent</option>
-                                </select>
-                            </div>
+                            <!--                            <div class="3u 12u(small)">
+                                                            Rating:
+                                                            <select name="rating">                                      
+                                                                <option disabled selected value style="display:none"> - select a rating - </option>
+                                                                <option value="bad" >Bad</option>
+                                                                <option value="average" >Average</option>
+                                                                <option value="excellent" >Excellent</option>
+                                                            </select>
+                                                        </div>-->
                             <div class="4u 12u(small)">
                                 Programmes Category:
                                 <select name="programmes" >
@@ -532,54 +532,58 @@
                         </div>
 
                         <div class = "row">
-                            <div class = "3u 12u">
+                            <div class = "4u 12u">
                                 <p>
                                     Trip Start (dd-mm-yyyy): <input name="tripStart" id="tripStart" required type="date" min = "<% out.print(todayDate); %>">
                                 </p>
                             </div>
-                            <div class = "3u 12u">
+                            <div class = "4u 12u">
                                 <p>
                                     Trip End (dd-mm-yyyy): <input name="tripEnd" id="tripEnd" required type="date" min = "<% out.print(todayDate);%>" ">
                                 </p>
                             </div>
-                            <div class = "3u 12u">
+                            <div class = "4u 12u">
                                 <p>
                                     Price ($): <input name="price" required type="number" min="1" placeholder="e.g: 100">
                                 </p>
                             </div>
-                            <div class = "3u 12u">
-                                <p>
-                                    Min no. of students (activation): <input name="activation" required type="number" min="1" placeholder="e.g: 4">
-                                </p>
-                            </div>
-<!--                            <div class = "3u 12u">
-                                <p>
-                                    Rating: <select name="rating">   
-                                        <option disabled selected value style="display:none"> - select a rating - </option>
-                                        <option value="1">1 (worst)</option>
-                                        <option value="2">2 </option> 
-                                        <option value="3">3 </option> 
-                                        <option value="4">4 </option> 
-                                        <option value="5">5 </option> 
-                                        <option value="6">6 </option> 
-                                        <option value="7">7 </option> 
-                                        <option value="8">8 </option> 
-                                        <option value="9">9 </option> 
-                                        <option value="10">10 (best)</option>                                                                           
-                                    </select>
-                                </p>
-                            </div>-->
+
+                            <!--                            <div class = "3u 12u">
+                                                            <p>
+                                                                Rating: <select name="rating">   
+                                                                    <option disabled selected value style="display:none"> - select a rating - </option>
+                                                                    <option value="1">1 (worst)</option>
+                                                                    <option value="2">2 </option> 
+                                                                    <option value="3">3 </option> 
+                                                                    <option value="4">4 </option> 
+                                                                    <option value="5">5 </option> 
+                                                                    <option value="6">6 </option> 
+                                                                    <option value="7">7 </option> 
+                                                                    <option value="8">8 </option> 
+                                                                    <option value="9">9 </option> 
+                                                                    <option value="10">10 (best)</option>                                                                           
+                                                                </select>
+                                                            </p>
+                                                        </div>-->
                         </div>
-
-
-                        <div class = "row">
-                            <div class = "3u 12u">
+                        <div class =" row">
+                            <div class = "4u 12u">
                                 <p>
                                     Trip Duration (days): 
                                     <input required type="text" min="1" step="1" placeholder="days" name="duration" id="duration" value="0" onclick="dateDiff()">
                                 </p>
                             </div>
-                            <div class = "5u 12u">
+                            <div class = "4u 12u">
+                                <p>
+                                    Min no. of students (activation): <input name="activation" required type="number" min="1" placeholder="e.g: 4">
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class = "row">
+                            
+                            <div class = "12u 12u">
                                 <p>
                                     Programme Category tag: 
                                     <select name="programmes" >
@@ -590,14 +594,14 @@
                                     </select>
                                 </p>
                             </div>
-                            <div class = "4u 12u">
+<!--                            <div class = "4u 12u">
                                 <p>
-                                    <input type="file" name="profilePicture" id="file-1" class="inputfile inputfile-1" style="visibility:hidden" accept=".pdf"/>
+                                    <input type="file" name="tripItineray" id="file-1" class="inputfile inputfile-1" style="visibility:hidden" accept=".pdf"/>
                                     <label for="file-1" style="padding-top: 10px;padding-bottom: 10px;"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> 
                                         <span>Upload Trip Itinerary</span>
                                     </label> 
                                 </p>
-                            </div>
+                            </div>-->
                         </div>
 
                         <input type="submit" value="Create a Trip!" style="width:100%">

@@ -176,12 +176,7 @@
                     }
                 %>
 
-
-
-
-
             </div>
         </section>
-
     </body>
 </html>

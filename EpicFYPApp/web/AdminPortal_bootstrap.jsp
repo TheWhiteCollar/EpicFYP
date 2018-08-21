@@ -48,7 +48,6 @@
                 <p style="text-align:center; color: red">
                     <%
                         String Success_Message = (String) request.getAttribute("Success_Msg");
-
                         if (Success_Message != null) {
                             out.println(Success_Message);
                         }

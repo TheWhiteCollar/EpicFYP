@@ -1,3 +1,4 @@
+<%@page import="Model.Entity.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -39,7 +40,19 @@
             <p>And you are in the driver's seat</p>
             <ul class="actions">
                 <li>
+                    <%
+                        User User = (User) session.getAttribute("User");
+                        if (User != null) {
+                    %>
+                    <a href="studyTrip.jsp" class="button big"><font color="white">Join a study trip</font></a>
+                    <a href="internship.jsp" class="button big"><font color="white">Join an internship</font></a>
+                        <%
+                        } else {
+                        %>
                     <a href="login.jsp" class="button big"><font color="white">Take charge of your life now</font></a>
+                        <%
+                            }
+                        %>
                 </li>
             </ul>
 
@@ -132,7 +145,7 @@
                 </div>
             </div>
         </section>
-        
+
         <!-- Footer -->
         <jsp:include page="footer.jsp" />
 

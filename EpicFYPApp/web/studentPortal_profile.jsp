@@ -109,13 +109,13 @@
                                                 <td>Gender:</td>
                                                 <td><select name ="gender">
                                                         <%
-                                                            if (gender.equals("Female")) {
+                                                            if (gender.equals("F")) {
                                                         %>
                                                         <option value =" <% out.print(gender);%>"/><% out.print(gender);%></option>
                                                         <option value ="Male"/>Male</option>
                                                         <%
                                                             }
-                                                            if (gender.equals("Male")) {
+                                                            if (gender.equals("M")) {
                                                         %>
                                                         <option value ="<% out.print(gender);%>"/><% out.print(gender);%></option>
                                                         <option value ="Female"/>Female</option>                                                        

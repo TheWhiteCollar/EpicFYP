@@ -29,10 +29,6 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="description" content="Imparting life skills through overseas exposure via internships and study missions. Countries of focus: Cambodia, Laos, Myanmar, Vietnam, India, Indonesia, Thailand, Japan and China." />
         <meta name="keywords" content="overseas, study missions, internships, training, life skills, career exposure" />
-        <!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
-        <!--        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>-->
 
         <script src="js/jquery.min.js"></script>
         <script src="js/skel.min.js"></script>
@@ -75,20 +71,27 @@
                             tripHTML += 'Not Activated (' + number + " more)</td></tr>";
                         }
                         tripHTML += '<tr><td>Travel to Myanmar and experience their beautiful scenery</td></tr>';
-                        
-                        <%
-                            User User = (User) session.getAttribute("User");
-                            if (User != null) {
-                            %>
 
-                        tripHTML += '<tr><td><form action="applyForTrips" method="post">';
+                        tripHTML += '<tr><td>';
+                                
+            <%
+                User User = (User) session.getAttribute("User");
+                if (User != null) {
+            %>
+
+                        tripHTML += '<form action="applyForTrips" method="post">';
                         tripHTML += '<input style="display: none" type="text" name="tripID" value="' + trip.tripID + '"/>';
                         tripHTML += '<input style="display: none" type="text" name="email" value="' + '${User.getUserEmail()}' + '"/>';
-                        tripHTML += '<p><input type="submit" value="Apply" style="width:100%"/></p> <a href = "studentPortal_tripDetails.jsp" class = "button" style="width:100%">More Details</a></form></td></tr>';
+                        tripHTML += '<p><input type="submit" value="Apply" style="width:100%"/></form></p>';
                         
-                        <%} else {%>
-                            tripHTML += '<tr><td><p><a href = "login.jsp" class = "button" style="width:100%">Log in to apply</a></p><a href = "studentPortal_tripDetails.jsp" class = "button" style="width:100%">Trip Details</a></td></tr>';
-                        <%}%>
+            <%
+            } else {
+            %>
+                        tripHTML += '<p><a href = "login.jsp" class = "button" style="width:100%">Log in to apply</a></p>';
+            <%}%>
+                        tripHTML += '<form action="tripDetails.jsp" method="post"><input type="text" name="tripID" style="display: none" value="' + trip.tripID + '"><input type = "submit" style="width:100%" value = "More Details"></form>';
+
+                        tripHTML += '</td></tr>';
                         switch (count % 3) {
                             case (1):
                                 tripHTML += '</table></div>';
@@ -208,51 +211,8 @@
                 <!-- Overseas trip populates -->
                 </br>
                 <div id="trips"></div>
-
-
-
-                <!--                <div class="row">
-                                    <div class="col-sm-4">
-                                        <div class="card">
-                                            <img class="card-img-top" src="images/Germany.jpg" alt="Card image cap">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Germany Trip</h5>
-                                                <p class="card-text">From the heights of the Alps to the depths of the Black Forest, find yourself lost in a fairy tale come to life.</p>
-                                                <a href="tripDetail.jsp" class="btn btn-primary">View Details</a>
-                                                <div><br><a href="submitTrip.jsp" class="button small">Apply for Trip</a></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="card">
-                                            <img class="card-img-top" src="images/Spain.jpg" alt="Card image cap">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Spain Trip</h5>
-                                                <p class="card-text">Fiestas and holy weeks cram the Spanish calendar year, so no matter when you go there’s an event going on somewhere.</p>
-                                                <a href="tripDetail.jsp" class="btn btn-primary">View Details</a>
-                                                <div><br><a href="submitTrip.jsp" class="button small">Apply for Trip</a></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="card">
-                                            <img class="card-img-top" src="images/Norway.jpg" alt="Card image cap">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Norway Trip</h5>
-                                                <p class="card-text">Embrace the wild outdoors learn new skills and enjoy independence like no other trip</p>
-                                                <a href="tripDetail.jsp" class="btn btn-primary">View Details</a>
-                                                <div><br><a href="submitTrip.jsp" class="button small">Apply for Trip</a></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>-->
-
             </div>
-
         </section>
-
-
-
 
         <<!-- Footer -->
         <jsp:include page="footer.jsp" />

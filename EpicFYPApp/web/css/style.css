@@ -952,7 +952,7 @@ input[type="submit"].special:hover,
 input[type="reset"].special:hover,
 input[type="button"].special:hover,
 .button.special:hover {
-    background-color: #5cb67e;
+    background-color: #FA9189;
 }
 
 input[type="submit"].special:active,

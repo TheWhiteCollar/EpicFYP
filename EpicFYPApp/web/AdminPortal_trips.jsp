@@ -169,6 +169,33 @@
                         });
                         tripHTML += '</table></div>';
                         $("#trips").append(tripHTML);
+                        $(".deleteTrip").submit(function (event) {
+                        var tripID = "" + $(this).children("input").val();
+                        var deleteData = {
+                            'id': tripID
+                        };
+ 
+                        $.post('/EpicFYPApp/deleteTrip', deleteData, function (response) {
+                            if (response === "success") {
+                                $.notify({
+                                    // options
+                                    message: 'Successfully deleted trip'
+                                }, {
+                                    // settings
+                                    type: 'success'
+                                });
+                            } else {
+                                $.notify({
+                                    // options
+                                    message: 'Fail to delete trip'
+                                }, {
+                                    type: 'danger'
+                                });
+                            }
+                            reloadTable();
+                        })
+                        event.preventDefault();
+                    });
                     });
                 }
 

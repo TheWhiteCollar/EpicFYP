@@ -77,7 +77,7 @@ public class TripsDAO {
                     emailString = tripstudent.get(tripID);
                 }
                 ArrayList<String> emails = convertEmailString(emailString);
-                Trip trip = new Trip(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8), emails,rs.getInt(9));
+                Trip trip = new Trip(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8), emails, rs.getInt(9));
                 allTrips.add(trip);
             }
         } catch (SQLException ex) {
@@ -160,17 +160,16 @@ public class TripsDAO {
         int tripID = 0;
         try (
                 Connection conn = ConnectionManager.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(sql1);
-            ) {
+                PreparedStatement stmt = conn.prepareStatement(sql1);) {
             ResultSet rs = stmt.executeQuery();
             rs.next();
             String maxTripID = rs.getString(1);
             System.out.println("maxTrip " + maxTripID);
-            
-            if(maxTripID != null){
+
+            if (maxTripID != null) {
                 tripID = Integer.parseInt(maxTripID);
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(TripsDAO.class.getName()).log(Level.WARNING, "Unable to insert trip", ex);
             return false;
@@ -258,7 +257,7 @@ public class TripsDAO {
         }
         return true;
     }
-    
+
     // Add existing trips that students went/bulk new trips that students is going
     public static boolean addTripStudent(String tripID, String studentEmail) {
 
@@ -276,6 +275,23 @@ public class TripsDAO {
             Logger.getLogger(UserDAO.class.getName()).log(Level.WARNING, "Student who is going for this trip is already registered!", ex);
         }
         return true;
+    }
+
+    public static int getTripbyUser(String useremail) {
+        int count = 0;
+        String sql1 = "SELECT * FROM tripstudent WHERE studentEmail = ?";
+        try (Connection conn = ConnectionManager.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql1);) {
+            stmt.setString(1, useremail);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                count++;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(TripsDAO.class.getName()).log(Level.WARNING, "Cannot get trip with useremail: " + useremail, ex);
+        }
+
+        return count;
     }
 
 }

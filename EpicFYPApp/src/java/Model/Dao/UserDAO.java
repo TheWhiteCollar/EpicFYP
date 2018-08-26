@@ -126,10 +126,10 @@ public class UserDAO {
                 int userAge = rs.getInt(7);
                 byte userProfilePic = rs.getByte(7);
                 String userDescription = rs.getString(8);
-                String userInterest = rs.getString(9);
+                String userInterest = rs.getString(10);
                 String userPassword = rs.getString(10);
                 String userRole = rs.getString(11);
-                String userOccupation = rs.getString(12);
+                String userOccupation = rs.getString(13);
                 result.add(new User(userEmail, userFirstName, userLastName, userPhone, userGender, userCitizenship, userAge, userDescription, userProfilePic, userInterest, userPassword, userRole, userOccupation));
             }
             rs.close();

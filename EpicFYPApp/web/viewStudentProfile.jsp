@@ -1,3 +1,4 @@
+<%@page import="Model.Dao.TripsDAO"%>
 <%@page import="Model.Dao.UserDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.Entity.User"%>
@@ -140,7 +141,7 @@
                                     </div>
                                     <div class ="6u 12u">
                                         <p>
-                                            Organisation/School : Singapore Managament University
+                                            Organisation/School : Singapore Management University
                                         </p>                                           
                                     </div>
                                 </div>
@@ -161,7 +162,8 @@
 
                                 <div class ="row">
                                     <p>
-                                        Trips taken previously : -
+                                        <% int countOfTrip = TripsDAO.getTripbyUser(u.getUserEmail()); %>
+                                        Trips taken previously : <% out.println(countOfTrip); %>
                                     </p>
                                 </div>
                             </div>

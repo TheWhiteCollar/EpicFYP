@@ -141,4 +141,13 @@ public class UserDAO {
         }
         return null;
     }
+    
+    public void deleteUser(User user){
+        String sql = "DELETE * FROM user WHERE userEmail='"+ user.getUserEmail()+"'";
+         try (Connection conn = ConnectionManager.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);) {
+        }catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.WARNING, "Unable to delete user!", ex);
+        }
+    }
 }

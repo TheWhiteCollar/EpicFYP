@@ -55,7 +55,6 @@
 
                     } else {
                     %>
-                    <li><a href="index.jsp">Home</a></li>
                     <li><a href="aboutUs.jsp">About Us</a></li>
                     <li><a href="studyTrip.jsp">Overseas Study Trips</a></li>
                     <li><a href="internship.jsp">Overseas Internships</a></li>						                   

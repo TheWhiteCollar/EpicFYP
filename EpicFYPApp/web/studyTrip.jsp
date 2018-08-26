@@ -87,7 +87,7 @@
             <%
             } else {
             %>
-                        tripHTML += '<p><a href = "login.jsp" class = "button" style="width:100%">Log in to apply</a></p>';
+                        tripHTML += '<p><a href = "login.jsp?comefrom=studyTrip" class = "button" style="width:100%">Log in to apply</a></p>';
             <%}%>
                         tripHTML += '<form action="tripDetails.jsp" method="post"><input type="text" name="tripID" style="display: none" value="' + trip.tripID + '"><input type = "submit" style="width:100%" value = "More Details"></form>';
 

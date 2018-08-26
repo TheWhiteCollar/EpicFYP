@@ -39,6 +39,7 @@ public class LoginServlet_student extends HttpServlet {
         // retrieve userid and password
         String userid = request.getParameter("userid");
         String password = request.getParameter("password");
+        String comefrom = request.getParameter("comefrom");
 
         // Create user
         User user = null;
@@ -52,7 +53,12 @@ public class LoginServlet_student extends HttpServlet {
             user = UserDAO.getUserByLogin(userid, password);
             if (user != null) {
                 session.setAttribute("User", user);
-                response.sendRedirect("studentPortal_main.jsp");
+                if (comefrom != null && comefrom.equals("studyTrip")) {
+                    response.sendRedirect("studyTrip.jsp");
+                } else {
+                    response.sendRedirect("studentPortal_main.jsp");
+                }
+
                 return;
             }
         }

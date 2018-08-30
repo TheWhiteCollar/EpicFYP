@@ -59,7 +59,7 @@
                         <br>
                         <input type="password" name="password" placeholder="- Enter Admin Password -" style="text-align:center">
                         <br>
-                        <input type="submit" value="Login" style="width:100%">                                                          
+                        <input type="submit" value="Login" class ="full_width">                                                          
                     </form> 
                     <p style="text-align:center"><a href="forgetpassword.jsp">Forgot your password?</a></p>
                 </div>
@@ -92,7 +92,7 @@
                         <%
                             }
                         %>
-                        <input type="submit" value="Login" style="width:100%">
+                        <input type="submit" value="Login" class ="full_width">
                     </form> 
                     <p style="text-align:center">
                         <a href="forgetpassword.jsp">Forgot your password?</a><br /> 

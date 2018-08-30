@@ -82,14 +82,14 @@
                         tripHTML += '<form action="applyForTrips" method="post">';
                         tripHTML += '<input style="display: none" type="text" name="tripID" value="' + trip.tripID + '"/>';
                         tripHTML += '<input style="display: none" type="text" name="email" value="' + '${User.getUserEmail()}' + '"/>';
-                        tripHTML += '<p><input type="submit" value="Apply" style="width:100%"/></form></p>';
+                        tripHTML += '<p><input type="submit" value="Apply" class ="full_width"/></form></p>';
                         
             <%
             } else {
             %>
-                        tripHTML += '<p><a href = "login.jsp?comefrom=studyTrip" class = "button" style="width:100%">Log in to apply</a></p>';
+                        tripHTML += '<p><a href = "login.jsp?comefrom=studyTrip" class = "button" class ="full_width">Log in to apply</a></p>';
             <%}%>
-                        tripHTML += '<form action="tripDetails.jsp" method="post"><input type="text" name="tripID" style="display: none" value="' + trip.tripID + '"><input type = "submit" style="width:100%" value = "More Details"></form>';
+                        tripHTML += '<form action="tripDetails.jsp" method="post"><input type="text" name="tripID" style="display: none" value="' + trip.tripID + '"><input type = "submit" class ="full_width" value = "More Details"></form>';
 
                         tripHTML += '</td></tr>';
                         switch (count % 3) {
@@ -204,7 +204,7 @@
                         </div>
                         </p>
 
-                        <input type="submit" value="Apply" style="width:100%"> 
+                        <input type="submit" value="Apply" class ="full_width"> 
                     </form> 
                 </div>
 

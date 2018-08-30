@@ -1378,6 +1378,9 @@ input.invalid {
   background-color: #e6b3ff;
 }
 
-
+/*full width*/
+.full_width{
+    width:100%;
+}
 
 

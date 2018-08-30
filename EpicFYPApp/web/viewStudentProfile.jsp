@@ -1,3 +1,4 @@
+<%@page import="java.time.LocalDate"%>
 <%@page import="Model.Dao.TripsDAO"%>
 <%@page import="Model.Dao.UserDAO"%>
 <%@page import="java.util.ArrayList"%>
@@ -39,11 +40,32 @@
             <div class="container">
 
                 <header class="major">
-                    <h2>Students Profiles</h2>
+                    <h2>Students' Profiles</h2>
                 </header>
 
                 <!-- To add filter button -->
 
+                <div class ="row uniform 50%">
+                    <div class ="6u 12u(xsmall)">
+                        <input id="searchBar" type="text" name="searchbar" placeholder="Search for student:"/>
+                    </div>
+                    <div class ="2u 12u(xsmall)">
+                        <input type="submit">
+                    </div>
+                    
+                    <div class ="4u 12u(xsmall)">
+                        <% LocalDate todayDate = java.time.LocalDate.now(); %>
+                        <form method="get" action="#">
+                            <button type="submit" class="button">Download!</button>
+                        </form>
+<!--                        <a href="/Users/xiuwenhime/NetBeansProjects/JavaApplication5/NewExcelFile.xls" download="<% out.print(todayDate); %>_all_student_profile" class="button full_width">Download all student profiles</a>-->
+                    </div>
+                
+                    
+                </div>
+            </div>
+        </section><section>
+            <div class="container">
                 <table class = "alt">
                     <thead>
                         <tr>
@@ -86,11 +108,12 @@
                         %>
                     </tbody>    
                 </table>
+
                 <%
                     if (!allUsers.isEmpty()) {
                         for (int i = 0; i < allUsers.size(); i++) {
                             User u = allUsers.get(i);
-                            
+
                 %>
                 <div class="modal fade" id="myModal<%out.print(i);%>" role="dialog">
                     <div class="modal-dialog modal-lg">

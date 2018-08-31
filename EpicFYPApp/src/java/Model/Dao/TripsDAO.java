@@ -236,7 +236,7 @@ public class TripsDAO {
     // Add existing trips/bulk new trips
     public static boolean addTrip(String tripID, String programme, String price, String ratings, String country, String tripDuration) {
 
-        String sql = "INSERT INTO trip (tripID, programme, price, ratings, country, tripStart, tripEnd, tripDuration) VALUES (?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO trip (tripID, programme, price, ratings, country, tripStart, tripEnd, tripDuration, activation) VALUES (?,?,?,?,?,?,?,?,?)";
 
         try (Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
@@ -248,6 +248,7 @@ public class TripsDAO {
             stmt.setDate(6, Date.valueOf("2018-08-26"));
             stmt.setDate(7, Date.valueOf("2018-09-03"));
             stmt.setString(8, tripDuration);
+            stmt.setInt(9,4);
             int result = stmt.executeUpdate();
             if (result == 0) {
                 return false;

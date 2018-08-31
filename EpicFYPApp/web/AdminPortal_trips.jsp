@@ -101,7 +101,7 @@
                 });
                 // wait for add trip submit event 
                 $("#addTrip").submit(function (event) {
-                    let country = $('input[name="country"]').val();
+                    let country = $("#countryInput option:selected").val();
                     let price = $('input[name="price"]').val();
                     let programme = $('input[name="programme"]').val();
                     let rating = $('input[name="rating"]').val();
@@ -121,85 +121,83 @@
                     }
 
                     //send ajax post request to addTrip servlet with tripData
-                    $.post('/EpicFYPApp/addTrip', tripData, function (response) {
-                        $('button[data-dismiss="modal"]').click();
-                        reloadTable();
-                        if (response === "success") {
-                            $.notify({
-                                // options
-                                message: 'Successfully inserted trip'
-                            }, {
-                                // settings
-                                type: 'success'
-                            });
-                        } else {
-                            $.notify({
-                                // options
-                                message: 'Fail to insert trip'
-                            }, {
-                                // settings
-                                type: 'danger'
-                            });
-                        }
-                    });
-                    event.preventDefault();
-                });
-                function reloadTable() {
-                    $.get('/EpicFYPApp/getAllTripsServlet', function (tripJson) {
-                        var trips = JSON.parse(tripJson);
-                        $("#trips").empty();
-                        var tripHTML = '<div class="table-wrapper"><table>';
-                        $.each(trips, function (index, trip) {
-                            tripHTML += '<thead><tr><th>Trip ID : ' + trip.tripID + '</th><th colspan="3">' + trip.programme + "</th></tr></thead>";
-                            tripHTML += '<tr><td>Country : ' + trip.country + "</td><td> Start : " + trip.tripStart + "</td>";
-                            tripHTML += "<td>End : " + trip.tripEnd + "</td><td>Price : $" + trip.price + "</tr>";
-                            tripHTML += '<tr><td colspan="4"> Trip Description?</td></tr>';
-                            var number = trip.studentNeededToActivate - trip.signedUpEmails.length;
-                            if (trip.activated) {
-                                tripHTML += '<tr><td colspan="3">Activated</td>';
-                            } else {
-
-                                tripHTML += '<tr><td colspan="3">Not Activated : ' + number + " more to activate this trip</td>";
-                            }
-                            tripHTML += "<td>" + trip.signedUpEmails.length + " signed up</td></tr>";
-                            tripHTML += "<tr><td><form class=\"deleteTrip\">";
-                            tripHTML += "<input style=\"display: none\" type=\"text\" name=\"tripID\" value=\"" + trip.tripID + "\"/>";
-                            tripHTML += "<button class = \"button\" type=\"submit\" id=\"asd" + index + "\">Delete Trip</button></form></td>";
-                            tripHTML += "<td>Edit Button</td>" + "<td>View users signed up</td>" + "</tr>";
+                $.post('/EpicFYPApp/addTrip', tripData, function (response) {
+                    $('button[data-dismiss="modal"]').click();
+                    reloadTable();
+                    if (response === "success") {
+                        $.notify({
+                            // options
+                            message: 'Successfully inserted trip'
+                        }, {
+                            // settings
+                            type: 'success'
                         });
-                        tripHTML += '</table></div>';
-                        $("#trips").append(tripHTML);
-                        $(".deleteTrip").submit(function (event) {
-                        var tripID = "" + $(this).children("input").val();
-                        var deleteData = {
-                            'id': tripID
-                        };
+                    } else {
+                        $.notify({
+                            // options
+                            message: 'Fail to insert trip'
+                        }, {
+                            // settings
+                            type: 'danger'
+                        });
+                    }
+                });
+                event.preventDefault();
+            });
+            function reloadTable() {
+                $.get('/EpicFYPApp/getAllTripsServlet', function (tripJson) {
+                    var trips = JSON.parse(tripJson);
+                    $("#trips").empty();
+                    var tripHTML = '<div class="table-wrapper"><table>';
+                    $.each(trips, function (index, trip) {
+                        tripHTML += '<thead><tr><th>Trip ID : ' + trip.tripID + '</th><th colspan="3">' + trip.programme + "</th></tr></thead>";
+                        tripHTML += '<tr><td>Country : ' + trip.country + "</td><td> Start : " + trip.tripStart + "</td>";
+                        tripHTML += "<td>End : " + trip.tripEnd + "</td><td>Price : $" + trip.price + "</tr>";
+                        tripHTML += '<tr><td colspan="4"> Trip Description?</td></tr>';
+                        var number = trip.studentNeededToActivate - trip.signedUpEmails.length;
+                        if (trip.activated) {
+                            tripHTML += '<tr><td colspan="3">Activated</td>';
+                        } else {
+
+                            tripHTML += '<tr><td colspan="3">Not Activated : ' + number + " more to activate this trip</td>";
+                        }
+                        tripHTML += "<td>" + trip.signedUpEmails.length + " signed up</td></tr>";
+                        tripHTML += "<tr><td><form class=\"deleteTrip\">";
+                        tripHTML += "<input style=\"display: none\" type=\"text\" name=\"tripID\" value=\"" + trip.tripID + "\"/>";
+                        tripHTML += "<button class = \"button\" type=\"submit\" id=\"asd" + index + "\">Delete Trip</button></form></td>";
+                        tripHTML += "<td>Edit Button</td>" + "<td>View users signed up</td>" + "</tr>";
+                    });
+                    tripHTML += '</table></div>';
+                    $("#trips").append(tripHTML);
+                    $(".deleteTrip").submit(function (event) {
+                    var tripID = "" + $(this).children("input").val();
+                    var deleteData = {
+                        'id': tripID
+                    };
  
-                        $.post('/EpicFYPApp/deleteTrip', deleteData, function (response) {
-                            if (response === "success") {
-                                $.notify({
-                                    // options
-                                    message: 'Successfully deleted trip'
-                                }, {
-                                    // settings
-                                    type: 'success'
-                                });
-                            } else {
-                                $.notify({
-                                    // options
-                                    message: 'Fail to delete trip'
-                                }, {
-                                    type: 'danger'
-                                });
-                            }
-                            reloadTable();
-                        })
-                        event.preventDefault();
-                    });
-                    });
-                }
-
-
+                $.post('/EpicFYPApp/deleteTrip', deleteData, function (response) {
+                    if (response === "success") {
+                        $.notify({
+                            // options
+                            message: 'Successfully deleted trip'
+                        }, {
+                            // settings
+                            type: 'success'
+                        });
+                    } else {
+                        $.notify({
+                            // options
+                            message: 'Fail to delete trip'
+                        }, {
+                            type: 'danger'
+                        });
+                    }
+                    reloadTable();
+                })
+                event.preventDefault();
+            });
+            });
+            }
             });
         </script>
         <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
@@ -310,9 +308,10 @@
                                     Programme Title: <input required type="text" name="programme" placeholder="e.g: Winter Study Trip">
                                 </p>
                             </div>
+                            
                             <div class = "6u 12u(xsmall)">
-                                <p>                               
-                                    Country of visit: <select name="country">   
+                                <p> 
+                                    Country of visit: <select id="countryInput" name="country">   
                                         <option disabled selected value style="display:none"> - select a country - </option>
                                         <option value="Afghanistan">Afghanistan</option> 
                                         <option value="Albania">Albania</option> 

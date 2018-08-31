@@ -41,20 +41,17 @@
         <link rel="stylesheet" href="css/style-xlarge.css" />
         </noscript> 
         <script>
-
-
             $(function () {
                 $.get('/EpicFYPApp/getAllTripsServlet', function (tripJson) {
                     var trips = JSON.parse(tripJson);
                     var tripHTML = '';
                     var count = 1;
+                    console.log(trips);
                     $.each(trips, function (index, trip) {
                         var number = trip.studentNeededToActivate - trip.signedUpEmails.length;
-
                         switch (count % 3) {
                             case (1):
                                 tripHTML += '<div class ="row"><div class = "4u 12u(xsmall)"><table  style="border:1px solid; border-radius: 10px;">';
-
                                 break;
                             case (2):
                                 tripHTML += '<div class = "4u 12u(xsmall)"><table  style="border:1px solid; border-radius: 10px;">';
@@ -71,26 +68,33 @@
                             tripHTML += 'Not Activated (' + number + " more)</td></tr>";
                         }
                         tripHTML += '<tr><td>Travel to Myanmar and experience their beautiful scenery</td></tr>';
-
                         tripHTML += '<tr><td>';
                                 
-            <%
-                User User = (User) session.getAttribute("User");
-                if (User != null) {
-            %>
-
+                        <%
+                            User User = (User) session.getAttribute("User");
+                            if (User != null) {
+                        %>
                         tripHTML += '<form action="applyForTrips" method="post">';
                         tripHTML += '<input style="display: none" type="text" name="tripID" value="' + trip.tripID + '"/>';
                         tripHTML += '<input style="display: none" type="text" name="email" value="' + '${User.getUserEmail()}' + '"/>';
-                        tripHTML += '<p><input type="submit" value="Apply" class ="full_width"/></form></p>';
                         
-            <%
-            } else {
-            %>
-                        tripHTML += '<p><a href = "login.jsp?comefrom=studyTrip" class = "button" class ="full_width">Log in to apply</a></p>';
-            <%}%>
-                        tripHTML += '<form action="tripDetails.jsp" method="post"><input type="text" name="tripID" style="display: none" value="' + trip.tripID + '"><input type = "submit" class ="full_width" value = "More Details"></form>';
-
+                        var user = '${User.getUserEmail()}';
+                        if(trip.signedUpEmails.includes(user)){
+                            tripHTML += '<p><input disabled type="submit" value="Applied" class="full_width"/></form></p>';
+                        } else {
+                        tripHTML += '<p><input type="submit" value="Apply" class="full_width"/></form></p>';
+                        }
+                        
+                        <%
+                        } else {
+                        %>
+                        
+                        tripHTML += '<p><a href = "login.jsp?comefrom=studyTrip" class = "button full_width">Log in to apply</a></p>';
+            
+                        
+                        <%}%>
+                            
+                        tripHTML += '<form action="tripDetails.jsp" method="post"><input type="text" name="tripID" style="display: none" value="' + trip.tripID + '"><input type = "submit" class="full_width" value = "More Details"></form>';
                         tripHTML += '</td></tr>';
                         switch (count % 3) {
                             case (1):
@@ -204,7 +208,7 @@
                         </div>
                         </p>
 
-                        <input type="submit" value="Apply" class ="full_width"> 
+                        <input type="submit" value="Apply" class="full_width"> 
                     </form> 
                 </div>
 

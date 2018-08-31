@@ -71,8 +71,6 @@ public class AdminBootstrapServlet extends HttpServlet {
                         writer.println("Not inserted into database");
                     }
                 }
-                request.setAttribute("Success_Msg", "Database successfully updated");
-                request.getRequestDispatcher("AdminPortal_bootstrap.jsp").forward(request, response);
             } else {
                 writer.println("Haiz");
             }
@@ -125,6 +123,9 @@ public class AdminBootstrapServlet extends HttpServlet {
             } else {
                 writer.println("Haiz");
             }
+
+            request.setAttribute("Success_Msg", "Database successfully updated");
+            request.getRequestDispatcher("AdminPortal_bootstrap.jsp").forward(request, response);
 
         } catch (FileNotFoundException fne) {
             writer.println("Updates fails");

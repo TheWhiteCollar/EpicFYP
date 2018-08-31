@@ -142,12 +142,28 @@ public class UserDAO {
         return null;
     }
     
-    public void deleteUser(User user){
+    /*public void deleteUser(User user){
         String sql = "DELETE * FROM user WHERE userEmail='"+ user.getUserEmail()+"'";
          try (Connection conn = ConnectionManager.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql);) {
         }catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.WARNING, "Unable to delete user!", ex);
         }
+    }*/
+    
+    public static boolean deleteUser(String userEmail) {
+
+        String sql1 = "DELETE FROM user WHERE userEmail=?";
+
+        try (
+            Connection conn = ConnectionManager.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql1);) {
+            stmt.setString(1, userEmail);
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.WARNING, "Unable to delete user, userEmail = '" + userEmail, ex);
+            return false;
+        }
+        return true;
     }
 }

@@ -48,7 +48,7 @@ public class UserDAO {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 if (user == null) {
-                    user = new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getString(8), rs.getByte(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13));
+                    user = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getString(7), rs.getDate(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16));
                 }
             }
         } catch (SQLException ex) {
@@ -117,20 +117,7 @@ public class UserDAO {
             PreparedStatement stmt = conn.prepareStatement("select * from user");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                String userEmail = rs.getString(1);
-                String userFirstName = rs.getString(2);
-                String userLastName = rs.getString(3);
-                int userPhone = rs.getInt(4);
-                String userGender = rs.getString(5);
-                String userCitizenship = rs.getString(6);
-                int userAge = rs.getInt(7);
-                byte userProfilePic = rs.getByte(7);
-                String userDescription = rs.getString(8);
-                String userInterest = rs.getString(10);
-                String userPassword = rs.getString(10);
-                String userRole = rs.getString(11);
-                String userOccupation = rs.getString(13);
-                result.add(new User(userEmail, userFirstName, userLastName, userPhone, userGender, userCitizenship, userAge, userDescription, userProfilePic, userInterest, userPassword, userRole, userOccupation));
+                result.add(new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getString(7), rs.getDate(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16)));
             }
             rs.close();
             stmt.close();

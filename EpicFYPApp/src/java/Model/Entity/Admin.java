@@ -5,11 +5,9 @@
  */
 package Model.Entity;
 
-import java.util.ArrayList;
-
 /* Database sequence
-    #1: adminName (varchar)
-    #2: adminPassword (varchar)
+    #1: adminName (varchar 15)
+    #2: adminPassword (varchar 15)
  */
 
 public class Admin {

@@ -5,68 +5,71 @@
  */
 package Model.Entity;
 
-import java.util.ArrayList;
+import java.sql.Date;
 
 /* Database sequence
-    #1: userEmail (varchar)
-    #2: userFirstName (varchar)
-    #3: userLastName (varchar)
-    #4: userPhone (int)
-    #5: userGender (varchar)
-    #6: userCitizenship (varchar)
-    #7: userAge (int)
-    #8: userDescription (varchar)
-    #9: userProfilePic (blob)
-    #10: userInterest (varchar)
-    #11: userPassword (varchar)
-    #12: userRole (varchar)
-    #13: userOccupation (varchar)
+    #1: userID (int 11)
+    #2: userEmail (varchar 50)
+    #3: userFirstName (varchar 50)
+    #4: userLastName (varchar 50)
+    #5: userPhone (int 15)
+    #6: userGender (varchar 1)
+    #7: userCitizenship (varchar 100)
+    #8: userDOB (date)
+    #9: userProfilePic (varchar 100)
+    #10: userInterest (varchar 1000)
+    #11: userPassword (varchar 15)
+    #12: userOccupation (varchar 100)
+    #13: userResume (varchar 100)
+    #14: userIsEmailConfirm (varchar 10)
+    #15: userHighestEducation (varchar 100)
+    #16: userFieldOfStudy (varchar 100)
  */
-public class User {
 
+public class User {
+    
+    private int userID;
     private String userEmail;
     private String userFirstName;
     private String userLastName;
     private int userPhone;
     private String userGender;
     private String userCitizenship;
-    private int userAge;
-    private String userDescription;
-    // private byte[] userProfilePic;
-    private byte userProfilePic;
+    private Date userDOB;
+    private String userProfilePic;
     private String userInterest;
     private String userPassword;
-    private String userRole;
     private String userOccupation;
+    private String userResume;
+    private String userIsEmailConfirm;
+    private String userHighestEducation;
+    private String userFieldOfStudy;
 
-    public User(String userEmail, String userFirstName, String userLastName, int userPhone, String userGender, String userCitizenship, int userAge, String userDescription, byte userProfilePic, String userInterest, String userPassword, String userRole, String userOccupation) {
+    public User(int userID, String userEmail, String userFirstName, String userLastName, int userPhone, String userGender, String userCitizenship, Date userDOB, String userProfilePic, String userInterest, String userPassword, String userOccupation, String userResume, String userIsEmailConfirm, String userHighestEducation, String userFieldOfStudy) {
+        this.userID = userID;
         this.userEmail = userEmail;
         this.userFirstName = userFirstName;
         this.userLastName = userLastName;
         this.userPhone = userPhone;
         this.userGender = userGender;
         this.userCitizenship = userCitizenship;
-        this.userAge = userAge;
-        this.userDescription = userDescription;
+        this.userDOB = userDOB;
         this.userProfilePic = userProfilePic;
         this.userInterest = userInterest;
         this.userPassword = userPassword;
-        this.userRole = userRole;
         this.userOccupation = userOccupation;
+        this.userResume = userResume;
+        this.userIsEmailConfirm = userIsEmailConfirm;
+        this.userHighestEducation = userHighestEducation;
+        this.userFieldOfStudy = userFieldOfStudy;
     }
 
-    public User(String userEmail, String userFirstName, String userLastName, int userPhone, String userGender, String userCitizenship, int userAge, String userInterest, String userPassword, String userRole, String userOccupation) {
-        this.userEmail = userEmail;
-        this.userFirstName = userFirstName;
-        this.userLastName = userLastName;
-        this.userPhone = userPhone;
-        this.userGender = userGender;
-        this.userCitizenship = userCitizenship;
-        this.userAge = userAge;
-        this.userInterest = userInterest;
-        this.userPassword = userPassword;
-        this.userRole = userRole;
-        this.userOccupation = userOccupation;
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
     public String getUserEmail() {
@@ -117,27 +120,19 @@ public class User {
         this.userCitizenship = userCitizenship;
     }
 
-    public int getUserAge() {
-        return userAge;
+    public Date getUserDOB() {
+        return userDOB;
     }
 
-    public void setUserAge(int userAge) {
-        this.userAge = userAge;
+    public void setUserDOB(Date userDOB) {
+        this.userDOB = userDOB;
     }
 
-    public String getUserDescription() {
-        return userDescription;
-    }
-
-    public void setUserDescription(String userDescription) {
-        this.userDescription = userDescription;
-    }
-
-    public byte getUserProfilePic() {
+    public String getUserProfilePic() {
         return userProfilePic;
     }
 
-    public void setUserProfilePic(byte userProfilePic) {
+    public void setUserProfilePic(String userProfilePic) {
         this.userProfilePic = userProfilePic;
     }
 
@@ -157,14 +152,6 @@ public class User {
         this.userPassword = userPassword;
     }
 
-    public String getUserRole() {
-        return userRole;
-    }
-
-    public void setUserRole(String userRole) {
-        this.userRole = userRole;
-    }
-
     public String getUserOccupation() {
         return userOccupation;
     }
@@ -173,4 +160,36 @@ public class User {
         this.userOccupation = userOccupation;
     }
 
+    public String getUserResume() {
+        return userResume;
+    }
+
+    public void setUserResume(String userResume) {
+        this.userResume = userResume;
+    }
+
+    public String getUserIsEmailConfirm() {
+        return userIsEmailConfirm;
+    }
+
+    public void setUserIsEmailConfirm(String userIsEmailConfirm) {
+        this.userIsEmailConfirm = userIsEmailConfirm;
+    }
+
+    public String getUserHighestEducation() {
+        return userHighestEducation;
+    }
+
+    public void setUserHighestEducation(String userHighestEducation) {
+        this.userHighestEducation = userHighestEducation;
+    }
+
+    public String getUserFieldOfStudy() {
+        return userFieldOfStudy;
+    }
+
+    public void setUserFieldOfStudy(String userFieldOfStudy) {
+        this.userFieldOfStudy = userFieldOfStudy;
+    }
+   
 }

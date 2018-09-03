@@ -32,7 +32,7 @@ public class deleteUserServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String userEmail = request.getParameter("email");
+        String userEmail = request.getParameter("userEmail");
         String text = "fail";
         if(UserDAO.deleteUser(userEmail)){
            text = "success";

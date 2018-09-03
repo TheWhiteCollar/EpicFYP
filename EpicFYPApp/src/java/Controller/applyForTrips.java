@@ -32,8 +32,8 @@ public class applyForTrips extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String tripID = request.getParameter("tripID");
-        String email = request.getParameter("email");
-        if(TripsDAO.insertStudent(email, tripID)){
+        String userEmail = request.getParameter("userEmail");
+        if(TripsDAO.insertStudent(userEmail, tripID)){
             response.sendRedirect("payment.jsp");
         }
         

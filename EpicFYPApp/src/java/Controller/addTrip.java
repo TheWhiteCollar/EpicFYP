@@ -63,16 +63,16 @@ public class addTrip extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String country = request.getParameter("country");
-        String price = request.getParameter("price");
-        String programme = request.getParameter("programme");
-        //int rating = Integer.parseInt(request.getParameter("rating"));
-        String duration = request.getParameter("duration");
-        Date startDate = Date.valueOf(request.getParameter("tripStart"));
-        Date endDate = Date.valueOf(request.getParameter("tripEnd"));
-        String activation = request.getParameter("activation");
+        String tripCountry = request.getParameter("tripCountry");
+        String tripPrice = request.getParameter("tripPrice");
+        String tripTitle = request.getParameter("tripTitle");
+        //int tripRating = Integer.parseInt(request.getParameter("tripRating"));
+        String tripDuration = request.getParameter("tripDuration");
+        Date tripStart = Date.valueOf(request.getParameter("tripStart"));
+        Date tripEnd = Date.valueOf(request.getParameter("tripEnd"));
+        String tripActivation = request.getParameter("tripActivation");
         String text = "fail";
-        if(TripsDAO.insertTrip(country, programme, price, duration, startDate, endDate, activation)){
+        if(TripsDAO.insertTrip(tripCountry,tripTitle, tripPrice, tripDuration, tripStart, tripEnd, tripActivation)){
             text = "success";
         }
         response.setContentType("text/plain");  // Set content type of the response so that jQuery knows what it can expect.

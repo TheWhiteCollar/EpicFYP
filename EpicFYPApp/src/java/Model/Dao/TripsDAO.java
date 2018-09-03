@@ -25,18 +25,18 @@ import java.util.logging.Logger;
 public class TripsDAO {
 
     // Get user and their details with userid and password
-    public static boolean insertStudent(String studentEmail, String tripID) {
+    public static boolean insertStudent(String userEmail, String tripID) {
 
-        String sql = "INSERT INTO `tripstudent` (`tripID`, `studentEmail`) VALUES (?, ?)";
+        String sql = "INSERT INTO `tripstudent` (`tripID`, `userEmail`) VALUES (?, ?)";
 
         try (
-                Connection conn = ConnectionManager.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(sql);) {
+            Connection conn = ConnectionManager.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);) {
             stmt.setString(1, tripID);
-            stmt.setString(2, studentEmail);
+            stmt.setString(2, userEmail);
             stmt.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(TripsDAO.class.getName()).log(Level.WARNING, "Unable to insert trip, tripID = '" + tripID + "' studentEmail = '" + studentEmail + "'.", ex);
+            Logger.getLogger(TripsDAO.class.getName()).log(Level.WARNING, "Unable to insert trip, tripID = '" + tripID + "' studentEmail = '" + userEmail + "'.", ex);
             return false;
         }
 
@@ -52,13 +52,13 @@ public class TripsDAO {
                 PreparedStatement stmt = conn.prepareStatement(sql1);) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                String tripID = rs.getString(1);
-                String studentEmail = rs.getString(2);
+                String tripID = rs.getString(2);
+                String userEmail = rs.getString(3);
                 if (!tripstudent.containsKey(tripID)) {
-                    tripstudent.put(tripID, studentEmail);
+                    tripstudent.put(tripID, userEmail);
                 } else {
                     String result = tripstudent.get(tripID);
-                    result += "," + studentEmail;
+                    result += "," + userEmail;
                     tripstudent.put(tripID, result);
                 }
             }

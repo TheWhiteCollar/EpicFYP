@@ -25,10 +25,10 @@ import java.util.ArrayList;
 public class Trip {
 
     private String tripID;
-    private String programme;
-    private String price;
+    private String tripTitle;
+    private String tripPrice;
     private int ratings;
-    private String country;
+    private String tripCountry;
     private String tripStart;
     private String tripEnd;
     private int tripDuration;
@@ -36,12 +36,12 @@ public class Trip {
     private int studentNeededToActivate;
     private ArrayList<String> signedUpEmails;
 
-    public Trip(String tripID, String programme, String price, int ratings, String country, String tripStart, String tripEnd, int tripDuration, ArrayList<String> signedUpEmails, int studentActivation) {
+    public Trip(String tripID, String title, String price, int ratings, String country, String tripStart, String tripEnd, int tripDuration, ArrayList<String> signedUpEmails, int studentActivation) {
         this.tripID = tripID;
-        this.programme = programme;
-        this.price = price;
+        this.tripTitle = title;
+        this.tripPrice = price;
         this.ratings = ratings;
-        this.country = country;
+        this.tripCountry = country;
         this.tripStart = tripStart;
         this.tripEnd = tripEnd;
         this.tripDuration = tripDuration;
@@ -56,12 +56,12 @@ public class Trip {
     }
     
     // have 1 more trip constructor cause database dont have the column with Emails of signees
-    public Trip(String tripID, String programme, String price, int ratings, String country, String tripStart, String tripEnd, int tripDuration) {
+    public Trip(String tripID, String title, String price, int ratings, String country, String tripStart, String tripEnd, int tripDuration) {
         this.tripID = tripID;
-        this.programme = programme;
-        this.price = price;
+        this.tripTitle = title;
+        this.tripPrice = price;
         this.ratings = ratings;
-        this.country = country;
+        this.tripCountry = country;
         this.tripStart = tripStart;
         this.tripEnd = tripEnd;
         this.tripDuration = tripDuration;        
@@ -75,20 +75,20 @@ public class Trip {
         this.tripID = tripID;
     }
 
-    public String getProgramme() {
-        return programme;
+    public String getTitle() {
+        return tripTitle;
     }
 
-    public void setProgramme(String programme) {
-        this.programme = programme;
+    public void setTitle(String title) {
+        this.tripTitle = title;
     }
 
     public String getPrice() {
-        return price;
+        return tripPrice;
     }
 
     public void setPrice(String price) {
-        this.price = price;
+        this.tripPrice = price;
     }
 
     public int getRatings() {
@@ -100,11 +100,11 @@ public class Trip {
     }
 
     public String getCountry() {
-        return country;
+        return tripCountry;
     }
 
     public void setCountry(String country) {
-        this.country = country;
+        this.tripCountry = country;
     }
 
     public String getTripStart() {

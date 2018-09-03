@@ -57,6 +57,5 @@
 
         <<!-- Footer -->
         <jsp:include page="footer.jsp" />
-        <script src="js/tabs.js"></script>
     </body>
 </html>

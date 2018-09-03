@@ -44,14 +44,14 @@
 
                     Trip trip = TripsDAO.getTrip(tripID);
                     if (trip != null) {
-                        String tripTitle = trip.getProgramme();
-                        String tripCountry = trip.getCountry();
+                        String tripTitle = trip.getTripTitle();
+                        String tripCountry = trip.getTripCountry();
                         String tripStart = trip.getTripStart();
                         String tripEnd = trip.getTripEnd();
                         int tripDuration = trip.getTripDuration();
-                        String tripPrice = trip.getPrice();
-                        boolean tripActivated = trip.getActivated();
-                        int studentsToActivation = trip.getStudentNeededToActivate() - trip.getNumberOfStudents();
+                        String tripPrice = trip.getTripPrice();
+                        boolean tripActivated = trip.getTripActivated();
+                        int studentsToActivation = trip.getTripStudentNeededToActivate() - trip.getNumberOfStudents();
                 %>
 
                 <header class="major align-center">

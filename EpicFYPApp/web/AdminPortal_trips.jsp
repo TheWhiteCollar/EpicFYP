@@ -45,18 +45,18 @@
                     var tripHTML = '<div class="table-wrapper"><table>';
                     //loop through each trip and print out as rows in a table
                     $.each(trips, function (index, trip) {
-                        tripHTML += '<thead><tr><th>Trip ID : ' + trip.tripID + '</th><th colspan="3">' + trip.programme + "</th></tr></thead>";
-                        tripHTML += '<tr><td>Country : ' + trip.country + "</td><td> Start : " + trip.tripStart + "</td>";
-                        tripHTML += "<td>End : " + trip.tripEnd + "</td><td>Price : $" + trip.price + "</tr>";
+                        tripHTML += '<thead><tr><th>Trip ID : ' + trip.tripID + '</th><th colspan="3">' + trip.tripTitle + "</th></tr></thead>";
+                        tripHTML += '<tr><td>Country : ' + trip.tripCountry + "</td><td> Start : " + trip.tripStart + "</td>";
+                        tripHTML += "<td>End : " + trip.tripEnd + "</td><td>Price : $" + trip.tripPrice + "</tr>";
                         tripHTML += '<tr><td colspan="4"> Trip Description?</td></tr>';
-                        var number = trip.studentNeededToActivate - trip.signedUpEmails.length;
-                        if (trip.activated) {
+                        var number = trip.tripStudentNeededToActivate - trip.tripSignedUpEmails.length;
+                        if (trip.tripActivated) {
                             tripHTML += '<tr><td colspan="3">Activated</td>';
                         } else {
 
                             tripHTML += '<tr><td colspan="3">Not Activated : ' + number + " more to activate this trip</td>";
                         }
-                        tripHTML += "<td>" + trip.signedUpEmails.length + " signed up</td></tr>";
+                        tripHTML += "<td>" + trip.tripSignedUpEmails.length + " signed up</td></tr>";
                         tripHTML += "<tr><td><form class=\"deleteTrip\">";
                         tripHTML += "<input style=\"display: none\" type=\"text\" name=\"tripID\" value=\"" + trip.tripID + "\"/>";
                         tripHTML += "<button class = \"button\" type=\"submit\" id=\"asd" + index + "\">Delete Trip</button></form></td>";
@@ -101,23 +101,21 @@
                 });
                 // wait for add trip submit event 
                 $("#addTrip").submit(function (event) {
-                    let country = $("#countryInput option:selected").val();
-                    let price = $('input[name="price"]').val();
-                    let programme = $('input[name="programme"]').val();
-                    let rating = $('input[name="rating"]').val();
-                    let duration = $('input[name="duration"]').val();
+                    let tripCountry = $("#countryInput option:selected").val();
+                    let tripPrice = $('input[name="price"]').val();
+                    let tripTitle = $('input[name="programme"]').val();
+                    let tripDuration = $('input[name="duration"]').val();
                     let tripStart = $('input[name="tripStart"]').val();
                     let tripEnd = $('input[name="tripEnd"]').val();
-                    let activation = $('input[name="activation"]').val();
+                    let tripActivation = $('input[name="activation"]').val();
                     let tripData = {
-                        "country": country,
-                        "price": price,
-                        "programme": programme,
-                        "rating": rating,
-                        "duration": duration,
+                        "tripCountry": tripCountry,
+                        "tripPrice": tripPrice,
+                        "tripTitle": tripTitle,
+                        "tripDuration": tripDuration,
                         "tripStart": tripStart,
                         "tripEnd": tripEnd,
-                        "activation": activation
+                        "tripActivation": tripActivation
                     }
 
                     //send ajax post request to addTrip servlet with tripData
@@ -150,18 +148,18 @@
                     $("#trips").empty();
                     var tripHTML = '<div class="table-wrapper"><table>';
                     $.each(trips, function (index, trip) {
-                        tripHTML += '<thead><tr><th>Trip ID : ' + trip.tripID + '</th><th colspan="3">' + trip.programme + "</th></tr></thead>";
-                        tripHTML += '<tr><td>Country : ' + trip.country + "</td><td> Start : " + trip.tripStart + "</td>";
-                        tripHTML += "<td>End : " + trip.tripEnd + "</td><td>Price : $" + trip.price + "</tr>";
+                        tripHTML += '<thead><tr><th>Trip ID : ' + trip.tripID + '</th><th colspan="3">' + trip.tripTitle + "</th></tr></thead>";
+                        tripHTML += '<tr><td>Country : ' + trip.tripCountry + "</td><td> Start : " + trip.tripStart + "</td>";
+                        tripHTML += "<td>End : " + trip.tripEnd + "</td><td>Price : $" + trip.tripPrice + "</tr>";
                         tripHTML += '<tr><td colspan="4"> Trip Description?</td></tr>';
-                        var number = trip.studentNeededToActivate - trip.signedUpEmails.length;
-                        if (trip.activated) {
+                        var number = trip.tripStudentNeededToActivate - trip.tripSignedUpEmails.length;
+                        if (trip.tripActivated) {
                             tripHTML += '<tr><td colspan="3">Activated</td>';
                         } else {
 
                             tripHTML += '<tr><td colspan="3">Not Activated : ' + number + " more to activate this trip</td>";
                         }
-                        tripHTML += "<td>" + trip.signedUpEmails.length + " signed up</td></tr>";
+                        tripHTML += "<td>" + trip.tripSignedUpEmails.length + " signed up</td></tr>";
                         tripHTML += "<tr><td><form class=\"deleteTrip\">";
                         tripHTML += "<input style=\"display: none\" type=\"text\" name=\"tripID\" value=\"" + trip.tripID + "\"/>";
                         tripHTML += "<button class = \"button\" type=\"submit\" id=\"asd" + index + "\">Delete Trip</button></form></td>";
@@ -704,7 +702,7 @@
             var timeDiff = Math.abs(date2 - date1);
             var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
             diffDays += 1;
-            document.getElementById("duration").value = diffDays;
+            document.getElementById("tripDuration").value = diffDays;
         }
     </script>
     <script src="js/custom-file-input.js"></script>

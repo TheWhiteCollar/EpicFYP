@@ -48,7 +48,7 @@
                     var count = 1;
                     console.log(trips);
                     $.each(trips, function (index, trip) {
-                        var number = trip.studentNeededToActivate - trip.signedUpEmails.length;
+                        var number = trip.tripStudentNeededToActivate - trip.tripSignedUpEmails.length;
                         switch (count % 3) {
                             case (1):
                                 tripHTML += '<div class ="row"><div class = "4u 12u(xsmall)"><table  style="border:1px solid; border-radius: 10px;">';
@@ -61,8 +61,8 @@
                                 break;
                         }
                         tripHTML += '<tr><td class = "align-center"><img src="' + 'images/Belgium.jpg' + '" width =100% height =auto></td></tr>';
-                        tripHTML += '<tr><td>' + trip.programme + ' | ' + trip.country + ' | ' + trip.tripStart + ' - ' + trip.tripEnd + ' | $' + trip.price + ' | ';
-                        if (trip.activated) {
+                        tripHTML += '<tr><td>' + trip.tripTitle + ' | ' + trip.tripCountry + ' | ' + trip.tripStart + ' - ' + trip.tripEnd + ' | $' + trip.tripPrice + ' | ';
+                        if (trip.tripActivated) {
                             tripHTML += 'Activated</td></tr>';
                         } else {
                             tripHTML += 'Not Activated (' + number + " more)</td></tr>";
@@ -79,7 +79,7 @@
                         tripHTML += '<input style="display: none" type="text" name="email" value="' + '${User.getUserEmail()}' + '"/>';
                         
                         var user = '${User.getUserEmail()}';
-                        if(trip.signedUpEmails.includes(user)){
+                        if(trip.tripSignedUpEmails.includes(user)){
                             tripHTML += '<p><input disabled type="submit" value="Applied" class="full_width"/></form></p>';
                         } else {
                         tripHTML += '<p><input type="submit" value="Apply" class="full_width"/></form></p>';

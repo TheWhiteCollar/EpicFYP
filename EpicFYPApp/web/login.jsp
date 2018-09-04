@@ -49,6 +49,8 @@
                             if (Student_ErrorMsg != null) {
                                 out.print(Student_ErrorMsg);
                             }
+                            // to check if user come to login page straight or come from study trip	
+                            String comefrom = (String) request.getParameter("comefrom");
                         %>
                     </p>
 
@@ -58,6 +60,14 @@
                         <input type="password" name="userpassword" placeholder="- Enter User Password -" style="text-align:center">
                         <br>
                         <input type="submit" value="Login" style="width:100%">
+                    <%
+                    // if user come from study trip, pass a hidden value of studyTrip to login servlet, so will send back to studyTrip instead of student portal	
+                            if (comefrom != null) { %>	
+                        <input type="hidden" name="comefrom" value="studyTrip" style="text-align:center">	
+                        <%	
+                            }	
+                        %>	
+                        <input type="submit" value="Login" class ="full_width">
                     </form> 
                     <p style="text-align:center">
                         <a href="forgetpassword.jsp">Forgot your password?</a><br /> 

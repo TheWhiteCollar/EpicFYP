@@ -42,6 +42,7 @@ public class LoginServlet_user extends HttpServlet {
         String userid = request.getParameter("userid");
         String userpassword = request.getParameter("userpassword");
 
+         String comefrom = request.getParameter("comefrom");
         // Create session
         HttpSession session = request.getSession(true);
 
@@ -55,7 +56,12 @@ public class LoginServlet_user extends HttpServlet {
             user = UserDAO.getUserByLogin(userid, userpassword);
             if (user != null) {
                 session.setAttribute("User", user);
-                response.sendRedirect("studentPortal_main.jsp");
+                if (comefrom != null && comefrom.equals("studyTrip")) {
+                    response.sendRedirect("studyTrip.jsp");	
+                } else {
+                    response.sendRedirect("studentPortal_main.jsp");
+                }
+        
                 return;
             } else {
                 Admin admin = null;

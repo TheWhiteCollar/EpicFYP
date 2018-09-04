@@ -8,7 +8,7 @@ package Model.Entity;
 /* Database sequence
     #1: internshipStudentID (int 11)
     #2: internshipID (int 11)
-    #3: internshipUserID (int 11)
+    #3: internshipUserEmail (varchar 50)
     #4: internshipStudentStatus (varchar 100)
  */
 
@@ -16,13 +16,13 @@ public class InternshipStudent {
 
     private int internshipStudentID;
     private int internshipID;
-    private int internshipUserID;
+    private int internshipUserEmail;
     private String internshipStudentStatus;
 
-    public InternshipStudent(int internshipStudentID, int internshipID, int internshipUserID, String internshipStudentStatus) {
+    public InternshipStudent(int internshipStudentID, int internshipID, int internshipUserEmail, String internshipStudentStatus) {
         this.internshipStudentID = internshipStudentID;
         this.internshipID = internshipID;
-        this.internshipUserID = internshipUserID;
+        this.internshipUserEmail = internshipUserEmail;
         this.internshipStudentStatus = internshipStudentStatus;
     }
 
@@ -42,12 +42,12 @@ public class InternshipStudent {
         this.internshipID = internshipID;
     }
 
-    public int getInternshipUserID() {
-        return internshipUserID;
+    public int getInternshipUserEmail() {
+        return internshipUserEmail;
     }
 
-    public void setInternshipUserID(int internshipUserID) {
-        this.internshipUserID = internshipUserID;
+    public void setInternshipUserEmail(int internshipUserEmail) {
+        this.internshipUserEmail = internshipUserEmail;
     }
 
     public String getInternshipStudentStatus() {

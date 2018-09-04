@@ -11,9 +11,10 @@ package Model.Entity;
     #3: partnerCountry (varchar 100)
     #4: partnerState (varchar 100)
     #5: partnerDescription (varchar 1000)
-    #6: partnerPicture (varchar 100)
-    #7: partnerPriceCheap (decimal 13,2)
-    #8: partnerPriceEx (decimal 13,2)
+    #6: password (varchar 50)
+    #7: partnerPicture (varchar 100)
+    #8: partnerPriceCheap (decimal 13,2)
+    #9: partnerPriceEx (decimal 13,2)
  */
 
 public class Partner {
@@ -23,16 +24,18 @@ public class Partner {
     private String partnerCountry;
     private String partnerState;
     private String partnerDescription;
+    private String password;
     private String partnerPicture;
     private double partnerPriceCheap;
     private double partnerPriceEx;
 
-    public Partner(int partnerID, String partnerName, String partnerCountry, String partnerState, String partnerDescription, String partnerPicture, double partnerPriceCheap, double partnerPriceEx) {
+    public Partner(int partnerID, String partnerName, String partnerCountry, String partnerState, String partnerDescription, String password, String partnerPicture, double partnerPriceCheap, double partnerPriceEx) {
         this.partnerID = partnerID;
         this.partnerName = partnerName;
         this.partnerCountry = partnerCountry;
         this.partnerState = partnerState;
         this.partnerDescription = partnerDescription;
+        this.password = password;
         this.partnerPicture = partnerPicture;
         this.partnerPriceCheap = partnerPriceCheap;
         this.partnerPriceEx = partnerPriceEx;
@@ -76,6 +79,14 @@ public class Partner {
 
     public void setPartnerDescription(String partnerDescription) {
         this.partnerDescription = partnerDescription;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getPartnerPicture() {

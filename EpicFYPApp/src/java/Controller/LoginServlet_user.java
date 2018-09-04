@@ -5,7 +5,9 @@
  */
 package Controller;
 
+import Model.Dao.AdminDAO;
 import Model.Dao.UserDAO;
+import Model.Entity.Admin;
 import Model.Entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,8 +23,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author User
  */
-@WebServlet(name = "LoginServlet_student", urlPatterns = {"/LoginServlet_student"})
-public class LoginServlet_student extends HttpServlet {
+@WebServlet(name = "LoginServlet_user", urlPatterns = {"/LoginServlet_user"})
+public class LoginServlet_user extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,29 +40,33 @@ public class LoginServlet_student extends HttpServlet {
 
         // retrieve userid and password
         String userid = request.getParameter("userid");
-        String password = request.getParameter("password");
-        String comefrom = request.getParameter("comefrom");
-
-        // Create user
-        User user = null;
+        String userpassword = request.getParameter("userpassword");
 
         // Create session
         HttpSession session = request.getSession(true);
 
         // send user back to login.jsp if they try to access servlet directly
-        if (!userid.equals("") || !password.equals("")) {
+        if (!userid.equals("") || !userpassword.equals("")) {
+
+            //create an empty user
+            User user = null;
             // Validate login
-            user = UserDAO.getUserByLogin(userid, password);
+            
+            user = UserDAO.getUserByLogin(userid, userpassword);
             if (user != null) {
                 session.setAttribute("User", user);
-                if (comefrom != null && comefrom.equals("studyTrip")) {
-                    response.sendRedirect("studyTrip.jsp");
-                } else {
-                    response.sendRedirect("studentPortal_main.jsp");
-                }
-
+                response.sendRedirect("studentPortal_main.jsp");
                 return;
+            } else {
+                Admin admin = null;
+                admin = AdminDAO.getAdminByLogin(userid, userpassword);
+                if (admin != null) {
+                    session.setAttribute("Admin", admin);
+                    response.sendRedirect("index_admin.jsp");
+                    return;
+                }
             }
+            
         }
 
         request.setAttribute("Student_ErrorMsg", "Invalid userid/password");

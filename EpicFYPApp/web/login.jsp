@@ -37,34 +37,9 @@
 
                 <!-- For user to choose if they want to login as student or admin -->
                 <div class="tab">
-                    <button class="tablinks" onclick="openUser(event, 'Admin')">Admin</button>
-                    <button class="tablinks" onclick="openUser(event, 'Students')" id="defaultOpen">Student</button>
+                    <button class="tablinks" onclick="openUser(event, 'Students')" id="defaultOpen">User</button>
                 </div>
 
-
-                <!-- For user to choose if they want to login as student or admin -->
-                <div id="Admin" class="tabcontent">
-                    <p style="text-align:center; color: red">
-                        <%
-                            String Admin_ErrorMsg = (String) request.getAttribute("Admin_ErrorMsg");
-
-                            if (Admin_ErrorMsg != null) {
-                                out.println(Admin_ErrorMsg);
-                            }
-                        %>
-                    </p>
-
-                    <form action="LoginServlet_admin" method="post">
-                        <input type="text" name="userid" placeholder="- Enter Admin Email -" style="text-align:center">
-                        <br>
-                        <input type="password" name="password" placeholder="- Enter Admin Password -" style="text-align:center">
-                        <br>
-                        <input type="submit" value="Login" class ="full_width">                                                          
-                    </form> 
-                    <p style="text-align:center"><a href="forgetpassword.jsp">Forgot your password?</a></p>
-                </div>
-
-                <!-- For user to choose if they want to login as student or admin -->
                 <div id="Students" class="tabcontent">
                     <p style="text-align:center; color: red">
 
@@ -74,25 +49,15 @@
                             if (Student_ErrorMsg != null) {
                                 out.print(Student_ErrorMsg);
                             }
-
-                            // to check if user come to login page straight or come from study trip
-                            String comefrom = (String) request.getParameter("comefrom");
                         %>
                     </p>
 
-                    <form action="LoginServlet_student" method="post">
-                        <input type="text" name="userid" placeholder="- Enter Student Email -" style="text-align:center">
+                    <form action="LoginServlet_user" method="post">
+                        <input type="text" name="userid" placeholder="- Enter User Email -" style="text-align:center">
                         <br>
-                        <input type="password" name="password" placeholder="- Enter Student Password -" style="text-align:center">
+                        <input type="password" name="userpassword" placeholder="- Enter User Password -" style="text-align:center">
                         <br>
-                        <%
-                            // if user come from study trip, pass a hidden value of studyTrip to login servlet, so will send back to studyTrip instead of student portal
-                            if (comefrom != null) { %>
-                        <input type="hidden" name="comefrom" value="studyTrip" style="text-align:center">
-                        <%
-                            }
-                        %>
-                        <input type="submit" value="Login" class ="full_width">
+                        <input type="submit" value="Login" style="width:100%">
                     </form> 
                     <p style="text-align:center">
                         <a href="forgetpassword.jsp">Forgot your password?</a><br /> 

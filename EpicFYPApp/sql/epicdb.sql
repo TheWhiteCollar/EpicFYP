@@ -1,16 +1,16 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0
+-- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Aug 14, 2018 at 06:07 AM
--- Server version: 5.6.39
+-- Host: 127.0.0.1:3306
+-- Generation Time: Aug 29, 2018 at 08:44 AM
+-- Server version: 5.7.21
 -- PHP Version: 5.6.35
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
-SET time_zone = "+00:00";
+SET time_zone = "+08:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `epicdb`
+-- Database: `epicdb2`
 --
 
 -- --------------------------------------------------------
@@ -28,9 +28,11 @@ SET time_zone = "+00:00";
 -- Table structure for table `admin`
 --
 
-CREATE TABLE `admin` (
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE IF NOT EXISTS `admin` (
   `adminName` varchar(15) NOT NULL,
-  `adminPassword` varchar(15) NOT NULL
+  `adminPassword` varchar(15) NOT NULL,
+  PRIMARY KEY (`adminName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -43,70 +45,164 @@ INSERT INTO `admin` (`adminName`, `adminPassword`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ccaexperience`
+-- Table structure for table `attraction`
 --
 
-CREATE TABLE `ccaexperience` (
-  `useremail` varchar(100) NOT NULL,
-  `ccaName` varchar(200) NOT NULL,
-  `ccaTitle` varchar(200) NOT NULL,
-  `ccaPeriodStart` date NOT NULL,
-  `ccaPeriodEnd` date NOT NULL,
-  `ccaDescription` varchar(2000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `attraction`;
+CREATE TABLE IF NOT EXISTS `attraction` (
+  `attractionID` int(11) NOT NULL AUTO_INCREMENT,
+  `attractionName` varchar(100) NOT NULL,
+  `attractionCountry` varchar(100) NOT NULL,
+  `attractionState` varchar(100) NOT NULL,
+  `attractionDescription` varchar(1000) NOT NULL,
+  `attractionPicture` varchar(100) NOT NULL DEFAULT '',
+  `attractionPriceCheap` decimal(13,2) NOT NULL DEFAULT 0.0,
+  `attractionPriceEx` decimal(13,2) NOT NULL DEFAULT 0.0,
+  PRIMARY KEY (`attractionID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `attraction`
+--
+
+INSERT INTO `attraction` (`attractionID`, `attractionName`, `attractionCountry`, `attractionState`, `attractionDescription`, `attractionPicture`, `attractionPriceCheap`, `attractionPriceEx`) VALUES
+(1, 'Inle Lake', 'Myanmar', 'Shan', 'Large lake & cultural destination with quaint floating villages, monasteries & handicrafts', '', '100.00', '2000.00'),
+(2, 'Shwedagon Pagoda', 'Myanmar', 'Yangon', 'The Shwedagon Pagoda, officially named Shwedagon Zedi Daw and also known as the Great Dagon Pagoda and the Golden Pagoda, is a gilded stupa located in Yangon, Myanmar.', '', '99.00', '4000.00');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cipexperience`
+-- Table structure for table `fieldofstudy`
 --
 
-CREATE TABLE `cipexperience` (
-  `userEmail` varchar(100) NOT NULL,
-  `cipOrganization` varchar(200) NOT NULL,
-  `cipTitle` varchar(200) NOT NULL,
-  `cipPeriodStart` date NOT NULL,
-  `cipPeriodEnd` date NOT NULL,
-  `cipDescription` varchar(2000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `fieldofstudy`;
+CREATE TABLE IF NOT EXISTS `fieldofstudy` (
+  `fieldOfStudyID` int(11) NOT NULL AUTO_INCREMENT,
+  `fieldOfStudyName` varchar(200) NOT NULL,
+  PRIMARY KEY (`fieldOfStudyID`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `fieldofstudy`
+--
+
+INSERT INTO `fieldofstudy` (`fieldOfStudyID`, `fieldOfStudyName`) VALUES
+(1, 'Computing'),
+(2, 'History'),
+(3, 'Business'),
+(4, 'Law'),
+(5, 'Arts & Social Sciences'),
+(6, 'Business'),
+(7, 'Science'),
+(8, 'Accountancy'),
+(9, 'Dentistry'),
+(10, 'Design & Environment'),
+(11, 'Engineering'),
+(12, 'Medicine'),
+(13, 'Music'),
+(24, 'Others');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `languageproficiency`
+-- Table structure for table `interest`
 --
 
-CREATE TABLE `languageproficiency` (
-  `userEmail` varchar(50) NOT NULL,
-  `language` varchar(50) NOT NULL,
-  `isSpoken` tinyint(1) NOT NULL DEFAULT '0',
-  `isWritten` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `interest`;
+CREATE TABLE IF NOT EXISTS `interest` (
+  `interestID` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `interestName` varchar(200) NOT NULL,
+  PRIMARY KEY (`interestID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `interest`
+--
+
+INSERT INTO `interest` (`interestID`, `interestName`) VALUES
+(1, 'Nature and Culture'),
+(2, 'Academic and Business'),
+(3, 'Service & Social Innovation');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `skill`
+-- Table structure for table `internship`
 --
 
-CREATE TABLE `skill` (
-  `userEmail` varchar(100) NOT NULL,
-  `skillName` varchar(200) NOT NULL,
-  `skillProficiency` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `internship`;
+CREATE TABLE IF NOT EXISTS `internship` (
+  `internshipID` int(11) NOT NULL AUTO_INCREMENT,
+  `internshipName` varchar(100) NOT NULL,
+  `internshipApproval` varchar(100) NOT NULL DEFAULT '',
+  `internshipCategory` int(11) NOT NULL,
+  `internshipDescription` varchar(1000) NOT NULL,
+  `internshipStart` date NOT NULL,
+  `internshipEnd` date NOT NULL,
+  `internshipPay` decimal(13,2) NOT NULL,
+  `internshipSupervisor` varchar(100) NOT NULL DEFAULT '',
+  `internshipSupervisorEmail` varchar(100) NOT NULL DEFAULT '',
+  PRIMARY KEY (`internshipID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `internship`
+--
+
+INSERT INTO `internship` (`internshipID`, `internshipName`, `internshipApproval`, `internshipCategory`, `internshipDescription`, `internshipStart`, `internshipEnd`, `internshipPay`, `internshipSupervisor`, `internshipSupervisorEmail`) VALUES
+(1, 'Data Analytics Intern', 'pending', 1, 'This intern position is within the Business Intelligence Department and will support the team with data analysis, model development, data visualizations and decision support for various departments.', '2018-11-11', '2019-11-11', '1000.00', 'Tommy Lau', 'tommy.lau@xwy.com');
+
+
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `student`
+-- Table structure for table `partner`
 --
 
-CREATE TABLE `student` (
-  `studentEmail` varchar(50) NOT NULL,
-  `studentSchool` varchar(50) NOT NULL,
-  `studentFieldOfStudy` varchar(50) NOT NULL,
-  `studentExpectedGraduation` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `partner`;
+CREATE TABLE IF NOT EXISTS `partner` (
+  `partnerID` int(11) NOT NULL AUTO_INCREMENT,
+  `partnerName` varchar(100) NOT NULL,
+  `partnerCountry` varchar(100) NOT NULL,
+  `partnerState` varchar(100) NOT NULL,
+  `partnerDescription` varchar(1000) NOT NULL,
+  `partnerPassword` varchar(50) NOT NULL,
+  `partnerPicture` varchar(100) NOT NULL DEFAULT '',
+  `partnerPriceCheap` decimal(13,2) NOT NULL DEFAULT 0.0,
+  `partnerPriceEx` decimal(13,2) NOT NULL DEFAULT 0.0,
+  PRIMARY KEY (`partnerID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `partner`
+--
+
+INSERT INTO `partner` (`partnerID`, `partnerName`, `partnerCountry`, `partnerState`, `partnerDescription`, `partnerPassword`, `partnerPicture`, `partnerPriceCheap`, `partnerPriceEx`) VALUES
+(1, 'CC Pte Ltd', 'Myanmar', 'Shan', 'Here are CC Pte Ltd, we believe that only the best should be given to our customers.', 'test' ,'', '100.00', '1000.00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment`
+--
+
+DROP TABLE IF EXISTS `payment`;
+CREATE TABLE IF NOT EXISTS `payment` (
+  `paymentID` int(11) NOT NULL AUTO_INCREMENT,
+  `paymentMode` varchar(100) NOT NULL,
+  `paymentType` varchar(100) NOT NULL,
+  `paymentRefund` decimal(13,2) DEFAULT NULL,
+  PRIMARY KEY (`paymentID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `payment`
+--
+
+INSERT INTO `payment` (`paymentID`, `paymentMode`, `paymentType`, `paymentRefund`) VALUES
+(1, 'Visa', 'deposit', '0.00'),
+(2, 'Mastercard', 'full amount', '0.00');
 
 -- --------------------------------------------------------
 
@@ -114,26 +210,77 @@ CREATE TABLE `student` (
 -- Table structure for table `trip`
 --
 
-CREATE TABLE `trip` (
-  `tripID` varchar(100) NOT NULL,
-  `programme` varchar(100) NOT NULL,
-  `price` varchar(200) NOT NULL,
-  `ratings` int(200) NOT NULL,
-  `country` varchar(200) NOT NULL,
-  `tripStart` date NOT NULL,
-  `tripEnd` date NOT NULL,
-  `tripDuration` int(200) NOT NULL,
-  `activation` int(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `trip`;
+CREATE TABLE IF NOT EXISTS `trip` (
+  `tripID` int(11) NOT NULL AUTO_INCREMENT,
+  `tripTitle` varchar(100) NOT NULL,
+  `tripPrice` decimal(13,2) NOT NULL,
+  `tripItinerary` varchar(100) NOT NULL DEFAULT '',
+  `tripDescription` varchar(1000) NOT NULL,
+  `tripCountry` varchar(100) NOT NULL,
+  `tripState` varchar(100) NOT NULL,
+  `tripStart` date,
+  `tripEnd` date,
+  `tripDuration` int(11) NOT NULL,
+  `tripActivation` int(3) NOT NULL,
+  `tripCategoryInterest` int(3) NOT NULL,
+  `tripCountryState` varchar(200) DEFAULT NULL,
+  `tripProposedBy` varchar(100) DEFAULT NULL,
+  `tripNoOfInterested` int(11) DEFAULT NULL,
+  `tripTotalSignUp` int(11) DEFAULT NULL,
+  `tripEstimatedPrice` decimal(13,2) DEFAULT NULL,
+  `tripCustomizeApproval` varchar(100) DEFAULT NULL,
+  `tripPromo` varchar(100) DEFAULT NULL,
+  `tripPromoPercentage` decimal(3,2) DEFAULT NULL,
+  `tripAttraction` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`tripID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `trip`
 --
 
-INSERT INTO `trip` (`tripID`, `programme`, `price`, `ratings`, `country`, `tripStart`, `tripEnd`, `tripDuration`, `activation`) VALUES
-('3', ' Winter Study Trip', '1234', 5, 'Singapore', '2018-08-20', '2018-09-09', 20, 4);
-INSERT INTO `trip` (`tripID`, `programme`, `price`, `ratings`, `country`, `tripStart`, `tripEnd`, `tripDuration`, `activation`) VALUES
-('2', ' Grad Trip', '324', 5, 'Malaysia', '2018-08-20', '2018-09-09', 20, 4);
+INSERT INTO `trip` (`tripID`, `tripTitle`, `tripPrice`, `tripItinerary`, `tripDescription`, `tripCountry`, `tripState`, `tripStart`, `tripEnd`, `tripDuration`, `tripActivation`, `tripCategoryInterest`, `tripCountryState`, `tripProposedBy`, `tripNoOfInterested`, `tripTotalSignUp`, `tripEstimatedPrice`,`tripCustomizeApproval`,`tripPromo`,`tripPromoPercentage`,`tripAttraction`) VALUES
+(1,'Trip to Myanmar Oceans',500.00,NULL,'The beautiful Lake Inle will wait for no one. Enjoy the beauty before global warming mars it\'s beauty forever.','Myanmar','Shan','2018-08-20','2018-09-20',30,3,'3',NULL,NULL,NULL,NULL,NULL,NULL,'20OFF',0.20,NULL),
+(2,' Grad Trip',300.00,NULL,'Come join us at the amazing grad trip around Malaysia!','Malaysia','Johor','2018-08-20','2018-09-20',30,4,'1,3',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+(3,' Winter Study Trip Customised',100.00,NULL,'This Winter Study Trip in SIngapore will just be amazing! Imagine WINTER in SINGAPORE. You must not miss this once in a life time opportunity!','Singapore','Singapore','2018-08-20','2018-09-20',30,4,'2','Singapore','xiuwen.yeo@gmail.com',8,4,150.00,'approved',NULL,NULL,'1,2');
+
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `userID` int(11) NOT NULL,
+  `userEmail` varchar(50) NOT NULL,
+  `userFirstName` varchar(50) NOT NULL,
+  `userLastName` varchar(50) NOT NULL,
+  `userPhone` int(15) NOT NULL,
+  `userGender` varchar(1) NOT NULL,
+  `userCitizenship` varchar(100) NOT NULL,
+  `userDOB` date,
+  `userProfilePic` varchar(100) NOT NULL DEFAULT '',
+  `userInterest` varchar(1000) DEFAULT NULL,
+  `userPassword` varchar(50) NOT NULL,
+  `userOccupation` varchar(100) NOT NULL,
+  `userResume` varchar(100) NOT NULL DEFAULT '',
+  `userIsEmailConfirm` varchar(10) DEFAULT NULL,
+  `userHighestEducation` varchar(100) NOT NULL,
+  `userFieldOfStudy` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`userEmail`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`userID`, `userEmail`, `userFirstName`, `userLastName`, `userPhone`, `userGender`, `userCitizenship`, `userDOB`, `userProfilePic`, `userInterest`, `userPassword`, `userOccupation`, `userResume`, `userIsEmailConfirm`, `userHighestEducation`, `userFieldOfStudy`) VALUES
+(1,'mediani.2015@sis.smu.edu.sg','Mediani','Law',83036983,'F','Singapore PR','1900-09-08',NULL,'1,2','1234','Student','','pending','Bachelor Degree','1'),
+(2,'rachael.low.2015@sis.smu.edu.sg','Rachael','Low',91234567,'M','Algerian','1894-05-04',NULL,'3','fyp1234','Student','','confirmed','ITE','3'),
+(3,'xiuwen.yeo@gmail.com','Xiu Wen','Yeo',98769876,'F','Singaporean','1996-09-09',NULL,'2','1234','Student','','pending','Postgraduate Diploma','2'),
+(4,'yijing.oon.2015@smu.edu.sg','Yi Jing','Oon',98766789,'F','Singapore PR','1995-10-24',NULL,'1,2,3','oonyijing','Student','','confirmed','Masters/Doctorate','3,4');
+
 
 -- --------------------------------------------------------
 
@@ -141,138 +288,67 @@ INSERT INTO `trip` (`tripID`, `programme`, `price`, `ratings`, `country`, `tripS
 -- Table structure for table `tripstudent`
 --
 
-CREATE TABLE `tripstudent` (
-  `tripID` varchar(100) NOT NULL,
-  `studentEmail` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `tripstudent`;
+CREATE TABLE IF NOT EXISTS `tripstudent` (
+  `tripStudentID` int(11) NOT NULL AUTO_INCREMENT,
+  `tripID` int(11) NOT NULL,
+  `tripUserEmail` varchar(50) NOT NULL,
+  `tripStudentPayment` int(11) NOT NULL,
+  `tripStudentStatus` varchar(100) NOT NULL DEFAULT '',
+  `tripStudentReview` varchar(500) DEFAULT NULL,
+  `tripStudentRating` int(1) DEFAULT NULL,
+  PRIMARY KEY (`tripStudentID`),
+  CONSTRAINT `tripstudent_ibfk_1` FOREIGN KEY (`tripID`) REFERENCES `trip` (`tripID`),
+  CONSTRAINT `tripstudent_ibfk_2` FOREIGN KEY (`tripUserEmail`) REFERENCES `user` (`userEmail`),
+  CONSTRAINT `tripstudent_ibfk_3` FOREIGN KEY (`tripStudentPayment`) REFERENCES `payment` (`paymentID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tripstudent`
 --
 
-INSERT INTO `tripstudent` (`tripID`, `studentEmail`) VALUES
-('3', 'mediani.2015@sis.smu.edu.sg');
+INSERT INTO `tripStudent` (`tripStudentID`,`tripID`, `tripUserEmail`, `tripStudentPayment`, `tripStudentStatus`, `tripStudentReview`, `tripStudentRating`) VALUES
+(1,1,'rachael.low.2015@sis.smu.edu.sg',2,'pending deposit payment','',''),
+(2,3,'yijing.oon.2015@smu.edu.sg',1,'trip confirmed','This is an excellent trip. I loved everything about it.',5);
 
 -- --------------------------------------------------------
-
 --
--- Table structure for table `user`
---
-
-CREATE TABLE `user` (
-  `userEmail` varchar(50) NOT NULL,
-  `userFirstName` varchar(50) NOT NULL,
-  `userLastName` varchar(50) NOT NULL,
-  `userPhone` int(20) NOT NULL,
-  `userGender` varchar(100) DEFAULT NULL,
-  `userCitizenship` varchar(100) DEFAULT NULL,
-  `userAge` int(3) DEFAULT NULL,
-  `userDescription` varchar(1000) DEFAULT NULL,
-  `userProfilePic` blob,
-  `userInterest` varchar(1000) DEFAULT NULL,
-  `userPassword` varchar(15) NOT NULL,
-  `userRole` varchar(50) NOT NULL,
-  `userOccupation` varchar(1000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `user`
+-- Table structure for table `internshipstudent`
 --
 
-INSERT INTO `user` (`userEmail`, `userFirstName`, `userLastName`, `userPhone`, `userGender`, `userCitizenship`, `userAge`, `userDescription`, `userProfilePic`, `userInterest`, `userPassword`, `userRole`, `userOccupation`) VALUES
-('mediani.2015@sis.smu.edu.sg', 'Mediani', 'Law', 83036983, NULL, NULL, NULL, NULL, NULL, NULL, '1234', 'member', 'Student'),
-('rachael.low.2015@sis.smu.edu.sg', 'Rachael', 'Low', 91234567, NULL, NULL, NULL, NULL, NULL, NULL, 'fyp1234', 'member', 'Student'),
-('xiuwen.yeo@gmail.com', 'Xiu Wen', 'Yeo', 98769876, 'Female', NULL, NULL, NULL, NULL, NULL, '1234', 'member', 'Student'),
-('yijing.oon.2015@smu.edu.sg', 'Yi Jing', 'Oon', 98766789, 'Female', 'Singapore PR', 24, NULL, NULL, NULL, 'oonyijing', 'user', '');
+DROP TABLE IF EXISTS `internshipstudent`;
+CREATE TABLE IF NOT EXISTS `internshipstudent` (
+  `internshipStudentID` int(11) NOT NULL AUTO_INCREMENT,
+  `internshipID` int(11) NOT NULL,
+  `internshipUserEmail` varchar(50) NOT NULL,
+  `internshipStudentStatus` varchar(100) NOT NULL DEFAULT '',
+  PRIMARY KEY (`internshipStudentID`),
+  CONSTRAINT `internshipstudent_ibfk_1` FOREIGN KEY (`internshipID`) REFERENCES `internship` (`internshipID`),
+  CONSTRAINT `internshipstudent_ibfk_2` FOREIGN KEY (`internshipUserEmail`) REFERENCES `user` (`userEmail`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+-- --------------------------------------------------------
+--
+-- Dumping data for table `internshipstudent`
+--
+
+INSERT INTO `internshipstudent` (`internshipStudentID`,`internshipID`, `internshipUserEmail`, `internshipStudentStatus`) VALUES
+(1,1, 'rachael.low.2015@sis.smu.edu.sg', 'applied'),
+(2,1, 'xiuwen.yeo@gmail.com', 'approved');
 
 -- --------------------------------------------------------
+--
+-- Table structure for table `country`
+--
+ CREATE TABLE `country` (
+  `countryName` varchar(15) NOT NULL,
+  PRIMARY KEY (`countryName`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ --
+-- Dumping data for table `country`
+--
+ INSERT INTO `country` (`countryName`) VALUES
+('Singapore');
 
---
--- Table structure for table `workexperience`
---
-
-CREATE TABLE `workexperience` (
-  `userEmail` varchar(100) NOT NULL,
-  `workCompany` varchar(200) NOT NULL,
-  `workJobTitle` varchar(200) NOT NULL,
-  `workPeriodStart` date NOT NULL,
-  `workPeriodEnd` date NOT NULL,
-  `workDescription` varchar(2000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`adminName`);
-
---
--- Indexes for table `ccaexperience`
---
-ALTER TABLE `ccaexperience`
-  ADD PRIMARY KEY (`useremail`,`ccaName`,`ccaTitle`);
-
---
--- Indexes for table `cipexperience`
---
-ALTER TABLE `cipexperience`
-  ADD PRIMARY KEY (`userEmail`,`cipOrganization`,`cipTitle`);
-
---
--- Indexes for table `languageproficiency`
---
-ALTER TABLE `languageproficiency`
-  ADD PRIMARY KEY (`userEmail`,`language`);
-
---
--- Indexes for table `skill`
---
-ALTER TABLE `skill`
-  ADD PRIMARY KEY (`userEmail`,`skillName`);
-
---
--- Indexes for table `student`
---
-ALTER TABLE `student`
-  ADD PRIMARY KEY (`studentEmail`);
-
---
--- Indexes for table `trip`
---
-ALTER TABLE `trip`
-  ADD PRIMARY KEY (`tripID`);
-
---
--- Indexes for table `tripstudent`
---
-ALTER TABLE `tripstudent`
-  ADD PRIMARY KEY (`tripID`,`studentEmail`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`userEmail`);
-
---
--- Indexes for table `workexperience`
---
-ALTER TABLE `workexperience`
-  ADD PRIMARY KEY (`userEmail`,`workCompany`,`workJobTitle`);
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `tripstudent`
---
-ALTER TABLE `tripstudent`
-  ADD CONSTRAINT `tripstudent_ibfk_1` FOREIGN KEY (`tripID`) REFERENCES `trip` (`tripID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

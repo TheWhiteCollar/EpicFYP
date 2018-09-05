@@ -29,11 +29,17 @@ public class applyForTrips extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String tripID = request.getParameter("tripID");
-        String userEmail = request.getParameter("userEmail");
-        if(TripsDAO.insertStudent(userEmail, tripID)){
+protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+        int tripStudentID = Integer.parseInt(request.getParameter("tripStudentID"));
+        int tripID = Integer.parseInt(request.getParameter("tripID"));
+        String tripUserEmail = request.getParameter("tripUserEmail");
+        int tripStudentPayment= Integer.parseInt(request.getParameter("tripStudentPayment"));
+        String tripStudentStatus = request.getParameter("tripStudentStatus");
+        String tripStudentReview = request.getParameter("tripStudentReview");
+        int tripStudentRating = Integer.parseInt(request.getParameter("tripStudentRating"));
+         
+        if(TripsDAO.insertStudent(tripStudentID, tripID, tripUserEmail,tripStudentPayment, tripStudentStatus, tripStudentReview,tripStudentRating)){
             response.sendRedirect("payment.jsp");
         }
         

@@ -45,18 +45,18 @@
                     var tripHTML = '<div class="table-wrapper"><table>';
                     //loop through each trip and print out as rows in a table
                     $.each(trips, function (index, trip) {
-                        tripHTML += '<thead><tr><th>Trip ID : ' + trip.tripID + '</th><th colspan="3">' + trip.programme + "</th></tr></thead>";
-                        tripHTML += '<tr><td>Country : ' + trip.country + "</td><td> Start : " + trip.tripStart + "</td>";
-                        tripHTML += "<td>End : " + trip.tripEnd + "</td><td>Price : $" + trip.price + "</tr>";
+                        tripHTML += '<thead><tr><th>Trip ID : ' + trip.tripID + '</th><th colspan="3">' + trip.tripTitle + "</th></tr></thead>";
+                        tripHTML += '<tr><td>Country : ' + trip.tripCountry + "</td><td> Start : " + trip.tripStart + "</td>";
+                        tripHTML += "<td>End : " + trip.tripEnd + "</td><td>Price : $" + trip.tripPrice + "</tr>";
                         tripHTML += '<tr><td colspan="4"> Trip Description?</td></tr>';
-                        var number = trip.studentNeededToActivate - trip.signedUpEmails.length;
-                        if (trip.activated) {
+                        var number = trip.tripStudentNeededToActivate - trip.tripSignedUpEmails.length;
+                        if (trip.tripActivated) {
                             tripHTML += '<tr><td colspan="3">Activated</td>';
                         } else {
 
                             tripHTML += '<tr><td colspan="3">Not Activated : ' + number + " more to activate this trip</td>";
                         }
-                        tripHTML += "<td>" + trip.signedUpEmails.length + " signed up</td></tr>";
+                        tripHTML += "<td>" + trip.tripSignedUpEmails.length + " signed up</td></tr>";
                         tripHTML += "<tr><td><form class=\"deleteTrip\">";
                         tripHTML += "<input style=\"display: none\" type=\"text\" name=\"tripID\" value=\"" + trip.tripID + "\"/>";
                         tripHTML += "<button class = \"button\" type=\"submit\" id=\"asd" + index + "\">Delete Trip</button></form></td>";
@@ -101,23 +101,21 @@
                 });
                 // wait for add trip submit event 
                 $("#addTrip").submit(function (event) {
-                    let country = $("#countryInput option:selected").val();
-                    let price = $('input[name="price"]').val();
-                    let programme = $('input[name="programme"]').val();
-                    let rating = $('input[name="rating"]').val();
-                    let duration = $('input[name="duration"]').val();
+                    let tripCountry = $("#countryInput option:selected").val();
+                    let tripPrice = $('input[name="tripPrice"]').val();
+                    let tripTitle = $('input[name="tripTitle"]').val();
+                    let tripDuration = $('input[name="tripDuration"]').val();
                     let tripStart = $('input[name="tripStart"]').val();
                     let tripEnd = $('input[name="tripEnd"]').val();
-                    let activation = $('input[name="activation"]').val();
+                    let tripActivation = $('input[name="tripActivation"]').val();
                     let tripData = {
-                        "country": country,
-                        "price": price,
-                        "programme": programme,
-                        "rating": rating,
-                        "duration": duration,
+                        "tripCountry": tripCountry,
+                        "tripPrice": tripPrice,
+                        "tripTitle": tripTitle,
+                        "tripDuration": tripDuration,
                         "tripStart": tripStart,
                         "tripEnd": tripEnd,
-                        "activation": activation
+                        "tripActivation": tripActivation
                     }
 
                     //send ajax post request to addTrip servlet with tripData
@@ -146,23 +144,24 @@
                 });
                 function reloadTable() {
                     $.get('/EpicFYPApp/getAllTripsServlet', function (tripJson) {
-                        var trips = JSON.parse(tripJson);
-                        $("#trips").empty();
-                        var tripHTML = '<div class="table-wrapper"><table>';
-                        $.each(trips, function (index, trip) {
-                            tripHTML += '<thead><tr><th>Trip ID : ' + trip.tripID + '</th><th colspan="3">' + trip.programme + "</th></tr></thead>";
-                            tripHTML += '<tr><td>Country : ' + trip.country + "</td><td> Start : " + trip.tripStart + "</td>";
-                            tripHTML += "<td>End : " + trip.tripEnd + "</td><td>Price : $" + trip.price + "</tr>";
-                            tripHTML += '<tr><td colspan="4"> Trip Description?</td></tr>';
-                            var number = trip.studentNeededToActivate - trip.signedUpEmails.length;
-                            if (trip.activated) {
-                                tripHTML += '<tr><td colspan="3">Activated</td>';
-                            } else {
+                    //parse string into JSON object
+                    var trips = JSON.parse(tripJson);
+                    var tripHTML = '<div class="table-wrapper"><table>';
+                    //loop through each trip and print out as rows in a table
+                    $.each(trips, function (index, trip) {
+                        tripHTML += '<thead><tr><th>Trip ID : ' + trip.tripID + '</th><th colspan="3">' + trip.tripTitle + "</th></tr></thead>";
+                        tripHTML += '<tr><td>Country : ' + trip.tripCountry + "</td><td> Start : " + trip.tripStart + "</td>";
+                        tripHTML += "<td>End : " + trip.tripEnd + "</td><td>Price : $" + trip.tripPrice + "</tr>";
+                        tripHTML += '<tr><td colspan="4"> Trip Description?</td></tr>';
+                        var number = trip.tripStudentNeededToActivate - trip.tripSignedUpEmails.length;
+                        if (trip.tripActivated) {
+                            tripHTML += '<tr><td colspan="3">Activated</td>';
+                        } else {
 
-                                tripHTML += '<tr><td colspan="3">Not Activated : ' + number + " more to activate this trip</td>";
-                            }
-                            tripHTML += "<td>" + trip.signedUpEmails.length + " signed up</td></tr>";
-                            tripHTML += "<tr><td><form class=\"deleteTrip\">";
+                            tripHTML += '<tr><td colspan="3">Not Activated : ' + number + " more to activate this trip</td>";
+                        }
+                        tripHTML += "<td>" + trip.tripSignedUpEmails.length + " signed up</td></tr>";
+                        tripHTML += "<tr><td><form class=\"deleteTrip\">";
                             tripHTML += "<input style=\"display: none\" type=\"text\" name=\"tripID\" value=\"" + trip.tripID + "\"/>";
                             tripHTML += "<button class = \"button\" type=\"submit\" id=\"asd" + index + "\">Delete Trip</button></form></td>";
                             tripHTML += "<td>Edit Button</td>" + "<td>View users signed up</td>" + "</tr>";
@@ -200,7 +199,7 @@
                 }
                 
                 getAllCountries();
-                getAllCategories()
+                getAllInterests()
             });
             function getAllCountries() {
                 $.get('/EpicFYPApp/getAllCountries', function (countriesJSON) {
@@ -216,17 +215,17 @@
                 });
             }
             
-            function getAllCategories() {
-                $.get('/EpicFYPApp/getAllCategory', function (categoriesJSON) {
-                    const categories = JSON.parse(categoriesJSON);
-                    $("#allCategories").empty();
-                    let categoriesHTML = '<table>';
-                    categoriesHTML += "<thead><tr><th>Category</th><th colspan='3'></th></tr></thead>";
-                    for (const category of categories) {
-                        categoriesHTML += '<tr><td>Category : ' + category + "</td><td><button value='" + category + "</td></tr>";
+            function getAllInterests() {
+                $.get('/EpicFYPApp/getAllInterest', function (interestsJSON) {
+                    const interests = JSON.parse(interestsJSON);
+                    $("#allInterests").empty();
+                    let interestsHTML = '<table>';
+                    interestsHTML += "<thead><tr><th>Interest</th><th colspan='3'></th></tr></thead>";
+                    for (const interest of interests) {
+                        interestsHTML += '<tr><td>Interest : ' + interest + "</td><td><button value='" + interest + "</td></tr>";
                     }
-                    categoriesHTML += '</table>';
-                    $("#allCategories").append(categoriesHTML);
+                    interestsHTML += '</table>';
+                    $("#allInterests").append(interestsHTML);
                 });
             }
             
@@ -258,17 +257,17 @@
                 
             }
             
-            function addCategory() {
-                let categoryName = $("input[name='categoryName']").val();
-                let categoryData = {
-                    "categoryName": categoryName,
+            function addInterest() {
+                let interestName = $("input[name='interestName']").val();
+                let interestData = {
+                    "interestName": interestName,
                 }
-                $.post('/EpicFYPApp/addCategory', categoryData, function (response) {
-                    getAllCategories();
+                $.post('/EpicFYPApp/addInterest', interestData, function (response) {
+                    getAllinterests();
                     if (response === "success") {
                         $.notify({
                             // options
-                            message: 'Successfully added category'
+                            message: 'Successfully added interest'
                         }, {
                             // settings
                             type: 'success'
@@ -276,12 +275,12 @@
                     } else {
                         $.notify({
                             // options
-                            message: 'Fail to add category'
+                            message: 'Fail to add interest'
                         }, {
                             type: 'danger'
                         });
                     }
-                    $("input[name='categoryName']").val('');
+                    $("input[name='interestName']").val('');
                 });
                 
             }
@@ -303,7 +302,7 @@
                     <button class="tablinks" onclick="openUser(event, 'filterTab')">More filter options</button>
                     <button class="tablinks" onclick="openUser(event, 'addTripTab')">List a new Trip</button>
                     <button class="tablinks" onclick="openUser(event, 'addCountry')">Add Country</button>
-                    <button class="tablinks" onclick="openUser(event, 'addCategory')">Add Category</button>
+                    <button class="tablinks" onclick="openUser(event, 'addInterest')">Add Interest</button>
                 </div>
 
                 <!-- For user to choose if they want to login as student or admin -->
@@ -740,15 +739,15 @@
                     </div>
                 </div>
                                 
-                <div id="addCategory" class="tabcontent">
+                <div id="addInterest" class="tabcontent">
                     <span onclick="this.parentElement.style.display = 'none'" class="toprightClose">&times</span>
                     <div class = "row 50% uniform">
                         <div class = "6u 12u(xsmall)">
-                            Country Name: <input type="text" name="categoryName" placeholder="E.g. Business" />
+                            Country Name: <input type="text" name="interestName" placeholder="E.g. Business" />
                             <br/>
-                            <button onclick="addCategory()">Add Category</button>
+                            <button onclick="addInterest()">Add Interest</button>
                         </div>
-                        <div class = "6u 12u(xsmall) table-wrapper" id="allCategories">
+                        <div class = "6u 12u(xsmall) table-wrapper" id="allInterests">
                             
                         </div>
                     </div>

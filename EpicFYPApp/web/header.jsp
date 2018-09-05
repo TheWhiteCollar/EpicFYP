@@ -40,6 +40,7 @@
                         String Username = admin.getAdminName();
                         if (Username != null && !Username.isEmpty()) {
                     %>
+                    <li><a href="AdminPortal_manageApproval.jsp">Manage Approval</a></li>
                     <li><a href="AdminPortal_trips.jsp">Manage Trips</a></li>
                     <li><a href="viewStudentProfile.jsp">Manage Students</a></li>
                     <li><a href="AdminPortal_bootstrap.jsp">Bulk Uploading</a></li>

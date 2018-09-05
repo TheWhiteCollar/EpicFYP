@@ -33,34 +33,12 @@
         <section class="wrapper">
             <div class ="container">            
                 <header class="major">
-                    <h2>Trip Customisation</h2>
-                    <p>Note: Approval of trip will take approximately 5 working days</p>
+                    <h2>All customised trip by Users</h2>
+                    <p>Note : Approved items will be pushed out to the respective users</p>
                 </header>
-                <div class="container">
-                    <header>
-                        <h3 class="align-center">Step 1 : </h3>
-                    </header>
-
-                    <div class="signup-tab">
-                        <div align="center"> 
-                            <p>Which country do you want your Study Trip to be in?</p>
-
-                            <select name="customised_country" style="max-width:50%">
-                                <option disabled selected value style="display:none"> - select a country - </option>
-                                <%
-                                        //get from countryDAO
-%>
-                                <option value="countryName" >country</option>
-                                <%%>
-                            </select>
-
-
-                        </div>
-                    </div>
-
-                </div>
+            
             </div>
-        </section>
+        </section>       
     </body>
 
 </html>

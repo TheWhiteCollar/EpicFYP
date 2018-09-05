@@ -33,34 +33,23 @@
         <section class="wrapper">
             <div class ="container">            
                 <header class="major">
-                    <h2>Trip Customisation</h2>
-                    <p>Note: Approval of trip will take approximately 5 working days</p>
+                    <h2>Manage Approvals</h2>
+                    <p>Note : Approved items will be pushed out to the respective users</p>
                 </header>
-                <div class="container">
-                    <header>
-                        <h3 class="align-center">Step 1 : </h3>
-                    </header>
-
-                    <div class="signup-tab">
-                        <div align="center"> 
-                            <p>Which country do you want your Study Trip to be in?</p>
-
-                            <select name="customised_country" style="max-width:50%">
-                                <option disabled selected value style="display:none"> - select a country - </option>
-                                <%
-                                        //get from countryDAO
-%>
-                                <option value="countryName" >country</option>
-                                <%%>
-                            </select>
-
-
-                        </div>
+                
+                <div class="row">
+                    <div class="4u 12u(xsmall)">
+                        <a href="AdminPortal_manageApprovalTrip.jsp" class="button full_width">Suggested Study Trip for Users</a>
                     </div>
-
+                    <div class="4u 12u(xsmall)">
+                        <a href="AdminPortal_manageApprovalInternship.jsp" class="button full_width">Suggested Internship for Users</a>
+                    </div>
+                    <div class="4u 12u(xsmall)">
+                        <a href="AdminPortal_manageApprovalCustomised.jsp" class="button full_width">View customised trip by User</a>
+                    </div>
                 </div>
             </div>
-        </section>
+        </section>       
     </body>
 
 </html>

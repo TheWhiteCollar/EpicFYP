@@ -19,13 +19,13 @@ public class TripStudent {
 
     private int tripStudentID;
     private int tripID;
-    private int tripUserEmail;
+    private String tripUserEmail;
     private int tripStudentPayment;
     private String tripStudentStatus;
     private String tripStudentReview;
     private int tripStudentRating;
 
-    public TripStudent(int tripStudentID, int tripID, int tripUserEmail, int tripStudentPayment, String tripStudentStatus, String tripStudentReview, int tripStudentRating) {
+    public TripStudent(int tripStudentID, int tripID, String tripUserEmail, int tripStudentPayment, String tripStudentStatus, String tripStudentReview, int tripStudentRating) {
         this.tripStudentID = tripStudentID;
         this.tripID = tripID;
         this.tripUserEmail = tripUserEmail;
@@ -51,11 +51,11 @@ public class TripStudent {
         this.tripID = tripID;
     }
 
-    public int getTripUserEmail() {
+    public String getTripUserEmail() {
         return tripUserEmail;
     }
 
-    public void setTripUserEmail(int tripUserEmail) {
+    public void setTripUserEmail(String tripUserEmail) {
         this.tripUserEmail = tripUserEmail;
     }
 

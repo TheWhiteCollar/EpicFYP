@@ -16,10 +16,10 @@ public class InternshipStudent {
 
     private int internshipStudentID;
     private int internshipID;
-    private int internshipUserEmail;
+    private String internshipUserEmail;
     private String internshipStudentStatus;
 
-    public InternshipStudent(int internshipStudentID, int internshipID, int internshipUserEmail, String internshipStudentStatus) {
+    public InternshipStudent(int internshipStudentID, int internshipID, String internshipUserEmail, String internshipStudentStatus) {
         this.internshipStudentID = internshipStudentID;
         this.internshipID = internshipID;
         this.internshipUserEmail = internshipUserEmail;
@@ -42,11 +42,11 @@ public class InternshipStudent {
         this.internshipID = internshipID;
     }
 
-    public int getInternshipUserEmail() {
+    public String getInternshipUserEmail() {
         return internshipUserEmail;
     }
 
-    public void setInternshipUserEmail(int internshipUserEmail) {
+    public void setInternshipUserEmail(String internshipUserEmail) {
         this.internshipUserEmail = internshipUserEmail;
     }
 

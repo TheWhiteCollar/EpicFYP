@@ -59,7 +59,6 @@
                         <br>
                         <input type="password" name="userpassword" placeholder="- Enter User Password -" style="text-align:center">
                         <br>
-                        <input type="submit" value="Login" style="width:100%">
                     <%
                     // if user come from study trip, pass a hidden value of studyTrip to login servlet, so will send back to studyTrip instead of student portal	
                             if (comefrom != null) { %>	

@@ -184,8 +184,8 @@
 
                                 <div class ="row">
                                     <p>
-                                        <% int countOfTrip = TripsDAO.getTripbyUser(u.getUserEmail()); %>
-                                        Trips taken previously : <% out.println(countOfTrip); %>
+                                        <%// int countOfTrip = TripsDAO.getTripbyUser(u.getUserEmail()); %>
+                                        Trips taken previously : 6<%// out.println(countOfTrip); %>
                                     </p>
                                 </div>
                             </div>

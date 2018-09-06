@@ -1,4 +1,6 @@
 
+<%@page import="Model.Dao.InterestDAO"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -26,6 +28,7 @@
         <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="css/style-xlarge.css" />
         </noscript>
+
         <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
     </head>
     <body>
@@ -418,179 +421,181 @@
                         </div>
                         <div class="signup-tab">
                             <h2 class = "align-center">User Interests</h2>
+                            <p class = "align-center" style="color: red;font-weight: bold;">Note: Press Ctrl or Command key to select multiple options</p>
                             <div class="row uniform 50%">   
                                 <div class="6u 12u(xsmall)">
-                                    <h3>Fields of Study:</h3>
-                                    <input type="checkbox" name="field of Study" id="field of Study1" value="OPS">
-                                    <label for="field of Study1">Operations System</label>
-                                    <br/>
-                                    <input type="checkbox" name="field of Study" id="field of Study2" value="IT">
-                                    <label for="field of Study2">Information Technology</label>
-                                    <br/>
-                                    <input type="checkbox"name="field of Study" id="field of Study3" value="M101">
-                                    <label for="field of Study3">Marketing</label> 
-                                    <br/>
-                                    <input type="checkbox" name="field of Study" id="field of Study4" value="F101">
-                                    <label for="field of Study4">Finance</label> 
+                                    <h3>Field of Study interested in:</h3> 
+                                    <select name="interest" multiple="multiple" style="height: 200px;">
+                                        <option disabled selected value style="display:none"> - Field of Study interests - </option>
+                                        
+                                        <option value="Computing">Computing</option>
+                                        <option value="History">History</option>
+                                        <option value="Business">Business</option>
+                                        <option value="Law">Law</option>
+                                        <option value="Arts & Social Sciences">Arts & Social Sciences</option>
+                                        <option value="Business">Business</option>
+                                        <option value="Science">Science</option>
+                                        <option value="Accountancy">Accountancy</option>
+                                        <option value="Dentistry">Dentistry</option>
+                                        <option value="Design & Environment">Design & Environment</option>
+                                        <option value="Engineering">Engineering</option>
+                                        <option value="Medicine">Medicine</option>
+                                        <option value="Music">Music</option>
+                                        <option value="Others">Others</option>
+                                        
+                                       
+                                    </select> 
+                                    
+
                                 </div>
                                 <div class="6u 12u(xsmall)">
-                                    <h3>Language Proficiency:</h3>
-                                    <input type="checkbox" name="language" id="language1" value="Bahasa Melayu">
-                                    <label for="language1">Bahasa Melayu</label>
-                                    <br/>
-                                    <input type="checkbox" name="language" id="language2" value="Mandarin">
-                                    <label for="language2">Mandarin</label>
-                                    <br/>
-                                    <input type="checkbox" name="language" id="language3" value="English">
-                                    <label for="language3">English</label>                                         
+                                    <h3>Study Trips interested in:</h3> 
+                                    <select name="interest" multiple="multiple" style="height: 200px;">
+                                        <option disabled selected value style="display:none"> - Field of Study interests - </option>
+                                        <%
+                                            ArrayList<String> allInterests = InterestDAO.getInterests();
+
+                                            if (!allInterests.isEmpty()) {
+                                                for (int i = 0; i < allInterests.size(); i++) {
+                                                    String interests = allInterests.get(i);
+
+                                        %>
+                                        <option value="<%out.print(interests);%>"><%out.print(interests);%></option>
+                                        <%    }
+                                            }
+
+                                        %>
+                                    </select>                                  
                                 </div>
                             </div>
 
-
-                            <div class="row uniform 50%"> 
-                                <div class="6u 12u(xsmall)">
-                                    <h3>Looking For:</h3>
-                                    <input type="checkbox" name="looking for" id="lookingfor1" value="Internship">
-                                    <label for="lookingfor1">Internship</label>
-                                    <br/>
-                                    <input type="checkbox" name="looking for" id="lookingfor2" value="Study Trip">
-                                    <label for="lookingfor2">Study Trip</label>                                                                          
-                                </div>
-                                <div class="6u 12u(xsmall)">
-                                    <h3>Interested in:</h3>                                         
-                                    <input type="checkbox" name="interest" id="interest1" value="Banks / Funds">
-                                    <label for="interest1">Banks / Funds</label>
-                                    <br/>
-                                    <input type="checkbox" name="interest" id="interest2" value="Engineering">
-                                    <label for="interest2">Engineering</label> 
-                                </div>
-                            </div>
                         </div>
-
-                        <div class="signup-tab">
-                            <h2 class = "align-center">Getting to know you</h2>
-                            <div class ="row">
-                                <div class ="5u 12u(xsmall)">
-                                    <textarea name="message" placeholder="Short description of yourself" rows="6"></textarea>
-                                </div>
-                                <div class ="7u 12u(xsmall)">
-                                    <h3>Upload Resume and Profile Pic:</h3>
-
-                                    <input type="file" name="uploadedfile" id="file-1" class="inputfile inputfile-1" accept=".pdf, .doc, .docx"/>
-                                    <label for="file-1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> 
-                                        <span>Upload Resume</span>
-                                    </label> 
-
-                                    <br/>
-
-                                    <input type="file" name="profilePic" id="file-2" class="inputfile inputfile-1" accept=".png, .jpg, .jpeg"/>
-                                    <label for="file-2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> 
-                                        <span>Upload profile pic</span>
-                                    </label> 
-                                </div>
-                            </div>
-                        </div>
-                        </br>
-                        <div style="overflow:auto;">
-                            <div style="float:left;">
-                                <button type="button" id="prevBtn" class = "button" onclick="nextPrev(-1)">Previous</button>
-                            </div>
-
-                            <div style="float:right;">
-                                <button type="button" id="nextBtn" class = "button" onclick="nextPrev(1)">Next</button>
-                            </div>
-                        </div>
-                        <!-- Circles which indicates the steps of the form: -->
-                        <div style="text-align:center;">
-                            <span class="step"></span>
-                            <span class="step"></span>
-                            <span class="step"></span>
-                            <span class="step"></span>
-                        </div>
-                    </form> 
                 </div>
+
+                <div class="signup-tab">
+                    <h2 class = "align-center">Getting to know you</h2>
+                    <div class ="row">
+                        <div class ="5u 12u(xsmall)">
+                            <textarea name="message" placeholder="Short description of yourself" rows="6"></textarea>
+                        </div>
+                        <div class ="7u 12u(xsmall)">
+                            <h3>Upload Resume and Profile Pic:</h3>
+
+                            <input type="file" name="uploadedfile" id="file-1" class="inputfile inputfile-1" accept=".pdf, .doc, .docx"/>
+                            <label for="file-1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> 
+                                <span>Upload Resume</span>
+                            </label> 
+
+                            <br/>
+
+                            <input type="file" name="profilePic" id="file-2" class="inputfile inputfile-1" accept=".png, .jpg, .jpeg"/>
+                            <label for="file-2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> 
+                                <span>Upload profile pic</span>
+                            </label> 
+                        </div>
+                    </div>
+                </div>
+                </br>
+                <div style="overflow:auto;">
+                    <div style="float:left;">
+                        <button type="button" id="prevBtn" class = "button" onclick="nextPrev(-1)">Previous</button>
+                    </div>
+
+                    <div style="float:right;">
+                        <button type="button" id="nextBtn" class = "button" onclick="nextPrev(1)">Next</button>
+                    </div>
+                </div>
+                <!-- Circles which indicates the steps of the form: -->
+                <div style="text-align:center;">
+                    <span class="step"></span>
+                    <span class="step"></span>
+                    <span class="step"></span>
+                    <span class="step"></span>
+                </div>
+                </form> 
             </div>
-        </section>
+        </div>
+    </section>
 
 
-        <!-- Footer -->
-        <jsp:include page="footer.jsp" />
+    <!-- Footer -->
+    <jsp:include page="footer.jsp" />
 
-        <script src="js/custom-file-input.js"></script>
-        <script>
-            var currentTab = 0; // Current tab is set to be the first tab (0)
-            showTab(currentTab); // Display the crurrent tab
+    <script src="js/custom-file-input.js"></script>
+    <script>
+                            var currentTab = 0; // Current tab is set to be the first tab (0)
+                            showTab(currentTab); // Display the crurrent tab
 
-            function showTab(n) {
-                // This function will display the specified tab of the form...
-                var x = document.getElementsByClassName("signup-tab");
-                x[n].style.display = "block";
-                //... and fix the Previous/Next buttons:
-                if (n == 0) {
-                    document.getElementById("prevBtn").style.display = "none";
-                } else {
-                    document.getElementById("prevBtn").style.display = "inline";
-                }
-                if (n == (x.length - 1)) {
-                    document.getElementById("nextBtn").innerHTML = "Submit";
-                } else {
-                    document.getElementById("nextBtn").innerHTML = "Next";
-                }
-                //... and run a function that will display the correct step indicator:
-                fixStepIndicator(n)
-            }
+                            function showTab(n) {
+                                // This function will display the specified tab of the form...
+                                var x = document.getElementsByClassName("signup-tab");
+                                x[n].style.display = "block";
+                                //... and fix the Previous/Next buttons:
+                                if (n == 0) {
+                                    document.getElementById("prevBtn").style.display = "none";
+                                } else {
+                                    document.getElementById("prevBtn").style.display = "inline";
+                                }
+                                if (n == (x.length - 1)) {
+                                    document.getElementById("nextBtn").innerHTML = "Submit";
+                                } else {
+                                    document.getElementById("nextBtn").innerHTML = "Next";
+                                }
+                                //... and run a function that will display the correct step indicator:
+                                fixStepIndicator(n)
+                            }
 
-            function nextPrev(n) {
-                // This function will figure out which tab to display
-                var x = document.getElementsByClassName("signup-tab");
-                // Exit the function if any field in the current tab is invalid:
-                if (n == 1 && !validateForm())
-                    return false;
-                // Hide the current tab:
-                x[currentTab].style.display = "none";
-                // Increase or decrease the current tab by 1:
-                currentTab = currentTab + n;
-                // if you have reached the end of the form...
-                if (currentTab >= x.length) {
-                    // ... the form gets submitted:
-                    document.getElementById("regForm").submit();
-                    return false;
-                }
-                // Otherwise, display the correct tab:
-                showTab(currentTab);
-            }
+                            function nextPrev(n) {
+                                // This function will figure out which tab to display
+                                var x = document.getElementsByClassName("signup-tab");
+                                // Exit the function if any field in the current tab is invalid:
+                                if (n == 1 && !validateForm())
+                                    return false;
+                                // Hide the current tab:
+                                x[currentTab].style.display = "none";
+                                // Increase or decrease the current tab by 1:
+                                currentTab = currentTab + n;
+                                // if you have reached the end of the form...
+                                if (currentTab >= x.length) {
+                                    // ... the form gets submitted:
+                                    document.getElementById("regForm").submit();
+                                    return false;
+                                }
+                                // Otherwise, display the correct tab:
+                                showTab(currentTab);
+                            }
 
-            function validateForm() {
-                // This function deals with validation of the form fields
-                var x, y, i, valid = true;
-                x = document.getElementsByClassName("signup-tab");
-                y = x[currentTab].getElementsByTagName("input");
-                // A loop that checks every input field in the current tab:
-                for (i = 0; i < y.length; i++) {
-                    // If a field is empty...
-                    if (y[i].value == "") {
-                        // add an "invalid" class to the field:
-                        y[i].className += " invalid";
-                        // and set the current valid status to false
-                        valid = false;
-                    }
-                }
-                // If the valid status is true, mark the step as finished and valid:
-                if (valid) {
-                    document.getElementsByClassName("step")[currentTab].className += " finish";
-                }
-                return valid; // return the valid status
-            }
+                            function validateForm() {
+                                // This function deals with validation of the form fields
+                                var x, y, i, valid = true;
+                                x = document.getElementsByClassName("signup-tab");
+                                y = x[currentTab].getElementsByTagName("input");
+                                // A loop that checks every input field in the current tab:
+                                for (i = 0; i < y.length; i++) {
+                                    // If a field is empty...
+                                    if (y[i].value == "") {
+                                        // add an "invalid" class to the field:
+                                        y[i].className += " invalid";
+                                        // and set the current valid status to false
+                                        valid = false;
+                                    }
+                                }
+                                // If the valid status is true, mark the step as finished and valid:
+                                if (valid) {
+                                    document.getElementsByClassName("step")[currentTab].className += " finish";
+                                }
+                                return valid; // return the valid status
+                            }
 
-            function fixStepIndicator(n) {
-                // This function removes the "active" class of all steps...
-                var i, x = document.getElementsByClassName("step");
-                for (i = 0; i < x.length; i++) {
-                    x[i].className = x[i].className.replace(" active", "");
-                }
-                //... and adds the "active" class on the current step:
-                x[n].className += " active";
-            }
-        </script>
-    </body>
+                            function fixStepIndicator(n) {
+                                // This function removes the "active" class of all steps...
+                                var i, x = document.getElementsByClassName("step");
+                                for (i = 0; i < x.length; i++) {
+                                    x[i].className = x[i].className.replace(" active", "");
+                                }
+                                //... and adds the "active" class on the current step:
+                                x[n].className += " active";
+                            }
+    </script>
+</body>
 </html> 

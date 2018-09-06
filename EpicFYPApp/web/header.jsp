@@ -40,9 +40,21 @@
                         String Username = admin.getAdminName();
                         if (Username != null && !Username.isEmpty()) {
                     %>
-                    <li><a href="AdminPortal_manageApproval.jsp">Manage Approval</a></li>
+                    <li><a href="AdminPortal_visualisation.jsp">Site Visualisation</a></li>
+                    <li><a href="AdminPortal_manageApprovalCustomised.jsp">Manage Approval</a>
+                        <ul>
+<!--                            <li><a href="AdminPortal_manageApprovalCustomised.jsp">Customised Trip</a></li>-->
+                            <li><a href="underConstruction.jsp">Customised Trip</a></li>
+                        </ul>
+                    </li>
                     <li><a href="AdminPortal_trips.jsp">Manage Trips</a></li>
-                    <li><a href="viewStudentProfile.jsp">Manage Students</a></li>
+                    <li><a href="#">Manage Users</a>                       
+                        <ul>
+                            <li><a href="viewStudentProfile.jsp">Manage Students</a></li>
+                            <li><a href="underConstruction.jsp">View list of Partners</a></li>
+                        </ul>
+                        
+                    </li>
                     <li><a href="AdminPortal_bootstrap.jsp">Bulk Uploading</a></li>
                     <li><a href="index_admin.jsp">Hello, <% out.println(Username); %></a>
                         <ul>

@@ -30,35 +30,7 @@
         <link rel="stylesheet" href="css/style-xlarge.css" />
         </noscript>
 
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {
-        'packages':['geochart'],
-        // Note: you will need to get a mapsApiKey for your project.
-        // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
-        'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
-      });
-      google.charts.setOnLoadCallback(drawRegionsMap);
 
-      function drawRegionsMap() {
-        var data = google.visualization.arrayToDataTable([
-          ['Country', 'Popularity'],
-          ['China', 200],
-          ['Malaysia', 300],
-          ['Myanmar', 400],
-          ['South Korea', 600],
-          ['Russia', 400],
-         
-        ]);
-
-        var options = {};
-
-        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
-
-        chart.draw(data, options);
-      }
-    </script>
-        
         <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
     </head>
     <body>
@@ -91,8 +63,8 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <p><a href=#"" class = "button" style="width:100%">Approve customised trips (#)</a></p>
-                        <p><a href=#"" class = "button" style="width:100%">View/Manage all trips</a></p>
+                        <p><a href="AdminPortal_manageApprovlCustomisaed.jsp" class = "button" style="width:100%">Approve customised trips (#)</a></p>
+                        <p><a href="#" class = "button" style="width:100%">View/Manage all trips</a></p>
 
                     </div>
                 </div>
@@ -113,19 +85,11 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <p><a href=#"" class = "button" style="width:100%; background-color: #66b3ff;">Approve match suggestion (#)</a></p>
+                        <p><a href=#"" class = "button" style="width:100%; background-color: #66b3ff;">View job matches (#)</a></p>
                         <p><a href=#"" class = "button" style="width:100% ; background-color: #66b3ff;">View/Manage all jobs</a></p>
                     </div>
                 </div>
             </div>
         </section>
-        
-        <section id="admin_graphs" class="container wrapper">
-            <header class="major align-center">
-                <h2>Site Analytics</h2>					
-            </header>
-            
-            <h3 class = "align-center">Popular Country Destinations</h3>
-            <div id="regions_div" style="width: 900px; height: 500px;"></div>
     </body>
 </html>

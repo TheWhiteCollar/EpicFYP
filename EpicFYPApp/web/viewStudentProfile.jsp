@@ -1,5 +1,4 @@
 <%@page import="java.time.LocalDate"%>
-<%@page import="Model.Dao.TripsDAO"%>
 <%@page import="Model.Dao.UserDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.Entity.User"%>

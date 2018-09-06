@@ -1,3 +1,6 @@
+<%@page import="Model.Entity.Interest"%>
+<%@page import="Model.Dao.InterestDAO"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.time.LocalDate"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -144,24 +147,24 @@
                 });
                 function reloadTable() {
                     $.get('/EpicFYPApp/getAllTripsServlet', function (tripJson) {
-                    //parse string into JSON object
-                    var trips = JSON.parse(tripJson);
-                    var tripHTML = '<div class="table-wrapper"><table>';
-                    //loop through each trip and print out as rows in a table
-                    $.each(trips, function (index, trip) {
-                        tripHTML += '<thead><tr><th>Trip ID : ' + trip.tripID + '</th><th colspan="3">' + trip.tripTitle + "</th></tr></thead>";
-                        tripHTML += '<tr><td>Country : ' + trip.tripCountry + "</td><td> Start : " + trip.tripStart + "</td>";
-                        tripHTML += "<td>End : " + trip.tripEnd + "</td><td>Price : $" + trip.tripPrice + "</tr>";
-                        tripHTML += '<tr><td colspan="4"> Trip Description?</td></tr>';
-                        var number = trip.tripStudentNeededToActivate - trip.tripSignedUpEmails.length;
-                        if (trip.tripActivated) {
-                            tripHTML += '<tr><td colspan="3">Activated</td>';
-                        } else {
+                        //parse string into JSON object
+                        var trips = JSON.parse(tripJson);
+                        var tripHTML = '<div class="table-wrapper"><table>';
+                        //loop through each trip and print out as rows in a table
+                        $.each(trips, function (index, trip) {
+                            tripHTML += '<thead><tr><th>Trip ID : ' + trip.tripID + '</th><th colspan="3">' + trip.tripTitle + "</th></tr></thead>";
+                            tripHTML += '<tr><td>Country : ' + trip.tripCountry + "</td><td> Start : " + trip.tripStart + "</td>";
+                            tripHTML += "<td>End : " + trip.tripEnd + "</td><td>Price : $" + trip.tripPrice + "</tr>";
+                            tripHTML += '<tr><td colspan="4"> Trip Description?</td></tr>';
+                            var number = trip.tripStudentNeededToActivate - trip.tripSignedUpEmails.length;
+                            if (trip.tripActivated) {
+                                tripHTML += '<tr><td colspan="3">Activated</td>';
+                            } else {
 
-                            tripHTML += '<tr><td colspan="3">Not Activated : ' + number + " more to activate this trip</td>";
-                        }
-                        tripHTML += "<td>" + trip.tripSignedUpEmails.length + " signed up</td></tr>";
-                        tripHTML += "<tr><td><form class=\"deleteTrip\">";
+                                tripHTML += '<tr><td colspan="3">Not Activated : ' + number + " more to activate this trip</td>";
+                            }
+                            tripHTML += "<td>" + trip.tripSignedUpEmails.length + " signed up</td></tr>";
+                            tripHTML += "<tr><td><form class=\"deleteTrip\">";
                             tripHTML += "<input style=\"display: none\" type=\"text\" name=\"tripID\" value=\"" + trip.tripID + "\"/>";
                             tripHTML += "<button class = \"button\" type=\"submit\" id=\"asd" + index + "\">Delete Trip</button></form></td>";
                             tripHTML += "<td>Edit Button</td>" + "<td>View users signed up</td>" + "</tr>";
@@ -169,35 +172,35 @@
                         tripHTML += '</table></div>';
                         $("#trips").append(tripHTML);
                         $(".deleteTrip").submit(function (event) {
-                        var tripID = "" + $(this).children("input").val();
-                        var deleteData = {
-                            'id': tripID
-                        };
- 
-                        $.post('/EpicFYPApp/deleteTrip', deleteData, function (response) {
-                            if (response === "success") {
-                                $.notify({
-                                    // options
-                                    message: 'Successfully deleted trip'
-                                }, {
-                                    // settings
-                                    type: 'success'
-                                });
-                            } else {
-                                $.notify({
-                                    // options
-                                    message: 'Fail to delete trip'
-                                }, {
-                                    type: 'danger'
-                                });
-                            }
-                            reloadTable();
-                        })
-                        event.preventDefault();
-                    });
+                            var tripID = "" + $(this).children("input").val();
+                            var deleteData = {
+                                'id': tripID
+                            };
+
+                            $.post('/EpicFYPApp/deleteTrip', deleteData, function (response) {
+                                if (response === "success") {
+                                    $.notify({
+                                        // options
+                                        message: 'Successfully deleted trip'
+                                    }, {
+                                        // settings
+                                        type: 'success'
+                                    });
+                                } else {
+                                    $.notify({
+                                        // options
+                                        message: 'Fail to delete trip'
+                                    }, {
+                                        type: 'danger'
+                                    });
+                                }
+                                reloadTable();
+                            })
+                            event.preventDefault();
+                        });
                     });
                 }
-                
+
                 getAllCountries();
                 getAllInterests()
             });
@@ -205,30 +208,37 @@
                 $.get('/EpicFYPApp/getAllCountries', function (countriesJSON) {
                     const countries = JSON.parse(countriesJSON);
                     $("#allCountries").empty();
-                    let countriesHTML = '<table>';
-                    countriesHTML += "<thead><tr><th>Country</th><th colspan='3'></th></tr></thead>";
+                    let countriesHTML = '';
+                    countriesHTML += '<h4 class="align-center">List of Countries</h4><table class="alt">';
+                    countriesHTML += "<thead><tr><th>#</th><th colspan='2'>Country Name</th></tr></thead>";
+                    var count = 1;
                     for (const country of countries) {
-                        countriesHTML += '<tr><td>Country : ' + country + "</td><td><button value='" + country + "</td></tr>";
+                          countriesHTML += '<tr><td>' + count + '</td><td>' + country + "</td></tr>";
+//                        countriesHTML += '<tr><td>Country : ' + country + "</td><td><button value='" + country + "</td></tr>";
+                        count += 1;
                     }
                     countriesHTML += '</table>';
                     $("#allCountries").append(countriesHTML);
                 });
             }
-            
+
             function getAllInterests() {
                 $.get('/EpicFYPApp/getAllInterest', function (interestsJSON) {
                     const interests = JSON.parse(interestsJSON);
                     $("#allInterests").empty();
-                    let interestsHTML = '<table>';
-                    interestsHTML += "<thead><tr><th>Interest</th><th colspan='3'></th></tr></thead>";
+                    let interestsHTML = '';
+                    interestsHTML += '<h4 class="align-center">List of Interest tags</h4><table class="alt">';
+                    interestsHTML += "<thead><tr><th>#</th><th colspan='2'>Name of interest tag</th></tr></thead>";
+                    var count = 1;
                     for (const interest of interests) {
-                        interestsHTML += '<tr><td>Interest : ' + interest + "</td><td><button value='" + interest + "</td></tr>";
+                        interestsHTML += '<tr><td>' + count + '</td><td>' + interest + "</td></tr>";
+                        count += 1;
                     }
                     interestsHTML += '</table>';
                     $("#allInterests").append(interestsHTML);
                 });
             }
-            
+
             function addCountry() {
                 let countryName = $("input[name='countryName']").val();
                 let countryData = {
@@ -254,9 +264,9 @@
                     }
                     $("input[name='countryName']").val('');
                 });
-                
+
             }
-            
+
             function addInterest() {
                 let interestName = $("input[name='interestName']").val();
                 let interestData = {
@@ -282,9 +292,9 @@
                     }
                     $("input[name='interestName']").val('');
                 });
-                
+
             }
-            
+
         </script>
         <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
     </head>
@@ -301,8 +311,8 @@
                 <div class="tab">
                     <button class="tablinks" onclick="openUser(event, 'filterTab')">More filter options</button>
                     <button class="tablinks" onclick="openUser(event, 'addTripTab')">List a new Trip</button>
-                    <button class="tablinks" onclick="openUser(event, 'addCountry')">Add Country</button>
-                    <button class="tablinks" onclick="openUser(event, 'addInterest')">Add Interest</button>
+                    <button class="tablinks" onclick="openUser(event, 'addCountry')">Manage Country List</button>
+                    <button class="tablinks" onclick="openUser(event, 'addInterest')">Manage Interest tags</button>
                 </div>
 
                 <!-- For user to choose if they want to login as student or admin -->
@@ -724,34 +734,57 @@
                     </form>
 
                 </div>
-                                
+
                 <div id="addCountry" class="tabcontent">
-                    <span onclick="this.parentElement.style.display = 'none'" class="toprightClose">&times</span>
+                    <span onclick="this.parentElement.style.display = 'none'" class="toprightClose">&times</span>              
                     <div class = "row 50% uniform">
-                        <div class = "6u 12u(xsmall)">
-                            Country Name: <input type="text" name="countryName" placeholder="E.g. Singapore" />
-                            <br/>
-                            <button onclick="addCountry()">Add Country</button>
+                        <div class = "5u 12u(xsmall) table-wrapper" id="allCountries">
+
                         </div>
-                        <div class = "6u 12u(xsmall) table-wrapper" id="allCountries">
-                            
+                        <div class="7u 12u(xsmall)">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="2"><h4 class="align-center">Add a new Country</h4></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" name="countryName" placeholder="E.g. Singapore" /></td>
+                                        <td><button onclick="addCountry()" class="button">Add Country</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>                
                         </div>
                     </div>
                 </div>
-                                
+
                 <div id="addInterest" class="tabcontent">
                     <span onclick="this.parentElement.style.display = 'none'" class="toprightClose">&times</span>
                     <div class = "row 50% uniform">
-                        <div class = "6u 12u(xsmall)">
-                            Country Name: <input type="text" name="interestName" placeholder="E.g. Business" />
-                            <br/>
-                            <button onclick="addInterest()">Add Interest</button>
+                        <div class = "5u 12u(xsmall) table-wrapper" id="allInterests">
+
                         </div>
-                        <div class = "6u 12u(xsmall) table-wrapper" id="allInterests">
-                            
+                        <div class="7u 12u(xsmall)">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="2"><h4 class="align-center">Add a new Interest tag</h4></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" name="interestName" placeholder="E.g. Business" /></td>
+                                        <td><button onclick="addInterest()" class="button">Add Interest</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>                
                         </div>
                     </div>
                 </div>
+            </div>
+            <div>
+
+
+
+
+
             </div>
 
             <!-- this contains all the trips -->

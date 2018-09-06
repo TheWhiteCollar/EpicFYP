@@ -24,6 +24,22 @@
         <servlet-name>AdminBootstrapServlet</servlet-name>
         <servlet-class>Controller.AdminBootstrapServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>getAllTripsAfterFilterServlet</servlet-name>
+        <servlet-class>Controller.getAllTripsAfterFilterServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminBootstrapFileDownloadServlet</servlet-name>
+        <servlet-class>Controller.AdminBootstrapFileDownloadForUserServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminBootstrapFileDownloadForTripServlet</servlet-name>
+        <servlet-class>Controller.AdminBootstrapFileDownloadForTripServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminBootstrapFileDownloadForTripStudentServlet</servlet-name>
+        <servlet-class>Controller.AdminBootstrapFileDownloadForTripStudentServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TripsDAO</servlet-name>
         <url-pattern>/TripsDAO</url-pattern>
@@ -47,6 +63,22 @@
     <servlet-mapping>
         <servlet-name>AdminBootstrapServlet</servlet-name>
         <url-pattern>/AdminBootstrapServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getAllTripsAfterFilterServlet</servlet-name>
+        <url-pattern>/getAllTripsAfterFilterServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminBootstrapFileDownloadServlet</servlet-name>
+        <url-pattern>/AdminBootstrapFileDownloadServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminBootstrapFileDownloadForTripServlet</servlet-name>
+        <url-pattern>/AdminBootstrapFileDownloadForTripServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminBootstrapFileDownloadForTripStudentServlet</servlet-name>
+        <url-pattern>/AdminBootstrapFileDownloadForTripStudentServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

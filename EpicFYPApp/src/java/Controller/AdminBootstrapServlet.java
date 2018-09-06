@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.Scanner;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -59,22 +60,31 @@ public class AdminBootstrapServlet extends HttpServlet {
                     int userPhone = Integer.parseInt(user[3]);
                     String userGender = user[4];
                     String userCitizenship = user[5];
-                    int userAge = Integer.parseInt(user[6]);
-                    //profile pic
-                    String userInterest = user[7];
-                    String userPassword = user[8];
-                    String userRole = user[9];
+                    Date date = Date.valueOf("1995-08-26");
+                    String userProfilePic = user[7];
+                    String userInterest = user[8];
+                    String userPassword = user[9];
                     String userOccupation = user[10];
-                    if (UserDAO.addUser(userEmail, userFirstName, userLastName, userPhone, userGender, userCitizenship, userAge, userInterest, userPassword, userRole, userOccupation)) {
-                        writer.println("User Successfully updated");
-                    } else {
-                        writer.println("Not inserted into database");
-                    }
+                    String userResume = user[11];
+                    String userIsEmailConfirm = user[12]; // by right should be boolean
+                    String userHighestEducation = user[13];
+                    String userFieldOfStudy = user[14];
+
+                    int count = 0;
+                    count = UserDAO.getCurrentRows();
+
+                    // Insert into database
+                    Boolean inserted = UserDAO.addUser(count, userEmail, userFirstName, userLastName, userPhone, userGender, userCitizenship, date, userProfilePic, userInterest, userPassword, userOccupation, userResume, userIsEmailConfirm, userHighestEducation, userFieldOfStudy);
+
+                    if (inserted == true) {
+                        count++;
+                    } 
                 }
             } else {
                 writer.println("Haiz");
             }
 
+            /*
             // Create path components to save the file -- Trips
             final Part filePartTrip = request.getPart("updateTrips");
             InputStream fileContentTrip = filePartTrip.getInputStream();
@@ -123,6 +133,7 @@ public class AdminBootstrapServlet extends HttpServlet {
             } else {
                 writer.println("Haiz");
             }
+            */
 
             request.setAttribute("Success_Msg", "Database successfully updated");
             request.getRequestDispatcher("AdminPortal_bootstrap.jsp").forward(request, response);

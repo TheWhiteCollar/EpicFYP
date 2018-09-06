@@ -8,6 +8,7 @@ package Model.Dao;
 import Controller.ConnectionManager;
 import Model.Entity.User;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -58,48 +59,47 @@ public class UserDAO {
         return user;
     }
 
-    // Update user table
-    public static boolean updateUser(String userEmail, String userFirstName, String userLastName, int userPhone, String userOccupation, String userPassword) {
+    public static int getCurrentRows() {
 
-        String sql = "INSERT INTO user (userEmail, userFirstName, userLastName, userPhone, userOccupation, userPassword, userRole) VALUES (?,?,?,?,?,?,?)";
+        int count = 0;
+        String sql = "SELECT COUNT(*) FROM user";
 
         try (Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
-            stmt.setString(1, userEmail);
-            stmt.setString(2, userFirstName);
-            stmt.setString(3, userLastName);
-            stmt.setInt(4, userPhone);
-            stmt.setString(5, userOccupation);
-            stmt.setString(6, userPassword);
-            stmt.setString(7, "member");
-            int result = stmt.executeUpdate();
-            if (result == 0) {
-                return false;
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+               count++;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.WARNING, "Email is already registered!", ex);
+            Logger.getLogger(UserDAO.class.getName()).log(Level.WARNING, "Unable to retrieve user", ex);
         }
-        return true;
+
+        return count;
     }
 
     // Add existing users/bulk new users
-    public static boolean addUser(String userEmail, String userFirstName, String userLastName, int userPhone, String userGender, String userCitizenship, int userAge, String userInterest, String userPassword, String userRole, String userOccupation) {
+    public static boolean addUser(int count, String userEmail, String userFirstName, String userLastName, int userPhone, String userGender, String userCitizenship, Date userDOB, String userProfilePic, String userInterest, String userPassword, String userOccupation, String userResume, String userIsEmailConfirm, String userHighestEducation, String userFieldOfStudy) {
 
-        String sql = "INSERT INTO user (userEmail, userFirstName, userLastName, userPhone, userGender, userCitizenship, userAge, userInterest, userPassword, userRole, userOccupation) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO user VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try (Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
-            stmt.setString(1, userEmail);
-            stmt.setString(2, userFirstName);
-            stmt.setString(3, userLastName);
-            stmt.setInt(4, userPhone);
-            stmt.setString(5, userGender);
-            stmt.setString(6, userCitizenship);
-            stmt.setInt(7, userAge);
-            stmt.setString(8, userInterest);
-            stmt.setString(9, userPassword);
-            stmt.setString(10, "member");
-            stmt.setString(11, userOccupation);
+            stmt.setInt(1, count);
+            stmt.setString(2, userEmail);
+            stmt.setString(3, userFirstName);
+            stmt.setString(4, userLastName);
+            stmt.setInt(5, userPhone);
+            stmt.setString(6, userGender);
+            stmt.setString(7, userCitizenship);
+            stmt.setDate(8, Date.valueOf("1995-08-26"));
+            stmt.setString(9, userProfilePic);
+            stmt.setString(10, userInterest);
+            stmt.setString(11, userPassword);
+            stmt.setString(12, userOccupation);
+            stmt.setString(13, userResume);
+            stmt.setString(14, userIsEmailConfirm);
+            stmt.setString(15, userHighestEducation);
+            stmt.setString(16, userFieldOfStudy);
             int result = stmt.executeUpdate();
             if (result == 0) {
                 return false;
@@ -128,7 +128,7 @@ public class UserDAO {
         }
         return null;
     }
-    
+
     /*public void deleteUser(User user){
         String sql = "DELETE * FROM user WHERE userEmail='"+ user.getUserEmail()+"'";
          try (Connection conn = ConnectionManager.getConnection();
@@ -137,14 +137,13 @@ public class UserDAO {
             Logger.getLogger(UserDAO.class.getName()).log(Level.WARNING, "Unable to delete user!", ex);
         }
     }*/
-    
     public static boolean deleteUser(String userEmail) {
 
         String sql1 = "DELETE FROM user WHERE userEmail=?";
 
         try (
-            Connection conn = ConnectionManager.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(sql1);) {
+                Connection conn = ConnectionManager.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql1);) {
             stmt.setString(1, userEmail);
             stmt.executeUpdate();
         } catch (SQLException ex) {

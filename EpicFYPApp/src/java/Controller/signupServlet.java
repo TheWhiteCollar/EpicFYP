@@ -9,6 +9,7 @@ import Model.Dao.UserDAO;
 import Model.Entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,21 +36,43 @@ public class signupServlet extends HttpServlet {
             throws ServletException, IOException {
 
         // retrieve user input
-        String firstName = request.getParameter("firstName");
-        String lastName = request.getParameter("lastName");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
+        String userEmail = request.getParameter("email");
+        String userFirstName = request.getParameter("firstName");
+        String userLastName = request.getParameter("lastName");
         String phone = request.getParameter("phone");
-        int phoneNum = Integer.parseInt(phone);
-        String occupation = request.getParameter("occupation");
+        int userPhone = Integer.parseInt(phone);
+        String userGender = request.getParameter("gender");
+        String userCitizenship = request.getParameter("citizenship");
+        String yob = request.getParameter("yob");
+        int yearOfBirth = Integer.parseInt(yob);
+        Date date = Date.valueOf("1995-08-26");
+        //profile pic
+        String userProfilePic = "pretty.jpg";
+        String userInterest = request.getParameter("interest");
+        String userPassword = request.getParameter("password");
+        String userOccupation = request.getParameter("occupation");
+        //resume
+        String userResume = "MyResume.pdf";
+        String userIsEmailConfirm = "false"; // by right should be boolean
+        String userHighestEducation = request.getParameter("highest_qualification");
+        String userFieldOfStudy = request.getParameter("field of Study");
+        
+        //String school = request.getParameter("school");
+        //String language = request.getParameter("language");
+        //String lookingFor = request.getParameter("looking for");
+        //String message = request.getParameter("message");
 
-        // validate fields are not empty and insert into database
-        if (!firstName.equals("") && !lastName.equals("") && !email.equals("") && !password.equals("") && !phone.equals("") && !occupation.equals("")) {
+        // validate fields are not empty and insert into database - should do it in frontend?
+        if (!userFirstName.equals("") && !userLastName.equals("") && !userEmail.equals("") && !userPassword.equals("") && !userOccupation.equals("")) {
 
+            int count = 0;
+            count = UserDAO.getCurrentRows();
+            
             // Insert into database
-            Boolean inserted = UserDAO.updateUser(email, firstName, lastName, phoneNum, occupation, password);
+            Boolean inserted = UserDAO.addUser(count,userEmail, userFirstName, userLastName, userPhone, userGender, userCitizenship, date, userProfilePic, userInterest, userPassword, userOccupation, userResume, userIsEmailConfirm, userHighestEducation, userFieldOfStudy);
 
             if (inserted == true) {
+                count++;
                 response.sendRedirect("index.jsp");
                 return;
             } else {

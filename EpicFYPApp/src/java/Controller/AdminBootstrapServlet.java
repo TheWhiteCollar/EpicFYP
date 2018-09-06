@@ -78,15 +78,13 @@ public class AdminBootstrapServlet extends HttpServlet {
 
                     if (inserted == true) {
                         count++;
-                        writer.println("User Successfully updated");
-                    } else {
-                        writer.println("Not inserted into database");
-                    }
+                    } 
                 }
             } else {
                 writer.println("Haiz");
             }
 
+            /*
             // Create path components to save the file -- Trips
             final Part filePartTrip = request.getPart("updateTrips");
             InputStream fileContentTrip = filePartTrip.getInputStream();
@@ -135,6 +133,7 @@ public class AdminBootstrapServlet extends HttpServlet {
             } else {
                 writer.println("Haiz");
             }
+            */
 
             request.setAttribute("Success_Msg", "Database successfully updated");
             request.getRequestDispatcher("AdminPortal_bootstrap.jsp").forward(request, response);

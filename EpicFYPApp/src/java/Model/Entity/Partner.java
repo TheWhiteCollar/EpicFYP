@@ -11,10 +11,8 @@ package Model.Entity;
     #3: partnerCountry (varchar 100)
     #4: partnerState (varchar 100)
     #5: partnerDescription (varchar 1000)
-    #6: password (varchar 50)
+    #6: partnerPassword (varchar 50)
     #7: partnerPicture (varchar 100)
-    #8: partnerPriceCheap (decimal 13,2)
-    #9: partnerPriceEx (decimal 13,2)
  */
 
 public class Partner {
@@ -24,21 +22,17 @@ public class Partner {
     private String partnerCountry;
     private String partnerState;
     private String partnerDescription;
-    private String password;
+    private String partnerPassword;
     private String partnerPicture;
-    private double partnerPriceCheap;
-    private double partnerPriceEx;
 
-    public Partner(int partnerID, String partnerName, String partnerCountry, String partnerState, String partnerDescription, String password, String partnerPicture, double partnerPriceCheap, double partnerPriceEx) {
+    public Partner(int partnerID, String partnerName, String partnerCountry, String partnerState, String partnerDescription, String partnerPassword, String partnerPicture) {
         this.partnerID = partnerID;
         this.partnerName = partnerName;
         this.partnerCountry = partnerCountry;
         this.partnerState = partnerState;
         this.partnerDescription = partnerDescription;
-        this.password = password;
+        this.partnerPassword = partnerPassword;
         this.partnerPicture = partnerPicture;
-        this.partnerPriceCheap = partnerPriceCheap;
-        this.partnerPriceEx = partnerPriceEx;
     }
 
     public int getPartnerID() {
@@ -81,13 +75,13 @@ public class Partner {
         this.partnerDescription = partnerDescription;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPartnerPassword() {
+        return partnerPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    public void setPartnerPassword(String partnerPassword) {
+        this.partnerPassword = partnerPassword;
+    }   
 
     public String getPartnerPicture() {
         return partnerPicture;
@@ -96,21 +90,4 @@ public class Partner {
     public void setPartnerPicture(String partnerPicture) {
         this.partnerPicture = partnerPicture;
     }
-
-    public double getPartnerPriceCheap() {
-        return partnerPriceCheap;
-    }
-
-    public void setPartnerPriceCheap(double partnerPriceCheap) {
-        this.partnerPriceCheap = partnerPriceCheap;
-    }
-
-    public double getPartnerPriceEx() {
-        return partnerPriceEx;
-    }
-
-    public void setPartnerPriceEx(double partnerPriceEx) {
-        this.partnerPriceEx = partnerPriceEx;
-    }
-
 }

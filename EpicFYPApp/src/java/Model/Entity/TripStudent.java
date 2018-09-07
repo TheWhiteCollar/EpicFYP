@@ -6,41 +6,32 @@
 package Model.Entity;
 
 /* Database sequence
-    #1: tripStudentID (int 11)
-    #2: tripID (int 11)
-    #3: tripUserEmail (varchar 50)
-    #4: tripStudentPayment (int 11)
-    #5: tripStudentStatus (varchar 100)
-    #6: tripStudentReview (varchar 500)
-    #7: tripStudentRating (int 1)
+    
+    #1: tripUserEmail (varchar 50)
+    #2: tripStudentPayment (int 11)
+    #3: tripStudentStatus (varchar 100)
+    #4: tripStudentReview (varchar 500)
+    #5: tripStudentRating (int 1)
+    #6: tripID (int 11)
  */
 
 public class TripStudent {
 
-    private int tripStudentID;
-    private int tripID;
+    
     private String tripUserEmail;
     private int tripStudentPayment;
     private String tripStudentStatus;
     private String tripStudentReview;
     private int tripStudentRating;
+    private int tripID;
 
-    public TripStudent(int tripStudentID, int tripID, String tripUserEmail, int tripStudentPayment, String tripStudentStatus, String tripStudentReview, int tripStudentRating) {
-        this.tripStudentID = tripStudentID;
-        this.tripID = tripID;
+    public TripStudent(String tripUserEmail, int tripStudentPayment, String tripStudentStatus, String tripStudentReview, int tripStudentRating, int tripID) {
         this.tripUserEmail = tripUserEmail;
         this.tripStudentPayment = tripStudentPayment;
         this.tripStudentStatus = tripStudentStatus;
         this.tripStudentReview = tripStudentReview;
         this.tripStudentRating = tripStudentRating;
-    }
-
-    public int getTripStudentID() {
-        return tripStudentID;
-    }
-
-    public void setTripStudentID(int tripStudentID) {
-        this.tripStudentID = tripStudentID;
+        this.tripID = tripID;
     }
 
     public int getTripID() {

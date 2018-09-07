@@ -9,7 +9,7 @@ package Model.Entity;
     #1: paymentID (int 11)
     #2: paymentMode (varchar 100)
     #3: paymentType (varchar 100)
-    #4: paymentRefund (decimal 13,2)
+    #4: paymentRefund (double)
  */
 
 public class Payment {

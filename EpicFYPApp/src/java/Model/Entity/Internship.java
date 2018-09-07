@@ -11,13 +11,15 @@ import java.sql.Date;
     #1: internshipID (int 11)
     #2: internshipName (varchar 100)
     #3: internshipApproval (varchar 100)
-    #4: internshipCategory (int 11)
+    #4: internshipInterest (varchar 500)
     #5: internshipDescription (varchar 1000)
     #6: internshipStart (date)
     #7: internshipEnd (date)
     #8: internshipPay (decimal 13,2)
     #9: internshipSupervisor (varchar 100)
     #10: internshipSupervisorEmail (varchar 100)
+    #11: internshipVacency (int 100)
+    #12: internshipPartnerID (int 11)
  */
 
 public class Internship {
@@ -25,25 +27,29 @@ public class Internship {
     private int internshipID;
     private String internshipName;
     private String internshipApproval;
-    private int internshipCategory;
+    private String internshipInterest;
     private String internshipDescription;
     private Date internshipStart;
     private Date internshipEnd;
     private double internshipPay;
     private String internshipSupervisor;
     private String internshipSupervisorEmail;
+    private int internshipVacancy;
+    private int internshipPartnerID;
 
-    public Internship(int internshipID, String internshipName, String internshipApproval, int internshipCategory, String internshipDescription, Date internshipStart, Date internshipEnd, double internshipPay, String internshipSupervisor, String internshipSupervisorEmail) {
+    public Internship(int internshipID, String internshipName, String internshipApproval, String internshipInterest, String internshipDescription, Date internshipStart, Date internshipEnd, double internshipPay, String internshipSupervisor, String internshipSupervisorEmail, int internshipVacancy, int internshipPartnerID) {
         this.internshipID = internshipID;
         this.internshipName = internshipName;
         this.internshipApproval = internshipApproval;
-        this.internshipCategory = internshipCategory;
+        this.internshipInterest = internshipInterest;
         this.internshipDescription = internshipDescription;
         this.internshipStart = internshipStart;
         this.internshipEnd = internshipEnd;
         this.internshipPay = internshipPay;
         this.internshipSupervisor = internshipSupervisor;
         this.internshipSupervisorEmail = internshipSupervisorEmail;
+        this.internshipVacancy = internshipVacancy;
+        this.internshipPartnerID = internshipPartnerID;
     }
 
     public int getInternshipID() {
@@ -70,12 +76,12 @@ public class Internship {
         this.internshipApproval = internshipApproval;
     }
 
-    public int getInternshipCategory() {
-        return internshipCategory;
+    public String getInternshipInterest() {
+        return internshipInterest;
     }
 
-    public void setInternshipCategory(int internshipCategory) {
-        this.internshipCategory = internshipCategory;
+    public void setInternshipInterest(String internshipInterest) {
+        this.internshipInterest = internshipInterest;
     }
 
     public String getInternshipDescription() {
@@ -126,4 +132,21 @@ public class Internship {
         this.internshipSupervisorEmail = internshipSupervisorEmail;
     }
 
+    public int getInternshipVacancy() {
+        return internshipVacancy;
+    }
+
+    public void setInternshipVacancy(int internshipVacancy) {
+        this.internshipVacancy = internshipVacancy;
+    }
+
+    public int getInternshipPartnerID() {
+        return internshipPartnerID;
+    }
+
+    public void setInternshipPartnerID(int internshipPartnerID) {
+        this.internshipPartnerID = internshipPartnerID;
+    }
+
+    
 }

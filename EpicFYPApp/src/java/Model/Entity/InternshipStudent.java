@@ -6,32 +6,24 @@
 package Model.Entity;
 
 /* Database sequence
-    #1: internshipStudentID (int 11)
-    #2: internshipID (int 11)
-    #3: internshipUserEmail (varchar 50)
-    #4: internshipStudentStatus (varchar 100)
+    #1: internshipID (int 11)
+    #2: internshipUserEmail (varchar 50)
+    #3: internshipStudentStatus (varchar 100)
+    #4: internshipStudentContinent (varchar 100)
  */
 
 public class InternshipStudent {
 
-    private int internshipStudentID;
     private int internshipID;
     private String internshipUserEmail;
     private String internshipStudentStatus;
+    private String internshipStudentContinent;
 
-    public InternshipStudent(int internshipStudentID, int internshipID, String internshipUserEmail, String internshipStudentStatus) {
-        this.internshipStudentID = internshipStudentID;
+    public InternshipStudent(int internshipID, String internshipUserEmail, String internshipStudentStatus, String internshipStudentContinent) {
         this.internshipID = internshipID;
         this.internshipUserEmail = internshipUserEmail;
         this.internshipStudentStatus = internshipStudentStatus;
-    }
-
-    public int getInternshipStudentID() {
-        return internshipStudentID;
-    }
-
-    public void setInternshipStudentID(int internshipStudentID) {
-        this.internshipStudentID = internshipStudentID;
+        this.internshipStudentContinent = internshipStudentContinent;
     }
 
     public int getInternshipID() {
@@ -58,4 +50,12 @@ public class InternshipStudent {
         this.internshipStudentStatus = internshipStudentStatus;
     }
 
+    public String getInternshipStudentContinent() {
+        return internshipStudentContinent;
+    }
+
+    public void setInternshipStudentContinent(String internshipStudentContinent) {
+        this.internshipStudentContinent = internshipStudentContinent;
+    }
+   
 }

@@ -6,26 +6,15 @@
 package Model.Entity;
 
 /* Database sequence
-    #1: interestID (int 11)
-    #2: interestName (varchar 200)
+    #1: interestName (varchar 500)
  */
 
 public class Interest {
-
-    private int interestID;
+    
     private String interestName;
 
-    public Interest(int interestID, String interestName) {
-        this.interestID = interestID;
+    public Interest(String interestName) {
         this.interestName = interestName;
-    }
-
-    public int getInterestID() {
-        return interestID;
-    }
-
-    public void setInterestID(int interestID) {
-        this.interestID = interestID;
     }
 
     public String getInterestName() {

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 /* Database sequence
     #1: tripID (int 11)
     #2: tripTitle (varchar 100)
-    #3: tripPrice (decimal 13,2)
+    #3: tripPrice (double)
     #4: tripItinerary (varchar 100)
     #5: tripDescription (varchar 1000)
     #6: tripCountry (varchar 100)
@@ -20,16 +20,10 @@ import java.util.ArrayList;
     #9: tripEnd (date)
     #10: tripDuration (int 11)
     #11: tripActivation (int 3)
-    #12: tripCategoryInterest (int 3)
-    #13: tripCountryState (varchar 200)
-    #14: tripProposedBy (varchar 100)
-    #15: tripNoOfInterested (int 11)
-    #16: tripTotalSignup (int 11)
-    #17: tripEstimatedPrice (decimal 13,2)
-    #18: tripCustomizeApproval (varchar 100)
-    #19: tripPromo (varchar 100)
-    #20: tripPromoPercentage (decimal 3,2)
-    #21: tripAttraction (varchar 100)
+    #12: tripInterest (varchar 100)
+    #13: tripTotalSignup (int 11)
+    #14: tripPromo (varchar 100)
+    #15: tripPromoPercentage (double)
  */
 
 public class Trip {
@@ -45,22 +39,16 @@ public class Trip {
     private Date tripEnd;
     private int tripDuration;
     private int tripActivation;
-    private int tripCategoryInterest;
-    private String tripCountryState;
-    private String tripProposedBy;
-    private int tripNoOfInterested;
+    private int tripInterest;
     private int tripTotalSignup;
-    private double tripEstimatedPrice;
-    private String tripCustomizeApproval;
     private String tripPromo;
     private double tripPromoPercentage;
-    private String tripAttraction;
     
     private boolean activated;
     private int studentNeededToActivate;
     private ArrayList<String> signedUpEmails;
 
-    public Trip(int tripID, String tripTitle, double tripPrice, String tripItinerary, String tripDescription, String tripCountry, String tripState, Date tripStart, Date tripEnd, int tripDuration, int tripActivation, int tripCategoryInterest,String tripCountryState,String tripProposedBy,int tripNoOfInterested, int tripTotalSignup, double tripEstimatedPrice, String tripCustomizeApproval, String tripPromo, double tripPromoPercentage, String tripAttraction, ArrayList<String> signedUpEmails, int studentActivation) {
+    public Trip(int tripID, String tripTitle, double tripPrice, String tripItinerary, String tripDescription, String tripCountry, String tripState, Date tripStart, Date tripEnd, int tripDuration, int tripActivation, int tripInterest, int tripTotalSignup, String tripPromo, double tripPromoPercentage, boolean activated, int studentNeededToActivate, ArrayList<String> signedUpEmails) {
         this.tripID = tripID;
         this.tripTitle = tripTitle;
         this.tripPrice = tripPrice;
@@ -72,25 +60,18 @@ public class Trip {
         this.tripEnd = tripEnd;
         this.tripDuration = tripDuration;
         this.tripActivation = tripActivation;
-        this.tripCategoryInterest = tripCategoryInterest;
-        this.tripCountryState = tripCountryState;
-        this.tripProposedBy = tripProposedBy;
-        this.tripNoOfInterested = tripNoOfInterested;
+        this.tripInterest = tripInterest;
         this.tripTotalSignup = tripTotalSignup;
-        this.tripEstimatedPrice = tripEstimatedPrice;
-        this.tripCustomizeApproval = tripCustomizeApproval;
         this.tripPromo = tripPromo;
         this.tripPromoPercentage = tripPromoPercentage;
-        this.tripAttraction = tripAttraction;
-        
+        this.activated = activated;
+        this.studentNeededToActivate = studentNeededToActivate;
         this.signedUpEmails = signedUpEmails;
-        this.studentNeededToActivate = studentActivation;
-        if(signedUpEmails.size()<studentActivation ){
+        if(signedUpEmails.size()<studentNeededToActivate ){
             this.activated = false;
         } else {
             this.activated = true;
         }
-        
     }
     
     // have 1 more trip constructor cause database dont have the column with Emails of signees
@@ -193,36 +174,12 @@ public class Trip {
         this.tripActivation = tripActivation;
     }
 
-    public int getTripCategoryInterest() {
-        return tripCategoryInterest;
+    public int getTripInterest() {
+        return tripInterest;
     }
 
-    public void setTripCategoryInterest(int tripCategoryInterest) {
-        this.tripCategoryInterest = tripCategoryInterest;
-    }
-
-    public String getTripCountryState() {
-        return tripCountryState;
-    }
-
-    public void setTripCountryState(String tripCountryState) {
-        this.tripCountryState = tripCountryState;
-    }
-
-    public String getTripProposedBy() {
-        return tripProposedBy;
-    }
-
-    public void setTripProposedBy(String tripProposedBy) {
-        this.tripProposedBy = tripProposedBy;
-    }
-
-    public int getTripNoOfInterested() {
-        return tripNoOfInterested;
-    }
-
-    public void setTripNoOfInterested(int tripNoOfInterested) {
-        this.tripNoOfInterested = tripNoOfInterested;
+    public void setTripInterest(int tripInterest) {
+        this.tripInterest = tripInterest;
     }
 
     public int getTripTotalSignup() {
@@ -233,21 +190,7 @@ public class Trip {
         this.tripTotalSignup = tripTotalSignup;
     }
 
-    public double getTripEstimatedPrice() {
-        return tripEstimatedPrice;
-    }
-
-    public void setTripEstimatedPrice(double tripEstimatedPrice) {
-        this.tripEstimatedPrice = tripEstimatedPrice;
-    }
-
-    public String getTripCustomizeApproval() {
-        return tripCustomizeApproval;
-    }
-
-    public void setTripCustomizeApproval(String tripCustomizeApproval) {
-        this.tripCustomizeApproval = tripCustomizeApproval;
-    }
+   
 
     public String getTripPromo() {
         return tripPromo;
@@ -263,14 +206,6 @@ public class Trip {
 
     public void setTripPromoPercentage(double tripPromoPercentage) {
         this.tripPromoPercentage = tripPromoPercentage;
-    }
-
-    public String getTripAttraction() {
-        return tripAttraction;
-    }
-
-    public void setTripAttraction(String tripAttraction) {
-        this.tripAttraction = tripAttraction;
     }
 
     
@@ -294,4 +229,14 @@ public class Trip {
     public void setStudentNeededToActivate(int studentNeededToActivate) {
         this.studentNeededToActivate = studentNeededToActivate;
     }
+
+    public ArrayList<String> getSignedUpEmails() {
+        return signedUpEmails;
+    }
+
+    public void setSignedUpEmails(ArrayList<String> signedUpEmails) {
+        this.signedUpEmails = signedUpEmails;
+    }
+    
+    
 }

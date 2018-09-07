@@ -6,26 +6,15 @@
 package Model.Entity;
 
 /* Database sequence
-    #1: fieldOfStudyID (int 11)
-    #2: fieldOfStudyName (varchar 200)
+    #1: fieldOfStudyName (varchar 200)
  */
 
 public class FieldOfStudy {
 
-    private int fieldOfStudyID;
     private String fieldOfStudyName;
 
-    public FieldOfStudy(int fieldOfStudyID, String fieldOfStudyName) {
-        this.fieldOfStudyID = fieldOfStudyID;
+    public FieldOfStudy(String fieldOfStudyName) {
         this.fieldOfStudyName = fieldOfStudyName;
-    }
-
-    public int getFieldOfStudyID() {
-        return fieldOfStudyID;
-    }
-
-    public void setFieldOfStudyID(int fieldOfStudyID) {
-        this.fieldOfStudyID = fieldOfStudyID;
     }
 
     public String getFieldOfStudyName() {

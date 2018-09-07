@@ -6,36 +6,39 @@
 package Model.Entity;
 
 import java.sql.Date;
+import java.time.Year;
 
 /* Database sequence
-    #1: userID (int 11)
-    #2: userEmail (varchar 50)
-    #3: userFirstName (varchar 50)
-    #4: userLastName (varchar 50)
-    #5: userPhone (int 15)
-    #6: userGender (varchar 1)
-    #7: userCitizenship (varchar 100)
-    #8: userDOB (date)
-    #9: userProfilePic (varchar 100)
-    #10: userInterest (varchar 1000)
-    #11: userPassword (varchar 15)
-    #12: userOccupation (varchar 100)
-    #13: userResume (varchar 100)
-    #14: userIsEmailConfirm (varchar 10)
-    #15: userHighestEducation (varchar 100)
-    #16: userFieldOfStudy (varchar 100)
+
+    #1: userEmail (varchar 50)
+    #2: userFirstName (varchar 50)
+    #3: userLastName (varchar 50)
+    #4: userPhone (int 15)
+    #5: userGender (varchar 1)
+    #6: userCitizenship (varchar 100)
+    #7: userDOB (year 4)
+    #8: userProfilePic (varchar 100)
+    #9: userInterest (varchar 1000)
+    #10: userPassword (varchar 50)
+    #11: userOccupation (varchar 100)
+    #12: userResume (varchar 100)
+    #13: userIsEmailConfirm (varchar 10)
+    #14: userHighestEducation (varchar 100)
+    #15: userFieldOfStudy (varchar 100)
+    #16: userDescription (varchar 500)
+    #17: userSchool (varchar 50)
+
  */
 
 public class User {
     
-    private int userID;
     private String userEmail;
     private String userFirstName;
     private String userLastName;
     private int userPhone;
     private String userGender;
     private String userCitizenship;
-    private Date userDOB;
+    private Year userDOB;
     private String userProfilePic;
     private String userInterest;
     private String userPassword;
@@ -44,9 +47,10 @@ public class User {
     private String userIsEmailConfirm;
     private String userHighestEducation;
     private String userFieldOfStudy;
+    private String userDescription;
+    private String userSchool;
 
-    public User(int userID, String userEmail, String userFirstName, String userLastName, int userPhone, String userGender, String userCitizenship, Date userDOB, String userProfilePic, String userInterest, String userPassword, String userOccupation, String userResume, String userIsEmailConfirm, String userHighestEducation, String userFieldOfStudy) {
-        this.userID = userID;
+    public User(String userEmail, String userFirstName, String userLastName, int userPhone, String userGender, String userCitizenship, Year userDOB, String userProfilePic, String userInterest, String userPassword, String userOccupation, String userResume, String userIsEmailConfirm, String userHighestEducation, String userFieldOfStudy, String userDescription, String userSchool) {
         this.userEmail = userEmail;
         this.userFirstName = userFirstName;
         this.userLastName = userLastName;
@@ -62,14 +66,8 @@ public class User {
         this.userIsEmailConfirm = userIsEmailConfirm;
         this.userHighestEducation = userHighestEducation;
         this.userFieldOfStudy = userFieldOfStudy;
-    }
-
-    public int getUserID() {
-        return userID;
-    }
-
-    public void setUserID(int userID) {
-        this.userID = userID;
+        this.userDescription = userDescription;
+        this.userSchool = userSchool;
     }
 
     public String getUserEmail() {
@@ -120,11 +118,11 @@ public class User {
         this.userCitizenship = userCitizenship;
     }
 
-    public Date getUserDOB() {
+    public Year getUserDOB() {
         return userDOB;
     }
 
-    public void setUserDOB(Date userDOB) {
+    public void setUserDOB(Year userDOB) {
         this.userDOB = userDOB;
     }
 
@@ -191,5 +189,20 @@ public class User {
     public void setUserFieldOfStudy(String userFieldOfStudy) {
         this.userFieldOfStudy = userFieldOfStudy;
     }
-   
+      
+    public String getUserDescription() {
+        return userDescription;
+    }
+
+    public void setUserDescription(String userDescription) {
+        this.userDescription = userDescription;
+    }
+
+    public String getUserSchool() {
+        return userSchool;
+    }
+
+    public void setUserSchool(String userSchool) {
+        this.userSchool = userSchool;
+    }
 }

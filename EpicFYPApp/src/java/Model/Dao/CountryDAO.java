@@ -14,12 +14,9 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Lenovo
- */
 public class CountryDAO {
     
+    // get all countries
     public static ArrayList<String> getCountries() {
 
         ArrayList<String> countryNames = new ArrayList<>();
@@ -38,7 +35,7 @@ public class CountryDAO {
         return countryNames;
     }
     
-    
+    //insert new country
     public static boolean addCountry(String countryName) {
 
         String sql = "INSERT INTO country (countryName) VALUES (?)";
@@ -56,6 +53,7 @@ public class CountryDAO {
         return true;
     }
     
+    // delete a particular country row
     public static boolean deleteCountry(String countryName) {
         String sql = "DELETE FROM country WHERE countryName=?";
 
@@ -71,4 +69,24 @@ public class CountryDAO {
 
         return true;
     }
+    
+//    // Update a particular country row
+//    public static boolean updateCountry(String countryName) {
+//
+//        String sql = "UPDATE country SET adminPassword = ? WHERE adminName = ?";
+//
+//        try (Connection conn = ConnectionManager.getConnection();
+//                PreparedStatement stmt = conn.prepareStatement(sql);) {
+//            stmt.setString(1, adminPassword);
+//            stmt.setString(2, adminName);
+//            int result = stmt.executeUpdate();
+//            if (result == 0) {
+//                return false;
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(AdminDAO.class.getName()).log(Level.WARNING, "Failed to update: " + adminName + ".", ex);
+//        }
+//        return true;
+//    }
+    
 }

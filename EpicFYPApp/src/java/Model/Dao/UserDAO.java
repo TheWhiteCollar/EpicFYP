@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author User
+ * 
  */
 public class UserDAO {
 
@@ -35,6 +35,7 @@ public class UserDAO {
     #11: userPassword (varchar)
     #12: userRole (varchar)
      */
+    
     // Get user and their details with userid and password
     public static User getUserByLogin(String userid, String password) {
 
@@ -58,6 +59,7 @@ public class UserDAO {
         return user;
     }
 
+    //count number of rows in user table
     public static int getCurrentRows() {
 
         int count = 0;
@@ -112,6 +114,7 @@ public class UserDAO {
         return true;
     }
 
+    // get all users
     public static ArrayList<User> getAllUsers() {
         ArrayList<User> result = new ArrayList<>();
         try {
@@ -139,6 +142,8 @@ public class UserDAO {
             Logger.getLogger(UserDAO.class.getName()).log(Level.WARNING, "Unable to delete user!", ex);
         }
     }*/
+    
+    //delete user a particular user row
     public static boolean deleteUser(String userEmail) {
 
         String sql1 = "DELETE FROM user WHERE userEmail=?";
@@ -151,6 +156,41 @@ public class UserDAO {
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.WARNING, "Unable to delete user, userEmail = '" + userEmail, ex);
             return false;
+        }
+        return true;
+    }
+    
+     // Update a particular user row
+    public static boolean updateUser(String userEmail, String userFirstName, String userLastName, int userPhone, String userGender, String userCitizenship, int userDOB, String userProfilePic, String userInterest, String userPassword, String userOccupation, String userResume, String userIsEmailConfirm, String userHighestEducation, String userFieldOfStudy, String userDescription, String userSchool) {
+
+        String sql = "UPDATE user SET userFirstName=?, userLastName=?, userPhone=?, userGender=?, userCitizenship=?, userDOB=?,userProfilePic=?,userInterest=?,userPassword=?,userOccupation=?,userResume=?,userIsEmailConfirm=?,userHighestEducation=?,userFieldOfStudy=?,userDescription=?,userSchool=?  WHERE userEmail = ?";
+
+        try (Connection conn = ConnectionManager.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
+           
+            stmt.setString(1, userFirstName);
+            stmt.setString(2, userLastName);
+            stmt.setInt(3, userPhone);
+            stmt.setString(4, userGender);
+            stmt.setString(5, userCitizenship);
+            stmt.setInt(6, userDOB);
+            stmt.setString(7, userProfilePic);
+            stmt.setString(8, userInterest);
+            stmt.setString(9, userPassword);
+            stmt.setString(10, userOccupation);
+            stmt.setString(11, userResume);
+            stmt.setString(12, userIsEmailConfirm);
+            stmt.setString(13, userHighestEducation);
+            stmt.setString(14, userFieldOfStudy);
+            stmt.setString(15, userDescription);
+            stmt.setString(16, userSchool);
+            stmt.setString(17, userEmail);
+            int result = stmt.executeUpdate();
+            if (result == 0) {
+                return false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.WARNING, "Failed to update user: " + userEmail + ".", ex);
         }
         return true;
     }

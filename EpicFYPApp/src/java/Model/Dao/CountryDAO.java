@@ -55,4 +55,20 @@ public class CountryDAO {
         }
         return true;
     }
+    
+    public static boolean deleteCountry(String countryName) {
+        String sql = "DELETE FROM country WHERE countryName=?";
+
+        try (
+                Connection conn = ConnectionManager.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
+            stmt.setString(1, countryName);
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(TripsDAO.class.getName()).log(Level.WARNING, "Unable to delete country, countryName = '" + countryName, ex);
+            return false;
+        }
+
+        return true;
+    }
 }

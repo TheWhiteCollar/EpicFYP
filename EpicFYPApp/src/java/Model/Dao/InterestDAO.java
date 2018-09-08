@@ -54,4 +54,20 @@ public class InterestDAO {
         }
         return true;
     }
+    
+    public static boolean deleteInterest(String interestName) {
+        String sql = "DELETE FROM interest WHERE interestName=?";
+
+        try (
+                Connection conn = ConnectionManager.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
+            stmt.setString(1, interestName);
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(TripsDAO.class.getName()).log(Level.WARNING, "Unable to delete interest, interestName = '" + interestName, ex);
+            return false;
+        }
+
+        return true;
+    }
 }

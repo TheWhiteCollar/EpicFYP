@@ -31,7 +31,7 @@ public class InterestDAO {
                 interestNames.add(rs.getString(2));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.WARNING, "Unable to retrieve interests", ex);
+            Logger.getLogger(InterestDAO.class.getName()).log(Level.WARNING, "Unable to retrieve interests", ex);
         }
 
         return interestNames;
@@ -50,7 +50,7 @@ public class InterestDAO {
                 return false;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.WARNING, "interest already exist!", ex);
+            Logger.getLogger(InterestDAO.class.getName()).log(Level.WARNING, "interest already exist!", ex);
         }
         return true;
     }

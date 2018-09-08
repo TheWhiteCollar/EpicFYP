@@ -8,7 +8,6 @@ package Model.Dao;
 import Controller.ConnectionManager;
 import Model.Entity.User;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -49,7 +48,7 @@ public class UserDAO {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 if (user == null) {
-                    user = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getString(7), rs.getDate(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16));
+                    user = new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15) , rs.getString(16) , rs.getString(17));
                 }
             }
         } catch (SQLException ex) {
@@ -78,28 +77,31 @@ public class UserDAO {
     }
 
     // Add existing users/bulk new users
-    public static boolean addUser(int count, String userEmail, String userFirstName, String userLastName, int userPhone, String userGender, String userCitizenship, Date userDOB, String userProfilePic, String userInterest, String userPassword, String userOccupation, String userResume, String userIsEmailConfirm, String userHighestEducation, String userFieldOfStudy) {
+    public static boolean addUser(String userEmail, String userFirstName, String userLastName, int userPhone, String userGender, String userCitizenship, int userDOB, String userProfilePic, String userInterest, String userPassword, String userOccupation, String userResume, String userIsEmailConfirm, String userHighestEducation, String userFieldOfStudy, String userDescription, String userSchool) {
 
-        String sql = "INSERT INTO user VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO user VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try (Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
-            stmt.setInt(1, count);
-            stmt.setString(2, userEmail);
-            stmt.setString(3, userFirstName);
-            stmt.setString(4, userLastName);
-            stmt.setInt(5, userPhone);
-            stmt.setString(6, userGender);
-            stmt.setString(7, userCitizenship);
-            stmt.setDate(8, Date.valueOf("1995-08-26"));
-            stmt.setString(9, userProfilePic);
-            stmt.setString(10, userInterest);
-            stmt.setString(11, userPassword);
-            stmt.setString(12, userOccupation);
-            stmt.setString(13, userResume);
-            stmt.setString(14, userIsEmailConfirm);
-            stmt.setString(15, userHighestEducation);
-            stmt.setString(16, userFieldOfStudy);
+
+            stmt.setString(1, userEmail);
+            stmt.setString(2, userFirstName);
+            stmt.setString(3, userLastName);
+            stmt.setInt(4, userPhone);
+            stmt.setString(5, userGender);
+            stmt.setString(6, userCitizenship);
+            stmt.setInt(7, userDOB);
+            stmt.setString(8, userProfilePic);
+            stmt.setString(9, userInterest);
+            stmt.setString(10, userPassword);
+            stmt.setString(11, userOccupation);
+            stmt.setString(12, userResume);
+            stmt.setString(13, userIsEmailConfirm);
+            stmt.setString(14, userHighestEducation);
+            stmt.setString(15, userFieldOfStudy);
+            stmt.setString(16, userDescription);
+            stmt.setString(17, userSchool);
+            
             int result = stmt.executeUpdate();
             if (result == 0) {
                 return false;
@@ -117,7 +119,7 @@ public class UserDAO {
             PreparedStatement stmt = conn.prepareStatement("select * from user");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                result.add(new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getString(7), rs.getDate(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16)));
+                result.add(new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15) , rs.getString(16) , rs.getString(17)));
             }
             rs.close();
             stmt.close();

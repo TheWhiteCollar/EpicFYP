@@ -32,7 +32,7 @@ public class CountryDAO {
                 countryNames.add(rs.getString(1));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.WARNING, "Unable to retrieve countries", ex);
+            Logger.getLogger(CountryDAO.class.getName()).log(Level.WARNING, "Unable to retrieve countries", ex);
         }
 
         return countryNames;
@@ -51,7 +51,7 @@ public class CountryDAO {
                 return false;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.WARNING, "Country already exist!", ex);
+            Logger.getLogger(CountryDAO.class.getName()).log(Level.WARNING, "Country already exist!", ex);
         }
         return true;
     }

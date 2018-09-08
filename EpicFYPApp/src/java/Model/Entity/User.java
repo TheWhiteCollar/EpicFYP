@@ -5,7 +5,6 @@
  */
 package Model.Entity;
 
-import java.sql.Date;
 import java.time.Year;
 
 /* Database sequence
@@ -38,7 +37,7 @@ public class User {
     private int userPhone;
     private String userGender;
     private String userCitizenship;
-    private Year userDOB;
+    private int userDOB;
     private String userProfilePic;
     private String userInterest;
     private String userPassword;
@@ -50,7 +49,7 @@ public class User {
     private String userDescription;
     private String userSchool;
 
-    public User(String userEmail, String userFirstName, String userLastName, int userPhone, String userGender, String userCitizenship, Year userDOB, String userProfilePic, String userInterest, String userPassword, String userOccupation, String userResume, String userIsEmailConfirm, String userHighestEducation, String userFieldOfStudy, String userDescription, String userSchool) {
+    public User(String userEmail, String userFirstName, String userLastName, int userPhone, String userGender, String userCitizenship, int userDOB, String userProfilePic, String userInterest, String userPassword, String userOccupation, String userResume, String userIsEmailConfirm, String userHighestEducation, String userFieldOfStudy, String userDescription, String userSchool) {
         this.userEmail = userEmail;
         this.userFirstName = userFirstName;
         this.userLastName = userLastName;
@@ -118,11 +117,11 @@ public class User {
         this.userCitizenship = userCitizenship;
     }
 
-    public Year getUserDOB() {
+    public int getUserDOB() {
         return userDOB;
     }
 
-    public void setUserDOB(Year userDOB) {
+    public void setUserDOB(int userDOB) {
         this.userDOB = userDOB;
     }
 

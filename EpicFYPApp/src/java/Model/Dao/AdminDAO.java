@@ -7,7 +7,6 @@ package Model.Dao;
 
 import Controller.ConnectionManager;
 import Model.Entity.Admin;
-import Model.Entity.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,22 +14,18 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author User
- */
 public class AdminDAO {
     
-    // Get user and their details with userid and password
-    public static Admin getAdminByLogin(String userid, String password) {
+    // Get admin and their details with adminName and adminPassword
+    public static Admin getAdminByLogin(String adminName, String adminPassword) {
 
         Admin admin = null;
         String sql = "SELECT * FROM admin WHERE adminName LIKE ? AND adminPassword LIKE ?";
 
         try (Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
-            stmt.setString(1, userid);
-            stmt.setString(2, password);
+            stmt.setString(1, adminName);
+            stmt.setString(2, adminPassword);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 if (admin == null) {
@@ -38,27 +33,27 @@ public class AdminDAO {
                 }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.WARNING, "Unable to retrieve userid = '" + userid + "'.", ex);
+            Logger.getLogger(AdminDAO.class.getName()).log(Level.WARNING, "Unable to retrieve" + adminName + ".", ex);
         }
 
         return admin;
     }
 
-    // Update user table
-    public static boolean updateAdmin(String userEmail, String userPassword) {
+    // Update admin table
+    public static boolean updateAdmin(String adminName, String adminPassword) {
 
-        String sql = "INSERT INTO admin (userEmail, userPassword) VALUES (?,?)";
+        String sql = "INSERT INTO admin (adminName, adminPassword) VALUES (?,?)";
 
         try (Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
-            stmt.setString(1, userEmail);
-            stmt.setString(2, userPassword);
+            stmt.setString(1, adminName);
+            stmt.setString(2, adminPassword);
             int result = stmt.executeUpdate();
             if (result == 0) {
                 return false;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.WARNING, "Email is already registered!", ex);
+            Logger.getLogger(AdminDAO.class.getName()).log(Level.WARNING, "Admin username is already taken!", ex);
         }
         return true;
     }

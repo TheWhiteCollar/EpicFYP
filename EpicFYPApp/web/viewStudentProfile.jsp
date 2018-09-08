@@ -136,7 +136,7 @@
                                     </div>
                                     <div class ="4u 12u">
                                         <p>
-                                            Year of birth : 1996
+                                            Year of birth : <% out.print(u.getUserDOB()); %>
                                         </p>                                           
                                     </div>
                                 </div>

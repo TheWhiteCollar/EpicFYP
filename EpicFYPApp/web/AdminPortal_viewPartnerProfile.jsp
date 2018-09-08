@@ -69,9 +69,9 @@
                     <thead>
                         <tr>
                             <th class = "align-center">#</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th class = "align-center">Contact</th>
+                            <th>Partner Name</th>
+                            <th>Country</th>
+                            <th class = "align-center">State</th>
                             <th class = "align-center">More information</th>
 
                         </tr>

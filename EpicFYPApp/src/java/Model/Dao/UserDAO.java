@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * 
+ *
  */
 public class UserDAO {
 
@@ -35,7 +35,6 @@ public class UserDAO {
     #11: userPassword (varchar)
     #12: userRole (varchar)
      */
-    
     // Get user and their details with userid and password
     public static User getUserByLogin(String userid, String password) {
 
@@ -49,7 +48,7 @@ public class UserDAO {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 if (user == null) {
-                    user = new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15) , rs.getString(16) , rs.getString(17));
+                    user = new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17));
                 }
             }
         } catch (SQLException ex) {
@@ -59,33 +58,13 @@ public class UserDAO {
         return user;
     }
 
-    //count number of rows in user table
-    public static int getCurrentRows() {
-
-        int count = 0;
-        String sql = "SELECT COUNT(*) FROM user";
-
-        try (Connection conn = ConnectionManager.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(sql);) {
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-               count++;
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.WARNING, "Unable to retrieve user", ex);
-        }
-
-        return count;
-    }
-
     // Add existing users/bulk new users
     public static boolean addUser(String userEmail, String userFirstName, String userLastName, int userPhone, String userGender, String userCitizenship, int userDOB, String userProfilePic, String userInterest, String userPassword, String userOccupation, String userResume, String userIsEmailConfirm, String userHighestEducation, String userFieldOfStudy, String userDescription, String userSchool) {
 
         String sql = "INSERT INTO user VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
-        try (Connection conn = ConnectionManager.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(sql);) {
-
+        try (Connection conn = ConnectionManager.getConnection()) {
+            PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, userEmail);
             stmt.setString(2, userFirstName);
             stmt.setString(3, userLastName);
@@ -103,7 +82,7 @@ public class UserDAO {
             stmt.setString(15, userFieldOfStudy);
             stmt.setString(16, userDescription);
             stmt.setString(17, userSchool);
-            
+
             int result = stmt.executeUpdate();
             if (result == 0) {
                 return false;
@@ -122,7 +101,7 @@ public class UserDAO {
             PreparedStatement stmt = conn.prepareStatement("select * from user");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                result.add(new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15) , rs.getString(16) , rs.getString(17)));
+                result.add(new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17)));
             }
             rs.close();
             stmt.close();
@@ -142,7 +121,6 @@ public class UserDAO {
             Logger.getLogger(UserDAO.class.getName()).log(Level.WARNING, "Unable to delete user!", ex);
         }
     }*/
-    
     //delete user a particular user row
     public static boolean deleteUser(String userEmail) {
 
@@ -159,15 +137,15 @@ public class UserDAO {
         }
         return true;
     }
-    
-     // Update a particular user row
+
+    // Update a particular user row
     public static boolean updateUser(String userEmail, String userFirstName, String userLastName, int userPhone, String userGender, String userCitizenship, int userDOB, String userProfilePic, String userInterest, String userPassword, String userOccupation, String userResume, String userIsEmailConfirm, String userHighestEducation, String userFieldOfStudy, String userDescription, String userSchool) {
 
         String sql = "UPDATE user SET userFirstName=?, userLastName=?, userPhone=?, userGender=?, userCitizenship=?, userDOB=?,userProfilePic=?,userInterest=?,userPassword=?,userOccupation=?,userResume=?,userIsEmailConfirm=?,userHighestEducation=?,userFieldOfStudy=?,userDescription=?,userSchool=?  WHERE userEmail = ?";
 
         try (Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
-           
+
             stmt.setString(1, userFirstName);
             stmt.setString(2, userLastName);
             stmt.setInt(3, userPhone);

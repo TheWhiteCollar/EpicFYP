@@ -43,7 +43,7 @@ public class AdminDAO {
     // Update a particular admin row
     public static boolean updateAdmin(String adminName, String adminPassword) {
 
-        String sql = "UPDATE admin SET adminPassword = ? WHERE adminName = ?";
+        String sql = "UPDATE admin SET adminPassword=? WHERE adminName=?";
 
         try (Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
@@ -78,7 +78,7 @@ public class AdminDAO {
         return true;
     }
 
-    public static boolean deleteUser(String adminName) {
+    public static boolean deleteAdmin(String adminName) {
 
         String sql1 = "DELETE FROM admin WHERE adminName=?";
 
@@ -95,7 +95,7 @@ public class AdminDAO {
     }
 
     //get all admin names
-    public static ArrayList<Admin> getAllUsers() {
+    public static ArrayList<Admin> getAllAdmins() {
         ArrayList<Admin> result = new ArrayList<>();
         try {
             Connection conn = ConnectionManager.getConnection();

@@ -294,6 +294,60 @@
                 });
 
             }
+            
+            function deleteCountry(obj) {
+                let countryName = $(obj).val();
+                let countryData = {
+                    "countryName": countryName
+                };
+                $.post('/EpicFYPApp/deleteCountry', countryData, function (response) {
+                    getAllCountries();
+                    if (response === "success") {
+                        $.notify({
+                            // options
+                            message: 'Successfully deleted country'
+                        }, {
+                            // settings
+                            type: 'success'
+                        });
+                    } else {
+                        $.notify({
+                            // options
+                            message: 'Fail to delete country'
+                        }, {
+                            type: 'danger'
+                        });
+                    }
+                });
+                
+            }
+            
+            function deleteInterest(obj) {
+                let interestName = $(obj).val();
+                let interestData = {
+                    "interestName": interestName
+                };
+                $.post('/EpicFYPApp/deleteInterest', interestData, function (response) {
+                    getAllInterests();
+                    if (response === "success") {
+                        $.notify({
+                            // options
+                            message: 'Successfully deleted interest'
+                        }, {
+                            // settings
+                            type: 'success'
+                        });
+                    } else {
+                        $.notify({
+                            // options
+                            message: 'Fail to delete interest'
+                        }, {
+                            type: 'danger'
+                        });
+                    }
+                });
+                
+            }
 
         </script>
         <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->

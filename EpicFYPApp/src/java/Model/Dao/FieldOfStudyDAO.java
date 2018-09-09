@@ -5,10 +5,6 @@
  */
 package Model.Dao;
 
-/**
- *
- * @author xiuwenhime
- */
 public class FieldOfStudyDAO {
     
 }

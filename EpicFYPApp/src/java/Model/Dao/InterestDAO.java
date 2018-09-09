@@ -14,10 +14,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Lenovo
- */
 public class InterestDAO {
     public static ArrayList<String> getInterests() {
 
@@ -70,4 +66,6 @@ public class InterestDAO {
 
         return true;
     }
+    
+    //update Interest need more extensive searching
 }

@@ -49,7 +49,6 @@ public class AdminBootstrapServlet extends HttpServlet {
             InputStream fileContentUser = filePartUser.getInputStream();
             if (fileContentUser != null) {
                 Scanner sc = new Scanner(fileContentUser);
-                writer.println("You are on the way woohoo -- Users");
                 String line = sc.nextLine();
                 while (sc.hasNextLine()) {
                     line = sc.nextLine();
@@ -60,7 +59,7 @@ public class AdminBootstrapServlet extends HttpServlet {
                     int userPhone = Integer.parseInt(user[3]);
                     String userGender = user[4];
                     String userCitizenship = user[5];
-                    Date date = Date.valueOf("1995-08-26");
+                    int yearOfBirth = Integer.parseInt(user[6]);
                     String userProfilePic = user[7];
                     String userInterest = user[8];
                     String userPassword = user[9];
@@ -69,19 +68,14 @@ public class AdminBootstrapServlet extends HttpServlet {
                     String userIsEmailConfirm = user[12]; // by right should be boolean
                     String userHighestEducation = user[13];
                     String userFieldOfStudy = user[14];
+                    String userDescription = user[15];
+                    String userSchool = user[16];
+                    
+                    Boolean inserted = UserDAO.addUser(userEmail, userFirstName, userLastName, userPhone, userGender, userCitizenship, yearOfBirth, userProfilePic, userInterest, userPassword, userOccupation, userResume, userIsEmailConfirm, userHighestEducation, userFieldOfStudy, userDescription, userSchool);
 
-                    int count = 0;
-                    count = UserDAO.getCurrentRows();
-
-                    // Insert into database
-                    Boolean inserted = UserDAO.addUser(count, userEmail, userFirstName, userLastName, userPhone, userGender, userCitizenship, date, userProfilePic, userInterest, userPassword, userOccupation, userResume, userIsEmailConfirm, userHighestEducation, userFieldOfStudy);
-
-                    if (inserted == true) {
-                        count++;
-                    } 
                 }
             } else {
-                writer.println("Haiz");
+                writer.println("Not added in successfully");
             }
 
             /*
@@ -133,8 +127,7 @@ public class AdminBootstrapServlet extends HttpServlet {
             } else {
                 writer.println("Haiz");
             }
-            */
-
+             */
             request.setAttribute("Success_Msg", "Database successfully updated");
             request.getRequestDispatcher("AdminPortal_bootstrap.jsp").forward(request, response);
 

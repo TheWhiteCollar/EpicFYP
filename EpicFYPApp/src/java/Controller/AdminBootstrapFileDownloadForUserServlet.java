@@ -9,6 +9,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author User
  */
+@WebServlet(name = "AdminBootstrapFileDownloadForUserServlet", urlPatterns = {"/AdminBootstrapFileDownloadForUserServlet"})
 public class AdminBootstrapFileDownloadForUserServlet extends HttpServlet {
 
     /**
@@ -59,8 +61,8 @@ public class AdminBootstrapFileDownloadForUserServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        String gurufile = "user.csv";
-        String gurupath = "C:/Users/User/Desktop/FYP 0509/EpicFYP/EpicFYPApp/web/documents/";
+        String gurufile = "user_blank.csv";
+        String gurupath = "C:/Users/User/Desktop/FYP 0909/EpicFYP/EpicFYPApp/web/documents/";
         response.setContentType("APPLICATION/OCTET-STREAM");
         response.setHeader("Content-Disposition", "attachment; filename=\""
                 + gurufile + "\"");

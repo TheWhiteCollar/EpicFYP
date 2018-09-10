@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//needs to be renamed into CountryTripDAO
 public class CountryDAO {
     
     // get all countries

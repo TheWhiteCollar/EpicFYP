@@ -7,7 +7,7 @@ package Model.Entity;
 
 /* Database sequence
     #1: adminName (varchar 15)
-    #2: adminPassword (varchar 15)
+    #2: adminPassword (varchar 50)
  */
 
 public class Admin {

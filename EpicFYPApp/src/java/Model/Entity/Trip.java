@@ -20,7 +20,7 @@ import java.util.ArrayList;
     #9: tripEnd (date)
     #10: tripDuration (int 11)
     #11: tripActivation (int 3)
-    #12: tripInterest (varchar 100)
+    #12: tripInterest (varchar 500)
     #13: tripTotalSignup (int 11)
     #14: tripPromo (varchar 100)
     #15: tripPromoPercentage (double)

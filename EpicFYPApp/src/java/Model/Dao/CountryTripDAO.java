@@ -15,79 +15,79 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 //needs to be renamed into CountryTripDAO
-public class CountryDAO {
+public class CountryTripDAO {
     
-    // get all countries
-    public static ArrayList<String> getCountries() {
+    // get all countrytrip rows
+    public static ArrayList<String> getAllCountryTrip() {
 
-        ArrayList<String> countryNames = new ArrayList<>();
-        String sql = "SELECT * FROM country";
+        ArrayList<String> countryTripNames = new ArrayList<>();
+        String sql = "SELECT * FROM countrytrip";
 
         try (Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                countryNames.add(rs.getString(1));
+                countryTripNames.add(rs.getString(1));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(CountryDAO.class.getName()).log(Level.WARNING, "Unable to retrieve countries", ex);
+            Logger.getLogger(CountryTripDAO.class.getName()).log(Level.WARNING, "Unable to retrieve countries", ex);
         }
 
-        return countryNames;
+        return countryTripNames;
     }
     
-    //insert new country
-    public static boolean addCountry(String countryName) {
+    //insert new countrytrip
+    public static boolean addCountryTrip(String countryTripName) {
 
-        String sql = "INSERT INTO country (countryName) VALUES (?)";
+        String sql = "INSERT INTO countrytrip (countryTripName) VALUES (?)";
 
         try (Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
-            stmt.setString(1, countryName);
+            stmt.setString(1, countryTripName);
             int result = stmt.executeUpdate();
             if (result == 0) {
                 return false;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(CountryDAO.class.getName()).log(Level.WARNING, "Country already exist!", ex);
+            Logger.getLogger(CountryTripDAO.class.getName()).log(Level.WARNING, "Country already exist!", ex);
         }
         return true;
     }
     
-    // delete a particular country row
-    public static boolean deleteCountry(String countryName) {
-        String sql = "DELETE FROM country WHERE countryName=?";
+    // delete a particular countrytrip row
+    public static boolean deleteCountryTrip(String countryTripName) {
+        String sql = "DELETE FROM countrytrip WHERE countryTripName=?";
 
         try (
                 Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
-            stmt.setString(1, countryName);
+            stmt.setString(1, countryTripName);
             stmt.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(CountryDAO.class.getName()).log(Level.WARNING, "Unable to delete country, countryName = '" + countryName, ex);
+            Logger.getLogger(CountryTripDAO.class.getName()).log(Level.WARNING, "Unable to delete country, countryTripName = '" + countryTripName, ex);
             return false;
         }
 
         return true;
     }
     
-//    // Update a particular country row
-//    public static boolean updateCountry(String countryName) {
-//
-//        String sql = "UPDATE country SET adminPassword = ? WHERE adminName = ?";
-//
-//        try (Connection conn = ConnectionManager.getConnection();
-//                PreparedStatement stmt = conn.prepareStatement(sql);) {
-//            stmt.setString(1, adminPassword);
-//            stmt.setString(2, adminName);
-//            int result = stmt.executeUpdate();
-//            if (result == 0) {
-//                return false;
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(AdminDAO.class.getName()).log(Level.WARNING, "Failed to update: " + adminName + ".", ex);
-//        }
-//        return true;
-//    }
+    // Update a particular countrytrip row
+    public static boolean updateCountry(String newCountryTripName, String currentCountryTripName) {
+
+        String sql = "UPDATE countrytrip SET countryTripName = ? WHERE countryTripName = ?";
+
+        try (Connection conn = ConnectionManager.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
+            stmt.setString(1, newCountryTripName);
+            stmt.setString(2, currentCountryTripName);
+            int result = stmt.executeUpdate();
+            if (result == 0) {
+                return false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CountryTripDAO.class.getName()).log(Level.WARNING, "Failed to update: " + currentCountryTripName + ".", ex);
+        }
+        return true;
+    }
     
 }

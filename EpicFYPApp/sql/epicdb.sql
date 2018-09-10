@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `admin` (
   `adminName` varchar(15) NOT NULL,
-  `adminPassword` varchar(15) NOT NULL,
+  `adminPassword` varchar(30) NOT NULL,
   PRIMARY KEY (`adminName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -108,8 +108,9 @@ INSERT INTO `fieldofstudy` (`fieldOfStudyName`) VALUES
 ('Law'),
 ('Medicine'),
 ('Music'),
-('Others'),
-('Science');
+('Science'),
+('Others');
+
 
 -- --------------------------------------------------------
 
@@ -127,8 +128,8 @@ CREATE TABLE IF NOT EXISTS `interest` (
 --
 
 INSERT INTO `interest` (`interestName`) VALUES
-('Academic and Business'),
-('Nature and Culture'),
+('Academic & Business'),
+('Nature & Culture'),
 ('Service & Social Innovation');
 
 -- --------------------------------------------------------
@@ -248,7 +249,7 @@ CREATE TABLE IF NOT EXISTS `trip` (
   `tripEnd` date DEFAULT NULL,
   `tripDuration` int(11) NOT NULL DEFAULT '0',
   `tripActivation` int(3) NOT NULL DEFAULT '0',
-  `tripInterest` varchar(100) NOT NULL,
+  `tripInterest` varchar(500) NOT NULL,
   `tripTotalSignUp` int(11) DEFAULT '0',
   `tripPromo` varchar(100) DEFAULT NULL,
   `tripPromoPercentage` double DEFAULT '0',
@@ -272,7 +273,7 @@ INSERT INTO `trip` (`tripID`, `tripTitle`, `tripPrice`, `tripItinerary`, `tripDe
 
 CREATE TABLE IF NOT EXISTS `tripstudent` (
   `tripUserEmail` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `tripStudentPayment` int(11) NOT NULL,
+  `tripStudentPayment` double NOT NULL,
   `tripStudentStatus` varchar(100) NOT NULL,
   `tripStudentReview` varchar(500) NOT NULL,
   `tripStudentRating` int(1) NOT NULL,
@@ -287,8 +288,8 @@ CREATE TABLE IF NOT EXISTS `tripstudent` (
 --
 
 INSERT INTO `tripstudent` (`tripUserEmail`, `tripStudentPayment`, `tripStudentStatus`, `tripStudentReview`, `tripStudentRating`, `tripID`) VALUES
-('mediani.2015@sis.smu.edu.sg', 100, 'pending deposit payment', 'This is an excellent trip. I loved everything about it.', 2, 2),
-('rachael.low.2015@sis.smu.edu.sg', 202, 'trip confirmed', '', 4, 2);
+('mediani.2015@sis.smu.edu.sg', 100.1, 'pending deposit payment', 'This is an excellent trip. I loved everything about it.', 2, 2),
+('rachael.low.2015@sis.smu.edu.sg', 202.90, 'trip confirmed', '', 4, 2);
 
 -- --------------------------------------------------------
 
@@ -311,7 +312,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `userResume` varchar(100) NOT NULL DEFAULT '',
   `userIsEmailConfirm` varchar(10) NOT NULL DEFAULT 'pending',
   `userHighestEducation` varchar(100) NOT NULL,
-  `userFieldOfStudy` varchar(100) DEFAULT NULL,
+  `userFieldOfStudy` varchar(1000) DEFAULT NULL,
   `userDescription` varchar(500) DEFAULT NULL,
   `userSchool` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`userEmail`)
@@ -322,10 +323,10 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`userEmail`, `userFirstName`, `userLastName`, `userPhone`, `userGender`, `userCitizenship`, `userDOB`, `userProfilePic`, `userInterest`, `userPassword`, `userOccupation`, `userResume`, `userIsEmailConfirm`, `userHighestEducation`, `userFieldOfStudy`, `userDescription`, `userSchool`) VALUES
-('mediani.2015@sis.smu.edu.sg', 'Mediani', 'Law', 83036983, 'F', 'Singapore PR', 1996, '', 'Service & Social Innovation, Academic and Business', '1234', 'Student', '', 'pending', 'Bachelor Degree', 'Law', NULL, 'SMU'),
-('rachael.low.2015@sis.smu.edu.sg', 'Rachael', 'Low', 91234567, 'M', 'Algerian', 1995, '', 'Academic and Business', 'fyp1234', 'Student', '', 'confirmed', 'ITE', 'History', NULL, 'NTU'),
-('xiuwen.yeo@gmail.com', 'Xiu Wen', 'Yeo', 98769876, 'F', 'Singaporean', 1994, '', 'Nature and Culture', '1234', 'Student', '', 'pending', 'Postgraduate Diploma', 'Computing', NULL, 'SMU'),
-('yijing.oon.2015@smu.edu.sg', 'Yi Jing', 'Oon', 98766789, 'F', 'Singapore PR', 1993, '', 'Nature and Culture, Service & Social Innovation', 'oonyijing', 'Student', '', 'confirmed', 'Masters/Doctorate', 'Computing', NULL, 'NTU');
+('mediani.2015@sis.smu.edu.sg', 'Mediani', 'Law', 83036983, 'F', 'Singapore PR', 1996, '', 'Service & Social Innovation, Academic & Business', '1234', 'Student', '', 'pending', 'Bachelor Degree', 'Law', NULL, 'SMU'),
+('rachael.low.2015@sis.smu.edu.sg', 'Rachael', 'Low', 91234567, 'M', 'Algerian', 1995, '', 'Academic & Business', 'fyp1234', 'Student', '', 'confirmed', 'ITE', 'History', NULL, 'NTU'),
+('xiuwen.yeo@gmail.com', 'Xiu Wen', 'Yeo', 98769876, 'F', 'Singaporean', 1994, '', 'Nature & Culture', '1234', 'Student', '', 'pending', 'Postgraduate Diploma', 'Computing', NULL, 'SMU'),
+('yijing.oon.2015@smu.edu.sg', 'Yi Jing', 'Oon', 98766789, 'F', 'Singapore PR', 1993, '', 'Nature & Culture, Service & Social Innovation', 'oonyijing', 'Student', '', 'confirmed', 'Masters/Doctorate', 'Computing', NULL, 'NTU');
 
 --
 -- Constraints for dumped tables

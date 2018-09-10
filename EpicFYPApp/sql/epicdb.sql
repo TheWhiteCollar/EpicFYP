@@ -159,7 +159,7 @@ CREATE TABLE IF NOT EXISTS `internship` (
 -- Dumping data for table `internship`
 --
 
-INSERT INTO `internship` (`internshipID`, `internshipName`, `internshipApproval`, `internshipInterest`, `internshipDescription`, `internshipStart`, `internshipEnd`, `internshipPay`, `internshipSupervisor`, `internshipSupervisorEmail`, `internshipVacancy`, `internshipPartnerID`) VALUES
+INSERT INTO `internship` (`internshipID`, `internshipName`, `internshipApproval`, `internshipFieldOfStudy`, `internshipDescription`, `internshipStart`, `internshipEnd`, `internshipPay`, `internshipSupervisor`, `internshipSupervisorEmail`, `internshipVacancy`, `internshipPartnerID`) VALUES
 (1, 'Data Analytics Intern', 'pending', 'Business, Accountancy', 'This intern position is within the Business Intelligence Department and will support the team with data analysis, model development, data visualizations and decision support for various departments.', '2018-11-11', '2019-11-11', '1000.00', 'Tommy Lau', 'tommy.lau@xwy.com', 0, 1);
 
 -- --------------------------------------------------------

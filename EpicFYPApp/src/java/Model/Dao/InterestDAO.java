@@ -8,7 +8,6 @@ package Model.Dao;
 import Controller.ConnectionManager;
 import Model.Entity.Trip;
 import Model.Entity.User;
-import static java.lang.System.out;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -54,7 +53,7 @@ public class InterestDAO {
         return true;
     }
 
-    //*not complete, need to delete from user and trip tables
+    //deletes interest from interest table, updates user and trip table to remove ",a" or ", a" or "a," or "a ,"
     public static boolean deleteInterest(String interestName) {
         String sql = "DELETE FROM interest WHERE interestName=?";
 
@@ -102,7 +101,7 @@ public class InterestDAO {
             }
         }
 
-        //update interests in trip table (this works - uncomment when the tripDAO is fixed)
+        //update interests in trip table
         ArrayList<Trip> allTrips = TripsDAO.getTrips();
         for (int i = 0; i < allTrips.size(); i++) {
             Trip t = allTrips.get(i);
@@ -184,7 +183,7 @@ public class InterestDAO {
             }
         }
 
-        //update interests in trip table (this works - uncomment when the tripDAO is fixed)
+        //update interests in trip table
         ArrayList<Trip> allTrips = TripsDAO.getTrips();
         for (int i = 0; i < allTrips.size(); i++) {
             Trip t = allTrips.get(i);

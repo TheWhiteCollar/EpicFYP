@@ -44,11 +44,12 @@ public class Trip {
     private String tripPromo;
     private double tripPromoPercentage;
     
-    private boolean activated;
-    private int studentNeededToActivate;
+    /*to count signup and counter*/
     private ArrayList<String> signedUpEmails;
+    private boolean activated;
+    
 
-    public Trip(int tripID, String tripTitle, double tripPrice, String tripItinerary, String tripDescription, String tripCountry, String tripState, Date tripStart, Date tripEnd, int tripDuration, int tripActivation, String tripInterest, int tripTotalSignup, String tripPromo, double tripPromoPercentage, boolean activated, int studentNeededToActivate, ArrayList<String> signedUpEmails) {
+    public Trip(int tripID, String tripTitle, double tripPrice, String tripItinerary, String tripDescription, String tripCountry, String tripState, Date tripStart, Date tripEnd, int tripDuration, int tripActivation, String tripInterest, int tripTotalSignup, String tripPromo, double tripPromoPercentage, ArrayList<String> signedUpEmails) {
         this.tripID = tripID;
         this.tripTitle = tripTitle;
         this.tripPrice = tripPrice;
@@ -64,10 +65,9 @@ public class Trip {
         this.tripTotalSignup = tripTotalSignup;
         this.tripPromo = tripPromo;
         this.tripPromoPercentage = tripPromoPercentage;
-        this.activated = activated;
-        this.studentNeededToActivate = studentNeededToActivate;
+        
         this.signedUpEmails = signedUpEmails;
-        if(signedUpEmails.size()<studentNeededToActivate ){
+        if(signedUpEmails.size()< tripActivation ){
             this.activated = false;
         } else {
             this.activated = true;
@@ -84,8 +84,8 @@ public class Trip {
         this.tripEnd = tripEnd;
         this.tripDuration = tripDuration;        
     }
-
-        public int getTripID() {
+    
+    public int getTripID() {
         return tripID;
     }
 
@@ -132,7 +132,6 @@ public class Trip {
     public void setTripCountry(String tripCountry) {
         this.tripCountry = tripCountry;
     }
-
 
     public String getTripState() {
         return tripState;
@@ -190,8 +189,6 @@ public class Trip {
         this.tripTotalSignup = tripTotalSignup;
     }
 
-   
-
     public String getTripPromo() {
         return tripPromo;
     }
@@ -207,7 +204,6 @@ public class Trip {
     public void setTripPromoPercentage(double tripPromoPercentage) {
         this.tripPromoPercentage = tripPromoPercentage;
     }
-
     
     public int getNumberOfStudents() {
         return signedUpEmails.size();
@@ -220,15 +216,6 @@ public class Trip {
     public void setActivated(boolean activated) {
         this.activated = activated;
     }
-    
-    
-    public int getStudentNeededToActivate() {
-        return studentNeededToActivate;
-    }
-    
-    public void setStudentNeededToActivate(int studentNeededToActivate) {
-        this.studentNeededToActivate = studentNeededToActivate;
-    }
 
     public ArrayList<String> getSignedUpEmails() {
         return signedUpEmails;
@@ -236,7 +223,5 @@ public class Trip {
 
     public void setSignedUpEmails(ArrayList<String> signedUpEmails) {
         this.signedUpEmails = signedUpEmails;
-    }
-    
-    
+    } 
 }

@@ -18,25 +18,31 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Lenovo
+/* Database sequence: TripStudent
+    #1: tripUserEmail (varchar 50)
+    #2: tripStudentPayment (int 11)
+    #3: tripStudentStatus (varchar100)
+    #4: tripStudentReview (varchar 500)
+    #5: tripStudentRating (int 1)
+    #6: tripID (int 11)
  */
 public class TripsDAO {
-
-    // Get user and their details with userid and password
-    public static boolean insertStudent(String userEmail, String tripID) {
-
-        String sql = "INSERT INTO `tripstudent` (`tripID`, `userEmail`) VALUES (?, ?)";
-
+    public static boolean insertStudent(String tripUserEmail, int tripStudentPayment, String tripStudentStatus, String tripStudentReview, int tripStudentRating, int tripID) {
+        
+        String sql = "INSERT INTO `tripstudent` (`tripUserEmail`, `tripStudentPayment`, `tripStudentStatus`, `tripStudentReview`, `tripStudentRating`, `tripID`) VALUES (?, ?, ?, ?, ?, ?)";
+        
         try (
             Connection conn = ConnectionManager.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql);) {
-            stmt.setString(1, tripID);
-            stmt.setString(2, userEmail);
+            stmt.setString(1, tripUserEmail);
+            stmt.setInt(2, tripStudentPayment);
+            stmt.setString(3, tripStudentStatus);
+            stmt.setString(4, tripStudentReview);
+            stmt.setInt(5,tripStudentRating);
+            stmt.setInt(6, tripID);
             stmt.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(TripsDAO.class.getName()).log(Level.WARNING, "Unable to insert trip, tripID = '" + tripID + "' studentEmail = '" + userEmail + "'.", ex);
+            Logger.getLogger(TripsDAO.class.getName()).log(Level.WARNING, "Unable to insert trip, tripID = '" + tripID + "' studentEmail = '" + tripUserEmail + "'.", ex);
             return false;
         }
 
@@ -47,18 +53,23 @@ public class TripsDAO {
     public static ArrayList<Trip> getTrips() {
         ArrayList<Trip> allTrips = new ArrayList<>();
         String sql1 = "SELECT * FROM tripstudent";
-        HashMap<String, String> tripstudent = new HashMap<>();
+        HashMap<Integer, String> tripstudent = new HashMap<>();
         try (Connection conn = ConnectionManager.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(sql1);) {
+            PreparedStatement stmt = conn.prepareStatement(sql1);) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                String tripID = rs.getString(2);
-                String userEmail = rs.getString(3);
+                String tripUserEmail = rs.getString(1);
+                int tripStudentPayment = rs.getInt(2);
+                String tripStudentStatus = rs.getString(3);
+                String tripStudentReview = rs.getString(4);
+                int tripStudentRating = rs.getInt(5);
+                int tripID = rs.getInt(6);
+                
                 if (!tripstudent.containsKey(tripID)) {
-                    tripstudent.put(tripID, userEmail);
+                    tripstudent.put(tripID, tripUserEmail);
                 } else {
                     String result = tripstudent.get(tripID);
-                    result += "," + userEmail;
+                    result += "," + tripUserEmail;
                     tripstudent.put(tripID, result);
                 }
             }
@@ -68,16 +79,17 @@ public class TripsDAO {
 
         String sql2 = "SELECT * FROM trip";
         try (Connection conn = ConnectionManager.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(sql2);) {
+            PreparedStatement stmt = conn.prepareStatement(sql2);) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                String tripID = rs.getString(1);
-                String emailString = "";
+                int tripID = rs.getInt(6);
+                String tripUserEmail = "";
                 if (tripstudent.containsKey(tripID)) {
-                    emailString = tripstudent.get(tripID);
+                    tripUserEmail = tripstudent.get(tripID);
                 }
-                ArrayList<String> emails = convertEmailString(emailString);
-                Trip trip = new Trip(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8), emails, rs.getInt(9));
+                
+                ArrayList<String> emails = convertEmailString(tripUserEmail);
+                Trip trip = new Trip(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getDate(8), rs.getDate(9),rs.getInt(10), rs.getInt(11), rs.getString(12), rs.getInt(13), rs.getString(14), rs.getDouble(15), emails);
                 allTrips.add(trip);
             }
         } catch (SQLException ex) {
@@ -113,7 +125,7 @@ public class TripsDAO {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 ArrayList<String> emails = convertEmailString(emailString);
-                trip = new Trip(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8), emails, rs.getInt(9));
+                trip = new Trip(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getDate(8), rs.getDate(9),rs.getInt(10), rs.getInt(11), rs.getString(12), rs.getInt(13), rs.getString(14), rs.getDouble(15), emails);
             }
         } catch (SQLException ex) {
             Logger.getLogger(TripsDAO.class.getName()).log(Level.WARNING, "Cannot get trip with tripID: " + tripID, ex);
@@ -208,7 +220,7 @@ public class TripsDAO {
         System.out.println(emailsAL.get(0));
         return emailsAL;
     }
-
+/*
     public static ArrayList<Trip> filterTrips(String country, String rating, String price, String programme) {
         ArrayList<Trip> filteredTrips = new ArrayList<Trip>();
         int ratingNum = 0;
@@ -224,14 +236,14 @@ public class TripsDAO {
                 PreparedStatement stmt = conn.prepareStatement(sql1);) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                Trip trip = new Trip(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8));
+                Trip trip = new Trip(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getDate(8), rs.getDate(9),rs.getInt(10), rs.getInt(11), rs.getString(12), rs.getInt(13), rs.getString(14), rs.getDouble(15));
                 filteredTrips.add(trip);
             }
         } catch (SQLException ex) {
             Logger.getLogger(TripsDAO.class.getName()).log(Level.WARNING, "Cannot get trips with filters", ex);
         }
         return filteredTrips;
-    }
+    } */
 
     // Add existing trips/bulk new trips
     public static boolean addTrip(String tripID, String programme, String price, String ratings, String country, String tripDuration) {

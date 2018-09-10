@@ -6,7 +6,7 @@
 package Model.Entity;
 
 /* Database sequence
-    #1: interestName (varchar 500)
+    #1: interestName (varchar 50)
  */
 
 public class Interest {

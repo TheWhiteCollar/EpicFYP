@@ -5,7 +5,7 @@
  */
 package Controller;
 
-import Model.Dao.CountryDAO;
+import Model.Dao.CountryTripDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -61,9 +61,9 @@ public class addCountry extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String countryName = request.getParameter("countryName");
+        String countryTripName = request.getParameter("countryTripName");
         String text = "fail";
-        if(CountryDAO.addCountry(countryName)){
+        if(CountryTripDAO.addCountryTrip(countryTripName)){
             text = "success";
         }
         response.setContentType("text/plain");  // Set content type of the response so that jQuery knows what it can expect.

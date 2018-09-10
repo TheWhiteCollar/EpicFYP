@@ -5,7 +5,7 @@
  */
 package Controller;
 
-import Model.Dao.CountryDAO;
+import Model.Dao.CountryTripDAO;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -50,7 +50,7 @@ public class getAllCountries extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ArrayList<String> allCountries = CountryDAO.getCountries();
+        ArrayList<String> allCountries = CountryTripDAO.getAllCountryTrip();
         Gson gson = new Gson();
         PrintWriter pw = response.getWriter();
         pw.print(gson.toJson(allCountries));

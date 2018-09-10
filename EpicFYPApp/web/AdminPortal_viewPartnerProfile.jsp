@@ -8,7 +8,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Epic Journey - Admin View Students Profile</title>
+        <title>Epic Journey - Admin View Partner Profile</title>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="description" content="Imparting life skills through overseas exposure via internships and study missions. Countries of focus: Cambodia, Laos, Myanmar, Vietnam, India, Indonesia, Thailand, Japan and China." />
         <meta name="keywords" content="overseas, study missions, internships, training, life skills, career exposure" />
@@ -105,87 +105,48 @@
                             Partner p = allPartners.get(i);
 
                 %>
-<!--                <div class="modal fade" id="myModal<%//out.print(i);%>" role="dialog">
+                <div class="modal fade" id="myModal<%out.print(i);%>" role="dialog">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">User information | <%// out.print(p.getUserFirstName() + " " + u.getUserLastName()); %></h4>
+                                <h4 class="modal-title">User information | <%out.print(p.getPartnerName()); %></h4>
                             </div>
                             <div class="modal-body">
                                 <div class ="row">
-
                                     <div class ="4u 12u">
                                         <p>
-                                            Email : <%// out.print(u.getUserEmail()); %>
-                                        </p>                                           
-                                    </div>
-                                    <div class ="4u 12u">
-                                        <p>
-                                            Contact : <% //out.print(u.getUserPhone()); %>
+                                            Partner Name : <%out.print(p.getPartnerName()); %>
                                         </p>                                           
                                     </div>
                                     <div class ="4u 12u">
                                         <p>
-                                            Year of birth : 1996
+                                            Country : <%out.print(p.getPartnerCountry()); %>
                                         </p>                                           
                                     </div>
-                                </div>
-
-
-                                <div class ="row">
-                                    <div class ="6u 12u">
+                                    <div class ="4u 12u">
                                         <p>
-                                            Citizenship : <% //out.print(u.getUserCitizenship()); %>
-                                        </p>
-                                    </div>
-                                    <div class ="6u 12u">
-                                        <p>
-                                            Highest Qualification : Undergraduate degree
+                                            State : <%out.print(p.getPartnerState()); %>
                                         </p>                                           
-                                    </div>
+                                    </div>                              
                                 </div>
 
                                 <div class ="row">
-                                    <div class ="6u 12u">
-                                        <p>
-                                            Occupation : <%// out.print(u.getUserOccupation()); %>
-                                        </p>                                           
-                                    </div>
-                                    <div class ="6u 12u">
-                                        <p>
-                                            Organisation/School : Singapore Management University
-                                        </p>                                           
+                                    <div class ="12u 12u">
+                                        Description :
+                                        <p><% out.print(p.getPartnerDescription()); %></p>
+                                             
+                                        
                                     </div>
                                 </div>
 
-                                <div class ="row">
-                                    <p>
-                                        Interests : <% //out.print(p.getUserInterest());%>
-                                    </p>
-                                </div>
-
-                                <div class ="row">    
-                                    <div class ="6u 12u">
-                                        <p>
-                                            Trips signed up for : Winter Trip to Myanmar
-                                        </p>                                           
-                                    </div>
-                                </div>
-
-                                <div class ="row">
-                                    <p>
-                                        <%// int countOfTrip = TripsDAO.getTripbyUser(u.getUserEmail()); %>
-                                        Trips taken previously : 6<%// out.println(countOfTrip); %>
-                                    </p>
-                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="button" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
-                </div>-->
+                </div>
                 <%
                         }
                     }

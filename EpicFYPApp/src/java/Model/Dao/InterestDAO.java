@@ -6,6 +6,9 @@
 package Model.Dao;
 
 import Controller.ConnectionManager;
+import Model.Entity.Trip;
+import Model.Entity.User;
+import static java.lang.System.out;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class InterestDAO {
+
     public static ArrayList<String> getInterests() {
 
         ArrayList<String> interestNames = new ArrayList<>();
@@ -32,8 +36,7 @@ public class InterestDAO {
 
         return interestNames;
     }
-    
-    
+
     public static boolean addInterest(String interestName) {
 
         String sql = "INSERT INTO interest (interestName) VALUES (?)";
@@ -50,7 +53,8 @@ public class InterestDAO {
         }
         return true;
     }
-    
+
+    //*not complete, need to delete from user and trip tables
     public static boolean deleteInterest(String interestName) {
         String sql = "DELETE FROM interest WHERE interestName=?";
 
@@ -60,12 +64,86 @@ public class InterestDAO {
             stmt.setString(1, interestName);
             stmt.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(TripsDAO.class.getName()).log(Level.WARNING, "Unable to delete interest, interestName = '" + interestName, ex);
+            Logger.getLogger(InterestDAO.class.getName()).log(Level.WARNING, "Unable to delete interest, interestName = '" + interestName, ex);
             return false;
         }
-
         return true;
     }
-    
+
     //update Interest need more extensive searching
+    public static boolean updateInterest(String newInterestName, String currentInterestName) {
+
+        //update interest table
+        String sql = "UPDATE interest SET interestName=? WHERE interestName=?";
+
+        try (Connection conn = ConnectionManager.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
+
+            stmt.setString(1, newInterestName);
+            stmt.setString(2, currentInterestName);
+
+            int result = stmt.executeUpdate();
+            if (result == 0) {
+                return false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(InterestDAO.class.getName()).log(Level.WARNING, "Failed to update new Interest information", ex);
+        }
+
+        //update interests in user table   
+        ArrayList<User> allUsers = UserDAO.getAllUsers();
+        for (int i = 0; i < allUsers.size(); i++) {
+            User u = allUsers.get(i);
+            String userEmail = u.getUserEmail();
+            String userInterests = u.getUserInterest();
+            if (userInterests.toLowerCase().contains(currentInterestName.toLowerCase())) {
+                //replace
+                userInterests = userInterests.replace(currentInterestName, newInterestName);
+
+                String sql1 = "UPDATE user SET userInterest=? WHERE userEmail=?";
+
+                try (Connection conn = ConnectionManager.getConnection();
+                        PreparedStatement stmt = conn.prepareStatement(sql1);) {
+                    stmt.setString(1, userInterests);
+                    stmt.setString(2, userEmail);
+
+                    int result = stmt.executeUpdate();
+                    if (result == 0) {
+                        return false;
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(InterestDAO.class.getName()).log(Level.WARNING, "Failed to update new Interest information", ex);
+                } 
+            }
+        }
+            
+        //update interests in trip table (this works - uncomment when the tripDAO is fixed)
+//        ArrayList<Trip> allTrips = TripsDAO.getTrips();
+//        for (int i = 0; i < allTrips.size(); i++) {
+//            Trip t = allTrips.get(i);
+//            int tripID = t.getTripID();
+//            String tripInterests = t.getTripInterest();
+//            if (tripInterests.toLowerCase().contains(currentInterestName.toLowerCase())) {
+//                //replace
+//                tripInterests = tripInterests.replace(currentInterestName, newInterestName);
+//
+//                String sql1 = "UPDATE user SET tripInterest=? WHERE tripID=?";
+//
+//                try (Connection conn = ConnectionManager.getConnection();
+//                        PreparedStatement stmt = conn.prepareStatement(sql1);) {
+//                    stmt.setString(1, tripInterests);
+//                    stmt.setInt(2, tripID);
+//
+//                    int result = stmt.executeUpdate();
+//                    if (result == 0) {
+//                        return false;
+//                    }
+//                } catch (SQLException ex) {
+//                    Logger.getLogger(InterestDAO.class.getName()).log(Level.WARNING, "Failed to update new Interest information", ex);
+//                } 
+//            }
+//        }
+        
+      return true;
+    }
 }

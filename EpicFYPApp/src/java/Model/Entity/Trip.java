@@ -39,7 +39,7 @@ public class Trip {
     private Date tripEnd;
     private int tripDuration;
     private int tripActivation;
-    private int tripInterest;
+    private String tripInterest;
     private int tripTotalSignup;
     private String tripPromo;
     private double tripPromoPercentage;
@@ -48,7 +48,7 @@ public class Trip {
     private int studentNeededToActivate;
     private ArrayList<String> signedUpEmails;
 
-    public Trip(int tripID, String tripTitle, double tripPrice, String tripItinerary, String tripDescription, String tripCountry, String tripState, Date tripStart, Date tripEnd, int tripDuration, int tripActivation, int tripInterest, int tripTotalSignup, String tripPromo, double tripPromoPercentage, boolean activated, int studentNeededToActivate, ArrayList<String> signedUpEmails) {
+    public Trip(int tripID, String tripTitle, double tripPrice, String tripItinerary, String tripDescription, String tripCountry, String tripState, Date tripStart, Date tripEnd, int tripDuration, int tripActivation, String tripInterest, int tripTotalSignup, String tripPromo, double tripPromoPercentage, boolean activated, int studentNeededToActivate, ArrayList<String> signedUpEmails) {
         this.tripID = tripID;
         this.tripTitle = tripTitle;
         this.tripPrice = tripPrice;
@@ -85,7 +85,7 @@ public class Trip {
         this.tripDuration = tripDuration;        
     }
 
-    public int getTripID() {
+        public int getTripID() {
         return tripID;
     }
 
@@ -174,11 +174,11 @@ public class Trip {
         this.tripActivation = tripActivation;
     }
 
-    public int getTripInterest() {
+    public String getTripInterest() {
         return tripInterest;
     }
 
-    public void setTripInterest(int tripInterest) {
+    public void setTripInterest(String tripInterest) {
         this.tripInterest = tripInterest;
     }
 

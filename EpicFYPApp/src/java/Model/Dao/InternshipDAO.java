@@ -22,7 +22,7 @@ public class InternshipDAO {
     //update a particular internship row
     public static boolean updateInternship(int internshipID, String internshipName, String internshipApproval, String internshipInterest, String internshipDescription, Date internshipStart, Date internshipEnd, double internshipPay, String internshipSupervisor, String internshipSupervisorEmail, int internshipVacancy, int internshipPartnerID) {
 
-        String sql = "UPDATE internship SET internshipName=?, internshipApproval=?, internshipInterest=?, internshipDescription=?, internshipStart=?, internshipEnd=?, internshipPay=?, internshipSupervisor=?, internshipSupervisorEmail=?, internshipVacancy=?, WHERE internshipID=? AND internshipPartnerID=?";
+        String sql = "UPDATE internship SET internshipName=?, internshipApproval=?, internshipInterest=?, internshipDescription=?, internshipStart=?, internshipEnd=?, internshipPay=?, internshipSupervisor=?, internshipSupervisorEmail=?, internshipVacancy=? WHERE internshipID=? AND internshipPartnerID=?";
 
         try (Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {

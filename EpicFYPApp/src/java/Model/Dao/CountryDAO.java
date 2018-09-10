@@ -63,7 +63,7 @@ public class CountryDAO {
             stmt.setString(1, countryName);
             stmt.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(TripsDAO.class.getName()).log(Level.WARNING, "Unable to delete country, countryName = '" + countryName, ex);
+            Logger.getLogger(CountryDAO.class.getName()).log(Level.WARNING, "Unable to delete country, countryName = '" + countryName, ex);
             return false;
         }
 

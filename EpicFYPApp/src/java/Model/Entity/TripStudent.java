@@ -8,7 +8,7 @@ package Model.Entity;
 /* Database sequence
     
     #1: tripUserEmail (varchar 50)
-    #2: tripStudentPayment (int 11)
+    #2: tripStudentPayment (double)
     #3: tripStudentStatus (varchar 100)
     #4: tripStudentReview (varchar 500)
     #5: tripStudentRating (int 1)
@@ -19,13 +19,13 @@ public class TripStudent {
 
     
     private String tripUserEmail;
-    private int tripStudentPayment;
+    private double tripStudentPayment;
     private String tripStudentStatus;
     private String tripStudentReview;
     private int tripStudentRating;
     private int tripID;
 
-    public TripStudent(String tripUserEmail, int tripStudentPayment, String tripStudentStatus, String tripStudentReview, int tripStudentRating, int tripID) {
+    public TripStudent(String tripUserEmail, double tripStudentPayment, String tripStudentStatus, String tripStudentReview, int tripStudentRating, int tripID) {
         this.tripUserEmail = tripUserEmail;
         this.tripStudentPayment = tripStudentPayment;
         this.tripStudentStatus = tripStudentStatus;
@@ -50,11 +50,11 @@ public class TripStudent {
         this.tripUserEmail = tripUserEmail;
     }
 
-    public int getTripStudentPayment() {
+    public double getTripStudentPayment() {
         return tripStudentPayment;
     }
 
-    public void setTripStudentPayment(int tripStudentPayment) {
+    public void setTripStudentPayment(double tripStudentPayment) {
         this.tripStudentPayment = tripStudentPayment;
     }
 

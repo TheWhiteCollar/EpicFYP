@@ -8,7 +8,7 @@
 -- PHP Version: 5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+SET time_zone = "+08:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `adminName` varchar(15) NOT NULL,
   `adminPassword` varchar(30) NOT NULL,
   PRIMARY KEY (`adminName`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `admin`
@@ -46,19 +46,20 @@ INSERT INTO `admin` (`adminName`, `adminPassword`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `countryinternship` (
-  `CountryName` varchar(100) NOT NULL,
-  `CountryContinent` varchar(100) NOT NULL,
-  PRIMARY KEY (`CountryName`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `countryName` varchar(100) NOT NULL,
+  `countryContinent` varchar(100) NOT NULL,
+  PRIMARY KEY (`countryName`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `countryinternship`
 --
 
-INSERT INTO `countryinternship` (`CountryName`, `CountryContinent`) VALUES
+INSERT INTO `countryinternship` (`countryName`, `countryContinent`) VALUES
 ('Canada', 'America'),
 ('Czech Republic', 'Europe'),
 ('New Zealand', 'Australia'),
+('Myanmar', 'Asia'),
 ('Thailand', 'Asia');
 
 -- --------------------------------------------------------
@@ -70,7 +71,7 @@ INSERT INTO `countryinternship` (`CountryName`, `CountryContinent`) VALUES
 CREATE TABLE IF NOT EXISTS `countrytrip` (
   `countryTripName` varchar(100) NOT NULL,
   PRIMARY KEY (`countryTripName`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `countrytrip`
@@ -89,7 +90,7 @@ INSERT INTO `countrytrip` (`countryTripName`) VALUES
 CREATE TABLE IF NOT EXISTS `fieldofstudy` (
   `fieldOfStudyName` varchar(200) NOT NULL,
   PRIMARY KEY (`fieldOfStudyName`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `fieldofstudy`
@@ -119,9 +120,9 @@ INSERT INTO `fieldofstudy` (`fieldOfStudyName`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `interest` (
-  `interestName` varchar(500) NOT NULL,
+  `interestName` varchar(50) NOT NULL,
   PRIMARY KEY (`interestName`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `interest`
@@ -199,7 +200,8 @@ CREATE TABLE IF NOT EXISTS `partner` (
   `partnerDescription` varchar(1000) NOT NULL,
   `partnerPassword` varchar(50) NOT NULL,
   `partnerPicture` varchar(100) NOT NULL DEFAULT '',
-  PRIMARY KEY (`partnerID`)
+  PRIMARY KEY (`partnerID`),
+  KEY `partnercountry` (`partnerCountry`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
@@ -281,7 +283,7 @@ CREATE TABLE IF NOT EXISTS `tripstudent` (
   PRIMARY KEY (`tripUserEmail`,`tripID`),
   KEY `tripUserEmail` (`tripUserEmail`),
   KEY `tripID` (`tripID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tripstudent`
@@ -351,6 +353,12 @@ ALTER TABLE `internshipstudent`
 ALTER TABLE `tripstudent`
   ADD CONSTRAINT `tripstudent_fk1` FOREIGN KEY (`tripUserEmail`) REFERENCES `user` (`userEmail`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tripstudent_fk2` FOREIGN KEY (`tripID`) REFERENCES `trip` (`tripID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `partner`
+--
+ALTER TABLE `partner`
+  ADD CONSTRAINT `partner_fk1` FOREIGN KEY (`partnerCountry`) REFERENCES `countryinternship` (`countryName`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

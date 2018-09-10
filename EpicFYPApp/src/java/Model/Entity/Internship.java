@@ -27,7 +27,7 @@ public class Internship {
     private int internshipID;
     private String internshipName;
     private String internshipApproval;
-    private String internshipInterest;
+    private String internshipFieldOfStudy;
     private String internshipDescription;
     private Date internshipStart;
     private Date internshipEnd;
@@ -37,11 +37,11 @@ public class Internship {
     private int internshipVacancy;
     private int internshipPartnerID;
 
-    public Internship(int internshipID, String internshipName, String internshipApproval, String internshipInterest, String internshipDescription, Date internshipStart, Date internshipEnd, double internshipPay, String internshipSupervisor, String internshipSupervisorEmail, int internshipVacancy, int internshipPartnerID) {
+    public Internship(int internshipID, String internshipName, String internshipApproval, String internshipFieldOfStudy, String internshipDescription, Date internshipStart, Date internshipEnd, double internshipPay, String internshipSupervisor, String internshipSupervisorEmail, int internshipVacancy, int internshipPartnerID) {
         this.internshipID = internshipID;
         this.internshipName = internshipName;
         this.internshipApproval = internshipApproval;
-        this.internshipInterest = internshipInterest;
+        this.internshipFieldOfStudy = internshipFieldOfStudy;
         this.internshipDescription = internshipDescription;
         this.internshipStart = internshipStart;
         this.internshipEnd = internshipEnd;
@@ -76,12 +76,12 @@ public class Internship {
         this.internshipApproval = internshipApproval;
     }
 
-    public String getInternshipInterest() {
-        return internshipInterest;
+    public String getInternshipFieldOfStudy() {
+        return internshipFieldOfStudy;
     }
 
-    public void setInternshipInterest(String internshipInterest) {
-        this.internshipInterest = internshipInterest;
+    public void setInternshipFieldOfStudy(String internshipFieldOfStudy) {
+        this.internshipFieldOfStudy = internshipFieldOfStudy;
     }
 
     public String getInternshipDescription() {

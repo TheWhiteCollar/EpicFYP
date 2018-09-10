@@ -20,16 +20,16 @@ import java.util.logging.Logger;
 public class InternshipDAO {
 
     //update a particular internship row
-    public static boolean updateInternship(int internshipID, String internshipName, String internshipApproval, String internshipInterest, String internshipDescription, Date internshipStart, Date internshipEnd, double internshipPay, String internshipSupervisor, String internshipSupervisorEmail, int internshipVacancy, int internshipPartnerID) {
+    public static boolean updateInternship(int internshipID, String internshipName, String internshipApproval, String internshipFieldOfStudy, String internshipDescription, Date internshipStart, Date internshipEnd, double internshipPay, String internshipSupervisor, String internshipSupervisorEmail, int internshipVacancy, int internshipPartnerID) {
 
-        String sql = "UPDATE internship SET internshipName=?, internshipApproval=?, internshipInterest=?, internshipDescription=?, internshipStart=?, internshipEnd=?, internshipPay=?, internshipSupervisor=?, internshipSupervisorEmail=?, internshipVacancy=? WHERE internshipID=? AND internshipPartnerID=?";
+        String sql = "UPDATE internship SET internshipName=?, internshipApproval=?, internshipFieldOfStudy=?, internshipDescription=?, internshipStart=?, internshipEnd=?, internshipPay=?, internshipSupervisor=?, internshipSupervisorEmail=?, internshipVacancy=? WHERE internshipID=? AND internshipPartnerID=?";
 
         try (Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
 
             stmt.setString(1, internshipName);
             stmt.setString(2, internshipApproval);
-            stmt.setString(3, internshipInterest);
+            stmt.setString(3, internshipFieldOfStudy);
             stmt.setString(4, internshipDescription);
             stmt.setDate(5, internshipStart);
             stmt.setDate(6, internshipEnd);
@@ -51,16 +51,16 @@ public class InternshipDAO {
     }
 
     // Add existing parnter/bulk new parnters
-    public static boolean addInternship(int internshipID, String internshipName, String internshipApproval, String internshipInterest, String internshipDescription, Date internshipStart, Date internshipEnd, double internshipPay, String internshipSupervisor, String internshipSupervisorEmail, int internshipVacancy, int internshipPartnerID) {
+    public static boolean addInternship(int internshipID, String internshipName, String internshipApproval, String internshipFieldOfStudy, String internshipDescription, Date internshipStart, Date internshipEnd, double internshipPay, String internshipSupervisor, String internshipSupervisorEmail, int internshipVacancy, int internshipPartnerID) {
 
-        String sql = "INSERT INTO internship (internshipID, internshipName, internshipApproval, internshipInterest, internshipDescription, internshipStart, internshipEnd, internshipPay, internshipSupervisor, internshipSupervisorEmail, internshipVacancy, internshipPartnerID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO internship (internshipID, internshipName, internshipApproval, internshipFieldOfStudy, internshipDescription, internshipStart, internshipEnd, internshipPay, internshipSupervisor, internshipSupervisorEmail, internshipVacancy, internshipPartnerID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try (Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
             stmt.setInt(1, internshipID);
             stmt.setString(2, internshipName);
             stmt.setString(3, internshipApproval);
-            stmt.setString(4, internshipInterest);
+            stmt.setString(4, internshipFieldOfStudy);
             stmt.setString(5, internshipDescription);
             stmt.setDate(6, internshipStart);
             stmt.setDate(7, internshipEnd);

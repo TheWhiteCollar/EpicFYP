@@ -63,16 +63,23 @@ public class addTrip extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String tripCountry = request.getParameter("tripCountry");
-        String tripPrice = request.getParameter("tripPrice");
+        int tripID = Integer.parseInt(request.getParameter("tripID"));
         String tripTitle = request.getParameter("tripTitle");
-        //int tripRating = Integer.parseInt(request.getParameter("tripRating"));
-        String tripDuration = request.getParameter("tripDuration");
+        double tripPrice = Double.parseDouble(request.getParameter("tripPrice"));
+        String tripItinerary = request.getParameter("tripIntinerary");
+        String tripDescription = request.getParameter("tripDescription");
+        String tripCountry = request.getParameter("tripCountry");
+        String tripState = request.getParameter("tripState");
         Date tripStart = Date.valueOf(request.getParameter("tripStart"));
         Date tripEnd = Date.valueOf(request.getParameter("tripEnd"));
-        String tripActivation = request.getParameter("tripActivation");
+        int tripDuration = Integer.parseInt(request.getParameter("tripDuration"));        
+        int tripActivation = Integer.parseInt(request.getParameter("tripInterest"));
+        String tripInterest = request.getParameter("tripInterest");
+        int tripTotalSignUp = Integer.parseInt(request.getParameter("tripTotalSignUp"));
+        String tripPromo = request.getParameter("tripPromo");
+        double tripPromoPercentage = Double.parseDouble(request.getParameter("tripPromoPercentage"));
         String text = "fail";
-        if(TripsDAO.insertTrip(tripCountry,tripTitle, tripPrice, tripDuration, tripStart, tripEnd, tripActivation)){
+        if(TripsDAO.insertTrip(tripID, tripTitle, tripPrice, tripItinerary, tripDescription, tripCountry, tripState, tripStart, tripEnd, tripDuration, tripActivation, tripInterest, tripTotalSignUp, tripPromo, tripPromoPercentage)){
             text = "success";
         }
         response.setContentType("text/plain");  // Set content type of the response so that jQuery knows what it can expect.

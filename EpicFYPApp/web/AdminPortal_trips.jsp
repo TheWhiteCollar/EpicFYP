@@ -52,8 +52,8 @@
                         tripHTML += '<tr><td>Country : ' + trip.tripCountry + "</td><td> Start : " + trip.tripStart + "</td>";
                         tripHTML += "<td>End : " + trip.tripEnd + "</td><td>Price : $" + trip.tripPrice + "</tr>";
                         tripHTML += '<tr><td colspan="4"> Trip Description?</td></tr>';
-                        var number = trip.tripStudentNeededToActivate - trip.tripSignedUpEmails.length;
-                        if (trip.tripActivated) {
+                        var number = trip.tripActivation - trip.tripSignedUpEmails.length;
+                        if (trip.activated) {
                             tripHTML += '<tr><td colspan="3">Activated</td>';
                         } else {
 
@@ -110,7 +110,7 @@
                     let tripDuration = $('input[name="tripDuration"]').val();
                     let tripStart = $('input[name="tripStart"]').val();
                     let tripEnd = $('input[name="tripEnd"]').val();
-                    let tripActivation = $('input[name="tripActivation"]').val();
+                    let activation = $('input[name="activation"]').val();
                     let tripData = {
                         "tripCountry": tripCountry,
                         "tripPrice": tripPrice,
@@ -118,7 +118,7 @@
                         "tripDuration": tripDuration,
                         "tripStart": tripStart,
                         "tripEnd": tripEnd,
-                        "tripActivation": tripActivation
+                        "activation": activation
                     }
 
                     //send ajax post request to addTrip servlet with tripData
@@ -157,7 +157,7 @@
                             tripHTML += "<td>End : " + trip.tripEnd + "</td><td>Price : $" + trip.tripPrice + "</tr>";
                             tripHTML += '<tr><td colspan="4"> Trip Description?</td></tr>';
                             var number = trip.tripStudentNeededToActivate - trip.tripSignedUpEmails.length;
-                            if (trip.tripActivated) {
+                            if (trip.activated) {
                                 tripHTML += '<tr><td colspan="3">Activated</td>';
                             } else {
 
@@ -346,9 +346,7 @@
                         });
                     }
                 });
-                
             }
-
         </script>
         <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
     </head>

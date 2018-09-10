@@ -141,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `internship` (
   `internshipID` int(11) NOT NULL AUTO_INCREMENT,
   `internshipName` varchar(100) NOT NULL,
   `internshipApproval` varchar(100) NOT NULL DEFAULT '',
-  `internshipInterest` varchar(500) NOT NULL,
+  `internshipFieldOfStudy` varchar(500) NOT NULL,
   `internshipDescription` varchar(1000) NOT NULL,
   `internshipStart` date NOT NULL,
   `internshipEnd` date NOT NULL,
@@ -159,7 +159,7 @@ CREATE TABLE IF NOT EXISTS `internship` (
 --
 
 INSERT INTO `internship` (`internshipID`, `internshipName`, `internshipApproval`, `internshipInterest`, `internshipDescription`, `internshipStart`, `internshipEnd`, `internshipPay`, `internshipSupervisor`, `internshipSupervisorEmail`, `internshipVacancy`, `internshipPartnerID`) VALUES
-(1, 'Data Analytics Intern', 'pending', 'Nature and Culture', 'This intern position is within the Business Intelligence Department and will support the team with data analysis, model development, data visualizations and decision support for various departments.', '2018-11-11', '2019-11-11', '1000.00', 'Tommy Lau', 'tommy.lau@xwy.com', 0, 1);
+(1, 'Data Analytics Intern', 'pending', 'Business, Accountancy', 'This intern position is within the Business Intelligence Department and will support the team with data analysis, model development, data visualizations and decision support for various departments.', '2018-11-11', '2019-11-11', '1000.00', 'Tommy Lau', 'tommy.lau@xwy.com', 0, 1);
 
 -- --------------------------------------------------------
 

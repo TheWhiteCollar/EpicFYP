@@ -56,23 +56,16 @@ public class signupServlet extends HttpServlet {
         String userIsEmailConfirm = "false"; // by right should be boolean
         String userHighestEducation = request.getParameter("highest_qualification");
         String userFieldOfStudy = request.getParameter("field of Study");
-        
-        //String school = request.getParameter("school");
-        //String language = request.getParameter("language");
-        //String lookingFor = request.getParameter("looking for");
-        //String message = request.getParameter("message");
+        String userDescription = request.getParameter("message");
+        String userSchool = request.getParameter("school");
 
         // validate fields are not empty and insert into database - should do it in frontend?
         if (!userFirstName.equals("") && !userLastName.equals("") && !userEmail.equals("") && !userPassword.equals("") && !userOccupation.equals("")) {
 
-            int count = 0;
-            count = UserDAO.getCurrentRows();
-            
             // Insert into database
-            Boolean inserted = UserDAO.addUser(count,userEmail, userFirstName, userLastName, userPhone, userGender, userCitizenship, date, userProfilePic, userInterest, userPassword, userOccupation, userResume, userIsEmailConfirm, userHighestEducation, userFieldOfStudy);
+            Boolean inserted = UserDAO.addUser(userEmail, userFirstName, userLastName, userPhone, userGender, userCitizenship, yearOfBirth, userProfilePic, userInterest, userPassword, userOccupation, userResume, userIsEmailConfirm, userHighestEducation, userFieldOfStudy, userDescription, userSchool);
 
             if (inserted == true) {
-                count++;
                 response.sendRedirect("index.jsp");
                 return;
             } else {

@@ -5,8 +5,6 @@
  */
 package Model.Entity;
 
-import java.time.Year;
-
 /* Database sequence
 
     #1: userEmail (varchar 50)
@@ -188,7 +186,7 @@ public class User {
     public void setUserFieldOfStudy(String userFieldOfStudy) {
         this.userFieldOfStudy = userFieldOfStudy;
     }
-      
+
     public String getUserDescription() {
         return userDescription;
     }
@@ -204,4 +202,5 @@ public class User {
     public void setUserSchool(String userSchool) {
         this.userSchool = userSchool;
     }
+
 }

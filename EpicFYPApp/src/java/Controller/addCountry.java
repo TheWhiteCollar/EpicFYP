@@ -5,7 +5,7 @@
  */
 package Controller;
 
-import java.io.FileInputStream;
+import Model.Dao.CountryDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -16,10 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author User
+ * @author Lenovo
  */
-@WebServlet(name = "AdminBootstrapFileDownloadForUserServlet", urlPatterns = {"/AdminBootstrapFileDownloadForUserServlet"})
-public class AdminBootstrapFileDownloadForUserServlet extends HttpServlet {
+@WebServlet(name = "addCountry", urlPatterns = {"/addCountry"})
+public class addCountry extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,18 +33,6 @@ public class AdminBootstrapFileDownloadForUserServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AdminBootstrapFileDownloadServlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AdminBootstrapFileDownloadServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -59,23 +47,7 @@ public class AdminBootstrapFileDownloadForUserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-        String gurufile = "user_blank.csv";
-        String gurupath = "C:/Users/User/Desktop/FYP 0909/EpicFYP/EpicFYPApp/web/documents/";
-        response.setContentType("APPLICATION/OCTET-STREAM");
-        response.setHeader("Content-Disposition", "attachment; filename=\""
-                + gurufile + "\"");
-
-        FileInputStream fileInputStream = new FileInputStream(gurupath
-                + gurufile);
-
-        int i;
-        while ((i = fileInputStream.read()) != -1) {
-            out.write(i);
-        }
-        fileInputStream.close();
-        out.close();
+        processRequest(request, response);
     }
 
     /**
@@ -89,6 +61,14 @@ public class AdminBootstrapFileDownloadForUserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String countryName = request.getParameter("countryName");
+        String text = "fail";
+        if(CountryDAO.addCountry(countryName)){
+            text = "success";
+        }
+        response.setContentType("text/plain");  // Set content type of the response so that jQuery knows what it can expect.
+        response.setCharacterEncoding("UTF-8"); // You want world domination, huh?
+        response.getWriter().write(text);       // Write response body.
         processRequest(request, response);
     }
 

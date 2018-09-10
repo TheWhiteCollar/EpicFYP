@@ -11,7 +11,7 @@ import java.sql.Date;
     #1: internshipID (int 11)
     #2: internshipName (varchar 100)
     #3: internshipApproval (varchar 100)
-    #4: internshipInterest (varchar 500)
+    #4: internshipInterest (varchar 500) - field of study
     #5: internshipDescription (varchar 1000)
     #6: internshipStart (date)
     #7: internshipEnd (date)

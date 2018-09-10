@@ -83,6 +83,7 @@ public class FieldOfStudyDAO {
                 userFieldOfStudy = userFieldOfStudy.replace(currentFOS2, "");
                 userFieldOfStudy = userFieldOfStudy.replace(currentFOS3, "");
                 userFieldOfStudy = userFieldOfStudy.replace(currentFOS4, "");
+                userFieldOfStudy = userFieldOfStudy.replace(fieldOfStudyName, "");
 
                 String sql1 = "UPDATE user SET userFieldOfStudy=? WHERE userEmail=?";
 
@@ -117,6 +118,7 @@ public class FieldOfStudyDAO {
                 internshipFieldOfStudy = internshipFieldOfStudy.replace(currentFOS2, "");
                 internshipFieldOfStudy = internshipFieldOfStudy.replace(currentFOS3, "");
                 internshipFieldOfStudy = internshipFieldOfStudy.replace(currentFOS4, "");
+                internshipFieldOfStudy = internshipFieldOfStudy.replace(fieldOfStudyName, "");
 
                 String sql1 = "UPDATE internship SET internshipFieldOfStudy=? WHERE internshipID=?";
                 try (Connection conn = ConnectionManager.getConnection();

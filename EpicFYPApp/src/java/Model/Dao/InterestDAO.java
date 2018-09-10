@@ -83,6 +83,7 @@ public class InterestDAO {
                 userInterests = userInterests.replace(currentInterest2, "");
                 userInterests = userInterests.replace(currentInterest3, "");
                 userInterests = userInterests.replace(currentInterest4, "");
+                userInterests = userInterests.replace(interestName, "");
 
                 String sql1 = "UPDATE user SET userInterest=? WHERE userEmail=?";
 
@@ -117,6 +118,7 @@ public class InterestDAO {
                 tripInterests = tripInterests.replace(currentInterest2, "");
                 tripInterests = tripInterests.replace(currentInterest3, "");
                 tripInterests = tripInterests.replace(currentInterest4, "");
+                tripInterests = tripInterests.replace(interestName, "");
 
                 String sql1 = "UPDATE trip SET tripInterest=? WHERE tripID=?";
                 try (Connection conn = ConnectionManager.getConnection();

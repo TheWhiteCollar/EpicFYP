@@ -335,21 +335,21 @@ INSERT INTO `user` (`userEmail`, `userFirstName`, `userLastName`, `userPhone`, `
 -- Constraints for table `internship`
 --
 ALTER TABLE `internship`
-  ADD CONSTRAINT `internshippartner_fk` FOREIGN KEY (`internshipPartnerID`) REFERENCES `partner` (`partnerID`);
+  ADD CONSTRAINT `internshippartner_fk` FOREIGN KEY (`internshipPartnerID`) REFERENCES `partner` (`partnerID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `internshipstudent`
 --
 ALTER TABLE `internshipstudent`
-  ADD CONSTRAINT `internshipstudent_fk2` FOREIGN KEY (`internshipUserEmail`) REFERENCES `user` (`userEmail`),
-  ADD CONSTRAINT `internshipstudent_fk1` FOREIGN KEY (`internshipID`) REFERENCES `internship` (`internshipID`);
+  ADD CONSTRAINT `internshipstudent_fk2` FOREIGN KEY (`internshipUserEmail`) REFERENCES `user` (`userEmail`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `internshipstudent_fk1` FOREIGN KEY (`internshipID`) REFERENCES `internship` (`internshipID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tripstudent`
 --
 ALTER TABLE `tripstudent`
-  ADD CONSTRAINT `tripstudent_fk1` FOREIGN KEY (`tripUserEmail`) REFERENCES `user` (`userEmail`),
-  ADD CONSTRAINT `tripstudent_fk2` FOREIGN KEY (`tripID`) REFERENCES `trip` (`tripID`);
+  ADD CONSTRAINT `tripstudent_fk1` FOREIGN KEY (`tripUserEmail`) REFERENCES `user` (`userEmail`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tripstudent_fk2` FOREIGN KEY (`tripID`) REFERENCES `trip` (`tripID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -79,6 +79,7 @@ CREATE TABLE IF NOT EXISTS `countrytrip` (
 
 INSERT INTO `countrytrip` (`countryTripName`) VALUES
 ('Malaysia'),
+('Myanmar'),
 ('Singapore');
 
 -- --------------------------------------------------------
@@ -255,7 +256,8 @@ CREATE TABLE IF NOT EXISTS `trip` (
   `tripTotalSignUp` int(11) DEFAULT '0',
   `tripPromo` varchar(100) DEFAULT NULL,
   `tripPromoPercentage` double DEFAULT '0',
-  PRIMARY KEY (`tripID`)
+  PRIMARY KEY (`tripID`),
+  KEY `tripCountry` (`tripCountry`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
@@ -358,7 +360,13 @@ ALTER TABLE `tripstudent`
 -- Constraints for table `partner`
 --
 ALTER TABLE `partner`
-  ADD CONSTRAINT `partner_fk1` FOREIGN KEY (`partnerCountry`) REFERENCES `countryinternship` (`countryName`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `partnercountryinternship_fk1` FOREIGN KEY (`partnerCountry`) REFERENCES `countryinternship` (`countryName`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+  --
+-- Constraints for table `partner`
+--
+ALTER TABLE `trip`
+  ADD CONSTRAINT `tripcountry_fk1` FOREIGN KEY (`tripCountry`) REFERENCES `countrytrip` (`countryTripName`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

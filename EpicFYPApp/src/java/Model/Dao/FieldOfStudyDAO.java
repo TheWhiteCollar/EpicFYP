@@ -67,74 +67,7 @@ public class FieldOfStudyDAO {
             return false;
         }
         
-        //update field of study in user table   
-        ArrayList<User> allUsers = UserDAO.getAllUsers();
-        for (int i = 0; i < allUsers.size(); i++) {
-            User u = allUsers.get(i);
-            String userEmail = u.getUserEmail();
-            String userFieldOfStudy = u.getUserFieldOfStudy();
-            if (userFieldOfStudy.toLowerCase().contains(fieldOfStudyName.toLowerCase())) {
-                //replace the 4 possibilities that field of study may be formatted 
-                String currentFOS1 = fieldOfStudyName + ", ";
-                String currentFOS2 = ", " + fieldOfStudyName;
-                String currentFOS3 = fieldOfStudyName + ",";
-                String currentFOS4 = "," + fieldOfStudyName;
-                userFieldOfStudy = userFieldOfStudy.replace(currentFOS1, "");
-                userFieldOfStudy = userFieldOfStudy.replace(currentFOS2, "");
-                userFieldOfStudy = userFieldOfStudy.replace(currentFOS3, "");
-                userFieldOfStudy = userFieldOfStudy.replace(currentFOS4, "");
-                userFieldOfStudy = userFieldOfStudy.replace(fieldOfStudyName, "");
-
-                String sql1 = "UPDATE user SET userFieldOfStudy=? WHERE userEmail=?";
-
-                try (Connection conn = ConnectionManager.getConnection();
-                    PreparedStatement stmt = conn.prepareStatement(sql1);) {
-                    stmt.setString(1, userFieldOfStudy);
-                    stmt.setString(2, userEmail);
-
-                    int result = stmt.executeUpdate();
-                    if (result == 0) {
-                        return false;
-                    }
-                } catch (SQLException ex) {
-                    Logger.getLogger(FieldOfStudyDAO.class.getName()).log(Level.WARNING, "Failed to update new Field Of Study information", ex);
-                }
-            }
-        }
-
-        //update field of study in internship table
-        ArrayList<Internship> allInternships = InternshipDAO.getAllInternships();
-        for (int i = 0; i < allInternships.size(); i++) {
-            Internship in = allInternships.get(i);
-            int internshipID = in.getInternshipID();
-            String internshipFieldOfStudy = in.getInternshipFieldOfStudy();
-            if (internshipFieldOfStudy.toLowerCase().contains(fieldOfStudyName.toLowerCase())) {
-                //replace the 4 possibilities that field os study may be formatted 
-                String currentFOS1 = fieldOfStudyName + ", ";
-                String currentFOS2 = ", " + fieldOfStudyName;
-                String currentFOS3 = fieldOfStudyName + ",";
-                String currentFOS4 = "," + fieldOfStudyName;
-                internshipFieldOfStudy = internshipFieldOfStudy.replace(currentFOS1, "");
-                internshipFieldOfStudy = internshipFieldOfStudy.replace(currentFOS2, "");
-                internshipFieldOfStudy = internshipFieldOfStudy.replace(currentFOS3, "");
-                internshipFieldOfStudy = internshipFieldOfStudy.replace(currentFOS4, "");
-                internshipFieldOfStudy = internshipFieldOfStudy.replace(fieldOfStudyName, "");
-
-                String sql1 = "UPDATE internship SET internshipFieldOfStudy=? WHERE internshipID=?";
-                try (Connection conn = ConnectionManager.getConnection();
-                    PreparedStatement stmt = conn.prepareStatement(sql1);) {
-                    stmt.setString(1, internshipFieldOfStudy);
-                    stmt.setInt(2, internshipID);
-
-                    int result = stmt.executeUpdate();
-                    if (result == 0) {
-                        return false;
-                    }
-                } catch (SQLException ex) {
-                    Logger.getLogger(FieldOfStudyDAO.class.getName()).log(Level.WARNING, "Failed to update new Field of Study information", ex);
-                }
-            }
-        }
+        
         return true;
     }
 

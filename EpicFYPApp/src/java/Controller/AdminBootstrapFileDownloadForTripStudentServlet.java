@@ -59,7 +59,7 @@ public class AdminBootstrapFileDownloadForTripStudentServlet extends HttpServlet
             throws ServletException, IOException {
           response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        String gurufile = "tripstudent.csv";
+        String gurufile = "tripstudent_blank.csv";
         String gurupath = "C:/Users/User/Desktop/FYP 0509/EpicFYP/EpicFYPApp/web/documents/";
         response.setContentType("APPLICATION/OCTET-STREAM");
         response.setHeader("Content-Disposition", "attachment; filename=\""

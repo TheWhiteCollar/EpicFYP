@@ -58,7 +58,9 @@ public class LoginServlet_user extends HttpServlet {
                 session.setAttribute("User", user);
                 if (comefrom != null && comefrom.equals("studyTrip")) {
                     response.sendRedirect("studyTrip.jsp");	
-                } else {
+                } if(comefrom != null && comefrom.equals("internshipDetails")){
+                    response.sendRedirect("internshipDetails.jsp");
+                }else {
                     response.sendRedirect("studentPortal_main.jsp");
                 }
         

@@ -25,54 +25,50 @@
 
 
     </head>
-    <body>
+    <body class="landing">
 
         <!-- Header -->
         <jsp:include page="header.jsp" />
 
         <!-- Main -->
-        <section id="login" class="wrapper">
+        <section id="banner" class="wrapper">
             <div class="container">
+                <div align="center">
+                    <div style="width:300px">
 
 
-                <!-- For user to choose if they want to login as student or admin -->
-                <div class="tab">
-                    <button class="tablinks" onclick="openUser(event, 'Students')" id="defaultOpen">User</button>
-                </div>
+                        <p style="text-align:center; color: red">
 
-                <div id="Students" class="tabcontent">
-                    <p style="text-align:center; color: red">
+                            <%
+                                String Student_ErrorMsg = (String) request.getAttribute("Student_ErrorMsg");
 
-                        <%
-                            String Student_ErrorMsg = (String) request.getAttribute("Student_ErrorMsg");
+                                if (Student_ErrorMsg != null) {
+                                    out.print(Student_ErrorMsg);
+                                }
+                                // to check if user come to login page straight or come from study trip	
+                                String comefrom = (String) request.getParameter("comefrom");
+                            %>
+                        </p>
 
-                            if (Student_ErrorMsg != null) {
-                                out.print(Student_ErrorMsg);
-                            }
-                            // to check if user come to login page straight or come from study trip	
-                            String comefrom = (String) request.getParameter("comefrom");
-                        %>
-                    </p>
-
-                    <form action="LoginServlet_user" method="post">
-                        <input type="text" name="userid" placeholder="- Enter User Email -" style="text-align:center">
-                        <br>
-                        <input type="password" name="userpassword" placeholder="- Enter User Password -" style="text-align:center">
-                        <br>
-                    <%
-                    // if user come from study trip, pass a hidden value of studyTrip to login servlet, so will send back to studyTrip instead of student portal	
-                            if (comefrom != null) { %>	
-                        <input type="hidden" name="comefrom" value="studyTrip" style="text-align:center">	
-                        <%	
-                            }	
-                        %>	
-                        <input type="submit" value="Login" class ="full_width">
-                    </form> 
-                    <p style="text-align:center">
-                        <a href="forgetpassword.jsp">Forgot your password?</a><br /> 
-                        <a href="signuppage.jsp">Click to sign up!</a>
-
-                    </p>
+                        <form action="LoginServlet_user" method="post">
+                            <input type="text" name="userid" placeholder="- Enter User Email -" class="align-center">
+                            <br>
+                            <input type="password" name="userpassword" placeholder="- Enter User Password -" class="align-center">
+                            <br>
+                            <%
+                        // if user come from study trip, pass a hidden value of studyTrip to login servlet, so will send back to studyTrip instead of student portal	
+                        if (comefrom != null) { %>	
+                            <input type="hidden" name="comefrom" value="<%out.print(comefrom);%>" class="align-center">	
+                            <%
+                                }
+                            %>	
+                            <input type="submit" value="Login" class ="full_width">
+                        </form> 
+                            <p><a href="forgetpassword.jsp" style="color:#ffe6e6; font-size:18px">Forgot your password?</a></p>
+                            <p><a href="signuppage.jsp" style="color:#ffe6e6; font-size:18px">Click to sign up!</a></p>
+                            
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>

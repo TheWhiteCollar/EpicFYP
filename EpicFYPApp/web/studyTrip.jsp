@@ -48,7 +48,7 @@
                     var count = 1;
                     console.log(trips);
                     $.each(trips, function (index, trip) {
-                        var number = trip.tripStudentNeededToActivate - trip.tripSignedUpEmails.length;
+                        var number = trip.tripActivation - trip.signedUpEmails.length;
                         switch (count % 3) {
                             case (1):
                                 tripHTML += '<div class ="row"><div class = "4u 12u(xsmall)"><table  style="border:1px solid; border-radius: 10px;">';
@@ -79,7 +79,7 @@
                         tripHTML += '<input style="display: none" type="text" name="email" value="' + '${User.getUserEmail()}' + '"/>';
                         
                         var user = '${User.getUserEmail()}';
-                        if(trip.tripSignedUpEmails.includes(user)){
+                        if(trip.signedUpEmails.includes(user)){
                             tripHTML += '<p><input disabled type="submit" value="Applied" class="full_width"/></form></p>';
                         } else {
                         tripHTML += '<p><input type="submit" value="Apply" class="full_width"/></form></p>';

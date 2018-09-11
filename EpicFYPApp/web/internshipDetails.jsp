@@ -65,7 +65,7 @@
                            </thead>
                            <%
                                ArrayList<CountryInternship> allAmericaCountries = CountryInternshipDAO.getAllCountryInternshipAmerica();
-                               if (allAmericaCountries == null) {
+                               if (allAmericaCountries != null) {
                                 //for (int i = 0; i < allAmericaCountries.size(); i++) {
                                    // CountryInternship ci = allAmericaCountries.get(i);
                                 
@@ -73,6 +73,7 @@
                            <tbody>
                                <tr>
                                    <td><%out.print("hello");%></td>
+                                   <td><%out.print(allAmericaCountries.get(0).getCountryContinent());%></td>
                                </tr>
                            </tbody>
                            <%

@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Scanner;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -70,7 +71,7 @@ public class AdminBootstrapServlet extends HttpServlet {
                     String userFieldOfStudy = user[14];
                     String userDescription = user[15];
                     String userSchool = user[16];
-                    
+
                     Boolean inserted = UserDAO.addUser(userEmail, userFirstName, userLastName, userPhone, userGender, userCitizenship, yearOfBirth, userProfilePic, userInterest, userPassword, userOccupation, userResume, userIsEmailConfirm, userHighestEducation, userFieldOfStudy, userDescription, userSchool);
 
                 }
@@ -78,32 +79,35 @@ public class AdminBootstrapServlet extends HttpServlet {
                 writer.println("Not added in successfully");
             }
 
-            /*
             // Create path components to save the file -- Trips
             final Part filePartTrip = request.getPart("updateTrips");
             InputStream fileContentTrip = filePartTrip.getInputStream();
             if (fileContentTrip != null) {
                 Scanner sc = new Scanner(fileContentTrip);
-                writer.println("You are on the way woohoo -- Trips");
                 String line = sc.nextLine();
                 while (sc.hasNextLine()) {
                     line = sc.nextLine();
                     String[] trip = line.split(",");
-                    String tripID = trip[0];
-                    String programme = trip[1];
-                    String price = trip[2];
-                    String ratings = trip[3];
-                    String country = trip[4];
-                    // to include dates
-                    String tripDuration = trip[7];
-                    if (TripsDAO.addTrip(tripID, programme, price, ratings, country, tripDuration)) {
-                        writer.println("Trip Successfully updated");
-                    } else {
-                        writer.println("Not inserted into database");
-                    }
+                    String tripTitle = trip[0];
+                    Double tripPrice = Double.parseDouble(trip[1]);
+                    String tripItinerary = trip[2];
+                    String tripDescription = trip[3];
+                    String tripCountry = trip[4];
+                    String tripState = trip[5];
+                    //Date tripStart = Date.valueOf("1-3-2019");
+                    //Date tripEnd = Date.valueOf("3-3-2019");
+                    int tripDuration = Integer.parseInt(trip[8]);
+                    int tripActivation = Integer.parseInt(trip[9]);
+                    String tripInterest = trip[10];
+                    int tripTotalSignUp = Integer.parseInt(trip[11]);
+                    String tripPromo = trip[12];
+                    Double tripPromoPercentage = Double.parseDouble(trip[13]);
+
+                    // boolean inserted = TripsDAO.addTrip(tripTitle, tripPrice, tripItinerary, tripDescription, tripCountry, tripState, tripStart, tripEnd, tripDuration, tripActivation, tripInterest, tripTotalSignUp, tripPromo, tripPromoPercentage);
+                    boolean inserted = TripsDAO.addTrip(tripTitle, tripPrice, tripItinerary, tripDescription, tripCountry, tripState, tripDuration, tripActivation, tripInterest, tripTotalSignUp, tripPromo, tripPromoPercentage);
                 }
             } else {
-                writer.println("Haiz");
+                writer.println("Not added in successfully");
             }
 
             // Create path components to save the file -- tripstudent
@@ -111,23 +115,27 @@ public class AdminBootstrapServlet extends HttpServlet {
             InputStream fileContentTripStudent = filePartTripStudent.getInputStream();
             if (fileContentTripStudent != null) {
                 Scanner sc = new Scanner(fileContentTripStudent);
-                writer.println("You are on the way woohoo -- TripStudent");
                 String line = sc.nextLine();
                 while (sc.hasNextLine()) {
                     line = sc.nextLine();
                     String[] tripStudent = line.split(",");
-                    String tripID = tripStudent[0];
-                    String studentEmail = tripStudent[1];
-                    if (TripsDAO.addTripStudent(tripID, studentEmail)) {
+                    int tripID = Integer.parseInt(tripStudent[0]);
+                    String tripUserEmail = tripStudent[1];
+                    int tripStudentPayment = Integer.parseInt(tripStudent[2]);
+                    String tripStudentStatus = tripStudent[3];
+                    String tripStudentReview = tripStudent[4];
+                    int tripStudentRating = Integer.parseInt(tripStudent[5]);
+
+                    if (TripsDAO.addTripStudent(tripUserEmail, tripStudentPayment, tripStudentStatus, tripStudentReview, tripStudentRating, tripID)) {
                         writer.println("TripStudent Successfully updated");
                     } else {
                         writer.println("Not inserted into database");
                     }
                 }
             } else {
-                writer.println("Haiz");
+                writer.println("Not added in successfully");
             }
-             */
+            
             request.setAttribute("Success_Msg", "Database successfully updated");
             request.getRequestDispatcher("AdminPortal_bootstrap.jsp").forward(request, response);
 

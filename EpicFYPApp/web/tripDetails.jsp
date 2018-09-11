@@ -1,3 +1,4 @@
+<%@page import="java.sql.Date"%>
 <%@page import="Model.Entity.Admin"%>
 <%@page import="Model.Entity.User"%>
 <%@page import="Model.Entity.User"%>
@@ -40,18 +41,19 @@
 
                 <%
                     // pass the trip ID over - by a session??
-                    String tripID = request.getParameter("tripID");
-
+                    String tripIDS = request.getParameter("tripID");
+                    int tripID = Integer.parseInt(tripIDS);	
+                    
                     Trip trip = TripsDAO.getTrip(tripID);
                     if (trip != null) {
                         String tripTitle = trip.getTripTitle();
                         String tripCountry = trip.getTripCountry();
-                        String tripStart = trip.getTripStart();
-                        String tripEnd = trip.getTripEnd();
+                        Date tripStart = trip.getTripStart();
+                        Date tripEnd = trip.getTripEnd();
                         int tripDuration = trip.getTripDuration();
-                        String tripPrice = trip.getTripPrice();
-                        boolean tripActivated = trip.getTripActivated();
-                        int studentsToActivation = trip.getTripStudentNeededToActivate() - trip.getNumberOfStudents();
+                        double tripPrice = trip.getTripPrice();
+                        boolean tripActivated = trip.getActivated();
+                        int studentsToActivation = trip.getTripActivation() - trip.getNumberOfStudents();
                 %>
 
                 <header class="major align-center">

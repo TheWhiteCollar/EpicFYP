@@ -30,23 +30,57 @@
         <jsp:include page="header.jsp" />
 
         <!-- Main -->
-        <section id="main" class="wrapper">
+        <section id="main" class="wrapper align-center">
+            <div class="container">
+                <header class="major">
+                    <h2>Internship</h2>
+                    <p>Register, and get matched!</p>
+                </header>
+
+
+
+                <h3>Step 1 : Pick the continent of your choice</h3>
+                <div class="row">
+
+                    <section class="feature 6u 12u(small)">
+                        <img class="image fit" src="images/pic01.jpg" alt="" />
+                        <h3 class="title"><a href="internshipDetails.jsp?cont=America">America</a></h3>
+                    </section>
+                    <section class="feature 6u 12u(small)">
+                        <img class="image fit" src="images/pic02.jpg" alt="" />
+                        <h3 class="title"><a href="internshipDetails.jsp?cont=Asia">Asia</a></h3>
+                    </section>
+                    <section class="feature 6u 12u(small)">
+                        <img class="image fit" src="images/pic03.jpg" alt="" />
+                        <h3 class="title"><a href="internshipDetails.jsp?cont=Australia">Australia</a></h3>
+                    </section>
+                    <section class="feature 6u 12u(small)">
+                        <img class="image fit" src="images/pic04.jpg" alt="" />
+                        <h3 class="title"><a href="internshipDetails.jsp?cont=Europe">Europe</a></h3>
+                    </section>
+
+
+                </div>
+
+            </div>
+        </section>
+        
+        <!-- InternshipAbout -->
+        <section id="internshipabout" class="wrapper style1 align-center">
             <div class="container">
 
                 <header class="major">
-                    <h2>Work + Travel</h2>
-                    <p>Search for internship opportunities overseas</p> 
+                    <h2>Our Internship Process</h2>
+                    <p>Ever wanted to intern overseas, but the entire process is daunting?</p> 
+                    </header>
                     
-                    <div class ="row">
-                        <div class ="10u 12u">
-                            <input id="searchBar" type="text" name="searchbar" placeholder="Search for opportunities related to:"/>
-                        </div>
-                        <div class ="2u 12u">
-                            <input type="submit">
-                        </div>
-                    </div>
-                </header>
-
+                <p>Then we have just the thing you need! </p>
+                <p>We have partners in these 4 continents looking for interns! 
+                    All you need to do is register under your continent of interest, and we will match you accordingly!
+                Our internships are highly competitive, and only matched applications will be contacted. </p>
+                
+                
+                
             </div>
         </section>
 

@@ -89,4 +89,25 @@ public class CountryInternshipDAO {
         }
         return null;
     }
+    
+    //get all countryinternship names with contient America
+    public static ArrayList<CountryInternship> getAllCountryInternshipAmerica() {
+        ArrayList<CountryInternship> result = new ArrayList<>();
+        try {
+            Connection conn = ConnectionManager.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT * from countryinternship WHERE countryContinent="America"");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                result.add(new CountryInternship(rs.getString(1), rs.getString(2)));
+            }
+            rs.close();
+            stmt.close();
+            conn.close();
+            return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
 }

@@ -91,11 +91,11 @@ public class CountryInternshipDAO {
     }
     
     //get all countryinternship names with contient America
-    public static ArrayList<CountryInternship> getAllCountryInternshipAmerica() {
+    public static ArrayList<CountryInternship> getAllCountryInternship(String countryName) {
         ArrayList<CountryInternship> result = new ArrayList<>();
         try {
             Connection conn = ConnectionManager.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT * from countryinternship WHERE countryContinent='America'");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * from countryinternship WHERE countryContinent='"+countryName+"'");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 result.add(new CountryInternship(rs.getString(1), rs.getString(2)));

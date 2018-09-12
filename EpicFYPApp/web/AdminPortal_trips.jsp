@@ -1,3 +1,4 @@
+<%@page import="Model.Dao.CountryTripDAO"%>
 <%@page import="Model.Entity.Interest"%>
 <%@page import="Model.Dao.InterestDAO"%>
 <%@page import="java.util.ArrayList"%>
@@ -213,7 +214,7 @@
                     countriesHTML += "<thead><tr><th>#</th><th colspan='2'>Country Name</th></tr></thead>";
                     var count = 1;
                     for (const country of countries) {
-                          countriesHTML += '<tr><td>' + count + '</td><td>' + country + "</td></tr>";
+                        countriesHTML += '<tr><td>' + count + '</td><td>' + country + "</td></tr>";
 //                        countriesHTML += '<tr><td>Country : ' + country + "</td><td><button value='" + country + "</td></tr>";
                         count += 1;
                     }
@@ -294,7 +295,7 @@
                 });
 
             }
-            
+
             function deleteCountry(obj) {
                 let countryName = $(obj).val();
                 let countryData = {
@@ -319,9 +320,9 @@
                         });
                     }
                 });
-                
+
             }
-            
+
             function deleteInterest(obj) {
                 let interestName = $(obj).val();
                 let interestData = {
@@ -410,37 +411,42 @@
                                 Programmes Category:
                                 <select name="programmes" >
                                     <option disabled selected value style="display:none"> - select a programme category - </option>
-                                    <option value="Nature and Culture" >Nature and Culture</option>
-                                    <option value="Academic & Business" >Academic & Business</option>
-                                    <option value="Service & Social Innovation">Service & Social Innovation</option>
+                                    <%
+                                        ArrayList<String> allInterests = InterestDAO.getInterests();
+
+                                        if (!allInterests.isEmpty()) {
+                                            for (int i = 0; i < allInterests.size(); i++) {
+                                                String interests = allInterests.get(i);
+
+                                    %>
+                                    <option value="<%out.print(interests);%>"><%out.print(interests);%></option>
+                                    <%    }
+                                        }
+
+                                    %>
+                                </select>
+                            </div>
+                            <div class="4u 12u(small)">
+                                Country:
+                                <select name="country">
+                                    <option disabled selected value style="display:none"> - Country - </option>
+                                    <%                                    ArrayList<String> allCountryTrip = CountryTripDAO.getAllCountryTrip();
+
+                                        if (!allCountryTrip.isEmpty()) {
+                                            for (int i = 0; i < allCountryTrip.size(); i++) {
+                                                String country = allCountryTrip.get(i);
+
+                                    %>
+                                    <option value="<%out.print(country);%>"><%out.print(country);%></option>
+                                    <%    }
+                                        }
+
+                                    %>
                                 </select>
                             </div>
                         </div>
                         </p>
 
-                        <p>
-                        <div class = "row">
-                            <div class="1u 12u(small)">
-                                Country:
-                            </div>
-                            <div class="2u 12u(small)">                                   
-                                <input type="checkbox" id="Singapore" name="country" value="Singapore">
-                                <label for="Singapore">Singapore</label>
-                            </div>
-                            <div class="2u 12u(small)">                                   
-                                <input type="checkbox" id="Myanmar" name="country" value="Myanmar">
-                                <label for="Myanmar">Myanmar</label>
-                            </div>
-                            <div class="2u 12u(small)">                                   
-                                <input type="checkbox" id="China" name="country" value="China">
-                                <label for="China">China</label>
-                            </div>
-                            <div class="2u 12u(small)">                                   
-                                <input type="checkbox" id="Indonesia" name="country" value="Indonesia">
-                                <label for="Indonesia">Indonesia</label>
-                            </div>
-                        </div>
-                        </p>
 
                         <input type="submit" value="Apply" style="width:100%"> 
                     </form> 
@@ -757,10 +763,19 @@
                                 <p>
                                     Programme Category tag: 
                                     <select name="programmes" >
-                                        <option disabled selected value style="display:none"> - select a programme category - </option>
-                                        <option value="Nature and Culture" >Nature and Culture</option>
-                                        <option value="Academic & Business" >Academic & Business</option>
-                                        <option value="Service & Social Innovation">Service & Social Innovation</option>
+                                        <%
+                                            ArrayList<String> allInterest = InterestDAO.getInterests();
+
+                                            if (!allInterest.isEmpty()) {
+                                                for (int i = 0; i < allInterest.size(); i++) {
+                                                    String interest = allInterest.get(i);
+
+                                        %>
+                                        <option value="<%out.print(interest);%>"><%out.print(interest);%></option>
+                                        <%    }
+                                            }
+
+                                        %>
                                     </select>
                                 </p>
                             </div>
@@ -876,7 +891,7 @@
                                         <td>Name</td>
                                         <td>Email</td>
                                         <td>Phone</td> 
-                                    </tr>
+                                        tr          </tr>
 
                                 </tbody>
 

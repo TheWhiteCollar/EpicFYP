@@ -6,9 +6,7 @@
 package Controller;
 
 import Model.Dao.UserDAO;
-import Model.Entity.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,7 +43,7 @@ public class signupServlet extends HttpServlet {
         String userCitizenship = request.getParameter("citizenship");
         String yob = request.getParameter("yob");
         int yearOfBirth = Integer.parseInt(yob);
-        Date date = Date.valueOf("1995-08-26");
+        //Date date = Date.valueOf("1995-08-26");
         //profile pic
         String userProfilePic = "pretty.jpg";
         String userInterest = request.getParameter("interest");
@@ -53,9 +51,9 @@ public class signupServlet extends HttpServlet {
         String userOccupation = request.getParameter("occupation");
         //resume
         String userResume = "MyResume.pdf";
-        String userIsEmailConfirm = "false"; // by right should be boolean
+        String userIsEmailConfirm = "pending"; // by right should be boolean
         String userHighestEducation = request.getParameter("highest_qualification");
-        String userFieldOfStudy = request.getParameter("field of Study");
+        String userFieldOfStudy = request.getParameter("fos");
         String userDescription = request.getParameter("message");
         String userSchool = request.getParameter("school");
 
@@ -66,7 +64,7 @@ public class signupServlet extends HttpServlet {
             Boolean inserted = UserDAO.addUser(userEmail, userFirstName, userLastName, userPhone, userGender, userCitizenship, yearOfBirth, userProfilePic, userInterest, userPassword, userOccupation, userResume, userIsEmailConfirm, userHighestEducation, userFieldOfStudy, userDescription, userSchool);
 
             if (inserted == true) {
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("signupSucceed.jsp");
                 return;
             } else {
                 response.sendRedirect("signuppage.jsp");

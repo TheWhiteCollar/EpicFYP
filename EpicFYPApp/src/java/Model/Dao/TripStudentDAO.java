@@ -66,7 +66,7 @@ public class TripStudentDAO {
     }
     
     // get all existing InternshipStudent
-    public static ArrayList<TripStudent> getAllInternshipStudents() {
+    public static ArrayList<TripStudent> getAllTripStudents() {
         ArrayList<TripStudent> result = new ArrayList<>();
         try {
             Connection conn = ConnectionManager.getConnection();

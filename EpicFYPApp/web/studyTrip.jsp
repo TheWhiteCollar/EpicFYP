@@ -1,3 +1,4 @@
+<%@page import="Model.Dao.InterestDAO"%>
 <%@page import="Model.Dao.CountryTripDAO"%>
 <%@page import="Model.Entity.User"%>
 <%@page import="java.time.LocalDate"%>
@@ -72,8 +73,8 @@
                         tripHTML += '<tr><td>';
 
             <%
-                            User User = (User) session.getAttribute("User");
-                            if (User != null) {
+                User User = (User) session.getAttribute("User");
+                if (User != null) {
             %>
                         tripHTML += '<form action="applyForTrips" method="post">';
                         tripHTML += '<input style="display: none" type="text" name="tripID" value="' + trip.tripID + '"/>';
@@ -87,7 +88,7 @@
                         }
 
             <%
-                        } else {
+            } else {
             %>
 
                         tripHTML += '<p><a href = "login.jsp?comefrom=studyTrip" class = "button full_width">Log in to apply</a></p>';
@@ -177,7 +178,8 @@
                                 Programmes:
                                 <select name="programmes" >
                                     <option disabled selected value style="display:none"> - select a programme - </option>
-                                    <%                                            ArrayList<String> allInterests = InterestDAO.getInterests();
+                                    <%
+                                        ArrayList<String> allInterests = InterestDAO.getInterests();
 
                                         if (!allInterests.isEmpty()) {
                                             for (int i = 0; i < allInterests.size(); i++) {
@@ -191,29 +193,27 @@
                                     %>
                                 </select>
                             </div>
+                            <div  class="4u 12u(small)">
+                                Country:
+                                <select name="country">
+                                    <option disabled selected value style="display:none"> - Select a Country - </option>
+                                    <%                                    ArrayList<String> allCountryTrip = CountryTripDAO.getAllCountryTrip();
+
+                                        if (!allCountryTrip.isEmpty()) {
+                                            for (int i = 0; i < allCountryTrip.size(); i++) {
+                                                String country = allCountryTrip.get(i);
+
+                                    %>
+                                    <option value="<%out.print(country);%>"><%out.print(country);%></option>
+                                    <%    }
+                                        }
+
+                                    %>
+                                </select> 
+                            </div>
                         </div>
                         </p>
 
-                        <p>
-                        <div class = "row">
-                            <select name="country" multiple="multiple" style="height: 200px;">
-                                <option disabled selected value style="display:none"> - Country - </option>
-                                <%                                            
-                                    ArrayList<String> allCountryTrip = CountryTripDAO.getAllCountryTrip();
-
-                                    if (!allCountryTrip.isEmpty()) {
-                                        for (int i = 0; i < allCountryTrip.size(); i++) {
-                                            String country = allCountryTrip.get(i);
-
-                                %>
-                                <option value="<%out.print(country);%>"><%out.print(country);%></option>
-                                <%    }
-                                    }
-
-                                %>
-                            </select> 
-                        </div>
-                        </p>
 
                         <input type="submit" value="Apply" class="full_width"> 
                     </form> 

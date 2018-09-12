@@ -1,3 +1,4 @@
+<%@page import="Model.Dao.CountryTripDAO"%>
 <%@page import="Model.Entity.User"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="java.time.Instant"%>
@@ -69,31 +70,31 @@
                         }
                         tripHTML += '<tr><td>Travel to Myanmar and experience their beautiful scenery</td></tr>';
                         tripHTML += '<tr><td>';
-                                
-                        <%
+
+            <%
                             User User = (User) session.getAttribute("User");
                             if (User != null) {
-                        %>
+            %>
                         tripHTML += '<form action="applyForTrips" method="post">';
                         tripHTML += '<input style="display: none" type="text" name="tripID" value="' + trip.tripID + '"/>';
                         tripHTML += '<input style="display: none" type="text" name="email" value="' + '${User.getUserEmail()}' + '"/>';
-                        
+
                         var user = '${User.getUserEmail()}';
-                        if(trip.signedUpEmails.includes(user)){
+                        if (trip.signedUpEmails.includes(user)) {
                             tripHTML += '<p><input disabled type="submit" value="Applied" class="full_width"/></form></p>';
                         } else {
-                        tripHTML += '<p><input type="submit" value="Apply" class="full_width"/></form></p>';
+                            tripHTML += '<p><input type="submit" value="Apply" class="full_width"/></form></p>';
                         }
-                        
-                        <%
+
+            <%
                         } else {
-                        %>
-                        
+            %>
+
                         tripHTML += '<p><a href = "login.jsp?comefrom=studyTrip" class = "button full_width">Log in to apply</a></p>';
-            
-                        
-                        <%}%>
-                            
+
+
+            <%}%>
+
                         tripHTML += '<form action="tripDetails.jsp" method="post"><input type="text" name="tripID" style="display: none" value="' + trip.tripID + '"><input type = "submit" class="full_width" value = "More Details"></form>';
                         tripHTML += '</td></tr>';
                         switch (count % 3) {
@@ -176,9 +177,18 @@
                                 Programmes:
                                 <select name="programmes" >
                                     <option disabled selected value style="display:none"> - select a programme - </option>
-                                    <option value="Nature and Culture" >Nature and Culture</option>
-                                    <option value="Academic & Business" >Academic & Business</option>
-                                    <option value="Service & Social Innovation">Service & Social Innovation</option>
+                                    <%                                            ArrayList<String> allInterests = InterestDAO.getInterests();
+
+                                        if (!allInterests.isEmpty()) {
+                                            for (int i = 0; i < allInterests.size(); i++) {
+                                                String interests = allInterests.get(i);
+
+                                    %>
+                                    <option value="<%out.print(interests);%>"><%out.print(interests);%></option>
+                                    <%    }
+                                        }
+
+                                    %>
                                 </select>
                             </div>
                         </div>
@@ -186,25 +196,22 @@
 
                         <p>
                         <div class = "row">
-                            <div class="1u 12u(small)">
-                                Country:
-                            </div>
-                            <div class="2u 12u(small)">                                   
-                                <input type="checkbox" id="Singapore" name="country" value="Singapore">
-                                <label for="Singapore">Singapore</label>
-                            </div>
-                            <div class="2u 12u(small)">                                   
-                                <input type="checkbox" id="Myanmar" name="country" value="Myanmar">
-                                <label for="Myanmar">Myanmar</label>
-                            </div>
-                            <div class="2u 12u(small)">                                   
-                                <input type="checkbox" id="China" name="country" value="China">
-                                <label for="China">China</label>
-                            </div>
-                            <div class="2u 12u(small)">                                   
-                                <input type="checkbox" id="Indonesia" name="country" value="Indonesia">
-                                <label for="Indonesia">Indonesia</label>
-                            </div>
+                            <select name="country" multiple="multiple" style="height: 200px;">
+                                <option disabled selected value style="display:none"> - Country - </option>
+                                <%                                            
+                                    ArrayList<String> allCountryTrip = CountryTripDAO.getAllCountryTrip();
+
+                                    if (!allCountryTrip.isEmpty()) {
+                                        for (int i = 0; i < allCountryTrip.size(); i++) {
+                                            String country = allCountryTrip.get(i);
+
+                                %>
+                                <option value="<%out.print(country);%>"><%out.print(country);%></option>
+                                <%    }
+                                    }
+
+                                %>
+                            </select> 
                         </div>
                         </p>
 

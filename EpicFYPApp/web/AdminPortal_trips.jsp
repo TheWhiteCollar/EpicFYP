@@ -53,14 +53,14 @@
                         tripHTML += '<tr><td>Country : ' + trip.tripCountry + "</td><td> Start : " + trip.tripStart + "</td>";
                         tripHTML += "<td>End : " + trip.tripEnd + "</td><td>Price : $" + trip.tripPrice + "</tr>";
                         tripHTML += '<tr><td colspan="4"> Trip Description?</td></tr>';
-                        var number = trip.tripActivation - trip.tripSignedUpEmails.length;
+                        var number = trip.tripActivation - trip.signedUpEmails.length;
                         if (trip.activated) {
                             tripHTML += '<tr><td colspan="3">Activated</td>';
                         } else {
 
                             tripHTML += '<tr><td colspan="3">Not Activated : ' + number + " more to activate this trip</td>";
                         }
-                        tripHTML += "<td>" + trip.tripSignedUpEmails.length + " signed up</td></tr>";
+                        tripHTML += "<td>" + trip.signedUpEmails.length + " signed up</td></tr>";
                         tripHTML += "<tr><td><form class=\"deleteTrip\">";
                         tripHTML += "<input style=\"display: none\" type=\"text\" name=\"tripID\" value=\"" + trip.tripID + "\"/>";
                         tripHTML += "<button class = \"button\" type=\"submit\" id=\"asd" + index + "\">Delete Trip</button></form></td>";
@@ -157,14 +157,14 @@
                             tripHTML += '<tr><td>Country : ' + trip.tripCountry + "</td><td> Start : " + trip.tripStart + "</td>";
                             tripHTML += "<td>End : " + trip.tripEnd + "</td><td>Price : $" + trip.tripPrice + "</tr>";
                             tripHTML += '<tr><td colspan="4"> Trip Description?</td></tr>';
-                            var number = trip.tripStudentNeededToActivate - trip.tripSignedUpEmails.length;
+                            var number = trip.tripActivation - trip.signedUpEmails.length;
                             if (trip.activated) {
                                 tripHTML += '<tr><td colspan="3">Activated</td>';
                             } else {
 
                                 tripHTML += '<tr><td colspan="3">Not Activated : ' + number + " more to activate this trip</td>";
                             }
-                            tripHTML += "<td>" + trip.tripSignedUpEmails.length + " signed up</td></tr>";
+                            tripHTML += "<td>" + trip.signedUpEmails.length + " signed up</td></tr>";
                             tripHTML += "<tr><td><form class=\"deleteTrip\">";
                             tripHTML += "<input style=\"display: none\" type=\"text\" name=\"tripID\" value=\"" + trip.tripID + "\"/>";
                             tripHTML += "<button class = \"button\" type=\"submit\" id=\"asd" + index + "\">Delete Trip</button></form></td>";

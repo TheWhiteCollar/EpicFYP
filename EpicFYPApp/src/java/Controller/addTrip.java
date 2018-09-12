@@ -73,7 +73,7 @@ public class addTrip extends HttpServlet {
         Date tripStart = Date.valueOf(request.getParameter("tripStart"));
         Date tripEnd = Date.valueOf(request.getParameter("tripEnd"));
         int tripDuration = Integer.parseInt(request.getParameter("tripDuration"));        
-        int tripActivation = Integer.parseInt(request.getParameter("tripInterest"));
+        int tripActivation = Integer.parseInt(request.getParameter("tripActivation"));
         String tripInterest = request.getParameter("tripInterest");
         int tripTotalSignUp = Integer.parseInt(request.getParameter("tripTotalSignUp"));
         String tripPromo = request.getParameter("tripPromo");

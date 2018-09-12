@@ -32,7 +32,7 @@ public class applyForTrips extends HttpServlet {
 protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
         String tripUserEmail = request.getParameter("tripUserEmail");
-        int tripStudentPayment= Integer.parseInt(request.getParameter("tripStudentPayment"));
+        double tripStudentPayment= Double.parseDouble(request.getParameter("tripStudentPayment"));
         String tripStudentStatus = request.getParameter("tripStudentStatus");
         String tripStudentReview = request.getParameter("tripStudentReview");
         int tripStudentRating = Integer.parseInt(request.getParameter("tripStudentRating"));

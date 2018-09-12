@@ -33,7 +33,7 @@
         <section id="main" class="wrapper align-center">
             <div class="container">
                 <header class="major">
-                    <h2>Internship</h2>
+                    <h2>Overseas Internship</h2>
                     <p>Register, and get matched!</p>
                 </header>
 

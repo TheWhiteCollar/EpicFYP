@@ -172,5 +172,22 @@ public class UserDAO {
         }
         return true;
     }
+    
+    public static User getUser(String userEmail) {
+        User user = null;
+        String sql = "SELECT * FROM user WHERE userEmail = ?";
+        try (Connection conn = ConnectionManager.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
+            stmt.setString(1, userEmail);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                user = new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.WARNING, "Cannot get user with userEmail: " + userEmail, ex);
+        }
+        return user;
+        
+    }
   
 }

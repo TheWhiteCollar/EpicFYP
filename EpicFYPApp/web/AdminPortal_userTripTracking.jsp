@@ -1,3 +1,7 @@
+<%@page import="Model.Dao.TripsDAO"%>
+<%@page import="Model.Entity.Trip"%>
+<%@page import="Model.Dao.UserDAO"%>
+<%@page import="Model.Entity.User"%>
 <%@page import="Model.Dao.TripStudentDAO"%>
 <%@page import="Model.Entity.TripStudent"%>
 <%@page import="java.util.ArrayList"%>
@@ -41,7 +45,7 @@
                     <h2>Tracking Users' Applications</h2>
                 </header>
 
-             
+
         </section>
         <section>
             <div class="container">
@@ -64,11 +68,17 @@
                                 for (int i = 0; i < allTripStudent.size(); i++) {
                                     TripStudent ts = allTripStudent.get(i);
                                     count += 1;
+                                    String userEmail = ts.getTripUserEmail();
+                                    User user = UserDAO.getUser(userEmail);
+                                    String name = "" + user.getUserFirstName() + " " + user.getUserLastName();
+                                    int tripID = ts.getTripID();
+                                    Trip trip = TripsDAO.getTrip(tripID);
+                                    String tripName = trip.getTripTitle();
                         %>
                         <tr>
                             <td class = "align-center"><%out.print(count);%></td>
-                            <td><% out.print(ts.getTripID()); %></td>                      
-                            <td><% out.print(ts.getTripUserEmail()); %></td>
+                            <td><% out.print(tripName); %></td>                      
+                            <td><% out.print(name); %></td>
                             <td class = "align-center"><% out.print(ts.getTripStudentStatus()); %></td>
                             <td class = "align-center"><button type="button" class="button" data-toggle="modal" data-target="#myModal<%out.print(i);%>">View</button></td>
                         </tr>
@@ -83,6 +93,8 @@
                     if (!allTripStudent.isEmpty()) {
                         for (int i = 0; i < allTripStudent.size(); i++) {
                             TripStudent ts = allTripStudent.get(i);
+                            Trip t = TripsDAO.getTrip(ts.getTripID());
+                            User u = UserDAO.getUser(ts.getTripUserEmail());
 
                 %>
                 <div class="modal fade" id="myModal<%out.print(i);%>" role="dialog">
@@ -90,33 +102,39 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">More information</h4>
+                                <h4 class="modal-title">More information of [Trip ID: #<%out.print(t.getTripID());%>], applied by <%out.print(u.getUserFirstName() + " " + u.getUserLastName());%></h4>
                             </div>
                             <div class="modal-body">
                                 <div class ="row">
-                                    <div class ="4u 12u">
+                                    <div class ="12u 12u">
                                         <p>
-                                            Trip ID : <%out.print(ts.getTripID()); %>
+                                            Name : <%out.print(u.getUserFirstName() + " " + u.getUserLastName());%>
                                         </p>                                           
-                                    </div>
-                                    <div class ="4u 12u">
+                                    </div>                            
+                                </div>
+                                <div class ="row">
+                                    <div class ="12u 12u">
                                         <p>
-                                            Trip ID : <%out.print(ts.getTripID()); %>
+                                            Email : <%out.print(u.getUserEmail());%>
                                         </p>                                           
-                                    </div>
-                                    <div class ="4u 12u">
+                                    </div>                            
+                                </div>
+                                <div class ="row">
+                                    <div class ="12u 12u">
                                         <p>
-                                            Trip ID : <%out.print(ts.getTripID()); %>
+                                            Trip Applied : [Trip ID: #<%out.print(t.getTripID());%>] <%out.print(t.getTripTitle());%>
                                         </p>                                           
-                                    </div>                              
+                                    </div>                            
                                 </div>
 
                                 <div class ="row">
                                     <div class ="12u 12u">
-                                        Description :
-                                        <p>Trip ID : <%out.print(ts.getTripID()); %></p>
-                                             
-                                        
+                                        <p>Current Status : <%out.print(ts.getTripStudentStatus()); %></p>              
+                                    </div>
+                                </div>
+                                <div class ="row">
+                                    <div class ="12u 12u">
+                                        <p>Current deposit : $<%out.print(ts.getTripStudentPayment()); %></p>              
                                     </div>
                                 </div>
 

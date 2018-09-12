@@ -49,7 +49,7 @@
                 %>
 
                 <header class="major align-center">
-                    <h2>Internship in <%out.print(contient);%></h2>
+                    <h2>Overseas Internship in <%out.print(contient);%></h2>
 
                 </header>
                 <div class="row 50% uniform">                       

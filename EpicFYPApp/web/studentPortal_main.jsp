@@ -70,37 +70,6 @@
         %>
 
 
-
-        <!-- Trip Customisation: only show if they click study trip -->
-        <section id="trip_ustomisation" class="wrapper style1 align-center">
-            <div class="container">
-                <header>
-                    <h2>Trip Customisation</h2>
-                    <p>Design your dream trip, and it might just become reality</p>
-                </header>
-                <div class="row 200%">
-                    <section class="4u 12u(small)">
-                        <i class="icon big rounded fa-map-marker"></i>
-                        <p>Tell us where you would like to visit</p>
-                    </section>
-                    <section class="4u 12u(small)">
-                        <i class="icon big rounded fa-check-square-o"></i>
-                        <p>Wait for the trip approval</p>
-                    </section>
-                    <section class="4u 12u(small)">
-                        <i class="icon big rounded fa-user"></i>
-                        <p>Get 4 other friends to activate trip</p>
-                    </section>
-                    <!-- click button to customisation-->
-                    
-                </div>
-                <ul class="actions">
-                <li>
-                    <a href="studentPortal_customisation.jsp" class="button big">Build your dream trip</a>
-                </li>
-            </div>
-        </section>
-
         <!-- Trip Recommendations based on interest: only show if they click study trip -->
         <section id="trip_recommendation" class="wrapper align-center">
             <!-- a carousell?-->

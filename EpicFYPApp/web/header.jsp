@@ -41,11 +41,15 @@
                     %>
                     <li><a href="AdminPortal_visualisation.jsp">Site Visualisation</a></li>
                 
-                    <li><a href="AdminPortal_trips.jsp">Manage Trips</a></li>
+                    <li><a href="AdminPortal_trips.jsp">Manage Trips</a>
+                        <ul>
+                            <li><a href="AdminPortal_userTripTracking.jsp">Track Applications</a></li>
+                        </ul>
+                    </li>
                     <li><a href="#">Manage Users</a>                       
                         <ul>
-                            <li><a href="viewStudentProfile.jsp">Manage Students</a></li>
-                            <li><a href="underConstruction.jsp">View list of Partners</a></li>
+                            <li><a href="viewStudentProfile.jsp">View Students</a></li>
+                            <li><a href="underConstruction.jsp">View Partners</a></li>
                         </ul>
                         
                     </li>

@@ -39,7 +39,7 @@
                         String Username = admin.getAdminName();
                         if (Username != null && !Username.isEmpty()) {
                     %>
-                    <li><a href="AdminPortal_visualisation.jsp">Site Visualisation</a></li>
+                    <li><a href="AdminPortal_visualisation.jsp">Site Statistics</a></li>
                 
                     <li><a href="AdminPortal_trips.jsp">Manage Trips</a>
                         <ul>
@@ -49,7 +49,7 @@
                     <li><a href="#">Manage Users</a>                       
                         <ul>
                             <li><a href="viewStudentProfile.jsp">View Students</a></li>
-                            <li><a href="underConstruction.jsp">View Partners</a></li>
+                            <li><a href="AdminPortal_viewPartnerProfile.jsp">View Partners</a></li>
                         </ul>
                         
                     </li>

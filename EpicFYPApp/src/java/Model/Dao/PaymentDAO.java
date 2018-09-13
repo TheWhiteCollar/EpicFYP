@@ -18,16 +18,17 @@ import java.util.logging.Logger;
 
 public class PaymentDAO {
     // Update a particular payment row
-    public static boolean updatePayment(int paymentID, String paymentMode, String paymentType, double paymentRefund) {
+    public static boolean updatePayment(int paymentID, String paymentMode, String paymentType, double paymentAmount,  double paymentRefund) {
 
-        String sql = "UPDATE payment SET paymentMode=?, paymentType=?, paymentRefund=? WHERE paymentID=?";
+        String sql = "UPDATE payment SET paymentMode=?, paymentType=?, paymentAmount=?, paymentRefund=? WHERE paymentID=?";
 
         try (Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
             stmt.setString(1, paymentMode);
             stmt.setString(2, paymentType);
-            stmt.setDouble(2, paymentRefund);
-            stmt.setInt(2, paymentID);          
+            stmt.setDouble(3, paymentAmount);
+            stmt.setDouble(4, paymentRefund);
+            stmt.setInt(5, paymentID);          
             
             int result = stmt.executeUpdate();
             if (result == 0) {
@@ -40,15 +41,16 @@ public class PaymentDAO {
     }
 
     // Add a new payment row
-    public static boolean addPayment(int paymentID, String paymentMode, String paymentType, double paymentRefund) {
+    public static boolean addPayment(int paymentID, String paymentMode, String paymentType, double paymentAmount, double paymentRefund) {
 
-        String sql = "INSERT INTO payment (paymentID, paymentMode, paymentType, paymentRefund) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO payment (paymentID, paymentMode, paymentType, paymentAmount, paymentRefund) VALUES (?,?,?,?)";
 
         try (Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
             stmt.setInt(1, paymentID);
             stmt.setString(2, paymentMode);
             stmt.setString(3, paymentType);
+            stmt.setDouble(4, paymentAmount);
             stmt.setDouble(4, paymentRefund);
             
             int result = stmt.executeUpdate();
@@ -86,7 +88,7 @@ public class PaymentDAO {
             PreparedStatement stmt = conn.prepareStatement("select * from payment");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                result.add(new Payment(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4)));
+                result.add(new Payment(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getDouble(5)));
             }
             rs.close();
             stmt.close();

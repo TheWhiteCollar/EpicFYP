@@ -222,6 +222,7 @@ CREATE TABLE IF NOT EXISTS `payment` (
   `paymentID` int(11) NOT NULL AUTO_INCREMENT,
   `paymentMode` varchar(100) NOT NULL,
   `paymentType` varchar(100) NOT NULL,
+  `paymentAmount` double NOT NULL,
   `paymentRefund` double DEFAULT NULL,
   PRIMARY KEY (`paymentID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
@@ -230,9 +231,9 @@ CREATE TABLE IF NOT EXISTS `payment` (
 -- Dumping data for table `payment`
 --
 
-INSERT INTO `payment` (`paymentID`, `paymentMode`, `paymentType`, `paymentRefund`) VALUES
-(1, 'Visa', 'deposit', 0),
-(2, 'Mastercard', 'full amount', 0);
+INSERT INTO `payment` (`paymentID`, `paymentMode`, `paymentType`, `paymentAmount`, `paymentRefund`) VALUES
+(1, 'Visa', 'deposit', 10.9, 0),
+(2, 'Mastercard', 'full amount',99.40, 0);
 
 -- --------------------------------------------------------
 
@@ -277,23 +278,24 @@ INSERT INTO `trip` (`tripID`, `tripTitle`, `tripPrice`, `tripItinerary`, `tripDe
 
 CREATE TABLE IF NOT EXISTS `tripstudent` (
   `tripUserEmail` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `tripStudentPayment` double NOT NULL,
+  `tripStudentPaymentID` int(11) NOT NULL,
   `tripStudentStatus` varchar(100) NOT NULL,
   `tripStudentReview` varchar(500) NOT NULL,
   `tripStudentRating` int(1) NOT NULL,
   `tripID` int(11) NOT NULL,
   PRIMARY KEY (`tripUserEmail`,`tripID`),
   KEY `tripUserEmail` (`tripUserEmail`),
-  KEY `tripID` (`tripID`)
+  KEY `tripID` (`tripID`),
+  KEY `tripStudentPaymentID` (`tripStudentPaymentID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tripstudent`
 --
 
-INSERT INTO `tripstudent` (`tripUserEmail`, `tripStudentPayment`, `tripStudentStatus`, `tripStudentReview`, `tripStudentRating`, `tripID`) VALUES
-('mediani.2015@sis.smu.edu.sg', 100.1, 'pending deposit payment', 'This is an excellent trip. I loved everything about it.', 2, 2),
-('rachael.low.2015@sis.smu.edu.sg', 202.90, 'trip confirmed', '', 4, 2);
+INSERT INTO `tripstudent` (`tripUserEmail`, `tripStudentPaymentID`, `tripStudentStatus`, `tripStudentReview`, `tripStudentRating`, `tripID`) VALUES
+('mediani.2015@sis.smu.edu.sg', 1, 'pending deposit payment', 'This is an excellent trip. I loved everything about it.', 2, 2),
+('rachael.low.2015@sis.smu.edu.sg', 2, 'trip confirmed', '', 4, 2);
 
 -- --------------------------------------------------------
 
@@ -354,7 +356,8 @@ ALTER TABLE `internshipstudent`
 --
 ALTER TABLE `tripstudent`
   ADD CONSTRAINT `tripstudent_fk1` FOREIGN KEY (`tripUserEmail`) REFERENCES `user` (`userEmail`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tripstudent_fk2` FOREIGN KEY (`tripID`) REFERENCES `trip` (`tripID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tripstudent_fk2` FOREIGN KEY (`tripID`) REFERENCES `trip` (`tripID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tripstudent_fk3` FOREIGN KEY (`tripStudentPaymentID`) REFERENCES `payment` (`paymentID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `partner`

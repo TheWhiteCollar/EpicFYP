@@ -9,6 +9,7 @@ package Model.Entity;
     #1: paymentID (int 11)
     #2: paymentMode (varchar 100)
     #3: paymentType (varchar 100)
+    #5: paymentAmount (double)
     #4: paymentRefund (double)
  */
 
@@ -17,12 +18,14 @@ public class Payment {
    private int paymentID;
    private String paymentMode;
    private String paymentType;
+   private double paymentAmount;
    private double paymentRefund;
 
-    public Payment(int paymentID, String paymentMode, String paymentType, double paymentRefund) {
+    public Payment(int paymentID, String paymentMode, String paymentType, double paymentAmount, double paymentRefund) {
         this.paymentID = paymentID;
         this.paymentMode = paymentMode;
         this.paymentType = paymentType;
+        this.paymentAmount = paymentAmount;
         this.paymentRefund = paymentRefund;
     }
 
@@ -50,6 +53,15 @@ public class Payment {
         this.paymentType = paymentType;
     }
 
+    public double getPaymentAmount() {
+        return paymentAmount;
+    }
+
+    public void setPaymentAmount(double paymentAmount) {
+        this.paymentAmount = paymentAmount;
+    }
+
+    
     public double getPaymentRefund() {
         return paymentRefund;
     }

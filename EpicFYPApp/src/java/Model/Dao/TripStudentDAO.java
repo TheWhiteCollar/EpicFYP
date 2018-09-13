@@ -17,14 +17,14 @@ import java.util.logging.Logger;
 
 public class TripStudentDAO {
      //update a particular tripStudent row
-    public static boolean updateTripStudent(String tripUserEmail, double tripStudentPayment, String tripStudentStatus, String tripStudentReview, int tripStudentRating, int tripID) {
+    public static boolean updateTripStudent(String tripUserEmail, int tripStudentPaymentID, String tripStudentStatus, String tripStudentReview, int tripStudentRating, int tripID) {
 
-        String sql = "UPDATE tripstudent SET tripStudentPayment=?, tripStudentStatus=?, tripStudentReview=?, tripStudentRating=? WHERE tripID=? AND tripUserEmail=?";
+        String sql = "UPDATE tripstudent SET tripStudentPaymentID=?, tripStudentStatus=?, tripStudentReview=?, tripStudentRating=? WHERE tripID=? AND tripUserEmail=?";
 
         try (Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
                        
-            stmt.setDouble(1, tripStudentPayment);
+            stmt.setInt(1, tripStudentPaymentID);
             stmt.setString(2, tripStudentStatus);
             stmt.setString(3, tripStudentReview);           
             stmt.setInt(4, tripStudentRating);
@@ -42,14 +42,14 @@ public class TripStudentDAO {
     }
 
     // Add existing tripStudent/bulk new tripStudent
-    public static boolean addTripStudent(String tripUserEmail, double tripStudentPayment, String tripStudentStatus, String tripStudentReview, int tripStudentRating, int tripID) {
+    public static boolean addTripStudent(String tripUserEmail, int tripStudentPaymentID, String tripStudentStatus, String tripStudentReview, int tripStudentRating, int tripID) {
 
-        String sql = "INSERT INTO tripstudent (tripUserEmail, tripStudentPayment, tripStudentStatus, tripStudentReview, tripStudentRating, tripID) VALUES (?,?,?,?,?,?)";
+        String sql = "INSERT INTO tripstudent (tripUserEmail, tripStudentPaymentID, tripStudentStatus, tripStudentReview, tripStudentRating, tripID) VALUES (?,?,?,?,?,?)";
 
         try (Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
             stmt.setString(1, tripUserEmail);
-            stmt.setDouble(2, tripStudentPayment);
+            stmt.setInt(2, tripStudentPaymentID);
             stmt.setString(3, tripStudentStatus);
             stmt.setString(4, tripStudentReview);
             stmt.setInt(5, tripStudentRating);
@@ -73,7 +73,7 @@ public class TripStudentDAO {
             PreparedStatement stmt = conn.prepareStatement("select * from tripstudent");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                result.add(new TripStudent(rs.getString(1), rs.getDouble(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getInt(6)));
+                result.add(new TripStudent(rs.getString(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getInt(6)));
             }
             rs.close();
             stmt.close();
@@ -86,15 +86,16 @@ public class TripStudentDAO {
     }
 
     //delete a particular InternshipStudent row
-    public static boolean deleteTripStudent(int tripID, String tripUserEmail) {
+    public static boolean deleteTripStudent(int tripID, String tripUserEmail, int tripStudentPaymentID) {
 
-        String sql1 = "DELETE FROM tripstudent WHERE tripID=? AND tripUserEmail=?";
+        String sql1 = "DELETE FROM tripstudent WHERE tripID=? AND tripUserEmail=? AND tripStudentPaymentID=?";
 
         try (
             Connection conn = ConnectionManager.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql1);) {
             stmt.setInt(1, tripID);
             stmt.setString(2, tripUserEmail);
+            stmt.setInt(3, tripStudentPaymentID);
             stmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(TripStudentDAO.class.getName()).log(Level.WARNING, "Unable to delete tripStudent, tripID = '" + tripID +", userEmail:  "+ tripUserEmail, ex);

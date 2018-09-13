@@ -39,7 +39,7 @@
                         String Username = admin.getAdminName();
                         if (Username != null && !Username.isEmpty()) {
                     %>
-                    <li><a href="AdminPortal_visualisation.jsp">Site Statistics</a></li>
+                    <li><a href="underConstruction.jsp">Site Statistics</a></li>
                 
                     <li><a href="AdminPortal_trips.jsp">Manage Trips</a>
                         <ul>

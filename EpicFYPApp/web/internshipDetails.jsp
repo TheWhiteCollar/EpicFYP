@@ -49,13 +49,13 @@
                 %>
 
                 <header class="major align-center">
-                    <h2>Overseas Internship in <%out.print(contient);%></h2>
+                    <h2>You are interested in <%out.print(contient);%> internships </h2>
 
                 </header>
                 <div class="row 50% uniform">                       
                     </br>
                     <div class="5u 12u(xsmall))">
-                        <h3 class="align-center">Our partnering country/countries:</h3>
+                        <h3 class="align-center">Partnering country/countries in <%out.print(contient);%>:</h3>
                         <table>
                             <thead>
                                 <tr>
@@ -100,7 +100,7 @@
                                 String citizenship = User.getUserCitizenship();
                                 String interest = User.getUserInterest();
                         %>
-                        <h3 class="align-center">Step 2 : Fill up the form</h3>
+                        <h3 class="align-center">Please confirm your particulars</h3>
                         <div align="center"><p>Note: These fields will be used by the system to track your application process</p></div>
 
                         <form>
@@ -111,14 +111,7 @@
                                     <table class="blank">
 
                                         <tbody>
-                                            <tr>
-                                                <td>User email:</td>
-                                                <td><% out.print(email);%> </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Password:</td>
-                                                <td><input type ="password" name ="password" value =" <% out.print(password);%>"/> </td>
-                                            </tr>
+                                           
                                             <tr>
                                                 <td>First Name:</td>
                                                 <td><input type ="text" name ="firstName" value =" <% out.print(firstName);%>"/> </td>
@@ -136,27 +129,7 @@
                                                 <td>Phone number:</td>
                                                 <td><input type ="text" name ="phone" value =" <%out.print(phone);%>"/></td>
                                             </tr>
-                                            <tr>
-                                                <td>Gender:</td>
-                                                <td><select name ="gender">
-                                                        <%
-                                                            if (gender.equals("F")) {
-                                                        %>
-                                                        <option value =" <% out.print(gender);%>"/><%out.print(gender);%></option>
-                                                        <option value ="Male"/>Male</option>
-                                                        <%
-                                                            }
-                                                            if (gender.equals("M")) {
-                                                        %>
-                                                        <option value ="<% out.print(gender);%>"/><%out.print(gender);%></option>
-                                                        <option value ="Female"/>Female</option>                                                        
-                                                        <%
-                                                            }
-                                                        %>
-
-                                                    </select>
-                                                </td>
-                                            </tr>
+                  
                                             <tr>
                                                 <td>Citizenship:</td>
                                                 <td>
@@ -169,10 +142,7 @@
 
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>Interest:</td>
-                                                <td><input type ="text" name ="interest" value =" <% out.print(interest);%>"/></td>
-                                            </tr>
+                                          
                                             <tr>
                                                 <td>Upload Resume:</td>
                                                 <td><input type="file" name="uploadedfile" id="file-1" class="inputfile inputfile-1" accept=".pdf, .doc, .docx"/>

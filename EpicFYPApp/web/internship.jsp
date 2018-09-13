@@ -39,7 +39,7 @@
 
 
 
-                <h3>Step 1 : Pick the continent of your choice</h3>
+                <h3>Pick the continent of your choice</h3>
                 <div class="row">
 
                     <section class="feature 6u 12u(small)">

@@ -96,9 +96,7 @@
                                 String lastName = User.getUserLastName();
                                 String occupation = User.getUserOccupation();
                                 int phone = User.getUserPhone();
-                                String gender = User.getUserGender();
                                 String citizenship = User.getUserCitizenship();
-                                String interest = User.getUserInterest();
                         %>
                         <h3 class="align-center">Please confirm your particulars</h3>
                         <div align="center"><p>Note: These fields will be used by the system to track your application process</p></div>
@@ -175,7 +173,7 @@
             } else {
             %>
             <h3 class="align-center">Log in/Sign up to register</h3>
-            <div align="center"><a href = "login.jsp?comefrom=internshipDetails" class = "button">Log in/sign up to apply</a></div>
+            <div align="center"><a href = "login.jsp?comefrom=internshipDetails&cont=<%out.print(contient);%>" class = "button">Log in/sign up to apply</a></div>
 
 
 

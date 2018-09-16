@@ -43,6 +43,7 @@ public class LoginServlet_user extends HttpServlet {
         String userpassword = request.getParameter("userpassword");
 
          String comefrom = request.getParameter("comefrom");
+         String cont = request.getParameter("cont");
         // Create session
         HttpSession session = request.getSession(true);
 
@@ -59,7 +60,9 @@ public class LoginServlet_user extends HttpServlet {
                 if (comefrom != null && comefrom.equals("studyTrip")) {
                     response.sendRedirect("studyTrip.jsp");	
                 } else if(comefrom != null && comefrom.equals("internshipDetails")){
-                    response.sendRedirect("internshipDetails.jsp");
+                    
+                    String url = "internshipDetails.jsp?cont="+ cont;
+                    response.sendRedirect(url);
                 }else {
                     response.sendRedirect("studentPortal_main.jsp");
                 }

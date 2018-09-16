@@ -47,6 +47,7 @@
                                 }
                                 // to check if user come to login page straight or come from study trip	
                                 String comefrom = (String) request.getParameter("comefrom");
+                                String cont = (String) request.getParameter("cont");
                             %>
                         </p>
 
@@ -58,10 +59,14 @@
                             <%
                         // if user come from study trip, pass a hidden value of studyTrip to login servlet, so will send back to studyTrip instead of student portal	
                         if (comefrom != null) { %>	
-                            <input type="hidden" name="comefrom" value="<%out.print(comefrom);%>" class="align-center">	
+                            <input type="hidden" name="comefrom" value="<%out.print(comefrom);%>">	
                             <%
-                                }
+                        } if (cont != null){
                             %>	
+                            <input type="hidden" name="cont" value="<%out.print(cont);%>">	
+                            <%
+                        }
+                            %>
                             <input type="submit" value="Login" class ="full_width">
                         </form> 
                             <p><a href="forgetpassword.jsp" style="color:#ffe6e6; font-size:18px">Forgot your password?</a></p>

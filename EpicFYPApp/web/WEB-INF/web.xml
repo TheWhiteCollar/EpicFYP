@@ -40,6 +40,10 @@
         <servlet-name>AdminBootstrapFileDownloadForTripStudentServlet</servlet-name>
         <servlet-class>Controller.AdminBootstrapFileDownloadForTripStudentServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>addNewInternshipStudent</servlet-name>
+        <servlet-class>Controller.addNewInternshipStudent</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TripsDAO</servlet-name>
         <url-pattern>/TripsDAO</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>AdminBootstrapFileDownloadForTripStudentServlet</servlet-name>
         <url-pattern>/AdminBootstrapFileDownloadForTripStudentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addNewInternshipStudent</servlet-name>
+        <url-pattern>/addNewInternshipStudent</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

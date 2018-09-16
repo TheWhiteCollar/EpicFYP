@@ -99,7 +99,7 @@
                                             </tr>
                                             <tr>
                                                 <td>Occupation:</td>
-                                                <td><input type ="text" name ="lastName" value =" <% out.print(occupation);%>"/></td>
+                                                <td><input type ="text" name ="occupation" value =" <% out.print(occupation);%>"/></td>
                                             </tr>
                                             <tr>
                                                 <td>Phone number:</td>
@@ -134,13 +134,27 @@
                                                         <option value="S">Singaporean</option>
                                                         <option value="PR">Singapore PR</option>
                                                     </select>
-
-
                                                 </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Year of birth:</td>
+                                                <td><input type ="text" name ="yob" value =" <% //out.print(interest);%>"/></td>
                                             </tr>
                                             <tr>
                                                 <td>Interest:</td>
                                                 <td><input type ="text" name ="interest" value =" <% out.print(interest);%>"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Field of Study</td>
+                                                <td><input type ="text" name ="fos" value =" <% out.print(interest);%>"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Interest:</td>
+                                                <td><input type ="text" name ="highest_qualification" value =" <% out.print(interest);%>"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Interest:</td>
+                                                <td><input type ="text" name ="description" value =" <% out.print(interest);%>"/></td>
                                             </tr>
 
                                         </tbody>

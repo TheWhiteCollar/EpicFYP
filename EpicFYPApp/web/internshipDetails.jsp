@@ -101,7 +101,7 @@
                         <h3 class="align-center">Please confirm your particulars</h3>
                         <div align="center"><p>Note: These fields will be used by the system to track your application process</p></div>
 
-                        <form>
+                        <form action="addNewInternshipStudent" method="post">
                             <div class="12u 12u(xsmall)">
                                 <div class="table-wrapper">
 
@@ -154,8 +154,8 @@
 
 
                                     </table>
-
-                                    <br>
+                                    
+                                    <input type="hidden" name="cont" value="<%out.print(contient);%>">
                                     <input type="submit" value="Submit" class="full_width">
                                 </div>
                             </div>

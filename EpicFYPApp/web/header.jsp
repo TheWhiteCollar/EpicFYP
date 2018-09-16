@@ -46,6 +46,12 @@
                             <li><a href="AdminPortal_userTripTracking.jsp">Track Applications</a></li>
                         </ul>
                     </li>
+                    <li><a href="AdminPortal_trips.jsp">Manage Internships</a>
+                        <ul>
+                            <li><a href="AdminPortal_viewPartnerInternships.jsp">Partner Interests</a></li>
+                            <li><a href="AdminPortal_userInternshipTracking.jsp">User Interests</a></li>
+                        </ul>
+                    </li>
                     <li><a href="#">Manage Users</a>                       
                         <ul>
                             <li><a href="viewStudentProfile.jsp">View Students</a></li>

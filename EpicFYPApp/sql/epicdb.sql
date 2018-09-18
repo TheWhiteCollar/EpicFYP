@@ -162,6 +162,7 @@ CREATE TABLE IF NOT EXISTS `internship` (
 --
 
 INSERT INTO `internship` (`internshipID`, `internshipName`, `internshipApproval`, `internshipFieldOfStudy`, `internshipDescription`, `internshipStart`, `internshipEnd`, `internshipPay`, `internshipSupervisor`, `internshipSupervisorEmail`, `internshipVacancy`, `internshipPartnerID`) VALUES
+(0, 'not assigned', 'not assigned', 'not assigned', 'not assigned', '2018-11-11', '2019-01-01', '0', 'ot assigned', 'not assigned', 0, 0),
 (1, 'Data Analytics Intern', 'pending', 'Business, Accountancy', 'This intern position is within the Business Intelligence Department and will support the team with data analysis, model development, data visualizations and decision support for various departments.', '2018-11-11', '2019-11-11', '1000.00', 'Tommy Lau', 'tommy.lau@xwy.com', 0, 1);
 
 -- --------------------------------------------------------
@@ -185,7 +186,7 @@ CREATE TABLE IF NOT EXISTS `internshipstudent` (
 
 INSERT INTO `internshipstudent` (`internshipID`, `internshipUserEmail`, `internshipStudentStatus`, `internshipStudentContinent`) VALUES
 (1, 'mediani.2015@sis.smu.edu.sg', 'approved', 'Asia'),
-(1, 'rachael.low.2015@sis.smu.edu.sg', 'applied', 'Asia');
+(0, 'rachael.low.2015@sis.smu.edu.sg', 'applied', 'Asia');
 
 -- --------------------------------------------------------
 
@@ -210,6 +211,7 @@ CREATE TABLE IF NOT EXISTS `partner` (
 --
 
 INSERT INTO `partner` (`partnerID`, `partnerName`, `partnerCountry`, `partnerState`, `partnerDescription`, `partnerPassword`, `partnerPicture`) VALUES
+(0, 'not assigned', 'Myanmar', 'not assigned', 'not assigned', '', ''),
 (1, 'CC Pte Ltd', 'Myanmar', 'Shan', 'Here are CC Pte Ltd, we believe that only the best should be given to our customers.', 'test', '');
 
 -- --------------------------------------------------------

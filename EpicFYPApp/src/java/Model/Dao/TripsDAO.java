@@ -157,16 +157,17 @@ public class TripsDAO {
         return true;
     }
 
-    public static boolean insertTrip(int tripID, String tripTitle, double tripPrice, String tripItinerary, String tripDescription, String tripCountry, String tripState, Date tripStart, Date tripEnd, int tripDuration, int tripActivation, String tripInterest, int tripTotalSignUp, String tripPromo, double tripPromoPercentage) {
+    public static boolean insertTrip(String tripTitle, double tripPrice, String tripItinerary, String tripDescription, String tripCountry, String tripState, Date tripStart, Date tripEnd, int tripDuration, int tripActivation, String tripInterest, int tripTotalSignUp, String tripPromo, double tripPromoPercentage) {
         //get max tripID
         String sql1 = "SELECT CONVERT(MAX(CONVERT(tripID,UNSIGNED INTEGER)),CHAR(200)) FROM trip ";
 
+        int maxTripID = 0;
         try (
             Connection conn = ConnectionManager.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql1);) {
             ResultSet rs = stmt.executeQuery();
             rs.next();
-            int maxTripID = rs.getInt(1);
+            maxTripID = rs.getInt(1);
             System.out.println("maxTrip " + maxTripID);
 
         } catch (SQLException ex) {
@@ -175,11 +176,11 @@ public class TripsDAO {
         }
         //insert the trip
         String sql2 = "INSERT INTO `trip` (`tripID`, `tripTitle`, `tripPrice`, `tripItinerary`, `tripDescription`,`tripCountry`, `tripState`, `tripStart`, `tripEnd`, `tripDuration`,`tripActivation`, `tripInterest`, `tripTotalSignUp`, `tripPromo`, `tripPromoPercentage`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-        tripID++;
+        maxTripID++;
         try (
             Connection conn = ConnectionManager.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql2);) {
-            stmt.setInt(1, tripID);
+            stmt.setInt(1, maxTripID);
             stmt.setString(2, tripTitle);
             stmt.setDouble(3, tripPrice);
             stmt.setString(4, tripItinerary);

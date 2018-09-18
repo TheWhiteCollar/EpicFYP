@@ -85,7 +85,7 @@ public class InternshipDAO {
         ArrayList<Internship> result = new ArrayList<>();
         try {
             Connection conn = ConnectionManager.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("select * from internship");
+            PreparedStatement stmt = conn.prepareStatement("select * from internship WHERE internshipID<>0");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 result.add(new Internship(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDate(6), rs.getDate(7), rs.getDouble(8),rs.getString(9),rs.getString(10),rs.getInt(11),rs.getInt(12)));

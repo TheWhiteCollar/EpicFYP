@@ -73,7 +73,7 @@ public class PartnerDAO {
         ArrayList<Partner> result = new ArrayList<>();
         try {
                 Connection conn = ConnectionManager.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("select * from partner");
+            PreparedStatement stmt = conn.prepareStatement("select * from partner WHERE partnerID<>0");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 result.add(new Partner(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));

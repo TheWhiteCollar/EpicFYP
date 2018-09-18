@@ -48,8 +48,8 @@
                     </li>
                     <li><a href="AdminPortal_trips.jsp">Manage Internships</a>
                         <ul>
-                            <li><a href="AdminPortal_viewPartnerInternships.jsp">Partner Interests</a></li>
-                            <li><a href="AdminPortal_userInternshipTracking.jsp">User Interests</a></li>
+                            <li><a href="AdminPortal_viewPartnerInternships.jsp">Collaborating Partners</a></li>
+                            <li><a href="AdminPortal_userInternshipTracking.jsp">Interested Users</a></li>
                         </ul>
                     </li>
                     <li><a href="#">Manage Users</a>                       

@@ -173,6 +173,55 @@ public class UserDAO {
         return true;
     }
     
+    //update user email confirmation
+    public static boolean updateUserConfirmation(String userEmail) {
+
+        String sql = "UPDATE user SET userIsEmailConfirm=? WHERE userEmail = ?";
+
+        try (Connection conn = ConnectionManager.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
+
+            stmt.setString(1, "confirmed");
+            stmt.setString(2, userEmail);
+            int result = stmt.executeUpdate();
+            if (result == 0) {
+                return false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.WARNING, "Failed to update user: " + userEmail + ".", ex);
+        }
+        return true;
+    }
+    
+    
+    //update a particular user based on the internship details
+    //need to remember to upload the resume into the db
+    public static boolean updateUser(String userEmail, String userFirstName, String userLastName, int userPhone, String userCitizenship, String userHighestEducation, String userFieldOfStudy, String userSchool) {
+
+        String sql = "UPDATE user SET userFirstName=?, userLastName=?, userPhone=?, userCitizenship=?,userHighestEducation=?,userFieldOfStudy=?,userSchool=?  WHERE userEmail = ?";
+
+        try (Connection conn = ConnectionManager.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
+
+            stmt.setString(1, userFirstName);
+            stmt.setString(2, userLastName);
+            stmt.setInt(3, userPhone);
+            stmt.setString(4, userCitizenship);
+            stmt.setString(5, userHighestEducation);
+            stmt.setString(6, userFieldOfStudy);
+            stmt.setString(7, userSchool);
+            stmt.setString(8, userEmail);
+            int result = stmt.executeUpdate();
+            if (result == 0) {
+                return false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.WARNING, "Failed to update user: " + userEmail + ".", ex);
+        }
+        return true;
+    }
+    
+    
     public static User getUser(String userEmail) {
         User user = null;
         String sql = "SELECT * FROM user WHERE userEmail = ?";

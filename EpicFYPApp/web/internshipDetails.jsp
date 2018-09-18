@@ -86,7 +86,8 @@
                         </table>
                     </div> 
                     <div class="7u 12u(xsmall)">
-                        <%                            User User = (User) session.getAttribute("User");
+                        <%                            
+                            User User = (User) session.getAttribute("User");
                             if (User != null) {
                                 String email = User.getUserEmail();
                                 String firstName = User.getUserFirstName();
@@ -316,7 +317,7 @@
                                             </tr>
                                             <tr>
                                                 <td>Phone number:</td>
-                                                <td><input type ="text" name ="phone" value =" <%out.print(phone);%>"/></td>
+                                                <td><input type ="number" name ="phone" value ="<%out.print(phone);%>"/></td>
                                             </tr>
                                             <tr>
                                                 <td>Highest Qualification:</td>

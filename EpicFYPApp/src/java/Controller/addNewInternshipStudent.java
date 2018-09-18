@@ -7,6 +7,7 @@ package Controller;
 
 import Model.Dao.InternshipStudentDAO;
 import Model.Dao.UserDAO;
+import Model.Entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -30,38 +31,28 @@ public class addNewInternshipStudent extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // retrieve user input
-        String userEmail = request.getParameter("email");
+        String userEmail = request.getParameter("userEmail");
+        String continent = request.getParameter("cont");
         String userFirstName = request.getParameter("firstName");
         String userLastName = request.getParameter("lastName");
         String phone = request.getParameter("phone");
-        int userPhone = Integer.parseInt(phone);
-        String userGender = request.getParameter("gender");
+        int userPhone = Integer.parseInt(phone);      
         String userCitizenship = request.getParameter("citizenship");
-        String yob = request.getParameter("yob");
-        int yearOfBirth = Integer.parseInt(yob);
-        //Date date = Date.valueOf("1995-08-26");
-        //profile pic
-        String userProfilePic = "pretty.jpg";
-        String userInterest = request.getParameter("interest");
-        String userOccupation = request.getParameter("occupation");
-        //resume
-        String userResume = "MyResume.pdf";
-        String userIsEmailConfirm = "pending"; // by right should be boolean
         String userHighestEducation = request.getParameter("highest_qualification");
-        String userFieldOfStudy = request.getParameter("fos");
-        String userDescription = request.getParameter("message");
         String userSchool = request.getParameter("school");
-        String continent = request.getParameter("cont");
+        String userFieldOfStudy = request.getParameter("fos");
+        //get the resume parameter
         
+     
         //update user
         //updateUser(String userEmail, String userFirstName, String userLastName, int userPhone, String userGender, String userCitizenship, int userDOB, String userProfilePic, String userInterest, String userPassword, String userOccupation, String userResume, String userIsEmailConfirm, String userHighestEducation, String userFieldOfStudy, String userDescription, String userSchool)
         //add into internshipStudent
         //
         // validate fields are not empty and insert into database - should do it in frontend?
-        if (!userFirstName.equals("") && !userLastName.equals("") && !userEmail.equals("") && !userOccupation.equals("")) {
+        if (!userFirstName.equals("") && !userLastName.equals("") && !userCitizenship.equals("") && !userHighestEducation.equals("") && !userSchool.equals("") && !userFieldOfStudy.equals("")) {
 
             // Insert into database
-            boolean insertedUser = UserDAO.updateUser(userEmail, userFirstName, userLastName, userPhone, userGender, userCitizenship, yearOfBirth, userProfilePic, userInterest, "", userOccupation, userResume, userIsEmailConfirm, userHighestEducation, userFieldOfStudy, userDescription, userSchool);
+            boolean insertedUser = UserDAO.updateUser(userEmail, userFirstName, userLastName, userPhone, userCitizenship, userHighestEducation, userFieldOfStudy, userSchool);
             boolean insertedInternshipStudent = InternshipStudentDAO.addInternshipStudent(0, userEmail, "applied", continent);
             if (insertedUser==true && insertedInternshipStudent==true) {
                 response.sendRedirect("applyInternshipSucceed.jsp");

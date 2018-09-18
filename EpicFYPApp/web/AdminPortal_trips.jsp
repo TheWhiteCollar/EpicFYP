@@ -113,7 +113,7 @@
                     let tripStart = $('input[name="tripStart"]').val();
                     let tripEnd = $('input[name="tripEnd"]').val();
                     let tripActivation = $('input[name="tripActivation"]').val();
-                    let tripCategory = $("#tripInterestInput option:selected").val();
+                    let tripInterest = $("#tripInterestInput option:selected").val();
                     let tripDescription = $('textarea[name="tripDescription"]').val();
                     let tripState = $('input[name="tripState"]').val();
                     let tripTotalSignUp = $('input[name="tripTotalSignUp"]').val();
@@ -126,7 +126,7 @@
                         "tripStart": tripStart,
                         "tripEnd": tripEnd,
                         "tripActivation": tripActivation,
-                        "tripCategory": tripCategory,
+                        "tripInterest": tripInterest,
                         "tripDescription": tripDescription,
                         "tripState": tripState,
                         "tripTotalSignUp": tripTotalSignUp

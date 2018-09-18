@@ -245,7 +245,7 @@ CREATE TABLE IF NOT EXISTS `trip` (
   `tripID` int(11) NOT NULL AUTO_INCREMENT,
   `tripTitle` varchar(100) NOT NULL,
   `tripPrice` double NOT NULL DEFAULT '0',
-  `tripItinerary` varchar(100) NOT NULL DEFAULT '',
+  `tripItinerary` varchar(100) NULL DEFAULT '',
   `tripDescription` varchar(1000) NOT NULL,
   `tripCountry` varchar(100) NOT NULL,
   `tripState` varchar(100) NOT NULL,

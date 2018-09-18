@@ -176,7 +176,7 @@ CREATE TABLE IF NOT EXISTS `internshipstudent` (
   `internshipUserEmail` varchar(50) CHARACTER SET utf8 NOT NULL,
   `internshipStudentStatus` varchar(100) NOT NULL,
   `internshipStudentContinent` varchar(100) NOT NULL,
-  PRIMARY KEY (`internshipID`,`internshipUserEmail`),
+  PRIMARY KEY (`internshipUserEmail`,`internshipStudentContinent`),
   KEY `internshipUserEmail` (`internshipUserEmail`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -186,7 +186,8 @@ CREATE TABLE IF NOT EXISTS `internshipstudent` (
 
 INSERT INTO `internshipstudent` (`internshipID`, `internshipUserEmail`, `internshipStudentStatus`, `internshipStudentContinent`) VALUES
 (1, 'mediani.2015@sis.smu.edu.sg', 'approved', 'Asia'),
-(0, 'rachael.low.2015@sis.smu.edu.sg', 'applied', 'Asia');
+(0, 'rachael.low.2015@sis.smu.edu.sg', 'applied', 'Asia'),
+(0, 'rachael.low.2015@sis.smu.edu.sg', 'applied', 'America');
 
 -- --------------------------------------------------------
 
@@ -350,8 +351,7 @@ ALTER TABLE `internship`
 -- Constraints for table `internshipstudent`
 --
 ALTER TABLE `internshipstudent`
-  ADD CONSTRAINT `internshipstudent_fk2` FOREIGN KEY (`internshipUserEmail`) REFERENCES `user` (`userEmail`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `internshipstudent_fk1` FOREIGN KEY (`internshipID`) REFERENCES `internship` (`internshipID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `internshipstudent_fk1` FOREIGN KEY (`internshipUserEmail`) REFERENCES `user` (`userEmail`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tripstudent`

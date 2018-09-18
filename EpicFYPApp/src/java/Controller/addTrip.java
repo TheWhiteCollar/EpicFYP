@@ -63,10 +63,9 @@ public class addTrip extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int tripID = Integer.parseInt(request.getParameter("tripID"));
         String tripTitle = request.getParameter("tripTitle");
         double tripPrice = Double.parseDouble(request.getParameter("tripPrice"));
-        String tripItinerary = request.getParameter("tripIntinerary");
+        String tripItinerary = null;
         String tripDescription = request.getParameter("tripDescription");
         String tripCountry = request.getParameter("tripCountry");
         String tripState = request.getParameter("tripState");
@@ -76,10 +75,10 @@ public class addTrip extends HttpServlet {
         int tripActivation = Integer.parseInt(request.getParameter("tripActivation"));
         String tripInterest = request.getParameter("tripInterest");
         int tripTotalSignUp = Integer.parseInt(request.getParameter("tripTotalSignUp"));
-        String tripPromo = request.getParameter("tripPromo");
-        double tripPromoPercentage = Double.parseDouble(request.getParameter("tripPromoPercentage"));
+        String tripPromo = null;
+        double tripPromoPercentage = 0;
         String text = "fail";
-        if(TripsDAO.insertTrip(tripID, tripTitle, tripPrice, tripItinerary, tripDescription, tripCountry, tripState, tripStart, tripEnd, tripDuration, tripActivation, tripInterest, tripTotalSignUp, tripPromo, tripPromoPercentage)){
+        if(TripsDAO.insertTrip(tripTitle, tripPrice, tripItinerary, tripDescription, tripCountry, tripState, tripStart, tripEnd, tripDuration, tripActivation, tripInterest, tripTotalSignUp, tripPromo, tripPromoPercentage)){
             text = "success";
         }
         response.setContentType("text/plain");  // Set content type of the response so that jQuery knows what it can expect.

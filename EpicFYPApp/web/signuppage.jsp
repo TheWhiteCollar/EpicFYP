@@ -521,7 +521,7 @@
                             <div class="row uniform 50%">   
                                 <div class="6u 12u(xsmall)">
                                     <h3>Field of Study interested in:</h3> 
-                                    <select name="fos" multiple="multiple" style="height: 200px;">
+                                    <select name="fos">
                                         <option disabled selected value style="display:none"> - Field of Study interests - </option>
                                         <%
                                             ArrayList<String> allFieldOfStudy = FieldOfStudyDAO.getFieldOfStudies();

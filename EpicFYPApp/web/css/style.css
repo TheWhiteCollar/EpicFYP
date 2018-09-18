@@ -14,7 +14,7 @@ body {
     background: #fff;
 }
 
-body, input, select, textarea {
+body, input, select,select[multiple], textarea {
     color: #444;
     font-family: "Lato", Helvetica, sans-serif;
     font-size: 15pt;
@@ -219,6 +219,7 @@ input[type="month"],
 input[type="time"],
 input[type="number"],
 select,
+select[multiple],
 textarea {
     -moz-appearance: none;
     -webkit-appearance: none;
@@ -246,6 +247,7 @@ input[type="month"]:invalid,
 input[type="time"]:invalid,
 input[type="number"]:invalid,
 select:invalid,
+select[multiple]:invalid,
 textarea:invalid {
     box-shadow: none;
 }
@@ -259,6 +261,7 @@ input[type="month"]:focus,
 input[type="time"]:focus,
 input[type="number"]:focus,
 select:focus,
+select[multiple]:focus,
 textarea:focus {
     border-color: #BC8F8F;
     box-shadow: 0 0 0 1px #BC8F8F;

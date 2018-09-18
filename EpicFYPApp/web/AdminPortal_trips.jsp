@@ -46,13 +46,14 @@
                 $.get('/EpicFYPApp/getAllTripsServlet', function (tripJson) {
                     //parse string into JSON object
                     var trips = JSON.parse(tripJson);
+                    console.log(trips);
                     var tripHTML = '<div class="table-wrapper"><table>';
                     //loop through each trip and print out as rows in a table
                     $.each(trips, function (index, trip) {
                         tripHTML += '<thead><tr><th>Trip ID : ' + trip.tripID + '</th><th colspan="3">' + trip.tripTitle + "</th></tr></thead>";
                         tripHTML += '<tr><td>Country : ' + trip.tripCountry + "</td><td> Start : " + trip.tripStart + "</td>";
                         tripHTML += "<td>End : " + trip.tripEnd + "</td><td>Price : $" + trip.tripPrice + "</tr>";
-                        tripHTML += '<tr><td colspan="4"> Trip Description?</td></tr>';
+                        tripHTML += '<tr><td colspan="4"> Trip Description: ' + trip.tripDescription + '</td></tr>';
                         var number = trip.tripActivation - trip.signedUpEmails.length;
                         if (trip.activated) {
                             tripHTML += '<tr><td colspan="3">Activated</td>';
@@ -105,13 +106,18 @@
                 });
                 // wait for add trip submit event 
                 $("#addTrip").submit(function (event) {
-                    let tripCountry = $("#countryInput option:selected").val();
+                    let tripCountry = $("#tripCountryInput option:selected").val();
                     let tripPrice = $('input[name="tripPrice"]').val();
                     let tripTitle = $('input[name="tripTitle"]').val();
                     let tripDuration = $('input[name="tripDuration"]').val();
                     let tripStart = $('input[name="tripStart"]').val();
                     let tripEnd = $('input[name="tripEnd"]').val();
-                    let activation = $('input[name="activation"]').val();
+                    let tripActivation = $('input[name="tripActivation"]').val();
+                    let tripCategory = $("#tripInterestInput option:selected").val();
+                    let tripDescription = $('textarea[name="tripDescription"]').val();
+                    let tripState = $('input[name="tripState"]').val();
+                    let tripTotalSignUp = $('input[name="tripTotalSignUp"]').val();
+                    
                     let tripData = {
                         "tripCountry": tripCountry,
                         "tripPrice": tripPrice,
@@ -119,9 +125,15 @@
                         "tripDuration": tripDuration,
                         "tripStart": tripStart,
                         "tripEnd": tripEnd,
-                        "activation": activation
+                        "tripActivation": tripActivation,
+                        "tripCategory": tripCategory,
+                        "tripDescription": tripDescription,
+                        "tripState": tripState,
+                        "tripTotalSignUp": tripTotalSignUp
                     }
-
+                    
+                    console.log("this is trip data");
+                    console.log(tripData);
                     //send ajax post request to addTrip servlet with tripData
                     $.post('/EpicFYPApp/addTrip', tripData, function (response) {
                         $('button[data-dismiss="modal"]').click();
@@ -150,13 +162,15 @@
                     $.get('/EpicFYPApp/getAllTripsServlet', function (tripJson) {
                         //parse string into JSON object
                         var trips = JSON.parse(tripJson);
+                        console.log(trips);
+                        $("#trips").empty();
                         var tripHTML = '<div class="table-wrapper"><table>';
                         //loop through each trip and print out as rows in a table
                         $.each(trips, function (index, trip) {
                             tripHTML += '<thead><tr><th>Trip ID : ' + trip.tripID + '</th><th colspan="3">' + trip.tripTitle + "</th></tr></thead>";
                             tripHTML += '<tr><td>Country : ' + trip.tripCountry + "</td><td> Start : " + trip.tripStart + "</td>";
                             tripHTML += "<td>End : " + trip.tripEnd + "</td><td>Price : $" + trip.tripPrice + "</tr>";
-                            tripHTML += '<tr><td colspan="4"> Trip Description?</td></tr>';
+                            tripHTML += '<tr><td colspan="4"> Trip Description: ' + trip.tripDescription + '</td></tr>';
                             var number = trip.tripActivation - trip.signedUpEmails.length;
                             if (trip.activated) {
                                 tripHTML += '<tr><td colspan="3">Activated</td>';
@@ -241,9 +255,9 @@
             }
 
             function addCountry() {
-                let countryName = $("input[name='countryName']").val();
+                let countryTripName = $("input[name='countryTripName']").val();
                 let countryData = {
-                    "countryName": countryName,
+                    "countryTripName": countryTripName,
                 }
                 $.post('/EpicFYPApp/addCountry', countryData, function (response) {
                     getAllCountries();
@@ -263,7 +277,7 @@
                             type: 'danger'
                         });
                     }
-                    $("input[name='countryName']").val('');
+                    $("input[name='countryTripName']").val('');
                 });
 
             }
@@ -297,9 +311,9 @@
             }
 
             function deleteCountry(obj) {
-                let countryName = $(obj).val();
+                let countryTripName = $(obj).val();
                 let countryData = {
-                    "countryName": countryName
+                    "countryTripName": countryTripName
                 };
                 $.post('/EpicFYPApp/deleteCountry', countryData, function (response) {
                     getAllCountries();
@@ -430,7 +444,7 @@
                                 Country:
                                 <select name="country">
                                     <option disabled selected value style="display:none"> - Country - </option>
-                                    <%                                    ArrayList<String> allCountryTrip = CountryTripDAO.getAllCountryTrip();
+                                    <% ArrayList<String> allCountryTrip = CountryTripDAO.getAllCountryTrip();
 
                                         if (!allCountryTrip.isEmpty()) {
                                             for (int i = 0; i < allCountryTrip.size(); i++) {
@@ -460,12 +474,12 @@
                         <div class = "row 50% uniform">
                             <div class = "6u 12u(xsmall)">
                                 <p>
-                                    Programme Title: <input required type="text" name="programme" placeholder="e.g: Winter Study Trip">
+                                    Programme Title: <input required type="text" name="tripTitle" placeholder="e.g: Winter Study Trip">
                                 </p>
                             </div>
                             <div class = "6u 12u(xsmall)">
                                 <p>                               
-                                    Country of visit: <select id="countryInput" name="country">   
+                                    Country of visit: <select id="tripCountryInput" name="tripCountry">   
                                         <option disabled selected value style="display:none"> - select a country - </option>
                                         <option value="Afghanistan">Afghanistan</option> 
                                         <option value="Albania">Albania</option> 
@@ -725,7 +739,7 @@
                             <div class = "4u 12u(xsmall)">
                                 <p>
                                     Trip Duration (days): 
-                                    <input required type="text" min="1" step="1" placeholder="days" name="duration" id="duration" value="0" onclick="dateDiff()">
+                                    <input required type="text" min="1" step="1" placeholder="days" name="tripDuration" id="tripDuration" value="0" onclick="dateDiff()">
                                 </p>
                             </div>
 
@@ -751,18 +765,18 @@
                         <div class ="row 50% uniform">
                             <div class = "4u 12u(xsmall)">
                                 <p>
-                                    Price ($): <input name="price" required type="number" min="1" placeholder="e.g: 100">
+                                    Price ($): <input name="tripPrice" required type="number" min="1" placeholder="e.g: 100">
                                 </p>
                             </div>
                             <div class = "4u 12u(xsmall)">
                                 <p>
-                                    Activation number: <input name="activation" required type="number" min="1" placeholder="e.g: 4">
+                                    Activation number: <input name="tripActivation" required type="number" min="1" placeholder="e.g: 4">
                                 </p>
                             </div>
                             <div class = "4u 12u(xsmall)">
                                 <p>
                                     Programme Category tag: 
-                                    <select name="programmes" >
+                                    <select name="tripInterest" id="tripInterestInput" required>
                                         <%
                                             ArrayList<String> allInterest = InterestDAO.getInterests();
 
@@ -782,6 +796,23 @@
 
                         </div>
 
+                        <div class ="row 50% uniform">
+                            <div class = "4u 12u(xsmall)">
+                                <p>
+                                    Description: <textarea rows="4" cols="50" name="tripDescription" required placeholder="E.g: The beautiful Lake Inle will wait for no one. Enjoy the beauty before global warming mars it's beauty forever."></textarea>
+                                </p>
+                            </div>
+                            <div class = "4u 12u(xsmall)">
+                                <p>
+                                    State: <input name="tripState" required type="text" placeholder="E.g: Johor">
+                                </p>
+                            </div>
+                            <div class = "4u 12u(xsmall)">
+                                <p>
+                                    Max number of Sign ups: <input name="tripTotalSignUp" required type="number" min="1" placeholder="E.g: 24">
+                                </p>
+                            </div>
+                        </div>
 
                         <div class = "row 50% uniform">
                             <div class = "12u 12u(xsmall)">
@@ -815,7 +846,7 @@
                                         <td colspan="2"><h4 class="align-center">Add a new Country</h4></td>
                                     </tr>
                                     <tr>
-                                        <td><input type="text" name="countryName" placeholder="E.g. Singapore" /></td>
+                                        <td><input type="text" name="countryTripName" placeholder="E.g. Singapore" /></td>
                                         <td><button onclick="addCountry()" class="button">Add Country</button></td>
                                     </tr>
                                 </tbody>
@@ -847,11 +878,7 @@
                 </div>
             </div>
             <div>
-
-
-
-
-
+                
             </div>
 
             <!-- this contains all the trips -->
@@ -918,7 +945,7 @@
             var timeDiff = Math.abs(date2 - date1);
             var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
             diffDays += 1;
-            document.getElementById("duration").value = diffDays;
+            document.getElementById("tripDuration").value = diffDays;
         }
     </script>
     <script src="js/custom-file-input.js"></script>

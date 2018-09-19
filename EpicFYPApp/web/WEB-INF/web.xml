@@ -44,6 +44,10 @@
         <servlet-name>addNewInternshipStudent</servlet-name>
         <servlet-class>Controller.addNewInternshipStudent</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>updateUserServlet</servlet-name>
+        <servlet-class>Controller.updateUserServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TripsDAO</servlet-name>
         <url-pattern>/TripsDAO</url-pattern>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>addNewInternshipStudent</servlet-name>
         <url-pattern>/addNewInternshipStudent</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateUserServlet</servlet-name>
+        <url-pattern>/updateUserServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

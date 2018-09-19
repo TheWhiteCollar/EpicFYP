@@ -1,4 +1,6 @@
 
+<%@page import="java.util.Arrays"%>
+<%@page import="Model.Dao.InterestDAO"%>
 <%@page import="Model.Dao.FieldOfStudyDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.Entity.User"%>
@@ -52,7 +54,7 @@
                     <h2>Account Information</h2>                     
                 </header>
 
-                <form action="#" method="post">
+                <form action="updateUserServlet" method="post">
                     <div class="row"> 
                         <%
                             User User = (User) session.getAttribute("User");
@@ -81,6 +83,7 @@
                                 <span>Upload Picture</span>
                             </label> 
                         </div>
+                        
                         <div class="9u 12u(xsmall)">
                             <div class="table-wrapper">
                                 <table class="blank">
@@ -569,7 +572,36 @@
                                         </tr>
                                         <tr>
                                             <td class="align-right"><b>Interest</b></td>
-                                            <td><input type ="text" name ="interest" value =" <% out.print(interest);%>"/></td>
+                                            <td>
+                                                <select name="interest" multiple style="height: 100px;">
+                                                    <%
+                                                        //user selected put in an arraylist
+                                                        ArrayList<String> selectedInterestitems = new ArrayList<String>(Arrays.asList(interest.split("\\s*,\\s*")));
+
+                                                        for (int i = 0; i < selectedInterestitems.size(); i++) {
+                                                            String interestName = selectedInterestitems.get(i);
+                                                    %>
+                                                    <option selected value="<%out.print(interestName);%>"><%out.print(interestName);%></option>
+                                                    <%
+                                                        }
+                                                        ArrayList<String> allUserInterest = InterestDAO.getInterests();
+                                                        //remove the ones taken from the list
+                                                        allUserInterest.removeAll(selectedInterestitems);
+                                                        if (!allUserInterest.isEmpty()) {
+                                                            for (int i = 0; i < allUserInterest.size(); i++) {
+                                                                String interestList = allUserInterest.get(i);
+
+                                                    %>
+                                                    <option value="<%out.print(interestList);%>"><%out.print(interestList);%></option>
+                                                    <%    }
+                                                        }
+
+                                                    %>
+                                                </select> 
+
+                                            </td>
+
+
                                         </tr>
                                         <tr>
                                             <td class="align-right"><b>Description</b></td>
@@ -582,7 +614,8 @@
                                 </table>
 
                                 <br>
-                                <input type="submit" value="Save" style="width:100%">
+                                <input type="hidden" name="userEmail" value="<%out.print(email);%>">
+                                <input type="submit" value="Save" class="full_width">
                             </div>
                         </div>
                         <%

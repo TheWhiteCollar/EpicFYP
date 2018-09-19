@@ -51,7 +51,7 @@
                     <div class ="2u 12u(xsmall)">
                         <input type="submit">
                     </div>
-                    
+
                     <div class ="4u 12u(xsmall)">
                         <% LocalDate todayDate = java.time.LocalDate.now(); %>
                         <form method="get" action="#">
@@ -59,8 +59,8 @@
                         </form>
 <!--                        <a href="/Users/xiuwenhime/NetBeansProjects/JavaApplication5/NewExcelFile.xls" download="<% out.print(todayDate); %>_all_student_profile" class="button full_width">Download all student profiles</a>-->
                     </div>
-                
-                    
+
+
                 </div>
             </div>
         </section><section>
@@ -110,34 +110,42 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">User information | <%out.print(p.getPartnerName()); %></h4>
+                                <h4 class="modal-title align-center"><b><%out.print(p.getPartnerName()); %></b></h4>
                             </div>
                             <div class="modal-body">
                                 <div class ="row">
                                     <div class ="4u 12u">
-                                        <p>
-                                            Partner Name : <%out.print(p.getPartnerName()); %>
-                                        </p>                                           
-                                    </div>
-                                    <div class ="4u 12u">
-                                        <p>
-                                            Country : <%out.print(p.getPartnerCountry()); %>
-                                        </p>                                           
-                                    </div>
-                                    <div class ="4u 12u">
-                                        <p>
-                                            State : <%out.print(p.getPartnerState()); %>
-                                        </p>                                           
-                                    </div>                              
-                                </div>
+                                        <div align="center"><img src="https://www.freelogodesign.org/Content/img/logo-ex-7.png" alt ="partner-logo" height="80%" width="80%"></div>
+                                        <table class="align-center">
+                                            <tbody>
+                                                <tr>
+                                                    <td><b><%out.print(p.getPartnerName()); %></b></td>
+                                                </tr>
 
-                                <div class ="row">
-                                    <div class ="12u 12u">
-                                        Description :
-                                        <p><% out.print(p.getPartnerDescription()); %></p>
-                                             
-                                        
+                                            </tbody>
+                                        </table>                                          
                                     </div>
+                                    <div class ="8u 12u">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="align-right"><b>Country </b></td>
+                                                    <td><%out.print(p.getPartnerCountry()); %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right"><b>State </b></td>
+                                                    <td><%out.print(p.getPartnerState()); %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right"><b>Description </b></td>
+                                                    <td><% out.print(p.getPartnerDescription()); %></td>
+                                                </tr>
+                                                
+                                            </tbody>
+
+                                        </table>
+                                                                             
+                                    </div>                             
                                 </div>
 
                             </div>

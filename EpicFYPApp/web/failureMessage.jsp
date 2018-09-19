@@ -32,16 +32,14 @@
         <!-- Main -->
         <section id="banner">
 
-            <h2>You have successful created an account!</h2>
+            <h2>It seems something went wrong :(</h2>
+            <p>We tried our best</p>
             <ul class="actions">
-                <li>
-                   
-                    <a href="studyTrip.jsp" class="button big"><font color="white">Join a study trip</font></a>
-                    <a href="internship.jsp" class="button big"><font color="white">Join an internship</font></a>
-                   
-                  
+                <li>      
+                    <a href="mailto:isabelle@epicjourney.sg" class="button big"><font color="white">Notify us if the issue is urgent</font></a>
                 </li>
             </ul>
+            
         </section>
 
         <!-- Footer -->

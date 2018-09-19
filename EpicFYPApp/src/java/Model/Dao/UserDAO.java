@@ -173,8 +173,8 @@ public class UserDAO {
         return true;
     }
     
-    //update user email confirmation
-    public static boolean updateUserConfirmation(String userEmail) {
+    //update a particular user based on the user email confirmation
+    public static boolean updateUser(String userEmail) {
 
         String sql = "UPDATE user SET userIsEmailConfirm=? WHERE userEmail = ?";
 
@@ -193,6 +193,38 @@ public class UserDAO {
         return true;
     }
     
+    //update a particular user based on the profile update details
+    //need to remember to upload the picture into the db
+    public static boolean updateUser(String userEmail, String userFirstName, String userLastName, int userPhone, String userGender, String userCitizenship, int userDOB, String userInterest, String userPassword, String userOccupation, String userHighestEducation, String userFieldOfStudy, String userDescription, String userSchool) {
+
+        String sql = "UPDATE user SET userFirstName=?, userLastName=?, userPhone=?, userGender=?, userCitizenship=?, userDOB=?,userInterest=?,userPassword=?,userOccupation=?,userHighestEducation=?,userFieldOfStudy=?,userDescription=?,userSchool=?  WHERE userEmail = ?";
+
+        try (Connection conn = ConnectionManager.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
+
+            stmt.setString(1, userFirstName);
+            stmt.setString(2, userLastName);
+            stmt.setInt(3, userPhone);
+            stmt.setString(4, userGender);
+            stmt.setString(5, userCitizenship);
+            stmt.setInt(6, userDOB);
+            stmt.setString(7, userInterest);
+            stmt.setString(8, userPassword);
+            stmt.setString(9, userOccupation);
+            stmt.setString(10, userHighestEducation);
+            stmt.setString(11, userFieldOfStudy);
+            stmt.setString(12, userDescription);
+            stmt.setString(13, userSchool);
+            stmt.setString(14, userEmail);
+            int result = stmt.executeUpdate();
+            if (result == 0) {
+                return false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.WARNING, "Failed to update user: " + userEmail + ".", ex);
+        }
+        return true;
+    }
     
     //update a particular user based on the internship details
     //need to remember to upload the resume into the db
@@ -221,6 +253,25 @@ public class UserDAO {
         return true;
     }
     
+    //update user email confirmation
+    public static boolean updateUserConfirmation(String userEmail) {
+
+        String sql = "UPDATE user SET userIsEmailConfirm=? WHERE userEmail = ?";
+
+        try (Connection conn = ConnectionManager.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
+
+            stmt.setString(1, "confirmed");
+            stmt.setString(2, userEmail);
+            int result = stmt.executeUpdate();
+            if (result == 0) {
+                return false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.WARNING, "Failed to update user: " + userEmail + ".", ex);
+        }
+        return true;
+    }
     
     public static User getUser(String userEmail) {
         User user = null;

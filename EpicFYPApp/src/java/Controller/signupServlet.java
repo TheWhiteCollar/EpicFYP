@@ -7,7 +7,6 @@ package Controller;
 
 import Model.Dao.UserDAO;
 import java.io.IOException;
-import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -53,7 +52,16 @@ public class signupServlet extends HttpServlet {
         String userResume = "MyResume.pdf";
         String userIsEmailConfirm = "pending"; // by right should be boolean
         String userHighestEducation = request.getParameter("highest_qualification");
-        String userFieldOfStudy = request.getParameter("fos");
+        
+        String[] fos = request.getParameterValues("fos");
+        String userFieldOfStudy ="";
+        for(int i = 0; i < fos.length; i ++){
+            userFieldOfStudy += ""+ fos[i];
+            if(i != fos.length-1){
+                userFieldOfStudy += ", ";   
+            }       
+        }
+        
         String userDescription = request.getParameter("message");
         String userSchool = request.getParameter("school");
 
@@ -64,7 +72,7 @@ public class signupServlet extends HttpServlet {
             Boolean inserted = UserDAO.addUser(userEmail, userFirstName, userLastName, userPhone, userGender, userCitizenship, yearOfBirth, userProfilePic, userInterest, userPassword, userOccupation, userResume, userIsEmailConfirm, userHighestEducation, userFieldOfStudy, userDescription, userSchool);
 
             if (inserted == true) {
-                response.sendRedirect("signupSucceed.jsp");
+                response.sendRedirect("successMessage.jsp?message=signup");
                 return;
             } else {
                 response.sendRedirect("signuppage.jsp");

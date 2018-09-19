@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Model.Dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -39,19 +40,31 @@ public class updateUserServlet extends HttpServlet {
         String userCitizenship = request.getParameter("citizenship");
         String yob = request.getParameter("yob");
         int yearOfBirth = Integer.parseInt(yob);
-        //Date date = Date.valueOf("1995-08-26");
         //profile pic
-        String userProfilePic = "pretty.jpg";
+        //String userProfilePic = "pretty.jpg";
         String userInterest = request.getParameter("interest");
         String userPassword = request.getParameter("password");
         String userOccupation = request.getParameter("occupation");
         //resume
-        String userResume = "MyResume.pdf";
-        String userIsEmailConfirm = "pending"; // by right should be boolean
+        //String userResume = "MyResume.pdf";
         String userHighestEducation = request.getParameter("highest_qualification");
         String userFieldOfStudy = request.getParameter("fos");
         String userDescription = request.getParameter("message");
         String userSchool = request.getParameter("school");
+        
+        if (!userFirstName.equals("") && !userLastName.equals("") && !userCitizenship.equals("") && !userHighestEducation.equals("") && !userSchool.equals("") && !userFieldOfStudy.equals("")) {
+
+            // Insert into database
+            boolean insertedUser = UserDAO.updateUser(userEmail, userFirstName, userLastName, userPhone, userGender, userCitizenship, yearOfBirth, userInterest, userPassword, userOccupation, userHighestEducation, userFieldOfStudy, userDescription, userSchool);
+            if (insertedUser==true) {
+                response.sendRedirect("successMessage.jsp?message=updateprofile");
+                return;
+            } else {
+                String url = "failureMessage.jsp";
+                response.sendRedirect(url);
+                return;
+            }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

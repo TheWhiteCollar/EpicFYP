@@ -54,7 +54,7 @@
                     </li>
                     <li><a href="#">Manage Users</a>                       
                         <ul>
-                            <li><a href="viewStudentProfile.jsp">View Students</a></li>
+                            <li><a href="AdminPortal_viewStudentProfile.jsp">View Students</a></li>
                             <li><a href="AdminPortal_viewPartnerProfile.jsp">View Partners</a></li>
                         </ul>
                         

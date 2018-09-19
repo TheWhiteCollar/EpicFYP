@@ -568,7 +568,7 @@
                                         </tr>
                                         <tr>
                                             <td class="align-right"><b>School</b></td>
-                                            <td><input type ="text" name ="school" value =" <% out.print(school);%>"/></td>
+                                            <td><input type ="text" name ="school" value ="<% out.print(school);%>"/></td>
                                         </tr>
                                         <tr>
                                             <td class="align-right"><b>Interest</b></td>

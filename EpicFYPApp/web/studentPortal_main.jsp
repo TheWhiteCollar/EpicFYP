@@ -70,10 +70,5 @@
         %>
 
 
-        <!-- Trip Recommendations based on interest: only show if they click study trip -->
-        <section id="trip_recommendation" class="wrapper align-center">
-            <!-- a carousell?-->
-        </section>
-
     </body>
 </html>

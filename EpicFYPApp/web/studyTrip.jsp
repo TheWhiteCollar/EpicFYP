@@ -64,7 +64,7 @@
                         }
                         tripHTML += '<tr><td class = "align-center"><img src="' + 'images/Belgium.jpg' + '" width =100% height =auto></td></tr>';
                         tripHTML += '<tr><td>' + trip.tripTitle + ' | ' + trip.tripCountry + ' | ' + trip.tripStart + ' - ' + trip.tripEnd + ' | $' + trip.tripPrice + ' | ';
-                        if (trip.tripActivated) {
+                        if (trip.activated) {
                             tripHTML += 'Activated</td></tr>';
                         } else {
                             tripHTML += 'Not Activated (' + number + " more)</td></tr>";
@@ -78,7 +78,7 @@
             %>
                         tripHTML += '<form action="applyForTrips" method="post">';
                         tripHTML += '<input style="display: none" type="text" name="tripID" value="' + trip.tripID + '"/>';
-                        tripHTML += '<input style="display: none" type="text" name="email" value="' + '${User.getUserEmail()}' + '"/>';
+                        tripHTML += '<input style="display: none" type="text" name="tripUserEmail" value="' + '${User.getUserEmail()}' + '"/>';
 
                         var user = '${User.getUserEmail()}';
                         if (trip.signedUpEmails.includes(user)) {

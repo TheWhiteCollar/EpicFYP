@@ -8,6 +8,7 @@ package Controller;
 import Model.Dao.TripsDAO;
 import java.io.IOException;
 import javax.servlet.ServletException;
+import java.io.PrintWriter;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "applyForTrips", urlPatterns = {"/applyForTrips"})
 public class applyForTrips extends HttpServlet {
-
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -28,17 +29,17 @@ public class applyForTrips extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
-     */
+     */ 
 protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
         String tripUserEmail = request.getParameter("tripUserEmail");
-        double tripStudentPayment= Double.parseDouble(request.getParameter("tripStudentPayment"));
-        String tripStudentStatus = request.getParameter("tripStudentStatus");
-        String tripStudentReview = request.getParameter("tripStudentReview");
-        int tripStudentRating = Integer.parseInt(request.getParameter("tripStudentRating"));
+        int tripStudentPaymentID = 0;
+        String tripStudentStatus = null;
+        String tripStudentReview = null;
+        int tripStudentRating = 0;
         int tripID = Integer.parseInt(request.getParameter("tripID"));
         
-        if(TripsDAO.insertStudent(tripUserEmail, tripStudentPayment, tripStudentStatus, tripStudentReview, tripStudentRating, tripID)){
+        if(TripsDAO.insertStudent(tripUserEmail, tripStudentPaymentID, tripStudentStatus, tripStudentReview, tripStudentRating, tripID)){
             response.sendRedirect("payment.jsp");
         }      
          

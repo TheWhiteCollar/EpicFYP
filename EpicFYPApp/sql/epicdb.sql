@@ -281,10 +281,10 @@ INSERT INTO `trip` (`tripID`, `tripTitle`, `tripPrice`, `tripItinerary`, `tripDe
 
 CREATE TABLE IF NOT EXISTS `tripstudent` (
   `tripUserEmail` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `tripStudentPaymentID` int(11) NOT NULL,
-  `tripStudentStatus` varchar(100) NOT NULL,
-  `tripStudentReview` varchar(500) NOT NULL,
-  `tripStudentRating` int(1) NOT NULL,
+  `tripStudentPaymentID` int(11) NULL,
+  `tripStudentStatus` varchar(100) NULL DEFAULT '',
+  `tripStudentReview`varchar(500) NULL DEFAULT '',
+  `tripStudentRating` int(1) NULL,
   `tripID` int(11) NOT NULL,
   PRIMARY KEY (`tripUserEmail`,`tripID`),
   KEY `tripUserEmail` (`tripUserEmail`),

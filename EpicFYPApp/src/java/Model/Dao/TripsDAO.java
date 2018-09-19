@@ -20,22 +20,22 @@ import java.util.logging.Logger;
 
 /* Database sequence: TripStudent
     #1: tripUserEmail (varchar 50)
-    #2: tripStudentPayment (double)
+    #2: tripStudentPaymentID (int)
     #3: tripStudentStatus (varchar100)
     #4: tripStudentReview (varchar 500)
     #5: tripStudentRating (int 1)
     #6: tripID (int 11)
  */
 public class TripsDAO {
-    public static boolean insertStudent(String tripUserEmail, double tripStudentPayment, String tripStudentStatus, String tripStudentReview, int tripStudentRating, int tripID) {
+    public static boolean insertStudent(String tripUserEmail, int tripStudentPaymentID, String tripStudentStatus, String tripStudentReview, int tripStudentRating, int tripID) {
 
-        String sql = "INSERT INTO `tripstudent` (`tripUserEmail`, `tripStudentPayment`, `tripStudentStatus`, `tripStudentReview`, `tripStudentRating`, `tripID`) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO `tripstudent` (`tripUserEmail`, `tripStudentPaymentID`, `tripStudentStatus`, `tripStudentReview`, `tripStudentRating`, `tripID`) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (
             Connection conn = ConnectionManager.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql);) {
             stmt.setString(1, tripUserEmail);
-            stmt.setDouble(2, tripStudentPayment);
+            stmt.setInt(2, tripStudentPaymentID);
             stmt.setString(3, tripStudentStatus);
             stmt.setString(4, tripStudentReview);
             stmt.setInt(5, tripStudentRating);

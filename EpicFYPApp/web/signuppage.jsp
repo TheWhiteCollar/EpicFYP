@@ -523,7 +523,7 @@
                                 <div class="6u 12u(xsmall)">
                                     <h3>Field of Study interested in:</h3> 
                                     <select name="fos">
-                                        <option disabled selected value style="display:none"> - Field of Study interests - </option>
+                                        <option disabled selected value style="display:none"> - Field of Study - </option>
                                         <%
                                             ArrayList<String> allFieldOfStudy = FieldOfStudyDAO.getFieldOfStudies();
 
@@ -546,8 +546,9 @@
                                 <div class="6u 12u(xsmall)">
                                     <h3>Study Trips interested in:</h3> 
                                     <select name="interest" multiple="multiple" style="height: 200px;">
-                                        <option disabled selected value style="display:none"> - Field of Study interests - </option>
-                                        <%                                            ArrayList<String> allInterests = InterestDAO.getInterests();
+                                        <option disabled selected value style="display:none"> - Interests - </option>
+                                        <%                                            
+                                            ArrayList<String> allInterests = InterestDAO.getInterests();
 
                                             if (!allInterests.isEmpty()) {
                                                 for (int i = 0; i < allInterests.size(); i++) {

@@ -87,7 +87,8 @@
                         </table>
                     </div> 
                     <div class="7u 12u(xsmall)">
-                        <%                            User User = (User) session.getAttribute("User");
+                        <%                            
+                            User User = (User) session.getAttribute("User");
                             if (User != null) {
                                 String email = User.getUserEmail();
                                 String firstName = User.getUserFirstName();

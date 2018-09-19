@@ -100,10 +100,29 @@ public class InternshipStudentDAO {
         return true;
     }
 
-    //check if user alr signed up for the internship
-    //perhaps better if return an arraylist of the student - i can count (easier of sorts)
-    //then redirect to student home - and show their sign ups
-    public static int countInternshipStudentByCount(String internshipUserEmail, String continent) {
+    // get all sign ups by user in InternshipStudent
+    public static ArrayList<InternshipStudent> getAllInternshipStudentsByUser(String internshipUserEmail) {
+        ArrayList<InternshipStudent> result = new ArrayList<>();
+        try {
+            Connection conn = ConnectionManager.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("select * from internshipstudent WHERE internshipUserEmail=?");
+            stmt.setString(1, internshipUserEmail);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                result.add(new InternshipStudent(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+            }
+            rs.close();
+            stmt.close();
+            conn.close();
+            return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    //count number of continent of a particular user (used to check if user alr signed up to a continent)
+    public static int countInternshipStudentByCont(String internshipUserEmail, String continent) {
 
         int count = 0;
         String sql = "SELECT COUNT(internshipUserEmail) from internshipstudent WHERE internshipUserEmail=? AND internshipStudentContinent=?";

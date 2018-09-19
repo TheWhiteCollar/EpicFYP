@@ -87,11 +87,7 @@
                         </table>
                     </div> 
                     <div class="7u 12u(xsmall)">
-                        <%  
-                            
-                            
-                            
-                            User User = (User) session.getAttribute("User");
+                        <%                            User User = (User) session.getAttribute("User");
                             if (User != null) {
                                 String email = User.getUserEmail();
                                 String firstName = User.getUserFirstName();
@@ -101,18 +97,17 @@
                                 String highest_qualification = User.getUserHighestEducation();
                                 String school = User.getUserSchool();
                                 String userFOS = User.getUserFieldOfStudy();
-                                
-                                
-                                if(InternshipStudentDAO.countInternshipStudentByCount(email, contient) != 0){
+
+                                if (InternshipStudentDAO.countInternshipStudentByCont(email, contient) != 0) {
                                     //you alr signed up
-                         %>
-                             <h3 class="align-center">You have already signed up for an internship to <%out.print(contient);%></h3>  
-                             
-                         <%           
-                                } else {
-                                    //show them the sign up
-                                    %>
-                         <h3 class="align-center">Please confirm your particulars</h3>
+                        %>
+                        <h3 class="align-center">You have already signed up for an internship to <%out.print(contient);%></h3>  
+                        <div align="center"><a href = "studentPortal_main.jsp" class = "button">View your sign ups</a></div>
+                        <%
+                        } else {
+                            //show them the sign up
+                        %>
+                        <h3 class="align-center">Please confirm your particulars</h3>
                         <div align="center"><p>Note: These fields will be used by the system to track your application process</p></div>
 
                         <form action="addNewInternshipStudent" method="post">
@@ -400,18 +395,17 @@
 
 
             </div>
-                        
-                        
-                        <%
-
-                                }
-                                
-                        %>
-                        
 
 
             <%
-            } else {
+
+                }
+
+            %>
+
+
+
+            <%            } else {
             %>
             <h3 class="align-center">Log in/Sign up to register</h3>
             <div align="center"><a href = "login.jsp?comefrom=internshipDetails&cont=<%out.print(contient);%>" class = "button">Log in/sign up to apply</a></div>

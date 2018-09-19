@@ -63,16 +63,17 @@
 
                 </div>
             </div>
-        </section><section>
+        </section>
+        <section>
             <div class="container">
-                <table class = "alt">
+                <table class="alt">
                     <thead>
                         <tr>
-                            <th class = "align-center">#</th>
+                            <th class="align-center">#</th>
                             <th>Partner Name</th>
                             <th>Country</th>
-                            <th class = "align-center">State</th>
-                            <th class = "align-center">More information</th>
+                            <th class="align-center">State</th>
+                            <th class="align-center">More information</th>
 
                         </tr>
                     </thead>
@@ -86,11 +87,11 @@
                                     count += 1;
                         %>
                         <tr>
-                            <td class = "align-center"><%out.print(count);%></td>
+                            <td class="align-center"><%out.print(count);%></td>
                             <td><% out.print(p.getPartnerName()); %></td>                      
                             <td><% out.print(p.getPartnerCountry()); %></td>
-                            <td class = "align-center"><% out.print(p.getPartnerState()); %></td>
-                            <td class = "align-center"><button type="button" class="button" data-toggle="modal" data-target="#myModal<%out.print(i);%>">View</button></td>
+                            <td class="align-center"><% out.print(p.getPartnerState()); %></td>
+                            <td class="align-center"><button type="button" class="button" data-toggle="modal" data-target="#myModal<%out.print(i);%>">View</button></td>
                         </tr>
                         <%
                                 }
@@ -113,8 +114,8 @@
                                 <h4 class="modal-title align-center"><b><%out.print(p.getPartnerName()); %></b></h4>
                             </div>
                             <div class="modal-body">
-                                <div class ="row">
-                                    <div class ="4u 12u">
+                                <div class="row">
+                                    <div class="4u 12u">
                                         <div align="center"><img src="https://www.freelogodesign.org/Content/img/logo-ex-7.png" alt ="partner-logo" height="80%" width="80%"></div>
                                         <table class="align-center">
                                             <tbody>
@@ -125,7 +126,7 @@
                                             </tbody>
                                         </table>                                          
                                     </div>
-                                    <div class ="8u 12u">
+                                    <div class="8u 12u">
                                         <table>
                                             <tbody>
                                                 <tr>

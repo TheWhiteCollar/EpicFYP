@@ -1,3 +1,4 @@
+<%@page import="Model.Dao.InternshipStudentDAO"%>
 <%@page import="Model.Dao.FieldOfStudyDAO"%>
 <%@page import="Model.Entity.CountryInternship"%>
 <%@page import="Model.Dao.CountryInternshipDAO"%>
@@ -86,7 +87,10 @@
                         </table>
                     </div> 
                     <div class="7u 12u(xsmall)">
-                        <%                            
+                        <%  
+                            
+                            
+                            
                             User User = (User) session.getAttribute("User");
                             if (User != null) {
                                 String email = User.getUserEmail();
@@ -97,8 +101,18 @@
                                 String highest_qualification = User.getUserHighestEducation();
                                 String school = User.getUserSchool();
                                 String userFOS = User.getUserFieldOfStudy();
-                        %>
-                        <h3 class="align-center">Please confirm your particulars</h3>
+                                
+                                
+                                if(InternshipStudentDAO.countInternshipStudentByCount(email, contient) != 0){
+                                    //you alr signed up
+                         %>
+                             <h3 class="align-center">You have already signed up for an internship to <%out.print(contient);%></h3>  
+                             
+                         <%           
+                                } else {
+                                    //show them the sign up
+                                    %>
+                         <h3 class="align-center">Please confirm your particulars</h3>
                         <div align="center"><p>Note: These fields will be used by the system to track your application process</p></div>
 
                         <form action="addNewInternshipStudent" method="post">
@@ -386,6 +400,14 @@
 
 
             </div>
+                        
+                        
+                        <%
+
+                                }
+                                
+                        %>
+                        
 
 
             <%

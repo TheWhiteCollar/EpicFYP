@@ -16,14 +16,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class InternshipStudentDAO {
-     //update a particular InternshipStudent row
+    //update a particular InternshipStudent row
+
     public static boolean updateInternshipStudent(int internshipID, String internshipUserEmail, String internshipStudentStatus, String internshipStudentContinent) {
 
         String sql = "UPDATE internshipstudent SET internshipStudentStatus=?, internshipStudentContinent=? WHERE internshipID=? AND internshipUserEmail=?";
 
         try (Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
-            
+
             stmt.setString(1, internshipStudentStatus);
             stmt.setString(2, internshipStudentContinent);
             stmt.setInt(3, internshipID);
@@ -50,7 +51,6 @@ public class InternshipStudentDAO {
             stmt.setString(2, internshipUserEmail);
             stmt.setString(3, internshipStudentStatus);
             stmt.setString(4, internshipStudentContinent);
-            
 
             int result = stmt.executeUpdate();
             if (result == 0) {
@@ -61,12 +61,12 @@ public class InternshipStudentDAO {
         }
         return true;
     }
-    
+
     // get all existing InternshipStudent
     public static ArrayList<InternshipStudent> getAllInternshipStudents() {
         ArrayList<InternshipStudent> result = new ArrayList<>();
         try {
-                Connection conn = ConnectionManager.getConnection();
+            Connection conn = ConnectionManager.getConnection();
             PreparedStatement stmt = conn.prepareStatement("select * from internshipstudent");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -94,9 +94,36 @@ public class InternshipStudentDAO {
             stmt.setString(2, internshipUserEmail);
             stmt.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(InternshipStudentDAO.class.getName()).log(Level.WARNING, "Unable to delete internshipStudent, internshipID = '" + internshipID +", userEmail:  "+ internshipUserEmail, ex);
+            Logger.getLogger(InternshipStudentDAO.class.getName()).log(Level.WARNING, "Unable to delete internshipStudent, internshipID = '" + internshipID + ", userEmail:  " + internshipUserEmail, ex);
             return false;
         }
         return true;
+    }
+
+    //check if user alr signed up for the internship
+    //perhaps better if return an arraylist of the student - i can count (easier of sorts)
+    //then redirect to student home - and show their sign ups
+    public static int countInternshipStudentByCount(String internshipUserEmail, String continent) {
+
+        int count = 0;
+        String sql = "SELECT COUNT(internshipUserEmail) from internshipstudent WHERE internshipUserEmail=? AND internshipStudentContinent=?";
+        try {
+            Connection conn = ConnectionManager.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, internshipUserEmail);
+            stmt.setString(2, continent);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                count = rs.getInt(1);
+            }
+            rs.close();
+            stmt.close();
+            conn.close();
+            return count;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+
     }
 }

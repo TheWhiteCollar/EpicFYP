@@ -74,15 +74,6 @@
                             <th class = "align-center">Contact</th>
                             <th class = "align-center">More information</th>
 
-
-                            <!--                            <th>Age</th>
-                                                        <th>Citizenship</th>
-                                                        <th>School</th>
-                                                        <th>Highest Qualification</th>
-                                                        <th>Expected Graduation</th>
-                                                        <th>Trips Taken</th>
-                                                        <th>Pending Trips</th>-->
-
                         </tr>
                     </thead>
                     <tbody>
@@ -112,6 +103,7 @@
                     if (!allUsers.isEmpty()) {
                         for (int i = 0; i < allUsers.size(); i++) {
                             User u = allUsers.get(i);
+                            String name = u.getUserFirstName() + " " + u.getUserLastName();
 
                 %>
                 <div class="modal fade" id="myModal<%out.print(i);%>" role="dialog">
@@ -119,75 +111,65 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">User information | <% out.print(u.getUserFirstName() + " " + u.getUserLastName()); %></h4>
+                                <h4 class="modal-title align-center"><b><% out.print(name); %></b></h4>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body">           
                                 <div class ="row">
 
                                     <div class ="4u 12u">
-                                        <p>
-                                            Email : <% out.print(u.getUserEmail()); %>
-                                        </p>                                           
+                                        <div align="center"><img src="https://image.flaticon.com/icons/png/512/149/149071.png" class = "avatar-image" alt ="avatar-image" height="80%" width="80%"></div>
+                                        
+                                        <table class="align-center">
+                                            <tbody>
+                                                <tr>
+                                                    <td><b><% out.print(name); %></b></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><% out.print(u.getUserEmail()); %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><% out.print(u.getUserPhone()); %></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        
                                     </div>
-                                    <div class ="4u 12u">
-                                        <p>
-                                            Contact : <% out.print(u.getUserPhone()); %>
-                                        </p>                                           
+                                    <div class ="8u 12u">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="align-right"><b>Year of birth </b></td>
+                                                    <td><% out.print(u.getUserDOB()); %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right"><b>Citizenship </b></td>
+                                                    <td><% out.print(u.getUserCitizenship()); %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right"><b>Highest Qualification</b></td>
+                                                    <td><% out.print(u.getUserHighestEducation()); %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right"><b>Occupation </b></td>
+                                                    <td><% out.print(u.getUserOccupation()); %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right"><b>Organisation/School </b></td>
+                                                    <td><% out.print(u.getUserSchool()); %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right"><b>Interests </b></td>
+                                                    <td><% out.print(u.getUserInterest()); %></td>
+                                                </tr>
+                                            </tbody>
+                                            
+                                        </table>                                         
                                     </div>
-                                    <div class ="4u 12u">
-                                        <p>
-                                            Year of birth : <% out.print(u.getUserDOB()); %>
-                                        </p>                                           
-                                    </div>
+                                    
                                 </div>
 
 
-                                <div class ="row">
-                                    <div class ="6u 12u">
-                                        <p>
-                                            Citizenship : <% out.print(u.getUserCitizenship()); %>
-                                        </p>
-                                    </div>
-                                    <div class ="6u 12u">
-                                        <p>
-                                            Highest Qualification : Undergraduate degree
-                                        </p>                                           
-                                    </div>
-                                </div>
-
-                                <div class ="row">
-                                    <div class ="6u 12u">
-                                        <p>
-                                            Occupation : <% out.print(u.getUserOccupation()); %>
-                                        </p>                                           
-                                    </div>
-                                    <div class ="6u 12u">
-                                        <p>
-                                            Organisation/School : Singapore Management University
-                                        </p>                                           
-                                    </div>
-                                </div>
-
-                                <div class ="row">
-                                    <p>
-                                        Interests : <% out.print(u.getUserInterest());%>
-                                    </p>
-                                </div>
-
-                                <div class ="row">    
-                                    <div class ="6u 12u">
-                                        <p>
-                                            Trips signed up for : Winter Trip to Myanmar
-                                        </p>                                           
-                                    </div>
-                                </div>
-
-                                <div class ="row">
-                                    <p>
-                                        <%// int countOfTrip = TripsDAO.getTripbyUser(u.getUserEmail()); %>
-                                        Trips taken previously : 6<%// out.println(countOfTrip); %>
-                                    </p>
-                                </div>
+                            
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="button" data-dismiss="modal">Close</button>

@@ -332,10 +332,10 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`userEmail`, `userFirstName`, `userLastName`, `userPhone`, `userGender`, `userCitizenship`, `userDOB`, `userProfilePic`, `userInterest`, `userPassword`, `userOccupation`, `userResume`, `userIsEmailConfirm`, `userHighestEducation`, `userFieldOfStudy`, `userDescription`, `userSchool`) VALUES
-('mediani.2015@sis.smu.edu.sg', 'Mediani', 'Law', 83036983, 'F', 'Singapore PR', 1996, '', 'Service & Social Innovation, Academic & Business', '1234', 'Student', '', 'pending', 'Bachelor Degree', 'Law', NULL, 'SMU'),
-('rachael.low.2015@sis.smu.edu.sg', 'Rachael', 'Low', 91234567, 'M', 'Algerian', 1995, '', 'Academic & Business', 'fyp1234', 'Student', '', 'confirmed', 'ITE', 'History', NULL, 'NTU'),
-('xiuwen.yeo@gmail.com', 'Xiu Wen', 'Yeo', 98769876, 'F', 'Singaporean', 1994, '', 'Nature & Culture', '1234', 'Student', '', 'pending', 'Postgraduate Diploma', 'Computing', NULL, 'SMU'),
-('yijing.oon.2015@smu.edu.sg', 'Yi Jing', 'Oon', 98766789, 'F', 'Singapore PR', 1993, '', 'Nature & Culture, Service & Social Innovation', 'oonyijing', 'Student', '', 'confirmed', 'Masters/Doctorate', 'Computing', NULL, 'NTU');
+('mediani.2015@sis.smu.edu.sg', 'Mediani', 'Law', 83036983, 'F', 'Singapore PR', 1996, '', 'Service & Social Innovation, Academic & Business', '1234', 'Student', '', 'pending', 'Bachelor Degree', 'Law', 'I love the exercise! It is my favourite thing. It makes me happy and beautiful.', 'SMU'),
+('rachael.low.2015@sis.smu.edu.sg', 'Rachael', 'Low', 91234567, 'M', 'Algerian', 1995, '', 'Academic & Business', 'fyp1234', 'Student', '', 'confirmed', 'ITE', 'History', 'Weeee. The life of greatness and happiness is amazinggggg.', 'NTU'),
+('xiuwen.yeo@gmail.com', 'Xiu Wen', 'Yeo', 98769876, 'F', 'Singaporean', 1994, '', 'Nature & Culture', '1234', 'Student', '', 'pending', 'Postgraduate Diploma', 'Computing', 'I am really into helping others. When others feel happy, I feel happy too.', 'SMU'),
+('yijing.oon.2015@smu.edu.sg', 'Yi Jing', 'Oon', 98766789, 'F', 'Singapore PR', 1993, '', 'Nature & Culture, Service & Social Innovation', 'oonyijing', 'Student', '', 'confirmed', 'Masters/Doctorate', 'Computing', 'Greatness is in the eye of the beholder. I believe with great power comes great responsibility.', 'NTU');
 
 --
 -- Constraints for dumped tables

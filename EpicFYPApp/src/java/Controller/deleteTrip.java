@@ -35,7 +35,7 @@ public class deleteTrip extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int tripID = Integer.parseInt(request.getParameter("tripID"));
+        int tripID = Integer.parseInt(request.getParameter("id"));
         String text = "fail";
         if(TripsDAO.deleteTrip(tripID)){
            text = "success";

@@ -78,6 +78,7 @@
                         var deleteData = {
                             'id': tripID
                         };
+                        console.log("tripID: " + tripID);
                         //send an ajax post request to the delete trip servlet with delete data
                         $.post('/EpicFYPApp/deleteTrip', deleteData, function (response) {
                             if (response === "success") {
@@ -288,7 +289,7 @@
                     "interestName": interestName,
                 }
                 $.post('/EpicFYPApp/addInterest', interestData, function (response) {
-                    getAllinterests();
+                    getAllInterests();
                     if (response === "success") {
                         $.notify({
                             // options

@@ -135,7 +135,7 @@ public class TripsDAO {
         try (
             Connection conn = ConnectionManager.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql1);) {
-            stmt.setInt(6, tripID);
+            stmt.setInt(1, tripID);
             stmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(TripsDAO.class.getName()).log(Level.WARNING, "Unable to delete trip, tripID = '" + tripID, ex);

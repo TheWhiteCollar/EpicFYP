@@ -93,6 +93,24 @@ public class UserDAO {
         return true;
     }
 
+    public static boolean updateProfilePic(String nameOfPic, String userEmail) {
+
+        String sql = "UPDATE user SET userProfilePic = ? WHERE userEmail = ?";
+
+        try (Connection conn = ConnectionManager.getConnection()) {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, nameOfPic);
+            stmt.setString(2, userEmail);
+            int result = stmt.executeUpdate();
+            if (result == 0) {
+                return false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.WARNING, "Image not uploaded successfully", ex);
+        }
+        return true;
+    }
+
     // get all users
     public static ArrayList<User> getAllUsers() {
         ArrayList<User> result = new ArrayList<>();
@@ -172,7 +190,7 @@ public class UserDAO {
         }
         return true;
     }
-    
+
     //update a particular user based on the user email confirmation
     public static boolean updateUser(String userEmail) {
 
@@ -192,7 +210,7 @@ public class UserDAO {
         }
         return true;
     }
-    
+
     //update a particular user based on the profile update details
     //need to remember to upload the picture into the db
     public static boolean updateUser(String userEmail, String userFirstName, String userLastName, int userPhone, String userGender, String userCitizenship, int userDOB, String userInterest, String userPassword, String userOccupation, String userHighestEducation, String userFieldOfStudy, String userDescription, String userSchool) {
@@ -225,7 +243,7 @@ public class UserDAO {
         }
         return true;
     }
-    
+
     //update a particular user based on the internship details
     //need to remember to upload the resume into the db
     public static boolean updateUser(String userEmail, String userFirstName, String userLastName, int userPhone, String userCitizenship, String userHighestEducation, String userFieldOfStudy, String userSchool) {
@@ -252,7 +270,7 @@ public class UserDAO {
         }
         return true;
     }
-    
+
     //update user email confirmation
     public static boolean updateUserConfirmation(String userEmail) {
 
@@ -272,7 +290,7 @@ public class UserDAO {
         }
         return true;
     }
-    
+
     public static User getUser(String userEmail) {
         User user = null;
         String sql = "SELECT * FROM user WHERE userEmail = ?";
@@ -287,7 +305,7 @@ public class UserDAO {
             Logger.getLogger(UserDAO.class.getName()).log(Level.WARNING, "Cannot get user with userEmail: " + userEmail, ex);
         }
         return user;
-        
+
     }
-  
+
 }

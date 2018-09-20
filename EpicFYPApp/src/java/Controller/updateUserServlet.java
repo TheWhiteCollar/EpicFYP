@@ -6,12 +6,27 @@
 package Controller;
 
 import Model.Dao.UserDAO;
+import Model.Entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
@@ -30,7 +45,8 @@ public class updateUserServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       // retrieve user input
+        /*
+        // retrieve user input
         String userEmail = request.getParameter("email");
         String userFirstName = request.getParameter("firstName");
         String userLastName = request.getParameter("lastName");
@@ -51,12 +67,12 @@ public class updateUserServlet extends HttpServlet {
         String userFieldOfStudy = request.getParameter("fos");
         String userDescription = request.getParameter("message");
         String userSchool = request.getParameter("school");
-        
+
         if (!userFirstName.equals("") && !userLastName.equals("") && !userCitizenship.equals("") && !userHighestEducation.equals("") && !userSchool.equals("") && !userFieldOfStudy.equals("")) {
 
             // Insert into database
             boolean insertedUser = UserDAO.updateUser(userEmail, userFirstName, userLastName, userPhone, userGender, userCitizenship, yearOfBirth, userInterest, userPassword, userOccupation, userHighestEducation, userFieldOfStudy, userDescription, userSchool);
-            if (insertedUser==true) {
+            if (insertedUser == true) {
                 response.sendRedirect("successMessage.jsp?message=updateprofile");
                 return;
             } else {
@@ -65,6 +81,33 @@ public class updateUserServlet extends HttpServlet {
                 return;
             }
         }
+         */
+
+        HttpSession session = request.getSession(true);
+        User user = (User) session.getAttribute("User");
+
+        if (ServletFileUpload.isMultipartContent(request)) {
+            try {
+                List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
+                for (FileItem item : multiparts) {
+                    if (!item.isFormField()) {
+                        String name = new File(item.getName()).getName();
+                        UserDAO.updateProfilePic(name, user.getUserEmail());
+                        // item.write(new File("../../../web/images" + File.separator + name));
+                        item.write(new File("c:/temp" + File.separator + name));
+                    }
+                }
+                //File uploaded successfully
+                request.setAttribute("message", "File Uploaded Successfully");
+            } catch (Exception ex) {
+                request.setAttribute("message", "File Upload Failed due to " + ex);
+            }
+        } else {
+
+            request.setAttribute("message", "No File found");
+        }
+
+        request.getRequestDispatcher("/successMessage.jsp?message=updateprofile").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

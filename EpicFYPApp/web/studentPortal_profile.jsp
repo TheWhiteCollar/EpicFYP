@@ -54,7 +54,7 @@
                     <h2>Account Information</h2>                     
                 </header>
 
-                <form action="updateUserServlet" method="post">
+                <form action="updateUserServlet" method="post" enctype="multipart/form-data">
                     <div class="row"> 
                         <%
                             User User = (User) session.getAttribute("User");
@@ -73,9 +73,15 @@
                                 String qualification = User.getUserHighestEducation();
                                 String school = User.getUserSchool();
                                 String description = User.getUserDescription();
+                                String profilePic = User.getUserProfilePic();
                         %>
-                        <div class="3u 12u(xsmall)" align="center">                        
+                        <div class="3u 12u(xsmall)" align="center"> 
+                            <% if (profilePic != null) { %>
+                            <img src="images/<%= profilePic %>" class = "avatar-image" alt ="avatar-image" height="80%" width="80%"> 
+                             <!-- <img src="C:/temp/<%= profilePic %>" class = "avatar-image" alt ="avatar-image" height="80%" width="80%"> -->
+                            <%    } else { %>
                             <img src="https://image.flaticon.com/icons/png/512/149/149071.png" class = "avatar-image" alt ="avatar-image" height="80%" width="80%">
+                            <% } %>
                             <br>
                             <br>
                             <input type="file" name="profilePicture" id="file-1" class="inputfile inputfile-1" style="visibility:hidden" accept=".png, .jpg, .jpeg"/>
@@ -83,7 +89,7 @@
                                 <span>Upload Picture</span>
                             </label> 
                         </div>
-                        
+
                         <div class="9u 12u(xsmall)">
                             <div class="table-wrapper">
                                 <table class="blank">

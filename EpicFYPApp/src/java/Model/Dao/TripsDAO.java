@@ -27,13 +27,14 @@ import java.util.logging.Logger;
     #6: tripID (int 11)
  */
 public class TripsDAO {
+
     public static boolean insertStudent(String tripUserEmail, int tripStudentPaymentID, String tripStudentStatus, String tripStudentReview, int tripStudentRating, int tripID) {
 
         String sql = "INSERT INTO `tripstudent` (`tripUserEmail`, `tripStudentPaymentID`, `tripStudentStatus`, `tripStudentReview`, `tripStudentRating`, `tripID`) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (
-            Connection conn = ConnectionManager.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(sql);) {
+                Connection conn = ConnectionManager.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
             stmt.setString(1, tripUserEmail);
             stmt.setInt(2, tripStudentPaymentID);
             stmt.setString(3, tripStudentStatus);
@@ -49,7 +50,6 @@ public class TripsDAO {
         return true;
     }
 
-    // Update user table
     public static ArrayList<Trip> getTrips() {
         ArrayList<Trip> allTrips = new ArrayList<>();
         String sql1 = "SELECT * FROM tripstudent";
@@ -93,6 +93,50 @@ public class TripsDAO {
         return allTrips;
     }
 
+    public static ArrayList<Trip> getFilteredTrips(String minDate, String maxDate, double minPrice, double maxPrice, String tripTitle, String tripCountry) {
+        ArrayList<Trip> allTrips = new ArrayList<>();
+        String sql1 = "SELECT * FROM tripstudent";
+        HashMap<Integer, String> tripstudent = new HashMap<>();
+        try (Connection conn = ConnectionManager.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql1);) {
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                String tripUserEmail = rs.getString(1);
+                int tripID = rs.getInt(6);
+                if (!tripstudent.containsKey(tripID)) {
+                    tripstudent.put(tripID, tripUserEmail);
+                } else {
+                    String result = tripstudent.get(tripID);
+                    result += "," + tripUserEmail;
+                    tripstudent.put(tripID, result);
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(TripsDAO.class.getName()).log(Level.WARNING, "Cannot get tripstudent from db", ex);
+        }
+
+        String sql2 = "SELECT * FROM trip WHERE tripPrice <= 300";
+        try (Connection conn = ConnectionManager.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql2);) {;
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                int tripID = rs.getInt(1);
+                String tripUserEmail = "";
+                if (tripstudent.containsKey(tripID)) {
+                    tripUserEmail = tripstudent.get(tripID);
+                }
+
+                ArrayList<String> emails = convertEmailString(tripUserEmail);
+                Trip trip = new Trip(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getDate(8), rs.getDate(9), rs.getInt(10), rs.getInt(11), rs.getString(12), rs.getInt(13), rs.getString(14), rs.getDouble(15), emails);
+                allTrips.add(trip);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(TripsDAO.class.getName()).log(Level.WARNING, "Cannot get all trips from database", ex);
+        }
+
+        return allTrips;
+    }
+
     public static Trip getTrip(int tripID) {
         Trip trip = null;
         String sql1 = "SELECT * FROM tripstudent WHERE tripID = ?";
@@ -133,8 +177,8 @@ public class TripsDAO {
         String sql1 = "DELETE FROM tripstudent WHERE tripID=?";
 
         try (
-            Connection conn = ConnectionManager.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(sql1);) {
+                Connection conn = ConnectionManager.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql1);) {
             stmt.setInt(1, tripID);
             stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -146,8 +190,8 @@ public class TripsDAO {
         String sql2 = "DELETE FROM trip WHERE tripID=?";
 
         try (
-            Connection conn = ConnectionManager.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(sql2);) {
+                Connection conn = ConnectionManager.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql2);) {
             stmt.setInt(1, tripID);
             stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -163,8 +207,8 @@ public class TripsDAO {
 
         int maxTripID = 0;
         try (
-            Connection conn = ConnectionManager.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(sql1);) {
+                Connection conn = ConnectionManager.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql1);) {
             ResultSet rs = stmt.executeQuery();
             rs.next();
             maxTripID = rs.getInt(1);
@@ -178,8 +222,8 @@ public class TripsDAO {
         String sql2 = "INSERT INTO `trip` (`tripID`, `tripTitle`, `tripPrice`, `tripItinerary`, `tripDescription`,`tripCountry`, `tripState`, `tripStart`, `tripEnd`, `tripDuration`,`tripActivation`, `tripInterest`, `tripTotalSignUp`, `tripPromo`, `tripPromoPercentage`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
         maxTripID++;
         try (
-            Connection conn = ConnectionManager.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(sql2);) {
+                Connection conn = ConnectionManager.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql2);) {
             stmt.setInt(1, maxTripID);
             stmt.setString(2, tripTitle);
             stmt.setDouble(3, tripPrice);
@@ -237,7 +281,6 @@ public class TripsDAO {
         }
         return filteredTrips;
     } */
-
     // Add existing trips/bulk new trips
     //public static boolean addTrip(String tripTitle, double tripPrice, String tripItinerary, String tripDescription, String tripCountry, String tripState, Date tripStart, Date tripEnd, int tripDuration, int tripActivation, String tripInterest, int tripTotalSignUp, String tripPromo, double tripPromoPercentage) {
     public static boolean addTrip(String tripTitle, double tripPrice, String tripItinerary, String tripDescription, String tripCountry, String tripState, int tripDuration, int tripActivation, String tripInterest, int tripTotalSignUp, String tripPromo, double tripPromoPercentage) {

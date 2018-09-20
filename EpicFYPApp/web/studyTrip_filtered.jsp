@@ -44,7 +44,7 @@
         </noscript> 
         <script>
             $(function () {
-                $.get('/EpicFYPApp/getAllTripsServlet', function (tripJson) {
+                $.get('/EpicFYPApp/getAllTripsFilteredServlet', function (tripJson) {
                     var trips = JSON.parse(tripJson);
                     var tripHTML = '';
                     var count = 1;

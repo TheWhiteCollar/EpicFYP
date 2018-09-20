@@ -423,7 +423,7 @@
                 <div id="addTripTab" class="tabcontent">
 
                     <span onclick="this.parentElement.style.display = 'none'" class="toprightClose">&times</span>
-                    <form id="addTrip">
+                    <form id="addTrip" enctype="multipart/form-data">
                         <div class = "row 50% uniform">
                             <div class = "6u 12u(xsmall)">
                                 <p>

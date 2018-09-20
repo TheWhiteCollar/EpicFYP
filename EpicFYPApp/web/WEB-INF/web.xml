@@ -56,6 +56,10 @@
         <servlet-name>storedAllFilteredVariables</servlet-name>
         <servlet-class>Controller.storedAllFilteredVariables</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>downloadItinerary</servlet-name>
+        <servlet-class>Controller.downloadItinerary</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TripsDAO</servlet-name>
         <url-pattern>/TripsDAO</url-pattern>
@@ -111,6 +115,10 @@
     <servlet-mapping>
         <servlet-name>storedAllFilteredVariables</servlet-name>
         <url-pattern>/storedAllFilteredVariables</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>downloadItinerary</servlet-name>
+        <url-pattern>/downloadItinerary</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

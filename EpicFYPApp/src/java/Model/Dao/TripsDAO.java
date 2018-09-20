@@ -49,6 +49,7 @@ public class TripsDAO {
 
         return true;
     }
+    
 
     public static ArrayList<Trip> getTrips() {
         ArrayList<Trip> allTrips = new ArrayList<>();

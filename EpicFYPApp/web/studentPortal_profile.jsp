@@ -77,6 +77,7 @@
                         %>
                         <div class="3u 12u(xsmall)" align="center"> 
                             <% if (profilePic != null) { %>
+                            <!--<img src="images/jasmine.jpg" class = "avatar-image" height="80%" width="80%">-->
                             <img src="images/<%= profilePic %>" class = "avatar-image" alt ="avatar-image" height="80%" width="80%"> 
                              <!-- <img src="C:/temp/<%= profilePic %>" class = "avatar-image" alt ="avatar-image" height="80%" width="80%"> -->
                             <%    } else { %>

@@ -59,7 +59,7 @@
         </section>
 
         <!-- One -->
-        <section id="one" class="wrapper style1 align-center">
+        <section id="one" class="wrapper style2 align-center">
             <div class="container">
                 <header>
                     <h2>Why Us</h2>
@@ -131,16 +131,17 @@
                 </header>
                 <div class="row 200%">
                     <section class="4u 12u(small)">
+<!--try to link the word or icon-->
                         <i class="icon big rounded fa-heart"></i>
                         <p>Create an account with us, and let us know your interests!</p>
                     </section>
                     <section class="4u 12u(small)">
                         <i class="icon big rounded fa-search"></i>
-                        <p>Pick an overseas programme (internship/study trip) of your choice</p>
+                        <p>Look for overseas study trips</p>
                     </section>
                     <section class="4u 12u(small)">
                         <i class="icon big rounded fa-file-o"></i>
-                        <p>Relax and we will handle the adminstrative matters!</p>
+                        <p>Look for overseas internships</p>
                     </section>
                 </div>
             </div>

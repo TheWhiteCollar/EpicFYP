@@ -34,11 +34,12 @@
 
             <h2>We have noted your interest!</h2>
             <p>We will contact you regarding your application within 10 working days</p>
+            <p>For more opportunities:</p>
             <ul class="actions">
                 <li>
                    
                     <a href="studyTrip.jsp" class="button big"><font color="white">Join a study trip</font></a>
-                    <a href="internship.jsp" class="button big"><font color="white">Join an internship</font></a>
+                    <a href="internship.jsp" class="button big"><font color="white">Join another internship</font></a>
                    
                   
                 </li>

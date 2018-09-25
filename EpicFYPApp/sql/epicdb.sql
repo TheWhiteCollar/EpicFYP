@@ -286,7 +286,7 @@ CREATE TABLE IF NOT EXISTS `tripstudent` (
   `tripStudentReview`varchar(500) NULL DEFAULT '',
   `tripStudentRating` int(1) NULL,
   `tripID` int(11) NOT NULL,
-  PRIMARY KEY (`tripUserEmail`,`tripID`),
+  PRIMARY KEY (`tripUserEmail`,`tripID`,`tripStudentPaymentID`),
   KEY `tripUserEmail` (`tripUserEmail`),
   KEY `tripID` (`tripID`),
   KEY `tripStudentPaymentID` (`tripStudentPaymentID`)

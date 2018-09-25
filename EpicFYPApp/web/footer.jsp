@@ -40,12 +40,7 @@
                         </ul>
                         -->
                         <ul class="alt">
-                            <li>
-                                <h3>Hot-desking Address</h3>
-                                The Hangar by NUS Enterprise,<br>
-                                21 Heng Mui Keng Terrace,<br>
-                                #01-01/02 NUS, S119613
-                            </li>
+                           
                             <li>
                                 <h3>Mail</h3>
                                 <a href="mailto:someone@example.com?Subject=Enquiries%20regarding%20Epic%20Journey">isabelle@epicjourney.sg</a>

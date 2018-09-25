@@ -65,7 +65,7 @@ public class TripStudentDAO {
         return true;
     }
     
-    // get all existing InternshipStudent
+    // get all existing TripStudent
     public static ArrayList<TripStudent> getAllTripStudents() {
         ArrayList<TripStudent> result = new ArrayList<>();
         try {
@@ -84,8 +84,29 @@ public class TripStudentDAO {
         }
         return null;
     }
+    
+    public static ArrayList<TripStudent> getTripsByUser(String userEmail) {
+        ArrayList<TripStudent> result = new ArrayList<>();
+        String sql = "SELECT * FROM tripstudent WHERE tripUserEmail = ?";
+        try (Connection conn = ConnectionManager.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
+            stmt.setString(1, userEmail);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                result.add(new TripStudent(rs.getString(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getInt(6)));
+            }
+            rs.close();
+            stmt.close();
+            conn.close();
+            return result;
+        } catch (SQLException ex) {
+            Logger.getLogger(TripStudentDAO.class.getName()).log(Level.WARNING, "Cannot get user with userEmail: " + userEmail, ex);
+        }
+        return null;
 
-    //delete a particular InternshipStudent row
+    }
+
+    //delete a particular TripStudent row
     public static boolean deleteTripStudent(int tripID, String tripUserEmail, int tripStudentPaymentID) {
 
         String sql1 = "DELETE FROM tripstudent WHERE tripID=? AND tripUserEmail=? AND tripStudentPaymentID=?";

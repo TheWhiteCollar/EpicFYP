@@ -1,3 +1,7 @@
+<%@page import="Model.Entity.Trip"%>
+<%@page import="Model.Dao.TripsDAO"%>
+<%@page import="Model.Dao.TripStudentDAO"%>
+<%@page import="Model.Entity.TripStudent"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="Model.Dao.UserDAO"%>
 <%@page import="java.util.ArrayList"%>
@@ -51,7 +55,7 @@
                     <div class ="2u 12u(xsmall)">
                         <input type="submit">
                     </div>
-                    
+
                     <div class ="4u 12u(xsmall)">
                         <% LocalDate todayDate = java.time.LocalDate.now(); %>
                         <form method="get" action="#">
@@ -59,8 +63,8 @@
                         </form>
 <!--                        <a href="/Users/xiuwenhime/NetBeansProjects/JavaApplication5/NewExcelFile.xls" download="<% out.print(todayDate); %>_all_student_profile" class="button full_width">Download all student profiles</a>-->
                     </div>
-                
-                    
+
+
                 </div>
             </div>
         </section><section>
@@ -104,6 +108,7 @@
                         for (int i = 0; i < allUsers.size(); i++) {
                             User u = allUsers.get(i);
                             String name = u.getUserFirstName() + " " + u.getUserLastName();
+                            String email = u.getUserEmail();
 
                 %>
                 <div class="modal fade" id="myModal<%out.print(i);%>" role="dialog">
@@ -118,7 +123,7 @@
 
                                     <div class ="4u 12u">
                                         <div align="center"><img src="https://image.flaticon.com/icons/png/512/149/149071.png" class = "avatar-image" alt ="avatar-image" height="80%" width="80%"></div>
-                                        
+
                                         <table class="align-center">
                                             <tbody>
                                                 <tr>
@@ -132,7 +137,7 @@
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        
+
                                     </div>
                                     <div class ="8u 12u">
                                         <table>
@@ -162,14 +167,65 @@
                                                     <td><% out.print(u.getUserInterest()); %></td>
                                                 </tr>
                                             </tbody>
-                                            
+
                                         </table>                                         
                                     </div>
-                                    
+
+                                </div>
+                                <div class="row">
+                                    <div class="12u 12u(small)">
+                                        <h3 class="align-center"><b>Trips History</b></h3>
+
+                                        <%
+
+                                            ArrayList<TripStudent> t = TripStudentDAO.getTripsByUser(email);
+                                            //if student has applied for trips previously
+                                            if (!t.isEmpty()) {
+                                        %>
+
+                                        <table class="align-center">
+                                            <thead>
+                                                <tr>
+                                                    <td>Trip ID</td>
+                                                    <td>Trip Title</td>
+                                                    <td>Country</td>
+                                                    <td>Revenue</td>
+                                                    <td>Travel Period</td> 
+                                                </tr>
+
+                                            </thead>
+                                            <tbody>
+
+                                                <%
+                                                    for (int x = 0; x < t.size(); x++) {
+                                                        TripStudent tripx = t.get(x);
+                                                        Trip trip = TripsDAO.getTrip(tripx.getTripID());
+                                                %>
+                                                <tr>
+                                                    <td><%out.print(trip.getTripID());%></td>
+                                                    <td><%out.print(trip.getTripTitle());%></td>
+                                                    <td><%out.print(trip.getTripCountry());%></td>
+                                                    <td>$ <%out.print(trip.getTripPrice());%></td>
+                                                    <td><%out.print(trip.getTripStart());%> <b>to</b> <%out.print(trip.getTripEnd());%></td>
+                                                </tr>
+                                                <%
+                                                    }
+                                                %>
+                                            </tbody>
+                                        </table>
+
+                                        <%
+                                        } else {
+                                        %>
+                                        <p class="align-center">This user has not taken any trips</p>
+                                        <%
+                                            }
+                                        %>
+                                    </div>
                                 </div>
 
 
-                            
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="button" data-dismiss="modal">Close</button>

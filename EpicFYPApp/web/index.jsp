@@ -132,15 +132,15 @@
                 <div class="row 200%">
                     <section class="4u 12u(small)">
 <!--try to link the word or icon-->
-                        <i class="icon big rounded fa-heart"></i>
+                        <a href="signuppage.jsp"><i class="icon big rounded fa-heart"></i></a>
                         <p>Create an account with us, and let us know your interests!</p>
                     </section>
                     <section class="4u 12u(small)">
-                        <i class="icon big rounded fa-search"></i>
+                        <a href="studyTrip.jsp"><i class="icon big rounded fa-search"></i></a>
                         <p>Look for overseas study trips</p>
                     </section>
                     <section class="4u 12u(small)">
-                        <i class="icon big rounded fa-file-o"></i>
+                        <a href="internship.jsp"><i class="icon big rounded fa-file-o"></i></a>
                         <p>Look for overseas internships</p>
                     </section>
                 </div>

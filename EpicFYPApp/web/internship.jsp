@@ -43,19 +43,19 @@
                 <div class="row">
 
                     <section class="feature 6u 12u(small)">
-                        <img class="image fit" src="images/pic01.jpg" alt="" />
+                        <a href="internshipDetails.jsp?cont=America"><img class="image fit" src="images/pic01.jpg" alt="" /></a>
                         <h3 class="title"><a href="internshipDetails.jsp?cont=America">America</a></h3>
                     </section>
                     <section class="feature 6u 12u(small)">
-                        <img class="image fit" src="images/pic02.jpg" alt="" />
+                        <a href="internshipDetails.jsp?cont=Asia"><img class="image fit" src="images/pic02.jpg" alt="" /></a>
                         <h3 class="title"><a href="internshipDetails.jsp?cont=Asia">Asia</a></h3>
                     </section>
                     <section class="feature 6u 12u(small)">
-                        <img class="image fit" src="images/pic03.jpg" alt="" />
+                        <a href="internshipDetails.jsp?cont=Australia"><img class="image fit" src="images/pic03.jpg" alt="" /></a>
                         <h3 class="title"><a href="internshipDetails.jsp?cont=Australia">Australia</a></h3>
                     </section>
                     <section class="feature 6u 12u(small)">
-                        <img class="image fit" src="images/pic04.jpg" alt="" />
+                        <a href="internshipDetails.jsp?cont=Europe"><img class="image fit" src="images/pic04.jpg" alt="" /></a>
                         <h3 class="title"><a href="internshipDetails.jsp?cont=Europe">Europe</a></h3>
                     </section>
 

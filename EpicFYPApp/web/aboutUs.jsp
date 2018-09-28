@@ -75,7 +75,7 @@
                 </header>
                 <p>EPIC provides entrepreneurship training, global career exposure, life skills and character building through business, internship and career development programmes and social entrepreneurial mission and community services in Emerging Markets in ASEAN – Cambodia, Laos, Myanmar, Vietnam, India, Indonesia, Thailand, as well as in Asia – Japan and China.</p>
 
-                <a href="#" class="image fit"><img src="images/valuepropositon.jpg" width="1000" height="350" alt="" /></a>
+                <a href="#" class="image fit"><img src="images/valuepropositon.jpg" width="600" height="150" alt="" /></a>
 
                 <p>We create the ‘once in-a-lifetime opportunity’ for our talents to work closely through dedicated partners who are experienced entrepreneurs, business people, professionals, dedicated volunteers and trustworthy locals of the land, to expand their life experiences, enhance their global business acumen, sharpen their cultural awareness and develop their global employability through rewarding internships and innovative projects around the world.</p>
 

@@ -51,7 +51,7 @@
         </section>
 
         <!--vision-->
-        <section id="vision" class="wrapper style1 align-center">
+        <section id="vision" class="wrapper style2 align-center">
             <div class="container">
 
                 <header class="major">
@@ -71,11 +71,11 @@
 
                 <header class="major">
                     <h2>EPIC Value Proposition</h2>
-                    <p><i>EPIC adopts the Blue Ocean Strategy and is committed to developing in our talents, the skills, knowledge, courage, resilience and leadership to be <span class="red bold">First Movers and Change Makers in Emerging Markets</span>.</i></p>						
+                    <p><i>EPIC adopts the Blue Ocean Strategy and is committed to developing in our talents, the skills, knowledge, courage, resilience and leadership to be <i style="color:red;">First Movers and Change Makers in Emerging Markets.</i></p>						
                 </header>
                 <p>EPIC provides entrepreneurship training, global career exposure, life skills and character building through business, internship and career development programmes and social entrepreneurial mission and community services in Emerging Markets in ASEAN – Cambodia, Laos, Myanmar, Vietnam, India, Indonesia, Thailand, as well as in Asia – Japan and China.</p>
 
-                <a href="#" class="image fit"><img src="images/valuepropositon.jpg" width="600" height="150" alt="" /></a>
+                <a href="#" class="image fit"><img src="images/valuepropositon.jpg" width="1200px" height="600px" alt="" /></a>
 
                 <p>We create the ‘once in-a-lifetime opportunity’ for our talents to work closely through dedicated partners who are experienced entrepreneurs, business people, professionals, dedicated volunteers and trustworthy locals of the land, to expand their life experiences, enhance their global business acumen, sharpen their cultural awareness and develop their global employability through rewarding internships and innovative projects around the world.</p>
 
@@ -83,7 +83,7 @@
         </section>
 
         <!-- Corporate Partner-->
-        <section id="corporate" class="wrapper style1 align-center">
+        <section id="corporate" class="wrapper style2 align-center">
             <div class="container">
 
                 <header class="major">
@@ -106,38 +106,38 @@
             <div class="container">
 
                 <header class="major align-center">
-                    <h2>What our customers say</h2>
+                    <h2>Testimonials</h2>
 
                 </header>
                 <div class="row 50% uniform">                       
-                    <div class="4u"><span class="image fit"><img src="images/michael.jpg" alt="" width="388px" height="254px"/></span></div>
+                    <div class="4u"><span class="image fit"><img src="images/pamela.png" alt="" width="388px" height="254px"/></span></div>
                     <div class="8u">
-                        <p class = "align-justify">“Thank you for organizing this amazing trip for students to get to know about the diverse range of opportunities in Myanmar.  The trip itself was very pleasant and comfortable and I had the chance to explore around the most promising companies in Myanmar like Telenor Myanmar and Yoma Strategic Holdings.  I like to encourage all students to reach out to EPIC for such a career drive and see the actual opportunities in developing countries.” </br><span style="float:right;">- Michael </span></p>
+                        <p class = "align-justify">"An eye opener for me, experiencing the sights and sounds on the streets of Yangon, learning the culture and life of the local Myanmarnese, and witnessing the vitality of an emerging economy"</br><span style="float:right;">- Pamela </span></p>
                     </div>                 
                 </div>
                 
                 <div class="row 50% uniform">                       
                     </br>
                     <div class="8u">
-                        <p class = "align-justify"></br>“This career drive really give us an insight to the real working world, different company cultures and opportunities we could get if we step outside and look for it.  It also enables us to meet with employers so that we know what they are looking for and polish ourselves better to suit the position we want.”</br><span style="float:right;">- Amber </span></p>
+                        <p class = "align-justify"></br>"Through design thinking and social innovation projects, we deepened our understanding of the challenges faced by underprivileged youths in Yangon and we are inspired to do more for them."</br><span style="float:right;">- Junjie </span></p>
                     </div> 
-                    <div class="4u"><span class="image fit"><img src="images/amber.jpg" alt="" width="388px" height="254px"/></span></div>
+                    <div class="4u"><span class="image fit"><img src="images/junjie.png" alt="" width="388px" height="300px"/></span></div>
                 </div>
                 
                 <div class="row 50% uniform">                       
                     </br>
-                    <div class="4u"><span class="image fit"><img src="images/kai.jpg" alt="" width="388px" height="254px"/></span></div>
+                    <div class="4u"><span class="image fit"><img src="images/christine.png" alt="" width="388px" height="300px"/></span></div>
                     <div class="8u">
-                        <p class = "align-justify"></br></br>“This trip is well organized and the organizers put sincere effort for students to get to learn, explore about each company we visited, and give the participants the chance to network with potential employers by encouraging students to speak up.”</br><span style="float:right;">- Kai </span></p>
+                        <p class = "align-justify"></br></br>"Working with the children at the summer camp in poorer villages in Yangon, was an inspiring experience. The children are full of positive energy and enthusiasm for learning and they reminded me how fortunate it has been growing up in Singapore."</br><span style="float:right;">- Christine </span></p>
                     </div>                 
                 </div>
                 
                 <div class="row 50% uniform">                       
                     </br>
                     <div class="8u">
-                        <p class = "align-justify"></br>“The career drive is very well-organized and it has provided us with lots of opportunities in quite a number of local and international companies…..we are glad to have this chance to meet all the amazing and inspiring people from all these fastest growing companies.”</br><span style="float:right;">- Jasmine </span></p>
+                        <p class = "align-justify"></br>"This bamboo bridge is the only path to school and is very challenging for the children especially during the rainy seasons in this poor village of Maubin, Myanmar.  We want to make a difference by helping them build roads and bridges."</br><span style="float:right;">- Eileen </span></p>
                     </div> 
-                    <div class="4u"><span class="image fit"><img src="images/jasmine.jpg" alt="" width="388px" height="254px"/></span></div>
+                    <div class="4u"><span class="image fit"><img src="images/eileen.png" alt="" width="388px" height="254px"/></span></div>
                 </div>
                 
         </section>

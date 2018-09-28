@@ -63,7 +63,9 @@
                 <header class="major">
                     <h2>Our Global Partners</h2>                       
                 </header>
-                <a href="#" class="image fit"><img src="images/ProNitiTravel.jpg" alt="Picture of Pro Niti Travel"/></a>
+                <a href="#" class="image fa-align-center"><img src="images/ProNitiTravel.jpg" alt="Picture of Pro Niti Travel" width="600px" height="200px"/></a>
+                <p> </P>
+                <p> </P>
                 <p>Our study tours to Myanmar have been serviced by our dedicated partner, Pro Niti Travel, based in Yangon.  EPIC and Pro Niti is committed to Professional and Ethical travel.  We not only create treasured memories, we aim to enhance our clientsâ life experience while bringing positive changes to the lives of others.</p>
 
 

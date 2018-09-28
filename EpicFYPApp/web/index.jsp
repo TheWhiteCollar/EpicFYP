@@ -124,7 +124,7 @@
         </section>
 
         <!-- Three -->
-        <section id="three" class="wrapper style1 align-center">
+        <section id="three" class="wrapper style2 align-center">
             <div class="container">
                 <header>
                     <h2>3 simple steps to start your Epic Journey</h2>
@@ -132,15 +132,15 @@
                 <div class="row 200%">
                     <section class="4u 12u(small)">
 <!--try to link the word or icon-->
-                        <a href="signuppage.jsp"><i class="icon big rounded fa-heart"></i></a>
+                        <a href="signuppage.jsp"><i class="icon big rounded fa-heart" style="font-size:60px;color:#55504F"></i></a>
                         <p>Create an account with us, and let us know your interests!</p>
                     </section>
                     <section class="4u 12u(small)">
-                        <a href="studyTrip.jsp"><i class="icon big rounded fa-search"></i></a>
+                        <a href="studyTrip.jsp"><i class="icon big rounded fa-search" style="font-size:60px;color:#55504F"></i></a>
                         <p>Look for overseas study trips</p>
                     </section>
                     <section class="4u 12u(small)">
-                        <a href="internship.jsp"><i class="icon big rounded fa-file-o"></i></a>
+                        <a href="internship.jsp"><i class="icon big rounded fa-file-o" style="font-size:60px;color:#55504F"></i></a>
                         <p>Look for overseas internships</p>
                     </section>
                 </div>

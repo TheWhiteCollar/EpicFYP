@@ -63,7 +63,7 @@
                                 break;
                         }
                         tripHTML += '<tr><td class = "align-center"><img src="' + 'images/Belgium.jpg' + '" width =100% height =auto></td></tr>';
-                        tripHTML += '<tr><td>' + trip.tripTitle + ' | ' + trip.tripCountry + ' | ' + trip.tripStart + ' - ' + trip.tripEnd + ' | $' + trip.tripPrice + ' | ';
+                        tripHTML += '<tr><td>' + trip.tripTitle + ' | ' + trip.tripCountry + ' | ' + trip.tripStart + ' - ' + trip.tripEnd + ' | SGD$' + trip.tripPrice + ' (Prices are inclusive of air fares)| ';
                         if (trip.activated) {
                             tripHTML += 'Activated</td></tr>';
                         } else {

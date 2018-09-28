@@ -378,7 +378,7 @@
             <div class ="container">
                 <div class="tab">
                     <button class="tablinks" onclick="openUser(event, 'filterTab')">More filter options</button>
-                    <button class="tablinks" onclick="openUser(event, 'addTripTab')">List a new Trip</button>
+                    <button class="tablinks" onclick="openUser(event, 'addTripTab')">Add a new Trip</button>
                     <button class="tablinks" onclick="openUser(event, 'addCountry')">Manage Country List</button>
                     <button class="tablinks" onclick="openUser(event, 'addInterest')">Manage Interest tags</button>
                 </div>

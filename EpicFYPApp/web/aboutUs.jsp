@@ -37,10 +37,8 @@
 
                 <header class="major">
                     <h2>About Us</h2>
-                    <p><i>Developing entrepreneurship and character in the youths of our future</i></p>
-
                 </header>
-                <p>Wanting to give more, 3 big hearted educators decided to take it upon themselves to help young adults to explore new business potential, hone entrepreneurial spirits and build life skills and resilience in new emerging markets.</p>
+                <p>Wanting to give more, 3 big hearted educators decided to take it upon themselves to help young adults to expand life perspectives, explore new business potential, hone entrepreneurial spirits and develop leadership, empathy and resilience through venturing to the emerging markets in the world.</p>
                 <div class="box alt">
                     <div class="row 50% uniform">						
                         <div class="4u"><span class="image fit"><img src="images/man1.jpg" alt="" width="388px" height="254px" /></span></div>
@@ -62,7 +60,7 @@
                 </header>
 
                 <p>Educating youths to be work-ready, world-ready and future-ready. As a team comprising of experienced educators and industry practitioners, we are well aware of the requirements, expectations of the fast-changing global economies and industries. </p>
-                <p>We present opportunities for youths partake first-hand, in emerging business opportunities through various means (business networking, interning in fast-growing startups and established organizations overseas). thereby equipping them with skills, knowledge and attributes ready for the future of business, career and our generations ahead.</p>
+                <p>We present opportunities for youths to partake first-hand, in emerging business opportunities and internship in fast-growing startups as well as established organizations overseas , thereby equipping them with skills, knowledge and attributes ready for the future of business, career and our generations ahead.</p>
 
             </div>
         </section>
@@ -73,13 +71,13 @@
 
                 <header class="major">
                     <h2>EPIC Value Proposition</h2>
-                    <p><i>EPIC adopts the Blue Ocean Strategy and is committed to developing in our talents, the skills, knowledge, courage, resilience and leadership to be a first mover into the Emerging Markets.</i></p>						
+                    <p><i>EPIC adopts the Blue Ocean Strategy and is committed to developing in our talents, the skills, knowledge, courage, resilience and leadership to be <span class="red bold">First Movers and Change Makers in Emerging Markets</span>.</i></p>						
                 </header>
                 <p>EPIC provides entrepreneurship training, global career exposure, life skills and character building through business, internship and career development programmes and social entrepreneurial mission and community services in Emerging Markets in ASEAN – Cambodia, Laos, Myanmar, Vietnam, India, Indonesia, Thailand, as well as in Asia – Japan and China.</p>
 
-                <a href="#" class="image fit"><img src="images/valuepropositon.jpg" width="1200px" height="400px" alt="" /></a>
+                <a href="#" class="image fit"><img src="images/valuepropositon.jpg" width="1000" height="350" alt="" /></a>
 
-                <p>We create the ‘once in-a-lifetime opportunity’ for our talents to work closely through dedicated partners who are experienced entrepreneurs, business people, professionals, dedicated volunteers and trustworthy locals of the land, to expand their life experience, enhance their global business acumen, sharpen their cultural awareness and develop their global employability through rewarding internships and innovative projects around the world.</p>
+                <p>We create the ‘once in-a-lifetime opportunity’ for our talents to work closely through dedicated partners who are experienced entrepreneurs, business people, professionals, dedicated volunteers and trustworthy locals of the land, to expand their life experiences, enhance their global business acumen, sharpen their cultural awareness and develop their global employability through rewarding internships and innovative projects around the world.</p>
 
             </div>
         </section>
@@ -92,12 +90,12 @@
                     <h2>Partner with Us</h2>
                     <p>"It takes a village to raise a child."</p>						
                 </header>
-                <p>Together we will jointly develop the youths of our future - With our specialisation in in Emerging Markets, and the strong friendships with our Corporate and Community Partners.</p>
+                <p>With our specialization in  Emerging Markets, and the strong friendships with our Corporate and Community Partners, we will jointly develop the Youths of Tomorrow.</p>
                 <p>The benefits are twofold: Providing guidance for youths, and giving back to the community and corporations that we work with.</p>
                 
                 <ul class="actions">
                 <li>
-                    <a href="partnerWithUs.jsp" class="button big">Partner us in building a village of the future</a>
+                    <a href="partnerWithUs.jsp" class="button big">Partner us now</a>
                 </li>
             </ul>
             </div>

@@ -44,7 +44,6 @@
             <div class="container">
                 <header class="major">
                     <h2>Overseas Study Trips</h2>
-                    <p>Let's Explore! Apply for your study trip here!</p>
                 </header>
                 
                 <Center><img src="images/payment gateway.png"></Center>

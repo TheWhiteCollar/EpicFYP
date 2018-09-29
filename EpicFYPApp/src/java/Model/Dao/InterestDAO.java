@@ -58,16 +58,14 @@ public class InterestDAO {
         String sql = "DELETE FROM interest WHERE interestName=?";
 
         try (
-                Connection conn = ConnectionManager.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(sql);) {
+            Connection conn = ConnectionManager.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);) {
             stmt.setString(1, interestName);
             stmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(InterestDAO.class.getName()).log(Level.WARNING, "Unable to delete interest, interestName = '" + interestName, ex);
             return false;
         }
-
-        
         return true;
     }
 

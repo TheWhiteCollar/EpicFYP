@@ -159,6 +159,7 @@
                     });
                     event.preventDefault();
                 });
+                
                 function reloadTable() {
                     $.get('/EpicFYPApp/getAllTripsServlet', function (tripJson) {
                         //parse string into JSON object
@@ -176,7 +177,6 @@
                             if (trip.activated) {
                                 tripHTML += '<tr><td colspan="3">Activated</td>';
                             } else {
-
                                 tripHTML += '<tr><td colspan="3">Not Activated : ' + number + " more to activate this trip</td>";
                             }
                             tripHTML += "<td>" + trip.signedUpEmails.length + " signed up</td></tr>";
@@ -187,6 +187,7 @@
                         });
                         tripHTML += '</table></div>';
                         $("#trips").append(tripHTML);
+                        
                         $(".deleteTrip").submit(function (event) {
                             var tripID = "" + $(this).children("input").val();
                             var deleteData = {
@@ -220,6 +221,7 @@
                 getAllCountries();
                 getAllInterests()
             });
+            
             function getAllCountries() {
                 $.get('/EpicFYPApp/getAllCountries', function (countriesJSON) {
                     const countries = JSON.parse(countriesJSON);
@@ -229,8 +231,7 @@
                     countriesHTML += "<thead><tr><th>#</th><th colspan='2'>Country Name</th></tr></thead>";
                     var count = 1;
                     for (const country of countries) {
-                        countriesHTML += '<tr><td>' + count + '</td><td>' + country + "</td></tr>";
-//                        countriesHTML += '<tr><td>Country : ' + country + "</td><td><button value='" + country + "</td></tr>";
+                        countriesHTML += '<tr><td>' + count + '</td><td>' + country + "</td><td><button value='" + country + "' onclick='deleteCountry(this)'>Delete</button></td></tr>";
                         count += 1;
                     }
                     countriesHTML += '</table>';
@@ -247,7 +248,7 @@
                     interestsHTML += "<thead><tr><th>#</th><th colspan='2'>Name of interest tag</th></tr></thead>";
                     var count = 1;
                     for (const interest of interests) {
-                        interestsHTML += '<tr><td>' + count + '</td><td>' + interest + "</td></tr>";
+                        interestsHTML += '<tr><td>' + count + '</td><td>' + interest + "</td><td><button value='" + interest + "' onclick='deleteInterest(this)'>Delete</button></td></tr>";
                         count += 1;
                     }
                     interestsHTML += '</table>';
@@ -280,7 +281,6 @@
                     }
                     $("input[name='countryTripName']").val('');
                 });
-
             }
 
             function addInterest() {
@@ -308,7 +308,6 @@
                     }
                     $("input[name='interestName']").val('');
                 });
-
             }
 
             function deleteCountry(obj) {
@@ -335,7 +334,6 @@
                         });
                     }
                 });
-
             }
 
             function deleteInterest(obj) {
@@ -400,7 +398,6 @@
                                 <input name = "endDate" type="date" min = "<% out.print(todayDate);%>" >
                             </div> 
                         </div>
-
                         </p>
 
                         <p>
@@ -421,7 +418,6 @@
 
                 <!-- Adding a trip -->
                 <div id="addTripTab" class="tabcontent">
-
                     <span onclick="this.parentElement.style.display = 'none'" class="toprightClose">&times</span>
                     <form id="addTrip" enctype="multipart/form-data">
                         <div class = "row 50% uniform">
@@ -431,26 +427,23 @@
                                 </p>
                             </div>
                             
-                                <div class = "4u 12u(xsmall)">
-                                <p>
-                                    Country of visit: 
-                                    <select id="tripCountryInput" name="tripCountry" required>
-                                        <option disabled selected value style="display:none"> - Select a country - </option>
-                                        <%
-                                            ArrayList<String> result = CountryTripDAO.getAllCountryTrip();
-
-                                            if (!result.isEmpty()) {
-                                                for (int i = 0; i < result.size(); i++) {
-                                                    String country = result.get(i);
-
-                                        %>
-                                        <option value="<%out.print(country);%>"><%out.print(country);%></option>
-                                        <%    }
-                                            }
-
-                                        %>
-                                    </select>
-                                </p>
+                            <div class = "4u 12u(xsmall)">
+                            <p>
+                                Country of visit: 
+                                <select id="tripCountryInput" name="tripCountry" required>
+                                    <option disabled selected value style="display:none"> - Select a country - </option>
+                                    <%
+                                        ArrayList<String> result = CountryTripDAO.getAllCountryTrip();
+                                        if (!result.isEmpty()) {
+                                            for (int i = 0; i < result.size(); i++) {
+                                                String country = result.get(i);
+                                    %>
+                                    <option value="<%out.print(country);%>"><%out.print(country);%></option>
+                                        <%  }
+                                        }
+                                    %>
+                                </select>
+                            </p>
                             </div>
                         </div>
 
@@ -460,19 +453,21 @@
                                     Trip Start (dd-mm-yyyy): <input name="tripStart" id="tripStart" required type="date" min = "<% out.print(todayDate); %>">
                                 </p>
                             </div>
+                                
                             <div class = "4u 12u(xsmall)">
                                 <p>
                                     Trip End (dd-mm-yyyy): <input name="tripEnd" id="tripEnd" required type="date" min = "<% out.print(todayDate);%>" ">
                                 </p>
                             </div>
+                                
                             <div class = "4u 12u(xsmall)">
                                 <p>
                                     Trip Duration (days): 
                                     <input required type="text" min="1" step="1" placeholder="days" name="tripDuration" id="tripDuration" value="0" onclick="dateDiff()">
                                 </p>
                             </div>
-
                         </div>
+                                
                         <div class ="row 50% uniform">
                             <div class = "4u 12u(xsmall)">
                                 <p>
@@ -488,24 +483,20 @@
                                 <p>
                                     Programme Category tag: 
                                     <select name="tripInterest" id="tripInterestInput" required>
-									<option disabled selected value style="display:none"> - select a programme category - </option>
+                                    <option disabled selected value style="display:none"> - select a programme category - </option>
                                         <%
                                             ArrayList<String> allInterest = InterestDAO.getInterests();
-
                                             if (!allInterest.isEmpty()) {
                                                 for (int i = 0; i < allInterest.size(); i++) {
                                                     String interest = allInterest.get(i);
-
                                         %>
-                                        <option value="<%out.print(interest);%>"><%out.print(interest);%></option>
-                                        <%    }
-                                            }
-
+                                            <option value="<%out.print(interest);%>"><%out.print(interest);%></option>
+                                            <%  }
+                                             }
                                         %>
                                     </select>
                                 </p>
                             </div>
-
                         </div>
 
                         <div class ="row 50% uniform">
@@ -535,22 +526,16 @@
                                     </label> 
                                 </p>
                             </div>
-
-
-
                         </div>
 
                         <input type="submit" value="Create a Trip!" style="width:100%">
                     </form>
-
                 </div>
 
                 <div id="addCountry" class="tabcontent">
                     <span onclick="this.parentElement.style.display = 'none'" class="toprightClose">&times</span>              
                     <div class = "row 50% uniform">
-                        <div class = "5u 12u(xsmall) table-wrapper" id="allCountries">
-
-                        </div>
+                        <div class = "5u 12u(xsmall) table-wrapper" id="allCountries"></div>
                         <div class="7u 12u(xsmall)">
                             <table>
                                 <tbody>
@@ -570,9 +555,7 @@
                 <div id="addInterest" class="tabcontent">
                     <span onclick="this.parentElement.style.display = 'none'" class="toprightClose">&times</span>
                     <div class = "row 50% uniform">
-                        <div class = "5u 12u(xsmall) table-wrapper" id="allInterests">
-
-                        </div>
+                        <div class = "5u 12u(xsmall) table-wrapper" id="allInterests"></div>
                         <div class="7u 12u(xsmall)">
                             <table>
                                 <tbody>
@@ -589,16 +572,12 @@
                     </div>
                 </div>
             </div>
-            <div>
-                
-            </div>
 
             <!-- this contains all the trips -->
             <div class ="container">
                 <br>
                 <h2>All Listed Trips</h2>
-                <div id="trips" class ="container">
-                </div>
+                <div id="trips" class ="container"></div>
             </div>
 
             <div class="modal fade" id="myModal" role="dialog">
@@ -618,7 +597,6 @@
                                 <td>Phone</td>
                                 </thead>
                                 <tbody>
-
                                     <tr>
                                         <td>Number</td> 
                                         <td>Name</td>
@@ -630,12 +608,9 @@
                                         <td>Name</td>
                                         <td>Email</td>
                                         <td>Phone</td> 
-                                        tr          </tr>
-
+                                    </tr>
                                 </tbody>
-
                             </table>
-
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="button" data-dismiss="modal">Close</button>
@@ -643,10 +618,7 @@
                     </div>
                 </div>
             </div>
-
-
-        </div>
-    </section>
+        </section>
 
     <script>
         function dateDiff() {
@@ -664,3 +636,4 @@
     <script src="js/tabs.js"></script>
 </body>
 </html>
+

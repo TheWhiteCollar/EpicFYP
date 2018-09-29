@@ -57,17 +57,15 @@ public class CountryTripDAO {
     // delete a particular countrytrip row
     public static boolean deleteCountryTrip(String countryTripName) {
         String sql = "DELETE FROM countrytrip WHERE countryTripName=?";
-
         try (
-                Connection conn = ConnectionManager.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(sql);) {
+            Connection conn = ConnectionManager.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);) {
             stmt.setString(1, countryTripName);
             stmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(CountryTripDAO.class.getName()).log(Level.WARNING, "Unable to delete country, countryTripName = '" + countryTripName, ex);
             return false;
         }
-
         return true;
     }
     

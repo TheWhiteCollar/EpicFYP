@@ -209,8 +209,7 @@ CREATE TABLE IF NOT EXISTS `partner` (
   `partnerDescription` varchar(1000) NOT NULL,
   `partnerPassword` varchar(50) NOT NULL,
   `partnerPicture` varchar(100) NOT NULL DEFAULT '',
-  PRIMARY KEY (`partnerID`),
-  KEY `partnercountry` (`partnerCountry`)
+  PRIMARY KEY (`partnerID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
@@ -369,12 +368,6 @@ ALTER TABLE `tripstudent`
   ADD CONSTRAINT `tripstudent_fk1` FOREIGN KEY (`tripUserEmail`) REFERENCES `user` (`userEmail`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tripstudent_fk2` FOREIGN KEY (`tripID`) REFERENCES `trip` (`tripID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tripstudent_fk3` FOREIGN KEY (`tripStudentPaymentID`) REFERENCES `payment` (`paymentID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `partner`
---
-ALTER TABLE `partner`
-  ADD CONSTRAINT `partnercountryinternship_fk1` FOREIGN KEY (`partnerCountry`) REFERENCES `countryinternship` (`countryName`) ON DELETE CASCADE ON UPDATE CASCADE;
 
   --
 -- Constraints for table `partner`

@@ -102,41 +102,93 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">More information of [Trip ID: #<%out.print(t.getTripID());%>], applied by <%out.print(u.getUserFirstName() + " " + u.getUserLastName());%></h4>
+                                <h4 class="modal-title align-center"><b><%out.print(u.getUserFirstName() + " " + u.getUserLastName());%>'s</b> application to <b><%out.print(t.getTripTitle());%></b></h4>
                             </div>
                             <div class="modal-body">
                                 <div class ="row">
-                                    <div class ="12u 12u">
-                                        <p>
-                                            Name : <%out.print(u.getUserFirstName() + " " + u.getUserLastName());%>
-                                        </p>                                           
-                                    </div>                            
-                                </div>
-                                <div class ="row">
-                                    <div class ="12u 12u">
-                                        <p>
-                                            Email : <%out.print(u.getUserEmail());%>
-                                        </p>                                           
-                                    </div>                            
-                                </div>
-                                <div class ="row">
-                                    <div class ="12u 12u">
-                                        <p>
-                                            Trip Applied : [Trip ID: #<%out.print(t.getTripID());%>] <%out.print(t.getTripTitle());%>
-                                        </p>                                           
-                                    </div>                            
-                                </div>
-
-                                <div class ="row">
-                                    <div class ="12u 12u">
-                                        <p>Current Status : <%out.print(ts.getTripStudentStatus()); %></p>              
+                                    <div class="4u 12u(xsmall)">
+                                        <div align="center"><img src="images/Belgium.jpg" alt ="avatar-image" height="80%" width="80%"></div>
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="align-right">Trip ID :</td>
+                                                    <td><%out.print(t.getTripID());%></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right">Trip Title :</td>
+                                                    <td><%out.print(t.getTripTitle());%></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right">Country :</td>
+                                                    <td><%out.print(t.getTripCountry());%>, <%out.print(t.getTripState());%></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right"></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right"></td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
+                                    <div class="8u 12u(xsmall)">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="align-right">Name :</td>
+                                                    <td><%out.print(u.getUserFirstName() + " " + u.getUserLastName());%></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right">Email :</td>
+                                                    <td><%out.print(u.getUserEmail());%></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right">Phone :</td>
+                                                    <td><%out.print(u.getUserPhone());%></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right">Gender :</td>
+                                                    <td><%out.print(u.getUserGender());%></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right">Citizenship :</td>
+                                                    <td><%out.print(u.getUserCitizenship());%></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right">Interests :</td>
+                                                    <td><%out.print(u.getUserInterest());%></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                                              
                                 </div>
                                 <div class ="row">
                                     <div class ="12u 12u">
-                                        <p>Current deposit : $<%out.print(ts.getTripStudentPayment()); %></p>              
-                                    </div>
+                                        <h2 class="align-center">Status History</h2>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <td class="align-center">#</td>
+                                                    <td class="align-center">Transaction</td>
+                                                    <td class="align-center">Amount</td>
+                                                    <td class="align-center">Date</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="align-center"></td>
+                                                    <td class="align-center"></td>
+                                                    <td class="align-center"></td>
+                                                    <td class="align-center"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>                                         
+                                    </div>                            
                                 </div>
+                  
 
                             </div>
                             <div class="modal-footer">

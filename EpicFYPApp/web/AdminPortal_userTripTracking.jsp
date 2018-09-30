@@ -111,24 +111,16 @@
                                         <table>
                                             <tbody>
                                                 <tr>
-                                                    <td class="align-right">Trip ID :</td>
+                                                    <td class="align-right"><b>Trip ID :</b></td>
                                                     <td><%out.print(t.getTripID());%></td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="align-right">Trip Title :</td>
+                                                    <td class="align-right"><b>Trip Title :</b></td>
                                                     <td><%out.print(t.getTripTitle());%></td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="align-right">Country :</td>
+                                                    <td class="align-right"><b>Country :</b></td>
                                                     <td><%out.print(t.getTripCountry());%>, <%out.print(t.getTripState());%></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="align-right"></td>
-                                                    <td></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="align-right"></td>
-                                                    <td></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -137,27 +129,27 @@
                                         <table>
                                             <tbody>
                                                 <tr>
-                                                    <td class="align-right">Name :</td>
+                                                    <td class="align-right"><b>Name :</b></td>
                                                     <td><%out.print(u.getUserFirstName() + " " + u.getUserLastName());%></td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="align-right">Email :</td>
+                                                    <td class="align-right"><b>Email :</b></td>
                                                     <td><%out.print(u.getUserEmail());%></td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="align-right">Phone :</td>
+                                                    <td class="align-right"><b>Phone :</b></td>
                                                     <td><%out.print(u.getUserPhone());%></td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="align-right">Gender :</td>
+                                                    <td class="align-right"><b>Gender :</b></td>
                                                     <td><%out.print(u.getUserGender());%></td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="align-right">Citizenship :</td>
+                                                    <td class="align-right"><b>Citizenship :</b></td>
                                                     <td><%out.print(u.getUserCitizenship());%></td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="align-right">Interests :</td>
+                                                    <td class="align-right"><b>Interests :</b></td>
                                                     <td><%out.print(u.getUserInterest());%></td>
                                                 </tr>
                                             </tbody>

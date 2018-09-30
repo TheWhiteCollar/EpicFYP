@@ -1,3 +1,5 @@
+<%@page import="Model.Entity.InternshipStudent"%>
+<%@page import="Model.Dao.InternshipStudentDAO"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="Model.Dao.PartnerDAO"%>
 <%@page import="java.util.ArrayList"%>
@@ -36,13 +38,19 @@
 
         <section id="main" class="wrapper">
             <div class="container">
-                <header class="major">
-                    <h2>User Internship Status Tracking</h2>
-                </header>
+                <h2 class="align-center">User Internship Applications</h2>
                 
-<!--                use a tab-->
-                <div class="row">
-                    <div class="6u 12u(xsmall)">
+                
+                <div class="tab align-center">
+                    <button class="tablinks" onclick="openUser(event, 'approved')">Approved Applications</button>
+                    <button class="tablinks" onclick="openUser(event, 'pending')">Pending Applications</button>
+                    <button class="tablinks" onclick="openUser(event, 'rejected')">Rejected Applications</button>
+                </div>
+                
+                <div id="approved" class="tabcontent">
+                    <span onclick="this.parentElement.style.display = 'none'" class="toprightClose">&times</span>
+                    <div class="row">
+                    <div class="12u 12u(xsmall)">
                         <h3 class="align-center"><b>Approved</b></h3>
                         <table class="alt align-center">
                             <thead>
@@ -57,31 +65,67 @@
                             <tbody>
                                 <%
                                 //take from internship student - internshipStudentStatus approved
-                                
+                                ArrayList<InternshipStudent> it = InternshipStudentDAO.getAllInternshipStudents();
                                 %>
                             </tbody>
                         </table>
                     </div>
-                    <div class="6u 12u(xsmall)">
-                        <h3 class="align-center"><b>Pending Approval</b></h3>
-                        <table class="alt">
-                            <thead>
-                                <tr>
-                                    <td>#</td>
-                                    <td>Name</td>
-                                    <td>User's Field of Study</td>
-                                    <td>Internship title</td>
-                                    <td>Continent</td>
-                                    <td>User Resume</td>
-                                    <td>More Info</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                
-                            </tbody>
-                        </table>
+                    
+                </div>
+                </div>
+                
+                <div id="pending" class="tabcontent">
+                    <span onclick="this.parentElement.style.display='none'" class="toprightClose">&times</span>
+                    <div class="row">
+                        <div class="12u 12u(xsmall)">
+                            <h3 class="align-center"><b>Pending Approval</b></h3>
+                            <table class="alt align-center">
+                                <thead>
+                                    <tr>
+                                        <td>#</td>
+                                        <td>Name</td>
+                                        <td>User's Field of Study</td>
+                                        <td>Internship title</td>
+                                        <td>Continent</td>
+                                        <td>User Resume</td>
+                                        <td>More Info</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <%
+                                        
+                                    %>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
+                
+                <div id="rejected" class="tabcontent">
+                    <span onclick="this.parentElement.style.display='none'" class="toprightClose">&times</span>
+                    <div class="row">
+                        <div class="12u 12u(xsmall)">
+                            <h3 class="align-center"><b>Pending Approval</b></h3>
+                            <table class="alt align-center">
+                                <thead>
+                                    <tr>
+                                        <td>#</td>
+                                        <td>Name</td>
+                                        <td>Partner</td>
+                                        <td>Status</td>
+                                        <td>More Info</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <%
+                                        
+                                    %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
                
 
 <!--                <div class="modal fade" id="myModal<%//out.print(i);%>" role="dialog">
@@ -139,4 +183,5 @@
             </div>
         </section>
     </body>
+    <script src="js/tabs.js"></script>
 </html>

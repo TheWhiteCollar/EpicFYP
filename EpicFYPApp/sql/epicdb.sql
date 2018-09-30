@@ -62,6 +62,9 @@ INSERT INTO `countryinternship` (`countryName`, `countryContinent`) VALUES
 ('Czech Republic', 'Europe'),
 ('New Zealand', 'Australia'),
 ('Myanmar', 'Asia'),
+('Singapore', 'Asia'),
+('China', 'Asia'),
+('Malaysia', 'Asia'),
 ('Thailand', 'Asia');
 
 -- --------------------------------------------------------
@@ -208,7 +211,7 @@ CREATE TABLE IF NOT EXISTS `partner` (
   `partnerPicture` varchar(100) NOT NULL DEFAULT '',
   PRIMARY KEY (`partnerID`),
   KEY `partnercountry` (`partnerCountry`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `partner`
@@ -216,7 +219,10 @@ CREATE TABLE IF NOT EXISTS `partner` (
 
 INSERT INTO `partner` (`partnerID`, `partnerName`, `partnerCountry`, `partnerState`, `partnerDescription`, `partnerPassword`, `partnerPicture`) VALUES
 (0, 'not assigned', 'Myanmar', 'not assigned', 'not assigned', '', ''),
-(1, 'CC Pte Ltd', 'Myanmar', 'Shan', 'Here are CC Pte Ltd, we believe that only the best should be given to our customers.', 'test', '');
+(1, 'AA Pte Ltd', 'Myanmar', 'Shan', 'Here are AA Pte Ltd, we believe that only the best should be given to our customers.', 'test', ''),
+(2, 'BB Pte Ltd', 'Singapore', 'Singapore', 'Here are BB Pte Ltd, we believe that only the best should be given to our customers.', 'test', ''),
+(3, 'CC Pte Ltd', 'Malaysia', 'Kuala Lumpur', 'Here are CC Pte Ltd, we believe that only the best should be given to our customers.', 'test', ''),
+(4, 'DD Pte Ltd', 'China', 'Shanghai', 'Here are DD Pte Ltd, we believe that only the best should be given to our customers.', 'test', '');
 
 -- --------------------------------------------------------
 

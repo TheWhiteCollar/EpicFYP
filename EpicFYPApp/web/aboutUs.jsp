@@ -37,13 +37,16 @@
 
                 <header class="major">
                     <h2>About Us</h2>
+                    <p><i></i></p>
+
                 </header>
                 <p>Wanting to give more, 3 big hearted educators decided to take it upon themselves to help young adults to expand life perspectives, explore new business potential, hone entrepreneurial spirits and develop leadership, empathy and resilience through venturing to the emerging markets in the world.</p>
                 <div class="box alt">
-                    <div class="row 50% uniform">						
-                        <div class="4u"><span class="image fit"><img src="images/man1.jpg" alt="" width="388px" height="254px" /></span></div>
-                        <div class="4u"><span class="image fit"><img src="images/man2.jpg" alt="" width="388px" height="254px"/></span></div>
-                        <div class="4u"><span class="image fit"><img src="images/man3.jpg" alt="" width="388px" height="254px"/></span></div>						
+                    <div class="row 50% uniform">
+                        <!--size w:388px h:254px-->
+                        <div class="4u"><span class="image fit"><img src="images/founders/man1.jpg" alt=""/></span></div>
+                        <div class="4u"><span class="image fit"><img src="images/founders/man2.jpg" alt=""/></span></div>
+                        <div class="4u"><span class="image fit"><img src="images/founders/man3.jpg" alt="" /></span></div>						
                     </div>
                 </div>	
 
@@ -51,7 +54,7 @@
         </section>
 
         <!--vision-->
-        <section id="vision" class="wrapper style2 align-center">
+        <section id="vision" class="wrapper align-center">
             <div class="container">
 
                 <header class="major">
@@ -71,11 +74,11 @@
 
                 <header class="major">
                     <h2>EPIC Value Proposition</h2>
-                    <p><i>EPIC adopts the Blue Ocean Strategy and is committed to developing in our talents, the skills, knowledge, courage, resilience and leadership to be <i style="color:red;">First Movers and Change Makers in Emerging Markets.</i></p>						
+                    <p><i>EPIC adopts the Blue Ocean Strategy and is committed to developing in our talents, the skills, knowledge, courage, resilience and leadership to be <span style="color:red;"> First movers and Change Makers in Emerging Markets.</span></i></p>						
                 </header>
                 <p>EPIC provides entrepreneurship training, global career exposure, life skills and character building through business, internship and career development programmes and social entrepreneurial mission and community services in Emerging Markets in ASEAN – Cambodia, Laos, Myanmar, Vietnam, India, Indonesia, Thailand, as well as in Asia – Japan and China.</p>
-
-                <a href="#" class="image fit"><img src="images/valuepropositon.jpg" width="1200px" height="600px" alt="" /></a>
+                <!-- width="1200px" height="400px" -->
+                <a href="#" class="image fit"><img src="images/valueproposition.jpg" alt="" /></a>
 
                 <p>We create the ‘once in-a-lifetime opportunity’ for our talents to work closely through dedicated partners who are experienced entrepreneurs, business people, professionals, dedicated volunteers and trustworthy locals of the land, to expand their life experiences, enhance their global business acumen, sharpen their cultural awareness and develop their global employability through rewarding internships and innovative projects around the world.</p>
 
@@ -83,7 +86,7 @@
         </section>
 
         <!-- Corporate Partner-->
-        <section id="corporate" class="wrapper style2 align-center">
+        <section id="corporate" class="wrapper align-center">
             <div class="container">
 
                 <header class="major">
@@ -95,7 +98,7 @@
                 
                 <ul class="actions">
                 <li>
-                    <a href="partnerWithUs.jsp" class="button big">Partner us now</a>
+                    <a href="partnerWithUs.jsp" class="button big">Partner with us now</a>
                 </li>
             </ul>
             </div>
@@ -109,36 +112,44 @@
                     <h2>Testimonials</h2>
 
                 </header>
-                <div class="row 50% uniform">                       
-                    <div class="4u"><span class="image fit"><img src="images/pamela.png" alt="" width="388px" height="254px"/></span></div>
-                    <div class="8u">
-                        <p class = "align-justify">"An eye opener for me, experiencing the sights and sounds on the streets of Yangon, learning the culture and life of the local Myanmarnese, and witnessing the vitality of an emerging economy"</br><span style="float:right;">- Pamela </span></p>
-                    </div>                 
+                <div class="row 50% uniform testimonal_center">
+                    <div class="4u 12u(xsmall)">
+                        <span class="image fit"><img src="images/testimonials/pamela.jpg" width="auto" height="auto"/></span>
+                    </div>
+                    <div class="8u 12u(xsmall)">
+                        <p class="align-justify">"An eye opener for me, experiencing the sights and sounds on the streets of Yangon, learning the culture and life of the local Myanmarnese, and witnessing the vitality of an emerging economy"</br><span style="float:right;">- Pamela </span></p>
+                    </div>
                 </div>
                 
-                <div class="row 50% uniform">                       
-                    </br>
-                    <div class="8u">
-                        <p class = "align-justify"></br>"Through design thinking and social innovation projects, we deepened our understanding of the challenges faced by underprivileged youths in Yangon and we are inspired to do more for them."</br><span style="float:right;">- Junjie </span></p>
-                    </div> 
-                    <div class="4u"><span class="image fit"><img src="images/junjie.png" alt="" width="388px" height="300px"/></span></div>
+                <div class="row 50% uniform testimonal_center">
+                    <div class="8u 12u(xsmall)">
+                        <p class = "align-justify">"Through design thinking and social innovation projects, we deepened our understanding of the challenges faced by underprivileged youths in Yangon and we are inspired to do more for them."</br><span style="float:right;">- Junjie </span></p>
+                    </div>
+                    <div class="4u 12u(xsmall)">
+                        <span class="image fit"><img src="images/testimonials/junjie.jpg" width="auto" height="auto"/></span>
+                    </div>
+                    
                 </div>
                 
-                <div class="row 50% uniform">                       
-                    </br>
-                    <div class="4u"><span class="image fit"><img src="images/christine.png" alt="" width="388px" height="300px"/></span></div>
-                    <div class="8u">
-                        <p class = "align-justify"></br></br>"Working with the children at the summer camp in poorer villages in Yangon, was an inspiring experience. The children are full of positive energy and enthusiasm for learning and they reminded me how fortunate it has been growing up in Singapore."</br><span style="float:right;">- Christine </span></p>
-                    </div>                 
+                <div class="row 50% uniform testimonal_center">
+                    <div class="4u 12u(xsmall)">
+                        <span class="image fit"><img src="images/testimonials/christine.jpg" width="auto" height="auto"/></span>
+                    </div>
+                    <div class="8u 12u(xsmall)">
+                        <p class = "align-justify">"Working with the children at the summer camp in poorer villages in Yangon, was an inspiring experience. The children are full of positive energy and enthusiasm for learning and they reminded me how fortunate it has been growing up in Singapore."</br><span style="float:right;">- Christine </span></p>
+                    </div>
                 </div>
                 
-                <div class="row 50% uniform">                       
-                    </br>
-                    <div class="8u">
-                        <p class = "align-justify"></br>"This bamboo bridge is the only path to school and is very challenging for the children especially during the rainy seasons in this poor village of Maubin, Myanmar.  We want to make a difference by helping them build roads and bridges."</br><span style="float:right;">- Eileen </span></p>
-                    </div> 
-                    <div class="4u"><span class="image fit"><img src="images/eileen.png" alt="" width="388px" height="254px"/></span></div>
+                <div class="row 50% uniform testimonal_center">
+                    <div class="8u 12u(xsmall)">
+                        <p class = "align-justify">"This bamboo bridge is the only path to school and is very challenging for the children especially during the rainy seasons in this poor village of Maubin, Myanmar.  We want to make a difference by helping them build roads and bridges."</br><span style="float:right;">- Eileen </span></p>
+                    </div>
+                    <div class="4u 12u(xsmall)">
+                        <span class="image fit"><img src="images/testimonials/eileen.jpg" width="auto" height="auto"/></span>
+                    </div>
+                    
                 </div>
+                
                 
         </section>
         

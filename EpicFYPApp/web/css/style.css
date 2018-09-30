@@ -1386,4 +1386,12 @@ input.invalid {
     width:100%;
 }
 
+/*testimonal center align*/
+.testimonal_center{
+    display: flex;
+    align-items: center;
+    flex-wrap:wrap;
+    padding-bottom: 50px;
+}
+
 

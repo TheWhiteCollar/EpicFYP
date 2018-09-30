@@ -34,7 +34,7 @@
         <!-- Header -->
         <jsp:include page="header.jsp" />
 
-        <!-- Main -->
+<!--         Main 
         <section id="main" class="wrapper">
             <div class="container">
 
@@ -42,7 +42,7 @@
                     <h2>Partners' Profiles</h2>
                 </header>
 
-                <!-- To add filter button -->
+                 To add filter button 
 
                 <div class ="row uniform 50%">
                     <div class ="6u 12u(xsmall)">
@@ -53,19 +53,21 @@
                     </div>
 
                     <div class ="4u 12u(xsmall)">
-                        <% LocalDate todayDate = java.time.LocalDate.now(); %>
+                        <% //LocalDate todayDate = java.time.LocalDate.now(); %>
                         <form method="get" action="#">
                             <button type="submit" class="button">Download!</button>
                         </form>
-<!--                        <a href="/Users/xiuwenhime/NetBeansProjects/JavaApplication5/NewExcelFile.xls" download="<% out.print(todayDate); %>_all_student_profile" class="button full_width">Download all student profiles</a>-->
+                        <a href="/Users/xiuwenhime/NetBeansProjects/JavaApplication5/NewExcelFile.xls" download="<% //out.print(todayDate); %>_all_student_profile" class="button full_width">Download all student profiles</a>
                     </div>
 
 
                 </div>
             </div>
-        </section>
-        <section>
-            <div class="container">
+        </section>-->
+        <section class="wrapper">
+            <div class="container" >
+                
+                <h2 class="align-center">Partners' Profiles</h2>
                 <table class="alt">
                     <thead>
                         <tr>

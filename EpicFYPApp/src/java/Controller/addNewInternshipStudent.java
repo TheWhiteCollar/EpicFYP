@@ -41,6 +41,11 @@ public class addNewInternshipStudent extends HttpServlet {
         String userHighestEducation = request.getParameter("highest_qualification");
         String userSchool = request.getParameter("school");
         String userFieldOfStudy = request.getParameter("fos");
+        
+        java.util.Date dt = new java.util.Date();
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentTime = sdf.format(dt);
+
         //get the resume parameter
         
      
@@ -53,7 +58,7 @@ public class addNewInternshipStudent extends HttpServlet {
 
             // Insert into database
             boolean insertedUser = UserDAO.updateUser(userEmail, userFirstName, userLastName, userPhone, userCitizenship, userHighestEducation, userFieldOfStudy, userSchool);
-            boolean insertedInternshipStudent = InternshipStudentDAO.addInternshipStudent(0, userEmail, "applied", continent);
+            boolean insertedInternshipStudent = InternshipStudentDAO.addInternshipStudent(0, userEmail, "applied", continent,currentTime);
             if (insertedUser==true && insertedInternshipStudent==true) {
                 response.sendRedirect("applyInternshipSucceed.jsp");
                 return;

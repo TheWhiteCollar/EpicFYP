@@ -10,6 +10,7 @@ package Model.Entity;
     #2: internshipUserEmail (varchar 50)
     #3: internshipStudentStatus (varchar 100)
     #4: internshipStudentContinent (varchar 100)
+    #5: internshipStudentDatetime (datetime YYYY-MM-DD HH:MM:SS)
  */
 
 public class InternshipStudent {
@@ -18,12 +19,14 @@ public class InternshipStudent {
     private String internshipUserEmail;
     private String internshipStudentStatus;
     private String internshipStudentContinent;
+    private String internshipStudentDatetime;
 
-    public InternshipStudent(int internshipID, String internshipUserEmail, String internshipStudentStatus, String internshipStudentContinent) {
+    public InternshipStudent(int internshipID, String internshipUserEmail, String internshipStudentStatus, String internshipStudentContinent, String internshipStudentDatetime) {
         this.internshipID = internshipID;
         this.internshipUserEmail = internshipUserEmail;
         this.internshipStudentStatus = internshipStudentStatus;
         this.internshipStudentContinent = internshipStudentContinent;
+        this.internshipStudentDatetime = internshipStudentDatetime;
     }
 
     public int getInternshipID() {
@@ -57,5 +60,14 @@ public class InternshipStudent {
     public void setInternshipStudentContinent(String internshipStudentContinent) {
         this.internshipStudentContinent = internshipStudentContinent;
     }
+
+    public String getInternshipStudentDatetime() {
+        return internshipStudentDatetime;
+    }
+
+    public void setInternshipStudentDatetime(String internshipStudentDatetime) {
+        this.internshipStudentDatetime = internshipStudentDatetime;
+    }
    
+    
 }

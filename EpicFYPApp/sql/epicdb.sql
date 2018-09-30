@@ -29,6 +29,7 @@ SET time_zone = "+08:00";
 CREATE TABLE IF NOT EXISTS `admin` (
   `adminName` varchar(15) NOT NULL,
   `adminPassword` varchar(30) NOT NULL,
+  `adminLevel` varchar(30) NOT NULL,
   PRIMARY KEY (`adminName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -36,8 +37,9 @@ CREATE TABLE IF NOT EXISTS `admin` (
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`adminName`, `adminPassword`) VALUES
-('admin1', 'admin123');
+INSERT INTO `admin` (`adminName`, `adminPassword`,`adminLevel`) VALUES
+('admin1', 'admin123', 'superadmin'),
+('admin2', 'admin123', 'admin');
 
 -- --------------------------------------------------------
 
@@ -176,18 +178,19 @@ CREATE TABLE IF NOT EXISTS `internshipstudent` (
   `internshipUserEmail` varchar(50) CHARACTER SET utf8 NOT NULL,
   `internshipStudentStatus` varchar(100) NOT NULL,
   `internshipStudentContinent` varchar(100) NOT NULL,
-  PRIMARY KEY (`internshipUserEmail`,`internshipStudentContinent`),
+  `internshipStudentDatetime` datetime NOT NULL,
+  PRIMARY KEY (`internshipUserEmail`,`internshipStudentContinent`,`internshipStudentStatus`,`internshipStudentDatetime`),
   KEY `internshipUserEmail` (`internshipUserEmail`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `internshipstudent`
 --
 
-INSERT INTO `internshipstudent` (`internshipID`, `internshipUserEmail`, `internshipStudentStatus`, `internshipStudentContinent`) VALUES
-(1, 'mediani.2015@sis.smu.edu.sg', 'approved', 'Asia'),
-(0, 'rachael.low.2015@sis.smu.edu.sg', 'applied', 'Asia'),
-(0, 'rachael.low.2015@sis.smu.edu.sg', 'applied', 'America');
+INSERT INTO `internshipstudent` (`internshipID`, `internshipUserEmail`, `internshipStudentStatus`, `internshipStudentContinent`,`internshipStudentDatetime`) VALUES
+(1, 'mediani.2015@sis.smu.edu.sg', 'approved', 'Asia','2018-09-10 00:08:12'),
+(0, 'rachael.low.2015@sis.smu.edu.sg', 'applied', 'Asia','2018-09-10 00:08:12'),
+(0, 'rachael.low.2015@sis.smu.edu.sg', 'applied', 'America','2018-09-10 00:08:12');
 
 -- --------------------------------------------------------
 

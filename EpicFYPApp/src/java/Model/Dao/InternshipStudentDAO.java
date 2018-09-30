@@ -16,8 +16,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class InternshipStudentDAO {
-    //update a particular InternshipStudent row
-
+    
+//update a particular InternshipStudent row
     public static boolean updateInternshipStudent(int internshipID, String internshipUserEmail, String internshipStudentStatus, String internshipStudentContinent) {
 
         String sql = "UPDATE internshipstudent SET internshipStudentStatus=?, internshipStudentContinent=? WHERE internshipID=? AND internshipUserEmail=?";
@@ -41,9 +41,9 @@ public class InternshipStudentDAO {
     }
 
     // Add existing InternshipStudent/bulk new InternshipStudent
-    public static boolean addInternshipStudent(int internshipID, String internshipUserEmail, String internshipStudentStatus, String internshipStudentContinent) {
+    public static boolean addInternshipStudent(int internshipID, String internshipUserEmail, String internshipStudentStatus, String internshipStudentContinent, String internshipStudentDatetime) {
 
-        String sql = "INSERT INTO internshipstudent (internshipID, internshipUserEmail, internshipStudentStatus, internshipStudentContinent) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO internshipstudent (internshipID, internshipUserEmail, internshipStudentStatus, internshipStudentContinent, internshipStudentDatetime) VALUES (?,?,?,?,?)";
 
         try (Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
@@ -51,6 +51,7 @@ public class InternshipStudentDAO {
             stmt.setString(2, internshipUserEmail);
             stmt.setString(3, internshipStudentStatus);
             stmt.setString(4, internshipStudentContinent);
+            stmt.setString(5, internshipStudentDatetime);
 
             int result = stmt.executeUpdate();
             if (result == 0) {
@@ -70,7 +71,7 @@ public class InternshipStudentDAO {
             PreparedStatement stmt = conn.prepareStatement("select * from internshipstudent");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                result.add(new InternshipStudent(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+                result.add(new InternshipStudent(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
             }
             rs.close();
             stmt.close();
@@ -109,7 +110,7 @@ public class InternshipStudentDAO {
             stmt.setString(1, internshipUserEmail);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                result.add(new InternshipStudent(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+                result.add(new InternshipStudent(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
             }
             rs.close();
             stmt.close();

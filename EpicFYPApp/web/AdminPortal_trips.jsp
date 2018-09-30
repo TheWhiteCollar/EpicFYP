@@ -65,7 +65,10 @@
                         tripHTML += "<tr><td><form class=\"deleteTrip\">";
                         tripHTML += "<input style=\"display: none\" type=\"text\" name=\"tripID\" value=\"" + trip.tripID + "\"/>";
                         tripHTML += "<button class = \"button\" type=\"submit\" id=\"asd" + index + "\">Delete Trip</button></form></td>";
-                        tripHTML += "<td>Edit Button</td>" + '<td><button type="button" class="button" data-toggle="modal" data-target="#myModal">View users signed up</button></td>' + "</tr>";
+
+                        // tripHTML += "<td>Edit Button</td>" + '<td><button type="button" class="button" data-toggle="modal" data-target="#myModal">View users signed up</button></td>' + "</tr>";
+
+                       tripHTML +='<td><button type="button" class="button" data-toggle="modal" data-target="#myModal">View users signed up</button></td>' + "</tr>";
                     });
                     tripHTML += '</table></div>';
                     //adding table html tag into div which has the id "trips"

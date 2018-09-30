@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 public class AdminDAO {
 
-    // Get admin and their details with adminName and adminPassword
+    // Get admins and their details
     public static Admin getAdminByLogin(String adminName, String adminPassword) {
 
         Admin admin = null;
@@ -30,7 +30,7 @@ public class AdminDAO {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 if (admin == null) {
-                    admin = new Admin(rs.getString(1), rs.getString(2));
+                    admin = new Admin(rs.getString(1), rs.getString(2), rs.getString(3));
                 }
             }
         } catch (SQLException ex) {
@@ -60,14 +60,15 @@ public class AdminDAO {
     }
 
     // Add a new admin row
-    public static boolean addAdmin(String adminName, String adminPassword) {
+    public static boolean addAdmin(String adminName, String adminPassword, String adminLevel) {
 
-        String sql = "INSERT INTO admin (adminName, adminPassword) VALUES (?,?)";
+        String sql = "INSERT INTO admin (adminName, adminPassword, adminLevel) VALUES (?,?,?)";
 
         try (Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
             stmt.setString(1, adminName);
             stmt.setString(2, adminPassword);
+            stmt.setString(3, adminLevel);
             int result = stmt.executeUpdate();
             if (result == 0) {
                 return false;
@@ -102,7 +103,7 @@ public class AdminDAO {
             PreparedStatement stmt = conn.prepareStatement("select * from admin");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                result.add(new Admin(rs.getString(1), rs.getString(2)));
+                result.add(new Admin(rs.getString(1), rs.getString(2), rs.getString(3)));
             }
             rs.close();
             stmt.close();

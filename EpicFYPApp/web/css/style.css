@@ -1188,6 +1188,11 @@ body.landing #header {
     margin: 0 0 2em 0;
 }
 
+.wrapper.style2 .icon.big {
+    border-color: #ffffff;
+    margin-bottom: 0.5em;
+}
+
 /* Footer */
 
 #footer {
@@ -1384,6 +1389,14 @@ input.invalid {
 /*full width*/
 .full_width{
     width:100%;
+}
+
+/*testimonal center align*/
+.testimonal_center{
+    display: flex;
+    align-items: center;
+    flex-wrap:wrap;
+    padding-bottom: 50px;
 }
 
 

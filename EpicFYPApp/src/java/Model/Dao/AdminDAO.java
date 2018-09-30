@@ -24,7 +24,7 @@ public class AdminDAO {
         String sql = "SELECT * FROM admin WHERE adminName LIKE ? AND adminPassword LIKE ?";
 
         try (Connection conn = ConnectionManager.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(sql);) {
+            PreparedStatement stmt = conn.prepareStatement(sql);) {
             stmt.setString(1, adminName);
             stmt.setString(2, adminPassword);
             ResultSet rs = stmt.executeQuery();
@@ -95,7 +95,7 @@ public class AdminDAO {
         return true;
     }
 
-    //get all admin names
+    //get all admin names without password
     public static ArrayList<Admin> getAllAdmins() {
         ArrayList<Admin> result = new ArrayList<>();
         try {
@@ -103,7 +103,7 @@ public class AdminDAO {
             PreparedStatement stmt = conn.prepareStatement("select * from admin");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                result.add(new Admin(rs.getString(1), rs.getString(2), rs.getString(3)));
+                result.add(new Admin(rs.getString(1), rs.getString(3)));
             }
             rs.close();
             stmt.close();

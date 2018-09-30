@@ -22,6 +22,11 @@ public class Admin {
         this.adminPassword = adminPassword;
         this.adminLevel = adminLevel;
     }
+    
+    public Admin(String adminName, String adminLevel) {
+        this.adminName = adminName;
+        this.adminLevel = adminLevel;
+    }
 
     public String getAdminName() {
         return adminName;

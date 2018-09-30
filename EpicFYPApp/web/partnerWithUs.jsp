@@ -57,17 +57,21 @@
             </div>
         </section>
         <!--Partner testimony -->
-        <section id="partnertestimony" class="wrapper style1 align-center">
-            <div class="container box alt">
+        <section id="partnertestimony" class="wrapper">
+            <div class="container">
 
                 <header class="major">
                     <h2>Our Global Partners</h2>                       
                 </header>
-                <a href="#" class="image fa-align-center"><img src="images/ProNitiTravel.jpg" alt="Picture of Pro Niti Travel" width="600px" height="200px"/></a>
-                <p> </P>
-                <p> </P>
-                <p>Our study tours to Myanmar have been serviced by our dedicated partner, Pro Niti Travel, based in Yangon.  EPIC and Pro Niti is committed to Professional and Ethical travel.  We not only create treasured memories, we aim to enhance our clientsâ life experience while bringing positive changes to the lives of others.</p>
-
+                
+                <div class="row 50% uniform testimonal_center">
+                    <div class="4u 12u(xsmall)">
+                        <span class="image fit"><img src="images/ProNitiTravel.jpg" alt="Picture of Pro Niti Travel" width="auto" height="auto"/></span>
+                    </div>
+                    <div class="8u 12u(xsmall)">
+                        <p class="align-justify">Our study tours to Myanmar have been serviced by our dedicated partner, Pro Niti Travel, based in Yangon.  EPIC and Pro Niti is committed to Professional and Ethical travel.  We not only create treasured memories, we aim to enhance our clients' life experience while bringing positive changes to the lives of others.</p>
+                    </div>
+                </div>
 
             </div>
         </section>

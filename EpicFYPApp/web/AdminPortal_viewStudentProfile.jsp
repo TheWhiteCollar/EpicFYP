@@ -45,8 +45,8 @@
                 <header class="major">
                     <h2>Students' Profiles</h2>
                 </header>
-
-                <!-- To add filter button -->
+<!--
+                 To add filter button 
 
                 <div class ="row uniform 50%">
                     <div class ="6u 12u(xsmall)">
@@ -61,11 +61,9 @@
                         <form method="get" action="#">
                             <button type="submit" class="button">Download!</button>
                         </form>
-<!--                        <a href="/Users/xiuwenhime/NetBeansProjects/JavaApplication5/NewExcelFile.xls" download="<% out.print(todayDate); %>_all_student_profile" class="button full_width">Download all student profiles</a>-->
+                        <a href="/Users/xiuwenhime/NetBeansProjects/JavaApplication5/NewExcelFile.xls" download="<% out.print(todayDate); %>_all_student_profile" class="button full_width">Download all student profiles</a>
                     </div>
-
-
-                </div>
+                </div>-->
             </div>
         </section><section>
             <div class="container">

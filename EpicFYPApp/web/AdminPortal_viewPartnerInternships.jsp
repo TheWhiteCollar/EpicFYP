@@ -1,5 +1,5 @@
-<%@page import="Model.Entity.InternshipStudent"%>
-<%@page import="Model.Dao.InternshipStudentDAO"%>
+<%@page import="Model.Entity.Internship"%>
+<%@page import="Model.Dao.InternshipDAO"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="Model.Dao.PartnerDAO"%>
 <%@page import="java.util.ArrayList"%>
@@ -40,32 +40,49 @@
             <div class="container">
                 <h2 class="align-center">Partner Internship Applications</h2>
                 
-                
+                <!--tabs-->
                 <div class="tab align-center">
                     <button class="tablinks" onclick="openUser(event, 'approved')">Approved Applications</button>
-                    <button class="tablinks" onclick="openUser(event, 'pending')">Pending Applications</button>
+                    <button class="tablinks" onclick="openUser(event, 'pending')" id="defaultOpen">Pending Applications</button>
                     <button class="tablinks" onclick="openUser(event, 'rejected')">Rejected Applications</button>
                 </div>
                 
+                <!--tabs' content-->
                 <div id="approved" class="tabcontent">
                     <span onclick="this.parentElement.style.display = 'none'" class="toprightClose">&times</span>
                     <div class="row">
                     <div class="12u 12u(xsmall)">
-                        <h3 class="align-center"><b>Approved</b></h3>
                         <table class="alt align-center">
                             <thead>
                                 <tr>
                                     <td>#</td>
-                                    <td>Name</td>
-                                    <td>Partner</td>
-                                    <td>Status</td>
-                                    <td>More Info</td>
+                                    <td>Job Title</td>
+                                    <td>Partner Company</td>
+                                    <td>Contact's Name</td>
+                                    <td>Contact's Email</td>
+                                    <td>More Information</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <%
-                                //take from internship student - internshipStudentStatus approved
-                                ArrayList<InternshipStudent> it = InternshipStudentDAO.getAllInternshipStudents();
+                                ArrayList<Internship> approvedInternships = InternshipDAO.getAllApprovedInternships();
+                                int counta = 0;
+                                if (!approvedInternships.isEmpty()) {
+                                    for (int i = 0; i < approvedInternships.size(); i++) {
+                                        Internship internship = approvedInternships.get(i);
+                                        Partner partner = PartnerDAO.getPartnerByID(internship.getInternshipPartnerID());
+                                        counta += 1;
+                                %>
+                                <tr>
+                                    <td class = "align-center"><%out.print(counta);%></td>
+                                    <td><%out.print(internship.getInternshipName());%></td>
+                                    <td><%out.print(partner.getPartnerName());%></td>
+                                    <td><%out.print(internship.getInternshipSupervisor());%></td>
+                                    <td><%out.print(internship.getInternshipSupervisorEmail());%></td>
+                                    <td><button type="button" class="button" data-toggle="modal" data-target="#myModalApproved<%out.print(i);%>">View</button></td>
+                                </tr>
+                                <%
+                                }}
                                 %>
                             </tbody>
                         </table>
@@ -78,25 +95,40 @@
                     <span onclick="this.parentElement.style.display='none'" class="toprightClose">&times</span>
                     <div class="row">
                         <div class="12u 12u(xsmall)">
-                            <h3 class="align-center"><b>Pending Approval</b></h3>
                             <table class="alt align-center">
-                                <thead>
-                                    <tr>
-                                        <td>#</td>
-                                        <td>Name</td>
-                                        <td>User's Field of Study</td>
-                                        <td>Internship title</td>
-                                        <td>Continent</td>
-                                        <td>User Resume</td>
-                                        <td>More Info</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <%
-                                        
-                                    %>
-                                </tbody>
-                            </table>
+                            <thead>
+                                <tr>
+                                    <td>#</td>
+                                    <td>Job Title</td>
+                                    <td>Partner Company</td>
+                                    <td>Contact's Name</td>
+                                    <td>Contact's Email</td>
+                                    <td>More Information</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%
+                                ArrayList<Internship> pendingInternships = InternshipDAO.getAllPendingInternships();
+                                int countp = 0;
+                                if (!pendingInternships.isEmpty()) {
+                                    for (int i = 0; i < pendingInternships.size(); i++) {
+                                        Internship internship = pendingInternships.get(i);
+                                        Partner partner = PartnerDAO.getPartnerByID(internship.getInternshipPartnerID());
+                                        countp += 1;
+                                %>
+                                <tr>
+                                    <td class = "align-center"><%out.print(countp);%></td>
+                                    <td><%out.print(internship.getInternshipName());%></td>
+                                    <td><%out.print(partner.getPartnerName());%></td>
+                                    <td><%out.print(internship.getInternshipSupervisor());%></td>
+                                    <td><%out.print(internship.getInternshipSupervisorEmail());%></td>
+                                    <td><button type="button" class="button" data-toggle="modal" data-target="#myModalApproved<%out.print(i);%>">View</button></td>
+                                </tr>
+                                <%
+                                }}
+                                %>
+                            </tbody>
+                        </table>
                         </div>
                     </div>
                 </div>
@@ -105,29 +137,52 @@
                     <span onclick="this.parentElement.style.display='none'" class="toprightClose">&times</span>
                     <div class="row">
                         <div class="12u 12u(xsmall)">
-                            <h3 class="align-center"><b>Pending Approval</b></h3>
                             <table class="alt align-center">
-                                <thead>
-                                    <tr>
-                                        <td>#</td>
-                                        <td>Name</td>
-                                        <td>Partner</td>
-                                        <td>Status</td>
-                                        <td>More Info</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <%
-                                        
-                                    %>
-                                </tbody>
-                            </table>
+                            <thead>
+                                <tr>
+                                    <td>#</td>
+                                    <td>Job Title</td>
+                                    <td>Partner Company</td>
+                                    <td>Contact's Name</td>
+                                    <td>Contact's Email</td>
+                                    <td>More Information</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%
+                                ArrayList<Internship> rejectedInternships = InternshipDAO.getAllRejectedInternships();
+                                int countr = 0;
+                                if (!rejectedInternships.isEmpty()) {
+                                    for (int i = 0; i < rejectedInternships.size(); i++) {
+                                        Internship internship = rejectedInternships.get(i);
+                                        Partner partner = PartnerDAO.getPartnerByID(internship.getInternshipPartnerID());
+                                        countr += 1;
+                                %>
+                                <tr>
+                                    <td class = "align-center"><%out.print(countr);%></td>
+                                    <td><%out.print(internship.getInternshipName());%></td>
+                                    <td><%out.print(partner.getPartnerName());%></td>
+                                    <td><%out.print(internship.getInternshipSupervisor());%></td>
+                                    <td><%out.print(internship.getInternshipSupervisorEmail());%></td>
+                                    <td><button type="button" class="button" data-toggle="modal" data-target="#myModalApproved<%out.print(i);%>">View</button></td>
+                                </tr>
+                                <%
+                                }}
+                                %>
+                            </tbody>
+                        </table>
                         </div>
                     </div>
                 </div>
 
                
+                <!--modal box content-->
+                <%
+                    if (!approvedInternships.isEmpty()) {
+                        for (int i = 0; i < approvedInternships.size(); i++) {
+                            Internship internship = approvedInternships.get(i);
 
+                %>
 <!--                <div class="modal fade" id="myModal<%//out.print(i);%>" role="dialog">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">

@@ -99,6 +99,66 @@ public class InternshipDAO {
         }
         return null;
     }
+    
+        // get all existing approved internships
+    public static ArrayList<Internship> getAllApprovedInternships() {
+        ArrayList<Internship> result = new ArrayList<>();
+        try {
+            Connection conn = ConnectionManager.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("select * from internship WHERE internshipID<>0 AND internshipApproval='approved'");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                result.add(new Internship(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDate(6), rs.getDate(7), rs.getDouble(8),rs.getString(9),rs.getString(10),rs.getInt(11),rs.getInt(12)));
+            }
+            rs.close();
+            stmt.close();
+            conn.close();
+            return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+        // get all pending internship by admin
+    public static ArrayList<Internship> getAllPendingInternships() {
+        ArrayList<Internship> result = new ArrayList<>();
+        try {
+            Connection conn = ConnectionManager.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("select * from internship WHERE internshipID<>0 AND internshipApproval='pending'");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                result.add(new Internship(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDate(6), rs.getDate(7), rs.getDouble(8),rs.getString(9),rs.getString(10),rs.getInt(11),rs.getInt(12)));
+            }
+            rs.close();
+            stmt.close();
+            conn.close();
+            return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+        // get all rejected internships
+    public static ArrayList<Internship> getAllRejectedInternships() {
+        ArrayList<Internship> result = new ArrayList<>();
+        try {
+            Connection conn = ConnectionManager.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("select * from internship WHERE internshipID<>0 AND internshipApproval='rejected'");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                result.add(new Internship(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDate(6), rs.getDate(7), rs.getDouble(8),rs.getString(9),rs.getString(10),rs.getInt(11),rs.getInt(12)));
+            }
+            rs.close();
+            stmt.close();
+            conn.close();
+            return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     //delete a particular partner row
     public static boolean deleteInternship(int internshipID) {

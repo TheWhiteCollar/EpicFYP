@@ -56,7 +56,7 @@
                 %>
                 </br>
                 <div class="container">
-                    <table class="alt">
+                    <table class="alt align-center">
                         <thead>
                             <tr>
                                 <th class="align-center">#</th>
@@ -74,9 +74,9 @@
                                         count += 1;
                             %>
                             <tr>
-                                <td class="align-center"><%out.print(count);%></td>
-                                <td class="align-center"><% out.print(a.getAdminName()); %></td>                      
-                                <td class="align-center"><% out.print(a.getAdminLevel()); %></td>
+                                <td><%out.print(count);%></td>
+                                <td><% out.print(a.getAdminName()); %></td>                      
+                                <td><% out.print(a.getAdminLevel()); %></td>
 
                             </tr>
                             <%

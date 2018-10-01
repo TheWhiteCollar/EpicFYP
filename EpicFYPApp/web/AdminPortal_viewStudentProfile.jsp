@@ -181,7 +181,7 @@
 
                                         <%
 
-                                            ArrayList<TripStudent> t = TripStudentDAO.getTripsByUser(email);
+                                            ArrayList<TripStudent> t = TripStudentDAO.getConfirmedTripsByUser(email);
                                             //if student has applied for trips previously
                                             if (!t.isEmpty()) {
                                                 DecimalFormat df2 = new DecimalFormat("#.00");

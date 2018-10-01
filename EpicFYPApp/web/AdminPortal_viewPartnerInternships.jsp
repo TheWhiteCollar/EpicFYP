@@ -268,14 +268,15 @@
                                             <tbody>
                                                 <tr>
                                                     <td>1</td>
-                                                    <td>pending</td>
-                                                    <td><%out.print(dateTimeList[0]); %></td>
+                                                    <td>Approved</td>
+                                                    <td><%out.print(dateTimeList[1]); %></td>
                                                 </tr>
                                                 <tr>
                                                     <td>2</td>
-                                                    <td><%out.print(internship.getInternshipApproval()); %></td>
-                                                    <td><%out.print(dateTimeList[1]); %></td>
+                                                    <td>Pending</td>
+                                                    <td><%out.print(dateTimeList[0]); %></td>
                                                 </tr>
+                                                
                                             </tbody>   
                                         </table>
                                     </div>
@@ -380,7 +381,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td>1</td>
-                                                    <td>pending</td>
+                                                    <td>Pending</td>
                                                     <td><%out.print(internship.getInternshipDatetime()); %></td>
                                                 </tr>
                                             </tbody>   
@@ -489,14 +490,15 @@
                                             <tbody>
                                                 <tr>
                                                     <td>1</td>
-                                                    <td>pending</td>
-                                                    <td><%out.print(dateTimeList[0]); %></td>
+                                                    <td>Rejected</td>
+                                                    <td><%out.print(dateTimeList[1]); %></td>
                                                 </tr>
                                                 <tr>
                                                     <td>2</td>
-                                                    <td><%out.print(internship.getInternshipApproval()); %></td>
-                                                    <td><%out.print(dateTimeList[1]); %></td>
+                                                    <td>Pending</td>
+                                                    <td><%out.print(dateTimeList[0]); %></td>
                                                 </tr>
+                                                
                                             </tbody>   
                                         </table>
                                     </div>

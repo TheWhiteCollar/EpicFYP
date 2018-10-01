@@ -38,20 +38,22 @@ public class CountryTripDAO {
     
     //insert new countrytrip
     public static boolean addCountryTrip(String countryTripName) {
+        if (countryTripName.length() >= 1) {
+            String sql = "INSERT INTO countrytrip (countryTripName) VALUES (?)";
 
-        String sql = "INSERT INTO countrytrip (countryTripName) VALUES (?)";
-
-        try (Connection conn = ConnectionManager.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(sql);) {
-            stmt.setString(1, countryTripName);
-            int result = stmt.executeUpdate();
-            if (result == 0) {
-                return false;
+            try (Connection conn = ConnectionManager.getConnection();
+                    PreparedStatement stmt = conn.prepareStatement(sql);) {
+                stmt.setString(1, countryTripName);
+                int result = stmt.executeUpdate();
+                if (result == 0) {
+                    return false;
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(CountryTripDAO.class.getName()).log(Level.WARNING, "Country already exist!", ex);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(CountryTripDAO.class.getName()).log(Level.WARNING, "Country already exist!", ex);
+            return true;
         }
-        return true;
+        return false;   
     }
     
     // delete a particular countrytrip row

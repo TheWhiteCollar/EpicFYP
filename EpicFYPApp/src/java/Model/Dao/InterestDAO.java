@@ -37,20 +37,22 @@ public class InterestDAO {
     }
 
     public static boolean addInterest(String interestName) {
-
-        String sql = "INSERT INTO interest (interestName) VALUES (?)";
-
-        try (Connection conn = ConnectionManager.getConnection();
+        
+        if (interestName.length() >= 1) {
+            String sql = "INSERT INTO interest (interestName) VALUES (?)";
+            try (Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
-            stmt.setString(1, interestName);
-            int result = stmt.executeUpdate();
-            if (result == 0) {
-                return false;
+                stmt.setString(1, interestName);
+                int result = stmt.executeUpdate();
+                if (result == 0) {
+                    return false;
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(InterestDAO.class.getName()).log(Level.WARNING, "interest already exist!", ex);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(InterestDAO.class.getName()).log(Level.WARNING, "interest already exist!", ex);
+            return true;
         }
-        return true;
+        return false;
     }
 
     //deletes interest from interest table, updates user and trip table to remove ",a" or ", a" or "a," or "a ,"

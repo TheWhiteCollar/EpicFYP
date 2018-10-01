@@ -58,8 +58,7 @@
                                     <td>#</td>
                                     <td>Job Title</td>
                                     <td>Partner Company</td>
-                                    <td>Contact's Name</td>
-                                    <td>Contact's Email</td>
+                                    <td>Field of Study</td>
                                     <td>More Information</td>
                                 </tr>
                             </thead>
@@ -77,8 +76,7 @@
                                     <td class = "align-center"><%out.print(counta);%></td>
                                     <td><%out.print(internship.getInternshipName());%></td>
                                     <td><%out.print(partner.getPartnerName());%></td>
-                                    <td><%out.print(internship.getInternshipSupervisor());%></td>
-                                    <td><%out.print(internship.getInternshipSupervisorEmail());%></td>
+                                    <td><%out.print(internship.getInternshipFieldOfStudy());%></td>
                                     <td><button type="button" class="button" data-toggle="modal" data-target="#myModalApproved<%out.print(i);%>">View</button></td>
                                 </tr>
                                 

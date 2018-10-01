@@ -36,7 +36,7 @@
 
         <section id="main" class="wrapper">
             <div class="container">
-                <h2 class="align-center">Partner Internship Applications</h2>
+                <h2 class="align-center">Manage Internship Countries</h2>
 
                 <!--tabs-->
                 <div class="tab align-center">

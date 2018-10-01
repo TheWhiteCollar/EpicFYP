@@ -47,7 +47,7 @@
                     <button class="tablinks" onclick="openUser(event, 'rejected')">Rejected Applications</button>
                 </div>
                 
-                <!--tabs' content-->
+                <!--tabs' content 1.approved 2.pending 3.rejected-->
                 <div id="approved" class="tabcontent">
                     <span onclick="this.parentElement.style.display = 'none'" class="toprightClose">&times</span>
                     <div class="row">
@@ -81,6 +81,7 @@
                                     <td><%out.print(internship.getInternshipSupervisorEmail());%></td>
                                     <td><button type="button" class="button" data-toggle="modal" data-target="#myModalApproved<%out.print(i);%>">View</button></td>
                                 </tr>
+                                
                                 <%
                                 }}
                                 %>
@@ -122,7 +123,7 @@
                                     <td><%out.print(partner.getPartnerName());%></td>
                                     <td><%out.print(internship.getInternshipSupervisor());%></td>
                                     <td><%out.print(internship.getInternshipSupervisorEmail());%></td>
-                                    <td><button type="button" class="button" data-toggle="modal" data-target="#myModalApproved<%out.print(i);%>">View</button></td>
+                                    <td><button type="button" class="button" data-toggle="modal" data-target="#myModalPending<%out.print(i);%>">View</button></td>
                                 </tr>
                                 <%
                                 }}
@@ -164,7 +165,7 @@
                                     <td><%out.print(partner.getPartnerName());%></td>
                                     <td><%out.print(internship.getInternshipSupervisor());%></td>
                                     <td><%out.print(internship.getInternshipSupervisorEmail());%></td>
-                                    <td><button type="button" class="button" data-toggle="modal" data-target="#myModalApproved<%out.print(i);%>">View</button></td>
+                                    <td><button type="button" class="button" data-toggle="modal" data-target="#myModalRejected<%out.print(i);%>">View</button></td>
                                 </tr>
                                 <%
                                 }}
@@ -176,19 +177,24 @@
                 </div>
 
                
-                <!--modal box content-->
+                <!--modal box content: 1.approved 2.pending 3.rejected-->
                 <%
-                    if (!approvedInternships.isEmpty()) {
-                        for (int i = 0; i < approvedInternships.size(); i++) {
-                            Internship internship = approvedInternships.get(i);
-
+                if (!approvedInternships.isEmpty()) {
+                    for (int i = 0; i < approvedInternships.size(); i++) {
+                        Internship internship = approvedInternships.get(i);
+                        Partner partner = PartnerDAO.getPartnerByID(internship.getInternshipPartnerID());
+                        
+                        String dateTimes = internship.getInternshipDatetime();
+                        String[] dateTimeList = dateTimes.split("\\s*,\\s*");
+                        
+                                      
                 %>
-<!--                <div class="modal fade" id="myModal<%//out.print(i);%>" role="dialog">
+                <div class="modal fade" id="myModalApproved<%out.print(i);%>" role="dialog">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title align-center"><b><%//out.print(p.getPartnerName()); %></b></h4>
+                                <h4 class="modal-title align-center"><b><%out.print(partner.getPartnerName()); %></b> internship application for <b><%out.print(internship.getInternshipName());%></b></h4>
                             </div>
                             <div class="modal-body">
                                 <div class="row">
@@ -197,7 +203,10 @@
                                         <table class="align-center">
                                             <tbody>
                                                 <tr>
-                                                    <td><b><%//out.print(p.getPartnerName()); %></b></td>
+                                                    <td><b><%out.print(partner.getPartnerName()); %></b></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><%out.print(partner.getPartnerCountry()); %>, <%out.print(partner.getPartnerState()); %></td>
                                                 </tr>
 
                                             </tbody>
@@ -207,16 +216,36 @@
                                         <table>
                                             <tbody>
                                                 <tr>
-                                                    <td class="align-right"><b>Country </b></td>
-                                                    <td><%//out.print(p.getPartnerCountry()); %></td>
+                                                    <td class="align-right"><b>Internship Position</b></td>
+                                                    <td><%out.print(internship.getInternshipName()); %></td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="align-right"><b>State </b></td>
-                                                    <td><%//out.print(p.getPartnerState()); %></td>
+                                                    <td class="align-right"><b>Time Period</b></td>
+                                                    <td><%out.print(internship.getInternshipStart()); %> to <%out.print(internship.getInternshipEnd()); %></td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="align-right"><b>Description </b></td>
-                                                    <td><% //out.print(p.getPartnerDescription()); %></td>
+                                                    <td class="align-right"><b>Salary</b></td>
+                                                    <td><%out.print(internship.getInternshipPay()); %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right"><b>Vacancy</b></td>
+                                                    <td><%out.print(internship.getInternshipVacancy()); %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right"><b>Supervisor Name</b></td>
+                                                    <td><%out.print(internship.getInternshipSupervisor()); %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right"><b>Supervisor Email</b></td>
+                                                    <td><%out.print(internship.getInternshipSupervisorEmail()); %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right"><b>Field of Study</b></td>
+                                                    <td><%out.print(internship.getInternshipFieldOfStudy()); %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right"><b>Description</b></td>
+                                                    <td><%out.print(internship.getInternshipDescription()); %></td>
                                                 </tr>
                                                 
                                             </tbody>
@@ -224,6 +253,32 @@
                                         </table>
                                                                              
                                     </div>                             
+                                </div>
+                                <div class="row">
+                                    <div class="12u 12u(small)">
+                                        <h2 class="align-center">Application Status History</h2>
+                                        <table class="alt align-center">
+                                            <thead>
+                                                <tr>
+                                                    <th class="align-center">#</th>
+                                                    <th class="align-center">Application Status</th>
+                                                    <th class="align-center">Date & Time (YYYY-MM-DD HH:MM:SS)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>pending</td>
+                                                    <td><%out.print(dateTimeList[0]); %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td><%out.print(internship.getInternshipApproval()); %></td>
+                                                    <td><%out.print(dateTimeList[1]); %></td>
+                                                </tr>
+                                            </tbody>   
+                                        </table>
+                                    </div>
                                 </div>
 
                             </div>
@@ -233,7 +288,231 @@
                         </div>
                     </div>
                 </div>
-        -->
+                <%
+                }}
+                %>
+                
+                <%
+                if (!pendingInternships.isEmpty()) {
+                    for (int i = 0; i < pendingInternships.size(); i++) {
+                        Internship internship = pendingInternships.get(i);
+                        Partner partner = PartnerDAO.getPartnerByID(internship.getInternshipPartnerID());
+                        
+                        
+                                      
+                %>
+                <div class="modal fade" id="myModalPending<%out.print(i);%>" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title align-center"><b><%out.print(partner.getPartnerName()); %></b> internship application for <b><%out.print(internship.getInternshipName());%></b></h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="4u 12u">
+                                        <div align="center"><img src="https://www.freelogodesign.org/Content/img/logo-ex-7.png" alt ="partner-logo" height="80%" width="80%"></div>
+                                        <table class="align-center">
+                                            <tbody>
+                                                <tr>
+                                                    <td><b><%out.print(partner.getPartnerName()); %></b></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><%out.print(partner.getPartnerCountry()); %>, <%out.print(partner.getPartnerState()); %></td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>                                          
+                                    </div>
+                                    <div class="8u 12u">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="align-right"><b>Internship Position</b></td>
+                                                    <td><%out.print(internship.getInternshipName()); %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right"><b>Time Period</b></td>
+                                                    <td><%out.print(internship.getInternshipStart()); %> to <%out.print(internship.getInternshipEnd()); %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right"><b>Salary</b></td>
+                                                    <td><%out.print(internship.getInternshipPay()); %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right"><b>Vacancy</b></td>
+                                                    <td><%out.print(internship.getInternshipVacancy()); %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right"><b>Supervisor Name</b></td>
+                                                    <td><%out.print(internship.getInternshipSupervisor()); %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right"><b>Supervisor Email</b></td>
+                                                    <td><%out.print(internship.getInternshipSupervisorEmail()); %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right"><b>Field of Study</b></td>
+                                                    <td><%out.print(internship.getInternshipFieldOfStudy()); %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right"><b>Description</b></td>
+                                                    <td><%out.print(internship.getInternshipDescription()); %></td>
+                                                </tr>
+                                                
+                                            </tbody>
+
+                                        </table>
+                                                                             
+                                    </div>                             
+                                </div>
+                                <div class="row">
+                                    <div class="12u 12u(small)">
+                                        <h2 class="align-center">Application Status History</h2>
+                                        <table class="alt align-center">
+                                            <thead>
+                                                <tr>
+                                                    <th class="align-center">#</th>
+                                                    <th class="align-center">Application Status</th>
+                                                    <th class="align-center">Date & Time (YYYY-MM-DD HH:MM:SS)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>pending</td>
+                                                    <td><%out.print(internship.getInternshipDatetime()); %></td>
+                                                </tr>
+                                            </tbody>   
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="button" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%
+                }}
+                %>
+                
+                <%
+                if (!rejectedInternships.isEmpty()) {
+                    for (int i = 0; i < rejectedInternships.size(); i++) {
+                        Internship internship = rejectedInternships.get(i);
+                        Partner partner = PartnerDAO.getPartnerByID(internship.getInternshipPartnerID());
+                        
+                        String dateTimes = internship.getInternshipDatetime();
+                        String[] dateTimeList = dateTimes.split("\\s*,\\s*");
+                        
+                                      
+                %>
+                <div class="modal fade" id="myModalRejected<%out.print(i);%>" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title align-center"><b><%out.print(partner.getPartnerName()); %></b> internship application for <b><%out.print(internship.getInternshipName());%></b></h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="4u 12u">
+                                        <div align="center"><img src="https://www.freelogodesign.org/Content/img/logo-ex-7.png" alt ="partner-logo" height="80%" width="80%"></div>
+                                        <table class="align-center">
+                                            <tbody>
+                                                <tr>
+                                                    <td><b><%out.print(partner.getPartnerName()); %></b></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><%out.print(partner.getPartnerCountry()); %>, <%out.print(partner.getPartnerState()); %></td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>                                          
+                                    </div>
+                                    <div class="8u 12u">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="align-right"><b>Internship Position</b></td>
+                                                    <td><%out.print(internship.getInternshipName()); %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right"><b>Time Period</b></td>
+                                                    <td><%out.print(internship.getInternshipStart()); %> to <%out.print(internship.getInternshipEnd()); %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right"><b>Salary</b></td>
+                                                    <td><%out.print(internship.getInternshipPay()); %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right"><b>Vacancy</b></td>
+                                                    <td><%out.print(internship.getInternshipVacancy()); %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right"><b>Supervisor Name</b></td>
+                                                    <td><%out.print(internship.getInternshipSupervisor()); %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right"><b>Supervisor Email</b></td>
+                                                    <td><%out.print(internship.getInternshipSupervisorEmail()); %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right"><b>Field of Study</b></td>
+                                                    <td><%out.print(internship.getInternshipFieldOfStudy()); %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="align-right"><b>Description</b></td>
+                                                    <td><%out.print(internship.getInternshipDescription()); %></td>
+                                                </tr>
+                                                
+                                            </tbody>
+
+                                        </table>
+                                                                             
+                                    </div>                             
+                                </div>
+                                <div class="row">
+                                    <div class="12u 12u(small)">
+                                        <h2 class="align-center">Application Status History</h2>
+                                        <table class="alt align-center">
+                                            <thead>
+                                                <tr>
+                                                    <th class="align-center">#</th>
+                                                    <th class="align-center">Application Status</th>
+                                                    <th class="align-center">Date & Time (YYYY-MM-DD HH:MM:SS)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>pending</td>
+                                                    <td><%out.print(dateTimeList[0]); %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td><%out.print(internship.getInternshipApproval()); %></td>
+                                                    <td><%out.print(dateTimeList[1]); %></td>
+                                                </tr>
+                                            </tbody>   
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="button" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%
+                }}
+                %>
+        
 
             </div>
         </section>

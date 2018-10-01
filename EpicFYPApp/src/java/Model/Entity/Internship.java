@@ -36,8 +36,9 @@ public class Internship {
     private String internshipSupervisorEmail;
     private int internshipVacancy;
     private int internshipPartnerID;
+    private String internshipDatetime;
 
-    public Internship(int internshipID, String internshipName, String internshipApproval, String internshipFieldOfStudy, String internshipDescription, Date internshipStart, Date internshipEnd, double internshipPay, String internshipSupervisor, String internshipSupervisorEmail, int internshipVacancy, int internshipPartnerID) {
+    public Internship(int internshipID, String internshipName, String internshipApproval, String internshipFieldOfStudy, String internshipDescription, Date internshipStart, Date internshipEnd, double internshipPay, String internshipSupervisor, String internshipSupervisorEmail, int internshipVacancy, int internshipPartnerID, String internshipDatetime) {
         this.internshipID = internshipID;
         this.internshipName = internshipName;
         this.internshipApproval = internshipApproval;
@@ -50,6 +51,7 @@ public class Internship {
         this.internshipSupervisorEmail = internshipSupervisorEmail;
         this.internshipVacancy = internshipVacancy;
         this.internshipPartnerID = internshipPartnerID;
+        this.internshipDatetime = internshipDatetime;
     }
 
     public int getInternshipID() {
@@ -147,6 +149,16 @@ public class Internship {
     public void setInternshipPartnerID(int internshipPartnerID) {
         this.internshipPartnerID = internshipPartnerID;
     }
+
+    public String getInternshipDatetime() {
+        return internshipDatetime;
+    }
+
+    public void setInternshipDatetime(String internshipDatetime) {
+        this.internshipDatetime = internshipDatetime;
+    }
+    
+    
 
     
 }

@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="Model.Entity.Trip"%>
 <%@page import="Model.Dao.TripsDAO"%>
 <%@page import="Model.Dao.TripStudentDAO"%>
@@ -183,18 +184,18 @@
                                             ArrayList<TripStudent> t = TripStudentDAO.getTripsByUser(email);
                                             //if student has applied for trips previously
                                             if (!t.isEmpty()) {
+                                                DecimalFormat df2 = new DecimalFormat("#.00");
                                         %>
 
-                                        <table class="align-center">
+                                        <table class="alt align-center">
                                             <thead>
                                                 <tr>
-                                                    <td>Trip ID</td>
-                                                    <td>Trip Title</td>
-                                                    <td>Country</td>
-                                                    <td>Revenue</td>
-                                                    <td>Travel Period</td> 
+                                                    <th class="align-center">Trip ID</th>
+                                                    <th class="align-center">Trip Title</th>
+                                                    <th class="align-center">Country</th>
+                                                    <th class="align-center">Revenue</th>
+                                                    <th class="align-center">Travel Period</th> 
                                                 </tr>
-
                                             </thead>
                                             <tbody>
 
@@ -207,7 +208,7 @@
                                                     <td><%out.print(trip.getTripID());%></td>
                                                     <td><%out.print(trip.getTripTitle());%></td>
                                                     <td><%out.print(trip.getTripCountry());%></td>
-                                                    <td>$ <%out.print(trip.getTripPrice());%></td>
+                                                    <td>$ <%out.print(df2.format(trip.getTripPrice()));%></td>
                                                     <td><%out.print(trip.getTripStart());%> <b>to</b> <%out.print(trip.getTripEnd());%></td>
                                                 </tr>
                                                 <%

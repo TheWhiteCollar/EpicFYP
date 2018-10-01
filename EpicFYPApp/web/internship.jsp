@@ -66,7 +66,7 @@
         </section>
         
         <!-- InternshipAbout -->
-        <section id="internshipabout" class="wrapper style1 align-center">
+        <section id="internshipabout" class="wrapper align-center">
             <div class="container">
 
                 <header class="major">

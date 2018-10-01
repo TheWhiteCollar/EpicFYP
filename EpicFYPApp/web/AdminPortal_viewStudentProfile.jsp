@@ -32,6 +32,91 @@
         <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="css/style-xlarge.css" />
         </noscript>
+        <script>
+            $(function() {
+                $.get('/EpicFYPApp/getAllUsersServlet', function(userJson){
+                    var users = JSON.parse(userJson);
+                     console.log(users);
+                    var userHTML = '<div class="table-wrapper"><table>';
+                    $.each(users, function(index, user) {
+                        userHTML += '<thead><tr><th>User ID : ' + user.userEmail + '</th><th colspan="3">' + user.userFirstName + "</th></tr></thead>";
+                        userHTML += "<tr><td><form class=\"deleteUserServlet\">";
+                        userHTML += "<input style=\"display: none\" type=\"text\" name=\"userEmail\" value=\"" + user.userEmail + "\"/>";
+                        userHTML += "<button class = \"button\" type=\"submit\" id=\"asd" + index + "\">Delete User</button></form></td>";
+                    });
+                    userHTML += '</table></div>';
+                    $("#users").append(userHTML);
+                    
+                    $(".deleteUserServlet").submit(function(event) {
+                        var userEmail = "" + $(this).children("input").val();
+                        var deleteData = {
+                            'email': userEmail
+                        };
+                        
+                        $.post('/EpicFYPApp/deleteUserServlet', deleteData, function (response){
+                            if(response === "success") {
+                                $.notify({
+                                    message: 'Successfully deleted user'
+                                }, {
+                                    type: 'success'
+                                });
+                            } else {
+                                $.notify({
+                                    message: 'Fail to delete user'
+                                }, {
+                                    type: 'danger'
+                                });
+                            }
+                            reloadTable();
+                        })
+                        event.preventDefault();
+                    });
+                });
+                
+                function reloadTable(){
+                    $.get('/EpicFYPApp/getAllUsersServlet', function(userJson){
+                        var users = JSON.parse(userJson);
+                        $("#users").empty();
+                        var userHTML = '<div class="table-wrapper"><table>';
+                        $.each(users, function(index, user) {
+                            userHTML += '<thead><tr><th>User ID : ' + user.userEmail + '</th><th colspan="3">' + user.userFirstName + "</th></tr></thead>";
+                            userHTML += '<tr><td>User last name : ' + user.userLastName + "</td><td> User Phone : " + user.userPhone + "</td>";
+                            userHTML += "<tr><td><form class=\"deleteUser\">";
+                            userHTML += "<input style=\"display: none\" type=\"text\" name=\"userEmail\" value=\"" + user.userEmail + "\"/>";
+                            userHTML += "<button class = \"button\" type=\"submit\" id=\"asd" + index + "\">Delete User</button></form></td>";
+                        });
+                        userHTML += '</table></div>';
+                        $("#users").append(userHTML);
+                    
+                        $(".deleteUserServlet").submit(function(event) {
+                            var userEmail = "" + $(this).children("input").val();
+                            var deleteData = {
+                                'email': userEmail
+                            };
+
+                            $.post('/EpicFYPApp/deleteUserServlet', deleteData, function (response){
+                                if(response === "success") {
+                                    $.notify({
+                                        message: 'Successfully deleted user'
+                                    }, {
+                                        type: 'success'
+                                    });
+                                } else {
+                                    $.notify({
+                                        message: 'Fail to delete user'
+                                    }, {
+                                        type: 'danger'
+                                    });
+                                }
+                                reloadTable();
+                            })
+                            event.preventDefault();
+                        });
+                    });
+                }
+            });
+        </script>
+        
         <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
     </head>
     <body>
@@ -42,12 +127,7 @@
 <!--         Main 
         <section id="main" class="wrapper">
             <div class="container">
-
-                    
-                
-
                  To add filter button 
-
                 <div class ="row uniform 50%">
                     <div class ="6u 12u(xsmall)">
                         <input id="searchBar" type="text" name="searchbar" placeholder="Search for student:"/>
@@ -55,7 +135,6 @@
                     <div class ="2u 12u(xsmall)">
                         <input type="submit">
                     </div>
-
                     <div class ="4u 12u(xsmall)">
                         <% //LocalDate todayDate = java.time.LocalDate.now(); %>
                         <form method="get" action="#">
@@ -68,10 +147,7 @@
         </section>-->
         <section class="wrapper">
             <div class="container">
-                
                 <h2 class="align-center">Students' Profiles</h2>
-                
-                
                 <table class = "alt">
                     <thead>
                         <tr>
@@ -98,6 +174,8 @@
                             <td><% out.print(u.getUserEmail()); %></td>
                             <td class = "align-center"><% out.print(u.getUserPhone()); %></td>
                             <td class = "align-center"><button type="button" class="button" data-toggle="modal" data-target="#myModal<%out.print(i);%>">View</button></td>
+                            
+                            
                         </tr>
                         <%
                                 }
@@ -112,7 +190,6 @@
                             User u = allUsers.get(i);
                             String name = u.getUserFirstName() + " " + u.getUserLastName();
                             String email = u.getUserEmail();
-
                 %>
                 <div class="modal fade" id="myModal<%out.print(i);%>" role="dialog">
                     <div class="modal-dialog modal-lg">
@@ -123,7 +200,6 @@
                             </div>
                             <div class="modal-body">           
                                 <div class ="row">
-
                                     <div class ="4u 12u">
                                         <div align="center"><img src="https://image.flaticon.com/icons/png/512/149/149071.png" class = "avatar-image" alt ="avatar-image" height="80%" width="80%"></div>
 
@@ -210,7 +286,7 @@
                                                     <td><%out.print(trip.getTripCountry());%></td>
                                                     <td>$ <%out.print(df2.format(trip.getTripPrice()));%></td>
                                                     <td><%out.print(trip.getTripStart());%> <b>to</b> <%out.print(trip.getTripEnd());%></td>
-                                                </tr>
+                                                 </tr>
                                                 <%
                                                     }
                                                 %>
@@ -245,3 +321,4 @@
         </section>
     </body>
 </html>
+                           

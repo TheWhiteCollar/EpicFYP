@@ -59,7 +59,7 @@
                     <span onclick="this.parentElement.style.display = 'none'" class="toprightClose">&times</span>
                     <div class="row">
                     <div class="12u 12u(xsmall)">
-                        <table class="alt align-center">
+                        <table class="alt align-center" style="font-size:14px;">
                             <thead>
                                 <tr>
                                     <th class="align-center">#</th>
@@ -109,12 +109,12 @@
                     <span onclick="this.parentElement.style.display='none'" class="toprightClose">&times</span>
                     <div class="row">
                         <div class="12u 12u(xsmall)">
-                            <table class="alt align-center">
+                            <table class="alt align-center" style="font-size:14px;">
                                 <thead>
                                     <tr>
                                         <th class="align-center">#</th>
                                         <th class="align-center">Name</th>
-                                        <th class="align-center">Field of Study</th>
+                                        <th class="align-center">User's Field of Study</th>
                                         <th class="align-center">Status</th>
                                         <th class="align-center">Follow-up</th>
                                         <th class="align-center">Last Updated</th>
@@ -123,7 +123,35 @@
                                 </thead>
                                 <tbody>
                                     <%
-                                        
+                                       ArrayList<InternshipStudent> pendingAdmin = InternshipStudentDAO.getAllPendingAdminInternshipStudents();
+                                        int countPendingAdmin = 0;
+                                    if (pendingAdmin != null) {
+                                        for (int i = 0; i < pendingAdmin.size(); i++) {
+                                            InternshipStudent ci = pendingAdmin.get(i);
+                                            User user = UserDAO.getUser(ci.getInternshipUserEmail());
+                                            
+                                            countPendingAdmin += 1;
+                                            
+                                            String lastUpdatedString = ci.getInternshipStudentLastUpdate();
+                                            String reformattedStr = myFormat.format(fromDB.parse(lastUpdatedString));
+                                            
+                                            
+                                            String[] statusFollowupList = ci.getInternshipStudentStatus().split("\\s*,\\s*");
+                                            String lastStatus = statusFollowupList[statusFollowupList.length-1];
+                                            String[] statusFollowup = lastStatus.split("\\s*-\\s*");
+                                    %>
+                                    <tr>
+                                        <td><%out.print(countPendingAdmin);%></td>
+                                        <td><%out.print(user.getUserFirstName());%> <%out.print(user.getUserLastName());%></td>
+                                        <td><%out.print(user.getUserFieldOfStudy());%></td>
+                                        <td><%out.print(statusFollowup[0]);%></td>
+                                        <td><%out.print(statusFollowup[1]);%></td>
+                                        <td><%out.print(reformattedStr);%></td>
+                                        <td><button type="button" class="button" data-toggle="modal" data-target="#myModalPendingAdmin<%out.print(i);%>">View</button></td>
+
+                                    </tr>
+                                    <%
+                                    }}
                                     %>
                                 </tbody>
                             </table>
@@ -135,12 +163,12 @@
                     <span onclick="this.parentElement.style.display='none'" class="toprightClose">&times</span>
                     <div class="row">
                         <div class="12u 12u(xsmall)">
-                            <table class="alt align-center">
+                            <table class="alt align-center" style="font-size:14px;">
                                 <thead>
                                     <tr>
                                         <th class="align-center">#</th>
                                         <th class="align-center">Name</th>
-                                        <th class="align-center">Field of Study</th>
+                                        <th class="align-center">User's Field of Study</th>
                                         <th class="align-center">Status</th>
                                         <th class="align-center">Follow-up</th>
                                         <th class="align-center">Last Updated</th>
@@ -149,7 +177,35 @@
                                 </thead>
                                 <tbody>
                                     <%
-                                        
+                                       ArrayList<InternshipStudent> pendingUser = InternshipStudentDAO.getAllPendingUserInternshipStudents();
+                                        int countPendingUser = 0;
+                                    if (pendingUser != null) {
+                                        for (int i = 0; i < pendingUser.size(); i++) {
+                                            InternshipStudent ci = pendingUser.get(i);
+                                            User user = UserDAO.getUser(ci.getInternshipUserEmail());
+                                            
+                                            countPendingUser += 1;
+                                            
+                                            String lastUpdatedString = ci.getInternshipStudentLastUpdate();
+                                            String reformattedStr = myFormat.format(fromDB.parse(lastUpdatedString));
+                                            
+                                            
+                                            String[] statusFollowupList = ci.getInternshipStudentStatus().split("\\s*,\\s*");
+                                            String lastStatus = statusFollowupList[statusFollowupList.length-1];
+                                            String[] statusFollowup = lastStatus.split("\\s*-\\s*");
+                                    %>
+                                    <tr>
+                                        <td><%out.print(countPendingUser);%></td>
+                                        <td><%out.print(user.getUserFirstName());%> <%out.print(user.getUserLastName());%></td>
+                                        <td><%out.print(user.getUserFieldOfStudy());%></td>
+                                        <td><%out.print(statusFollowup[0]);%></td>
+                                        <td><%out.print(statusFollowup[1]);%></td>
+                                        <td><%out.print(reformattedStr);%></td>
+                                        <td><button type="button" class="button" data-toggle="modal" data-target="#myModalPendingAdmin<%out.print(i);%>">View</button></td>
+
+                                    </tr>
+                                    <%
+                                    }}
                                     %>
                                 </tbody>
                             </table>
@@ -161,7 +217,7 @@
                     <span onclick="this.parentElement.style.display='none'" class="toprightClose">&times</span>
                     <div class="row">
                         <div class="12u 12u(xsmall)">
-                            <table class="alt align-center">
+                            <table class="alt align-center" style="font-size:14px;">
                                 <thead>
                                     <tr>
                                         <th class="align-center">#</th>
@@ -173,7 +229,32 @@
                                 </thead>
                                 <tbody>
                                     <%
-                                        
+                                       ArrayList<InternshipStudent> rejectedInternship = InternshipStudentDAO.getAllRejectedInternshipStudents();
+                                        int countRejected = 0;
+                                    if (rejectedInternship != null) {
+                                        for (int i = 0; i < rejectedInternship.size(); i++) {
+                                            InternshipStudent ci = rejectedInternship.get(i);
+                                            User user = UserDAO.getUser(ci.getInternshipUserEmail());
+                                            
+                                            countRejected += 1;
+                                            
+                                            String lastUpdatedString = ci.getInternshipStudentLastUpdate();
+                                            String reformattedStr = myFormat.format(fromDB.parse(lastUpdatedString));
+                                            
+                                            
+                                            String[] statusFollowupList = ci.getInternshipStudentStatus().split("\\s*,\\s*");
+                                            String lastStatus = statusFollowupList[statusFollowupList.length-1];
+                                    %>
+                                    <tr>
+                                        <td><%out.print(countRejected);%></td>
+                                        <td><%out.print(user.getUserFirstName());%> <%out.print(user.getUserLastName());%></td>
+                                        <td><%out.print(lastStatus);%></td>
+                                        <td><%out.print(reformattedStr);%></td>
+                                        <td><button type="button" class="button" data-toggle="modal" data-target="#myModalPendingAdmin<%out.print(i);%>">View</button></td>
+
+                                    </tr>
+                                    <%
+                                    }}
                                     %>
                                 </tbody>
                             </table>
@@ -186,19 +267,44 @@
                     <span onclick="this.parentElement.style.display='none'" class="toprightClose">&times</span>
                     <div class="row">
                         <div class="12u 12u(xsmall)">
-                            <table class="alt align-center">
+                            <table class="alt align-center" style="font-size:14px;">
                                 <thead>
                                     <tr>
                                         <th class="align-center">#</th>
                                         <th class="align-center">Name</th>
-                                        <th class="align-center">Partner Name</th>
+                                        <th class="align-center">Partner - Internship Name</th>
                                         <th class="align-center">Last Updated</th>
                                         <th class="align-center">More Info</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <%
-                                        
+                                       ArrayList<InternshipStudent> cancelledInternship = InternshipStudentDAO.getAllCancelledInternshipStudents();
+                                        int countCancelled = 0;
+                                    if (cancelledInternship != null) {
+                                        for (int i = 0; i < cancelledInternship.size(); i++) {
+                                            InternshipStudent ci = cancelledInternship.get(i);
+                                            User user = UserDAO.getUser(ci.getInternshipUserEmail());
+                                            int internshipID = ci.getInternshipID();
+                                            Internship internship = InternshipDAO.getInternshipByID(internshipID);
+                                            Partner partner = PartnerDAO.getPartnerByID(internshipID);
+                                            
+                                            countCancelled += 1;
+                                            
+                                            String lastUpdatedString = ci.getInternshipStudentLastUpdate();
+                                            String reformattedStr = myFormat.format(fromDB.parse(lastUpdatedString));
+                                            
+                                    %>
+                                    <tr>
+                                        <td><%out.print(countCancelled);%></td>
+                                        <td><%out.print(user.getUserFirstName());%> <%out.print(user.getUserLastName());%></td>
+                                        <td><b><%out.print(partner.getPartnerName());%></b> - <%out.print(internship.getInternshipName());%></td>
+                                        <td><%out.print(reformattedStr);%></td>
+                                        <td><button type="button" class="button" data-toggle="modal" data-target="#myModalPendingAdmin<%out.print(i);%>">View</button></td>
+
+                                    </tr>
+                                    <%
+                                    }}
                                     %>
                                 </tbody>
                             </table>

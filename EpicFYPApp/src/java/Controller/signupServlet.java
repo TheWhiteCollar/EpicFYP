@@ -7,6 +7,18 @@ package Controller;
 
 import Model.Dao.UserDAO;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Properties;
+import javax.mail.Address;
+import javax.mail.Message;
+import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,6 +44,9 @@ public class signupServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        PrintWriter out = response.getWriter();
+        response.setContentType("text/html");
+
         // retrieve user input
         String userEmail = request.getParameter("email");
         String userFirstName = request.getParameter("firstName");
@@ -52,16 +67,16 @@ public class signupServlet extends HttpServlet {
         String userResume = "MyResume.pdf";
         String userIsEmailConfirm = "pending"; // by right should be boolean
         String userHighestEducation = request.getParameter("highest_qualification");
-        
+
         String[] fos = request.getParameterValues("fos");
-        String userFieldOfStudy ="";
-        for(int i = 0; i < fos.length; i ++){
-            userFieldOfStudy += ""+ fos[i];
-            if(i != fos.length-1){
-                userFieldOfStudy += ", ";   
-            }       
+        String userFieldOfStudy = "";
+        for (int i = 0; i < fos.length; i++) {
+            userFieldOfStudy += "" + fos[i];
+            if (i != fos.length - 1) {
+                userFieldOfStudy += ", ";
+            }
         }
-        
+
         String userDescription = request.getParameter("message");
         String userSchool = request.getParameter("school");
 
@@ -72,8 +87,49 @@ public class signupServlet extends HttpServlet {
             Boolean inserted = UserDAO.addUser(userEmail, userFirstName, userLastName, userPhone, userGender, userCitizenship, yearOfBirth, userProfilePic, userInterest, userPassword, userOccupation, userResume, userIsEmailConfirm, userHighestEducation, userFieldOfStudy, userDescription, userSchool);
 
             if (inserted == true) {
-                response.sendRedirect("successMessage.jsp?message=signup");
-                return;
+
+                // send email
+                // our email details
+                final String ourEmail = "smuis480@gmail.com";
+                final String ourPassword = "wecandothistgt";
+
+                // configuration for gmails
+                Properties props = System.getProperties();
+                props.put("mail.smtp.auth", true);
+                props.put("mail.smtp.starttls.enable", true);
+                props.put("mail.smtp.host", "smtp.gmail.com");
+                props.put("mail.smtp.port", "587");
+                props.put("mail.smtp.user", ourEmail);
+                props.put("mail.smtp.password", ourPassword);
+                props.put("mail.smtp.auth", "true");
+
+                Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+                    @Override
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(ourEmail, ourPassword);
+                    }
+                });
+
+                try {
+                    Message message = new MimeMessage(session);
+                    message.setFrom(new InternetAddress(ourEmail));
+                    Address toAddress = new InternetAddress(userEmail);
+                    message.setRecipient(Message.RecipientType.TO, toAddress);
+                    MimeBodyPart textPart = new MimeBodyPart();
+                    Multipart multipart = new MimeMultipart();
+                    String final_Text = "Hello, please verify your account: http://18.191.179.30/EpicFYPApp/accountConfirmationServlet?userEmail=" + userEmail;
+                    textPart.setText(final_Text);
+                    multipart.addBodyPart(textPart);
+                    message.setContent(multipart);
+                    message.setSubject("Password Reset");
+                    Transport.send(message);
+                    // After reset email is successfully change
+                    request.setAttribute("successMessage", "You have signed up successfully. An email have been sent to you for verification.");
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
+                    return;
+                } catch (Exception e) {
+                    out.println(e);
+                }
             } else {
                 response.sendRedirect("signuppage.jsp");
                 return;

@@ -76,6 +76,10 @@
         <servlet-name>resetPassword</servlet-name>
         <servlet-class>Controller.resetPassword</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>accountConfirmation</servlet-name>
+        <servlet-class>Controller.accountConfirmationServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TripsDAO</servlet-name>
         <url-pattern>/TripsDAO</url-pattern>
@@ -151,6 +155,10 @@
     <servlet-mapping>
         <servlet-name>resetPassword</servlet-name>
         <url-pattern>/resetPassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>accountConfirmationServlet</servlet-name>
+        <url-pattern>/accountConfirmationServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

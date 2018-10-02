@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="Model.Entity.Trip"%>
 <%@page import="Model.Dao.TripsDAO"%>
@@ -261,6 +262,7 @@
                                             //if student has applied for trips previously
                                             if (!t.isEmpty()) {
                                                 DecimalFormat df2 = new DecimalFormat("#.00");
+                                                
                                         %>
 
                                         <table class="alt align-center">
@@ -279,13 +281,17 @@
                                                     for (int x = 0; x < t.size(); x++) {
                                                         TripStudent tripx = t.get(x);
                                                         Trip trip = TripsDAO.getTrip(tripx.getTripID());
+                                                        SimpleDateFormat myFormat = new SimpleDateFormat("dd MMMM yyyy");
+                                
+                                                        String tripStart = myFormat.format(trip.getTripStart());
+                                                        String tripEnd = myFormat.format(trip.getTripEnd());
                                                 %>
                                                 <tr>
                                                     <td><%out.print(trip.getTripID());%></td>
                                                     <td><%out.print(trip.getTripTitle());%></td>
                                                     <td><%out.print(trip.getTripCountry());%></td>
                                                     <td>$ <%out.print(df2.format(trip.getTripPrice()));%></td>
-                                                    <td><%out.print(trip.getTripStart());%> <b>to</b> <%out.print(trip.getTripEnd());%></td>
+                                                    <td><%out.print(tripStart);%> <b>to</b> <%out.print(tripEnd);%></td>
                                                  </tr>
                                                 <%
                                                     }

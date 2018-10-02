@@ -53,7 +53,7 @@ public class InternshipDAO {
     //reduce vacancy by 1 - update internship
     public static boolean updateInternshipVacancyDecrease(int internshipID) {
 
-        String sql = "UPDATE internship SET internshipVacancy=?WHERE internshipID=?";
+        String sql = "UPDATE internship SET internshipVacancy=? WHERE internshipID=?";
 
         try (Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
@@ -77,7 +77,7 @@ public class InternshipDAO {
     //increase vacancy by 1 - update internship
     public static boolean updateInternshipVacancyIncrease(int internshipID) {
 
-        String sql = "UPDATE internship SET internshipVacancy=?WHERE internshipID=?";
+        String sql = "UPDATE internship SET internshipVacancy=? WHERE internshipID=?";
 
         try (Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {

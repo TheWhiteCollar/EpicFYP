@@ -129,7 +129,7 @@
                 </header>
 
                 <div class="tab">
-                    <button class="tablinks" onclick="openUser(event, 'filter')">More filtering options:</button>      
+                    <button class="tablinks icon fa-filter" onclick="openUser(event, 'filter')"> Filtering Options</button>      
                 </div>
 
 

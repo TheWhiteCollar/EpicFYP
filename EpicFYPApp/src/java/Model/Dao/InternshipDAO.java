@@ -49,6 +49,54 @@ public class InternshipDAO {
         }
         return true;
     }
+    
+    //reduce vacancy by 1 - update internship
+    public static boolean updateInternshipVacancyDecrease(int internshipID) {
+
+        String sql = "UPDATE internship SET internshipVacancy=?WHERE internshipID=?";
+
+        try (Connection conn = ConnectionManager.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
+            
+            Internship internship = getInternshipByID(internshipID);
+            int dec = internship.getInternshipVacancy() - 1;
+            
+            stmt.setInt(1, dec);
+            stmt.setInt(2, internshipID);
+
+            int result = stmt.executeUpdate();
+            if (result == 0) {
+                return false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(InternshipDAO.class.getName()).log(Level.WARNING, "Failed to decrease by 1", ex);
+        }
+        return true;
+    }
+    
+    //increase vacancy by 1 - update internship
+    public static boolean updateInternshipVacancyIncrease(int internshipID) {
+
+        String sql = "UPDATE internship SET internshipVacancy=?WHERE internshipID=?";
+
+        try (Connection conn = ConnectionManager.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
+            
+            Internship internship = getInternshipByID(internshipID);
+            int inc = internship.getInternshipVacancy() + 1;
+            
+            stmt.setInt(1, inc);
+            stmt.setInt(2, internshipID);
+
+            int result = stmt.executeUpdate();
+            if (result == 0) {
+                return false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(InternshipDAO.class.getName()).log(Level.WARNING, "Failed to decrease by 1", ex);
+        }
+        return true;
+    }
 
     // Add existing parnter/bulk new parnters
     public static boolean addInternship(int internshipID, String internshipName, String internshipApproval, String internshipFieldOfStudy, String internshipDescription, Date internshipStart, Date internshipEnd, double internshipPay, String internshipSupervisor, String internshipSupervisorEmail, int internshipVacancy, int internshipPartnerID) {
@@ -193,4 +241,7 @@ public class InternshipDAO {
         }
         return true;
     }
+    
+    
+    
 }

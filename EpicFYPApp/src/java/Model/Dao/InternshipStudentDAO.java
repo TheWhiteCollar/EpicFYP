@@ -66,7 +66,8 @@ public class InternshipStudentDAO {
         return true;
     }
     
-    //assigning an internship (unassigned to internship) - to use with status update
+    //assigning an internship (unassigned to internship) - to use with status update 
+    //*vacancy will automatically decrease
     public static boolean updateInternshipStudentInternshipAssignment(String internshipUserEmail, String internshipStudentContinent, int internshipID) {
 
         String sql = "UPDATE internshipstudent SET internshipID=? WHERE internshipUserEmail=? AND internshipStudentContinent=? AND internshipStudentCycle='processing'";
@@ -86,10 +87,14 @@ public class InternshipStudentDAO {
         } catch (SQLException ex) {
             Logger.getLogger(InternshipStudentDAO.class.getName()).log(Level.WARNING, "Failed to update new internshipStudent information", ex);
         }
+        
+        InternshipDAO.updateInternshipVacancyDecrease(internshipID);
+        
         return true;
     }
     
     //change internship assignment after processCycle is completed (to use with status update)
+    // auto increase one vacancy to old internship, decrease vacancy to new internship
     public static boolean updateInternshipStudentChangeInternshipAssignment(String internshipUserEmail, String internshipStudentContinent, int oldInternshipID,int newInternshipID) {
 
         String sql = "UPDATE internshipstudent SET internshipID=? WHERE internshipUserEmail=? AND internshipStudentContinent=? AND internshipID=?";
@@ -102,7 +107,6 @@ public class InternshipStudentDAO {
             stmt.setString(3, internshipStudentContinent);
             stmt.setInt(4, oldInternshipID);
             
-
             int result = stmt.executeUpdate();
             if (result == 0) {
                 return false;
@@ -110,22 +114,27 @@ public class InternshipStudentDAO {
         } catch (SQLException ex) {
             Logger.getLogger(InternshipStudentDAO.class.getName()).log(Level.WARNING, "Failed to update new internshipStudent information", ex);
         }
+        
+        InternshipDAO.updateInternshipVacancyDecrease(newInternshipID);
+        InternshipDAO.updateInternshipVacancyIncrease(oldInternshipID);
+        
         return true;
     }
     
-    //cancel internship assignment after processCycle is complete (to use with status update)
-    public static boolean updateInternshipStudentCancelInternshipAssignment(String internshipUserEmail, String internshipStudentContinent, int oldInternshipID,int newInternshipID) {
+    //cancel internship after processCycle is complete (to use with status update)
+    //auto increase one vacancy
+    public static boolean updateInternshipStudentCancelInternshipAssignment(String internshipUserEmail, String internshipStudentContinent, int internshipID) {
 
-        String sql = "UPDATE internshipstudent SET internshipID=?, internshipStudentAction=? WHERE internshipUserEmail=? AND internshipStudentContinent=? AND internshipID=?";
+        String sql = "UPDATE internshipstudent SET internshipStudentAction=? WHERE internshipUserEmail=? AND internshipStudentContinent=? AND internshipID=?";
 
         try (Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
 
-            stmt.setInt(1, 0);
-            stmt.setInt(2, 4);
-            stmt.setString(3, internshipUserEmail);
-            stmt.setString(4, internshipStudentContinent);
-            stmt.setInt(5, oldInternshipID);
+           
+            stmt.setInt(1, 4);
+            stmt.setString(2, internshipUserEmail);
+            stmt.setString(3, internshipStudentContinent);
+            stmt.setInt(4, internshipID);
             
 
             int result = stmt.executeUpdate();
@@ -135,6 +144,9 @@ public class InternshipStudentDAO {
         } catch (SQLException ex) {
             Logger.getLogger(InternshipStudentDAO.class.getName()).log(Level.WARNING, "Failed to update new internshipStudent information", ex);
         }
+        
+        InternshipDAO.updateInternshipVacancyIncrease(internshipID);
+        
         return true;
     }
 

@@ -188,7 +188,7 @@ INSERT INTO `internship` (`internshipID`, `internshipName`, `internshipApproval`
 CREATE TABLE IF NOT EXISTS `internshipstudent` (
   `internshipID` int(11) NOT NULL,
   `internshipUserEmail` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `internshipStudentStatus` varchar(300) NOT NULL,
+  `internshipStudentStatus` varchar(410) NOT NULL,
   `internshipStudentContinent` varchar(15) NOT NULL,
   `internshipStudentDatetime` varchar(160) NOT NULL,
   `internshipStudentAction` int(1) NOT NULL,
@@ -204,11 +204,11 @@ CREATE TABLE IF NOT EXISTS `internshipstudent` (
 --
 
 INSERT INTO `internshipstudent` (`internshipID`, `internshipUserEmail`, `internshipStudentStatus`, `internshipStudentContinent`,`internshipStudentDatetime`, `internshipStudentAction`, `internshipStudentCycle`, `internshipStudentLastUpdate`) VALUES
-(0, 'mediani.2015@sis.smu.edu.sg', 'user applied - pending admin confirmation, admin accepted - pending user confirmation', 'Asia','2018-04-05 12:32:21, 2018-04-10 08:34:54', 2, 'processing' , '2018-04-10 08:34:54'),
-(0, 'rachael.low.2015@sis.smu.edu.sg', 'user applied - pending admin confirmation', 'Asia','2018-10-02 12:32:21', 1, 'processing' , '2018-10-02 12:32:21'),
-(0, 'rachael.low.2015@sis.smu.edu.sg', 'user applied - pending admin confirmation, admin accepted - pending user confirmation, user withdraws application', 'Europe','2018-04-05 12:32:21, 2018-04-10 08:34:54, 2018-04-15 07:02:10', 0, 'done', '2018-04-15 07:02:10'),
-(1, 'xiuwen.yeo@gmail.com', 'user applied - pending admin confirmation, admin accepted - pending user confirmation, user accepted - admin to schedule interview, Interview scheduled - pending interview, interview completed - pending admin review, admin accepted - pending user acceptance, internship accepted', 'Asia','2018-04-05 12:32:21, 2018-04-10 08:34:54, 2018-04-15 09:20:54, 2018-04-20 06:34:54, 2018-04-25 08:12:09, 2018-04-26 10:50:54, 2018-05-03 19:02:54', 3, 'done', '2018-05-03 19:02:54'),
-(2, 'yijing.oon.2015@smu.edu.sg', 'user applied - pending admin confirmation, admin accepted - pending user confirmation, user accepted - admin to schedule interview, Interview scheduled - pending interview, interview completed - pending admin review, admin accepted - pending user acceptance, internship accepted, internship cancelled', 'Asia','2018-04-05 12:32:21, 2018-04-10 08:34:54, 2018-04-15 09:20:54, 2018-04-20 06:34:54, 2018-04-25 08:12:09, 2018-04-26 10:50:54, 2018-05-03 19:02:54, 2018-05-10 08:34:54', 4, 'done', '2018-05-10 08:34:54');
+(0, 'mediani.2015@sis.smu.edu.sg', 'User submitted application - Admin to review application, Admin approves application- Send email with internship details for interest confirmation', 'Asia','2018-04-05 12:32:21, 2018-04-10 08:34:54', 2, 'processing' , '2018-04-10 08:34:54'),
+(0, 'rachael.low.2015@sis.smu.edu.sg', 'User submitted application - Admin to review application', 'Asia','2018-10-02 12:32:21', 1, 'processing' , '2018-10-02 12:32:21'),
+(0, 'rachael.low.2015@sis.smu.edu.sg', 'User submitted application - Admin to review application, Admin approves application- Send email with internship details for interest confirmation, Application withdraws. No interview scheduled', 'Europe','2018-04-05 12:32:21, 2018-04-10 08:34:54, 2018-04-15 07:02:10', 0, 'done', '2018-04-15 07:02:10'),
+(1, 'xiuwen.yeo@gmail.com', 'User submitted application - Admin to review application, Admin approves application- Send email with internship details for interest confirmation, User accepts - Send email to schedule interview, Interview scheduled - Pending interview, Interview completed - Send email about interview results, Internship offered - Pending user internship acceptance, User accepted internship offer', 'Asia','2018-04-05 12:32:21, 2018-04-10 08:34:54, 2018-04-15 09:20:54, 2018-04-20 06:34:54, 2018-04-25 08:12:09, 2018-04-26 10:50:54, 2018-05-03 19:02:54', 3, 'done', '2018-05-03 19:02:54'),
+(2, 'yijing.oon.2015@smu.edu.sg', 'User submitted application - Admin to review application, Admin approves application- Send email with internship details for interest confirmation, User accepts - Send email to schedule interview, Interview scheduled - Pending interview, Interview completed - Send email about interview results, Internship offered - Pending user internship acceptance, User accepted internship offer, Internship Cancelled', 'Asia','2018-04-05 12:32:21, 2018-04-10 08:34:54, 2018-04-15 09:20:54, 2018-04-20 06:34:54, 2018-04-25 08:12:09, 2018-04-26 10:50:54, 2018-05-03 19:02:54, 2018-05-10 08:34:54', 4, 'done', '2018-05-10 08:34:54');
 
 -- --------------------------------------------------------
 

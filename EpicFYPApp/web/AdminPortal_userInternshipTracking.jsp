@@ -54,7 +54,7 @@
                     <button class="tablinks" onclick="openUser(event, 'cancelled')">Cancelled</button>
                 </div>
                 
-                
+                <!--tabs' content 1.confirmed 2.pendingAdmin 3.pendingUser 4.Rejected 5.Cancelled-->
                 <div id="confirmed" class="tabcontent">
                     <span onclick="this.parentElement.style.display = 'none'" class="toprightClose">&times</span>
                     <div class="row">
@@ -201,7 +201,7 @@
                                         <td><%out.print(statusFollowup[0]);%></td>
                                         <td><%out.print(statusFollowup[1]);%></td>
                                         <td><%out.print(reformattedStr);%></td>
-                                        <td><button type="button" class="button" data-toggle="modal" data-target="#myModalPendingAdmin<%out.print(i);%>">View</button></td>
+                                        <td><button type="button" class="button" data-toggle="modal" data-target="#myModalPendingUser<%out.print(i);%>">View</button></td>
 
                                     </tr>
                                     <%
@@ -250,7 +250,7 @@
                                         <td><%out.print(user.getUserFirstName());%> <%out.print(user.getUserLastName());%></td>
                                         <td><%out.print(lastStatus);%></td>
                                         <td><%out.print(reformattedStr);%></td>
-                                        <td><button type="button" class="button" data-toggle="modal" data-target="#myModalPendingAdmin<%out.print(i);%>">View</button></td>
+                                        <td><button type="button" class="button" data-toggle="modal" data-target="#myModalRejected<%out.print(i);%>">View</button></td>
 
                                     </tr>
                                     <%
@@ -300,7 +300,7 @@
                                         <td><%out.print(user.getUserFirstName());%> <%out.print(user.getUserLastName());%></td>
                                         <td><b><%out.print(partner.getPartnerName());%></b> - <%out.print(internship.getInternshipName());%></td>
                                         <td><%out.print(reformattedStr);%></td>
-                                        <td><button type="button" class="button" data-toggle="modal" data-target="#myModalPendingAdmin<%out.print(i);%>">View</button></td>
+                                        <td><button type="button" class="button" data-toggle="modal" data-target="#myModalCancelled<%out.print(i);%>">View</button></td>
 
                                     </tr>
                                     <%
@@ -312,8 +312,8 @@
                     </div>
                 </div>                
                
-
-<!--                <div class="modal fade" id="myModal<%//out.print(i);%>" role="dialog">
+            <!--modal box content: 1.confirmed 2.pendingAdmin 3.pendingUser 4.Rejected 5.Cancelled-->
+                <div class="modal fade" id="myModalConfirmed<%//out.print(i);%>" role="dialog">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -363,7 +363,7 @@
                         </div>
                     </div>
                 </div>
-        -->
+        
 
             </div>
         </section>

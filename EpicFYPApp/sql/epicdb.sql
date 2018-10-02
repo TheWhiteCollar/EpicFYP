@@ -188,21 +188,27 @@ INSERT INTO `internship` (`internshipID`, `internshipName`, `internshipApproval`
 CREATE TABLE IF NOT EXISTS `internshipstudent` (
   `internshipID` int(11) NOT NULL,
   `internshipUserEmail` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `internshipStudentStatus` varchar(100) NOT NULL,
-  `internshipStudentContinent` varchar(100) NOT NULL,
-  `internshipStudentDatetime` datetime NOT NULL,
-  PRIMARY KEY (`internshipUserEmail`,`internshipStudentContinent`,`internshipStudentStatus`,`internshipStudentDatetime`),
-  KEY `internshipUserEmail` (`internshipUserEmail`)
+  `internshipStudentStatus` varchar(300) NOT NULL,
+  `internshipStudentContinent` varchar(15) NOT NULL,
+  `internshipStudentDatetime` varchar(160) NOT NULL,
+  `internshipStudentAction` int(1) NOT NULL,
+  `internshipStudentCycle` varchar(10) NOT NULL,
+  `internshipStudentLastUpdate` datetime NOT NULL,
+  PRIMARY KEY (`internshipUserEmail`,`internshipStudentContinent`,`internshipStudentCycle`,`internshipStudentLastUpdate`),
+  KEY `internshipUserEmail` (`internshipUserEmail`),
+  KEY `internshipID` (`internshipID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `internshipstudent`
 --
 
-INSERT INTO `internshipstudent` (`internshipID`, `internshipUserEmail`, `internshipStudentStatus`, `internshipStudentContinent`,`internshipStudentDatetime`) VALUES
-(1, 'mediani.2015@sis.smu.edu.sg', 'approved', 'Asia','2018-09-10 00:08:12'),
-(0, 'rachael.low.2015@sis.smu.edu.sg', 'applied', 'Asia','2018-09-10 00:08:12'),
-(0, 'rachael.low.2015@sis.smu.edu.sg', 'applied', 'America','2018-09-10 00:08:12');
+INSERT INTO `internshipstudent` (`internshipID`, `internshipUserEmail`, `internshipStudentStatus`, `internshipStudentContinent`,`internshipStudentDatetime`, `internshipStudentAction`, `internshipStudentCycle`, `internshipStudentLastUpdate`) VALUES
+(0, 'mediani.2015@sis.smu.edu.sg', 'user applied - pending admin confirmation, admin accepted - pending user confirmation', 'Asia','2018-04-05 12:32:21, 2018-04-10 08:34:54', 2, 'processing' , '2018-04-10 08:34:54'),
+(0, 'rachael.low.2015@sis.smu.edu.sg', 'user applied - pending admin confirmation', 'Asia','2018-10-02 12:32:21', 1, 'processing' , '2018-10-02 12:32:21'),
+(0, 'rachael.low.2015@sis.smu.edu.sg', 'user applied - pending admin confirmation, admin accepted - pending user confirmation, user withdraws application', 'Europe','2018-04-05 12:32:21, 2018-04-10 08:34:54, 2018-04-15 07:02:10', 0, 'done', '2018-04-15 07:02:10'),
+(0, 'xiuwen.yeo@gmail.com', 'user applied - pending admin confirmation, admin accepted - pending user confirmation, user accepted - admin to schedule interview, Interview scheduled - pending interview, interview completed - pending admin review, admin accepted - pending user acceptance, internship accepted', 'Asia','2018-04-05 12:32:21, 2018-04-10 08:34:54, 2018-04-15 09:20:54, 2018-04-20 06:34:54, 2018-04-25 08:12:09, 2018-04-26 10:50:54, 2018-05-03 19:02:54', 3, 'done', '2018-05-03 19:02:54'),
+(0, 'yijing.oon.2015@smu.edu.sg', 'user applied - pending admin confirmation, admin accepted - pending user confirmation, user accepted - admin to schedule interview, Interview scheduled - pending interview, interview completed - pending admin review, admin accepted - pending user acceptance, internship accepted, internship cancelled', 'Asia','2018-04-05 12:32:21, 2018-04-10 08:34:54, 2018-04-15 09:20:54, 2018-04-20 06:34:54, 2018-04-25 08:12:09, 2018-04-26 10:50:54, 2018-05-03 19:02:54, 2018-05-10 08:34:54', 4, 'done', '2018-05-10 08:34:54');
 
 -- --------------------------------------------------------
 
@@ -368,7 +374,8 @@ ALTER TABLE `internship`
 -- Constraints for table `internshipstudent`
 --
 ALTER TABLE `internshipstudent`
-  ADD CONSTRAINT `internshipstudent_fk1` FOREIGN KEY (`internshipUserEmail`) REFERENCES `user` (`userEmail`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `internshipstudent_fk1` FOREIGN KEY (`internshipUserEmail`) REFERENCES `user` (`userEmail`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `internshipstudent_fk2` FOREIGN KEY (`internshipID`) REFERENCES `internship` (`internshipID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tripstudent`

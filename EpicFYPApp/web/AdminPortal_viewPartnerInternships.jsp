@@ -1,3 +1,5 @@
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="Model.Entity.Internship"%>
 <%@page import="Model.Dao.InternshipDAO"%>
 <%@page import="java.time.LocalDate"%>
@@ -180,6 +182,9 @@
                
                 <!--modal box content: 1.approved 2.pending 3.rejected-->
                 <%
+                SimpleDateFormat fromDB = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                SimpleDateFormat myFormat = new SimpleDateFormat("dd MMMM yyyy , HH:mm a");
+                DecimalFormat df2 = new DecimalFormat("#.00");
                 if (!approvedInternships.isEmpty()) {
                     for (int i = 0; i < approvedInternships.size(); i++) {
                         Internship internship = approvedInternships.get(i);
@@ -187,7 +192,12 @@
                         
                         String dateTimes = internship.getInternshipDatetime();
                         String[] dateTimeList = dateTimes.split("\\s*,\\s*");
+                        String date1 = dateTimeList[1];
+                        String date0 = dateTimeList[0];
+
                         
+                        String reformattedStr1 = myFormat.format(fromDB.parse(date1));
+                        String reformattedStr0 = myFormat.format(fromDB.parse(date0));
                                       
                 %>
                 <div class="modal fade" id="myModalApproved<%out.print(i);%>" role="dialog">
@@ -226,7 +236,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="align-right"><b>Salary</b></td>
-                                                    <td><%out.print(internship.getInternshipPay()); %></td>
+                                                    <td>$ <%out.print(df2.format(internship.getInternshipPay())); %></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="align-right"><b>Vacancy</b></td>
@@ -263,19 +273,19 @@
                                                 <tr>
                                                     <th class="align-center">#</th>
                                                     <th class="align-center">Application Status</th>
-                                                    <th class="align-center">Date & Time (YYYY-MM-DD HH:MM:SS)</th>
+                                                    <th class="align-center">Date & Time</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
                                                     <td>1</td>
                                                     <td>Approved</td>
-                                                    <td><%out.print(dateTimeList[1]); %></td>
+                                                    <td><%out.print(reformattedStr1); %></td>
                                                 </tr>
                                                 <tr>
                                                     <td>2</td>
                                                     <td>Pending</td>
-                                                    <td><%out.print(dateTimeList[0]); %></td>
+                                                    <td><%out.print(reformattedStr0); %></td>
                                                 </tr>
                                                 
                                             </tbody>   
@@ -339,7 +349,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="align-right"><b>Salary</b></td>
-                                                    <td><%out.print(internship.getInternshipPay()); %></td>
+                                                    <td>$ <%out.print(df2.format(internship.getInternshipPay())); %></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="align-right"><b>Vacancy</b></td>
@@ -376,14 +386,14 @@
                                                 <tr>
                                                     <th class="align-center">#</th>
                                                     <th class="align-center">Application Status</th>
-                                                    <th class="align-center">Date & Time (YYYY-MM-DD HH:MM:SS)</th>
+                                                    <th class="align-center">Date & Time</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
                                                     <td>1</td>
-                                                    <td>Pending</td>
-                                                    <td><%out.print(internship.getInternshipDatetime()); %></td>
+                                                    <td>Pending</td> 
+                                                    <td><%out.print(myFormat.format(fromDB.parse(internship.getInternshipDatetime()))); %></td>
                                                 </tr>
                                             </tbody>   
                                         </table>
@@ -409,7 +419,11 @@
                         
                         String dateTimes = internship.getInternshipDatetime();
                         String[] dateTimeList = dateTimes.split("\\s*,\\s*");
-                        
+                        String date1 = dateTimeList[1];
+                        String date0 = dateTimeList[0];
+
+                        String reformattedStr1 = myFormat.format(fromDB.parse(date1));
+                        String reformattedStr0 = myFormat.format(fromDB.parse(date0));
                                       
                 %>
                 <div class="modal fade" id="myModalRejected<%out.print(i);%>" role="dialog">
@@ -448,7 +462,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="align-right"><b>Salary</b></td>
-                                                    <td><%out.print(internship.getInternshipPay()); %></td>
+                                                    <td>$ <%out.print(df2.format(internship.getInternshipPay())); %></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="align-right"><b>Vacancy</b></td>
@@ -485,19 +499,19 @@
                                                 <tr>
                                                     <th class="align-center">#</th>
                                                     <th class="align-center">Application Status</th>
-                                                    <th class="align-center">Date & Time (YYYY-MM-DD HH:MM:SS)</th>
+                                                    <th class="align-center">Date & Time</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
                                                     <td>1</td>
                                                     <td>Rejected</td>
-                                                    <td><%out.print(dateTimeList[1]); %></td>
+                                                    <td><%out.print(reformattedStr1); %></td>
                                                 </tr>
                                                 <tr>
                                                     <td>2</td>
                                                     <td>Pending</td>
-                                                    <td><%out.print(dateTimeList[0]); %></td>
+                                                    <td><%out.print(reformattedStr0); %></td>
                                                 </tr>
                                                 
                                             </tbody>   

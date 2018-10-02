@@ -55,11 +55,11 @@
                         <table class="alt align-center">
                             <thead>
                                 <tr>
-                                    <td>#</td>
-                                    <td>Job Title</td>
-                                    <td>Partner Company</td>
-                                    <td>Field of Study</td>
-                                    <td>More Information</td>
+                                    <th class="align-center">#</th>
+                                    <th class="align-center">Job Title</th>
+                                    <th class="align-center">Partner Company</th>
+                                    <th class="align-center">Field of Study</th>
+                                    <th class="align-center">More Information</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -97,12 +97,12 @@
                             <table class="alt align-center">
                             <thead>
                                 <tr>
-                                    <td>#</td>
-                                    <td>Job Title</td>
-                                    <td>Partner Company</td>
-                                    <td>Contact's Name</td>
-                                    <td>Contact's Email</td>
-                                    <td>More Information</td>
+                                    <th class="align-center">#</th>
+                                    <th class="align-center">Job Title</th>
+                                    <th class="align-center">Partner Company</th>
+                                    <th class="align-center">Contact's Name</th>
+                                    <th class="align-center">Contact's Email</th>
+                                    <th class="align-center">More Information</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -139,12 +139,12 @@
                             <table class="alt align-center">
                             <thead>
                                 <tr>
-                                    <td>#</td>
-                                    <td>Job Title</td>
-                                    <td>Partner Company</td>
-                                    <td>Contact's Name</td>
-                                    <td>Contact's Email</td>
-                                    <td>More Information</td>
+                                    <th class="align-center">#</th>
+                                    <th class="align-center">Job Title</th>
+                                    <th class="align-center">Partner Company</th>
+                                    <th class="align-center">Contact's Name</th>
+                                    <th class="align-center">Contact's Email</th>
+                                    <th class="align-center">More Information</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -164,6 +164,7 @@
                                     <td><%out.print(internship.getInternshipSupervisor());%></td>
                                     <td><%out.print(internship.getInternshipSupervisorEmail());%></td>
                                     <td><button type="button" class="button" data-toggle="modal" data-target="#myModalRejected<%out.print(i);%>">View</button></td>
+                                
                                 </tr>
                                 <%
                                 }}

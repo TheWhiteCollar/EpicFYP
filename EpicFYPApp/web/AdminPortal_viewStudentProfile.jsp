@@ -243,9 +243,14 @@
                                                     <td><% out.print(u.getUserSchool()); %></td>
                                                 </tr>
                                                 <tr>
+                                                    <td class="align-right"><b>Field of Study </b></td>
+                                                    <td><% out.print(u.getUserFieldOfStudy()); %></td>
+                                                </tr>
+                                                <tr>
                                                     <td class="align-right"><b>Interests </b></td>
                                                     <td><% out.print(u.getUserInterest()); %></td>
                                                 </tr>
+                                                
                                             </tbody>
 
                                         </table>                                         

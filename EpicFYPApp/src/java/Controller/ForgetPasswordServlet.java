@@ -5,9 +5,19 @@
  */
 package Controller;
 
-import Model.Entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Properties;
+import javax.mail.Address;
+import javax.mail.Message;
+import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,21 +42,6 @@ public class ForgetPasswordServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        // retrieve email address
-        String email = request.getParameter("email");
-
-        // make sure email is not null
-        if (email != null) {
-            // Insert code to send password reset email
-            // After reset email is successfully change
-            request.setAttribute("PasswordSent", "An email has been send to " + email + " for you to reset your password.");
-            request.getRequestDispatcher("forgetpassword.jsp").forward(request, response);
-            return;
-        }
-
-        request.setAttribute("ErrorMsg", "Email not found!");
-        request.getRequestDispatcher("forgetpassword.jsp").forward(request, response);
 
     }
 
@@ -76,7 +71,58 @@ public class ForgetPasswordServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        PrintWriter out = response.getWriter();
+        response.setContentType("text/html");
+
+        // retrieve email address
+        String email = request.getParameter("email");
+
+        final String username = "smuis480@gmail.com";
+        final String password = "wecandothistgt";
+
+        Properties props = System.getProperties();
+        props.put("mail.smtp.auth", true);
+        props.put("mail.smtp.starttls.enable", true);
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.user", username);
+        props.put("mail.smtp.password", password);
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+
+        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
+
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(email));
+            Address toAddress = new InternetAddress(email);
+            message.setRecipient(Message.RecipientType.TO, toAddress);
+            MimeBodyPart textPart = new MimeBodyPart();
+            Multipart multipart = new MimeMultipart();
+            String final_Text = "Hello, please reset your password by clicking on the link below";
+            textPart.setText(final_Text);
+            message.setSubject("Reset Password");
+            multipart.addBodyPart(textPart);
+            message.setContent(multipart);
+            message.setSubject("Password Reset");
+            Transport.send(message);
+            // After reset email is successfully change
+            request.setAttribute("PasswordSent", "An email has been send to " + email + " for you to reset your password.");
+            request.getRequestDispatcher("forgetpassword.jsp").forward(request, response);
+            return;
+        } catch (Exception e) {
+            out.println(e);
+        }
+        
+        request.setAttribute("ErrorMsg", "Email not found!");
+        request.getRequestDispatcher("forgetpassword.jsp").forward(request, response);
+
     }
 
     /**

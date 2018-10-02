@@ -214,6 +214,7 @@
                 <%
                 SimpleDateFormat fromDB = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 SimpleDateFormat myFormat = new SimpleDateFormat("dd MMMM yyyy , HH:mm a");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
                 DecimalFormat df2 = new DecimalFormat("#.00");
                 if (!approvedInternships.isEmpty()) {
                     for (int i = 0; i < approvedInternships.size(); i++) {
@@ -262,7 +263,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="align-right"><b>Time Period</b></td>
-                                                    <td><%out.print(internship.getInternshipStart()); %> to <%out.print(internship.getInternshipEnd()); %></td>
+                                                    <td><%out.print(dateFormat.format(internship.getInternshipStart())); %> <b>to</b> <%out.print(dateFormat.format(internship.getInternshipEnd())); %></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="align-right"><b>Salary</b></td>
@@ -375,7 +376,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="align-right"><b>Time Period</b></td>
-                                                    <td><%out.print(internship.getInternshipStart()); %> to <%out.print(internship.getInternshipEnd()); %></td>
+                                                    <td><%out.print(dateFormat.format(internship.getInternshipStart())); %> <b>to</b> <%out.print(dateFormat.format(internship.getInternshipEnd())); %></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="align-right"><b>Salary</b></td>
@@ -488,7 +489,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="align-right"><b>Time Period</b></td>
-                                                    <td><%out.print(internship.getInternshipStart()); %> to <%out.print(internship.getInternshipEnd()); %></td>
+                                                    <td><%out.print(dateFormat.format(internship.getInternshipStart())); %> <b>to</b> <%out.print(dateFormat.format(internship.getInternshipEnd())); %></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="align-right"><b>Salary</b></td>

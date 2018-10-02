@@ -149,6 +149,11 @@
         <section class="wrapper">
             <div class="container">
                 <h2 class="align-center">Students' Profiles</h2>
+                <%
+                ArrayList<User> allUsers = UserDAO.getAllUsers();
+                        int count = 0;
+                        if (!allUsers.isEmpty()) {
+                %>
                 <table class = "alt">
                     <thead>
                         <tr>
@@ -162,9 +167,7 @@
                     </thead>
                     <tbody>
                         <%
-                            ArrayList<User> allUsers = UserDAO.getAllUsers();
-                            int count = 0;
-                            if (!allUsers.isEmpty()) {
+                            
                                 for (int i = 0; i < allUsers.size(); i++) {
                                     User u = allUsers.get(i);
                                     count += 1;
@@ -180,10 +183,16 @@
                         </tr>
                         <%
                                 }
-                            }
                         %>
                     </tbody>    
                 </table>
+                    <%
+                        }else {
+                    %>
+                    <p class="align-center">There is no users signed up yet...</p>
+                    <%
+                        }
+                    %>
 
                 <%
                     if (!allUsers.isEmpty()) {

@@ -204,8 +204,8 @@ public class InternshipStudentDAO {
         return null;
     }
     
-    //get List of approved internshipstudent action=3
-    public static ArrayList<InternshipStudent> getAllApprovedInternshipStudents() {
+    //get List of confirmed internshipstudent action=3
+    public static ArrayList<InternshipStudent> getAllConfirmedInternshipStudents() {
         ArrayList<InternshipStudent> result = new ArrayList<>();
         try {
             Connection conn = ConnectionManager.getConnection();

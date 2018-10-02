@@ -54,7 +54,7 @@
                     <span onclick="this.parentElement.style.display = 'none'" class="toprightClose">&times</span>
                     <div class="row">
                     <div class="12u 12u(xsmall)">
-                        <table class="alt align-center">
+                        <table class="alt align-center" style="font-size:14px;">
                             <thead>
                                 <tr>
                                     <th class="align-center">#</th>
@@ -98,7 +98,7 @@
                     <span onclick="this.parentElement.style.display='none'" class="toprightClose">&times</span>
                     <div class="row">
                         <div class="12u 12u(xsmall)">
-                            <table class="alt align-center">
+                            <table class="alt align-center" style="font-size:14px;">
                             <thead>
                                 <tr>
                                     <th class="align-center">#</th>
@@ -140,7 +140,7 @@
                     <span onclick="this.parentElement.style.display='none'" class="toprightClose">&times</span>
                     <div class="row">
                         <div class="12u 12u(xsmall)">
-                            <table class="alt align-center">
+                            <table class="alt align-center" style="font-size:14px;">
                             <thead>
                                 <tr>
                                     <th class="align-center">#</th>

@@ -308,4 +308,24 @@ public class UserDAO {
 
     }
 
+    //update user email confirmation
+    public static boolean updateUserPassword(String userEmail, String userPassword) {
+
+        String sql = "UPDATE user SET userPassword = ? WHERE userEmail = ?";
+
+        try (Connection conn = ConnectionManager.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
+
+            stmt.setString(1, userPassword);
+            stmt.setString(2, userEmail);
+            int result = stmt.executeUpdate();
+            if (result == 0) {
+                return false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.WARNING, "Failed to update user: " + userEmail + ".", ex);
+        }
+        return true;
+    }
+
 }

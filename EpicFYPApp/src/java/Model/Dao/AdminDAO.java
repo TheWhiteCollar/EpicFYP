@@ -97,18 +97,18 @@ public class AdminDAO {
 
     //get all admin names without password
     public static ArrayList<Admin> getAllAdmins() {
-        ArrayList<Admin> result = new ArrayList<>();
+        ArrayList<Admin> allAdmins = new ArrayList<>();
         try {
             Connection conn = ConnectionManager.getConnection();
             PreparedStatement stmt = conn.prepareStatement("select * from admin");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                result.add(new Admin(rs.getString(1), rs.getString(3)));
+                allAdmins.add(new Admin(rs.getString(1), rs.getString(2), rs.getString(3)));
             }
             rs.close();
             stmt.close();
             conn.close();
-            return result;
+            return allAdmins;
         } catch (SQLException e) {
             e.printStackTrace();
         }

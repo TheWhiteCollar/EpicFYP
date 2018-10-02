@@ -166,7 +166,7 @@
                                                     <td class="align-center">#</td>
                                                     <td class="align-center">Transaction</td>
                                                     <td class="align-center">Amount</td>
-                                                    <td class="align-center">Date</td>
+                                                    <td class="align-center">Date & Time</td>
                                                 </tr>
                                             </thead>
                                             <tbody>

@@ -60,6 +60,14 @@
         <servlet-name>downloadItinerary</servlet-name>
         <servlet-class>Controller.downloadItinerary</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>getAllAdminsServlet</servlet-name>
+        <servlet-class>Controller.getAllAdminsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>deleteAdmin</servlet-name>
+        <servlet-class>Controller.deleteAdmin</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TripsDAO</servlet-name>
         <url-pattern>/TripsDAO</url-pattern>
@@ -119,6 +127,14 @@
     <servlet-mapping>
         <servlet-name>downloadItinerary</servlet-name>
         <url-pattern>/downloadItinerary</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getAllAdminsServlet</servlet-name>
+        <url-pattern>/getAllAdminsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteAdmin</servlet-name>
+        <url-pattern>/deleteAdmin</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

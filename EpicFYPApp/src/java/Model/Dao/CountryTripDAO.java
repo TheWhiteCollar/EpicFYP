@@ -21,7 +21,7 @@ public class CountryTripDAO {
     public static ArrayList<String> getAllCountryTrip() {
 
         ArrayList<String> countryTripNames = new ArrayList<>();
-        String sql = "SELECT * FROM countrytrip";
+        String sql = "SELECT * FROM countrytrip ORDER BY countryTripName ASC";
 
         try (Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {

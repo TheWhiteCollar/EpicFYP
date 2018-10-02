@@ -75,7 +75,7 @@ public class CountryInternshipDAO {
         ArrayList<CountryInternship> result = new ArrayList<>();
         try {
             Connection conn = ConnectionManager.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("select * from countryinternship");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM countryinternship ORDER BY countryName ASC");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 result.add(new CountryInternship(rs.getString(1), rs.getString(2)));

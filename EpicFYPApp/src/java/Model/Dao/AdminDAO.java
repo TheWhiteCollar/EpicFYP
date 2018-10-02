@@ -65,7 +65,7 @@ public class AdminDAO {
         String sql = "INSERT INTO admin (adminName, adminPassword, adminLevel) VALUES (?,?,?)";
 
         try (Connection conn = ConnectionManager.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(sql);) {
+            PreparedStatement stmt = conn.prepareStatement(sql);) {
             stmt.setString(1, adminName);
             stmt.setString(2, adminPassword);
             stmt.setString(3, adminLevel);
@@ -84,8 +84,8 @@ public class AdminDAO {
         String sql1 = "DELETE FROM admin WHERE adminName=?";
 
         try (
-                Connection conn = ConnectionManager.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(sql1);) {
+            Connection conn = ConnectionManager.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql1);) {
             stmt.setString(1, adminName);
             stmt.executeUpdate();
         } catch (SQLException ex) {

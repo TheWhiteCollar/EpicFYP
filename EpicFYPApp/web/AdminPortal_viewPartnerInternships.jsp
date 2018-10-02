@@ -54,6 +54,15 @@
                     <span onclick="this.parentElement.style.display = 'none'" class="toprightClose">&times</span>
                     <div class="row">
                     <div class="12u 12u(xsmall)">
+                        <%
+                        ArrayList<Internship> approvedInternships = InternshipDAO.getAllApprovedInternships();
+                                int counta = 0;
+                                if (approvedInternships.isEmpty()) {
+                        %>
+                        <p class="align-center">There are no partner internship postings approved yet :/</p>
+                        <%
+                                }else{
+                        %>
                         <table class="alt align-center" style="font-size:14px;">
                             <thead>
                                 <tr>
@@ -62,14 +71,13 @@
                                     <th class="align-center">Partner Company</th>
                                     <th class="align-center">Field of Study</th>
                                     <th class="align-center">Country</th>
+                                    <th class="align-center">Vacancy</th>
                                     <th class="align-center">More Information</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <%
-                                ArrayList<Internship> approvedInternships = InternshipDAO.getAllApprovedInternships();
-                                int counta = 0;
-                                if (!approvedInternships.isEmpty()) {
+                                
                                     for (int i = 0; i < approvedInternships.size(); i++) {
                                         Internship internship = approvedInternships.get(i);
                                         Partner partner = PartnerDAO.getPartnerByID(internship.getInternshipPartnerID());
@@ -81,14 +89,18 @@
                                     <td><%out.print(partner.getPartnerName());%></td>
                                     <td><%out.print(internship.getInternshipFieldOfStudy());%></td>
                                     <td><%out.print(partner.getPartnerCountry());%></td>
+                                    <td><%out.print(internship.getInternshipVacancy());%></td>
                                     <td><button type="button" class="button" data-toggle="modal" data-target="#myModalApproved<%out.print(i);%>">View</button></td>
                                 </tr>
                                 
                                 <%
-                                }}
+                                    }
                                 %>
                             </tbody>
                         </table>
+                            <%
+                                }
+                            %>
                     </div>
                     
                 </div>
@@ -98,6 +110,15 @@
                     <span onclick="this.parentElement.style.display='none'" class="toprightClose">&times</span>
                     <div class="row">
                         <div class="12u 12u(xsmall)">
+                            <%
+                            ArrayList<Internship> pendingInternships = InternshipDAO.getAllPendingInternships();
+                                int countp = 0;
+                                if (pendingInternships.isEmpty()) {
+                            %>
+                            <p class="align-center">There are no pending applications to deal with :D</p>
+                            <%
+                                }else{
+                            %>
                             <table class="alt align-center" style="font-size:14px;">
                             <thead>
                                 <tr>
@@ -111,9 +132,7 @@
                             </thead>
                             <tbody>
                                 <%
-                                ArrayList<Internship> pendingInternships = InternshipDAO.getAllPendingInternships();
-                                int countp = 0;
-                                if (!pendingInternships.isEmpty()) {
+                                
                                     for (int i = 0; i < pendingInternships.size(); i++) {
                                         Internship internship = pendingInternships.get(i);
                                         Partner partner = PartnerDAO.getPartnerByID(internship.getInternshipPartnerID());
@@ -128,10 +147,13 @@
                                     <td><button type="button" class="button" data-toggle="modal" data-target="#myModalPending<%out.print(i);%>">View</button></td>
                                 </tr>
                                 <%
-                                }}
+                                }
                                 %>
                             </tbody>
                         </table>
+                            <%
+                            }
+                            %>
                         </div>
                     </div>
                 </div>
@@ -140,6 +162,16 @@
                     <span onclick="this.parentElement.style.display='none'" class="toprightClose">&times</span>
                     <div class="row">
                         <div class="12u 12u(xsmall)">
+                            <%
+                            ArrayList<Internship> rejectedInternships = InternshipDAO.getAllRejectedInternships();
+                                int countr = 0;
+                                if (rejectedInternships.isEmpty()) {
+                            %>
+                            <p class="align-center">You have no rejected applications :P</p>
+                            <%
+                                }else{
+                            %>
+                            
                             <table class="alt align-center" style="font-size:14px;">
                             <thead>
                                 <tr>
@@ -153,9 +185,7 @@
                             </thead>
                             <tbody>
                                 <%
-                                ArrayList<Internship> rejectedInternships = InternshipDAO.getAllRejectedInternships();
-                                int countr = 0;
-                                if (!rejectedInternships.isEmpty()) {
+                                
                                     for (int i = 0; i < rejectedInternships.size(); i++) {
                                         Internship internship = rejectedInternships.get(i);
                                         Partner partner = PartnerDAO.getPartnerByID(internship.getInternshipPartnerID());

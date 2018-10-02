@@ -234,7 +234,7 @@
                     countriesHTML += "<thead><tr><th>#</th><th colspan='2'>Country Name</th></tr></thead>";
                     var count = 1;
                     for (const country of countries) {
-                        countriesHTML += '<tr><td>' + count + '</td><td>' + country + "</td><td><button value='" + country + "' onclick='deleteCountry(this)'>Delete</button></td></tr>";
+                        countriesHTML += '<tr><td>' + count + '</td><td>' + country + "</td><td><button class = \"button\" value='" + country + "' onclick='deleteCountry(this)'>Delete</button></td></tr>";
                         count += 1;
                     }
                     countriesHTML += '</table>';
@@ -251,7 +251,7 @@
                     interestsHTML += "<thead><tr><th>#</th><th colspan='2'>Name of interest tag</th></tr></thead>";
                     var count = 1;
                     for (const interest of interests) {
-                        interestsHTML += '<tr><td>' + count + '</td><td>' + interest + "</td><td><button value='" + interest + "' onclick='deleteInterest(this)'>Delete</button></td></tr>";
+                        interestsHTML += '<tr><td>' + count + '</td><td>' + interest + "</td><td><button class = \"button\" value='" + interest + "' onclick='deleteInterest(this)'>Delete</button></td></tr>";
                         count += 1;
                     }
                     interestsHTML += '</table>';
@@ -400,21 +400,17 @@
                                 Date (max):                              
                                 <input name = "endDate" type="date" min = "<% out.print(todayDate);%>" >
                             </div> 
-                        </div>
-                        </p>
-
-                        <p>
-                        <div class = "row">
-                            <div class="2u 12u(small)">
+                            <div class="3u 12u(small)">
                                 Price (min):
                                 <input type="number" value = "min" min = "0">
                             </div>
-                            <div class="2u 12u(small)">
+                            <div class="3u 12u(small)">
                                 Price (max):
                                 <input type="number" value = "max" min = "0">
                             </div>
                         </div>
                         </p>
+
                         <input type="submit" value="Apply" style="width:100%"> 
                     </form> 
                 </div>

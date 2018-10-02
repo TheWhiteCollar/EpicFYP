@@ -80,6 +80,23 @@ public class InternshipDAO {
         return true;
     }
 
+    //get internship by ID
+    public static Internship getInternshipByID(int internshipID) {
+        Internship internship = null;
+        String sql = "SELECT * FROM internship WHERE internshipID=?";
+        try (Connection conn = ConnectionManager.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
+            stmt.setInt(1, internshipID);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                internship = new Internship(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDate(6), rs.getDate(7), rs.getDouble(8),rs.getString(9),rs.getString(10),rs.getInt(11),rs.getInt(12), rs.getString(13));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(InternshipDAO.class.getName()).log(Level.WARNING, "Cannot get internship with internshipID: " + internshipID, ex);
+        }
+        return internship;
+    }
+    
     // get all existing partners
     public static ArrayList<Internship> getAllInternships() {
         ArrayList<Internship> result = new ArrayList<>();

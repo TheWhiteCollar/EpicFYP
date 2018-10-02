@@ -59,6 +59,7 @@
                                     <th class="align-center">Job Title</th>
                                     <th class="align-center">Partner Company</th>
                                     <th class="align-center">Field of Study</th>
+                                    <th class="align-center">Country</th>
                                     <th class="align-center">More Information</th>
                                 </tr>
                             </thead>
@@ -77,6 +78,7 @@
                                     <td><%out.print(internship.getInternshipName());%></td>
                                     <td><%out.print(partner.getPartnerName());%></td>
                                     <td><%out.print(internship.getInternshipFieldOfStudy());%></td>
+                                    <td><%out.print(partner.getPartnerCountry());%></td>
                                     <td><button type="button" class="button" data-toggle="modal" data-target="#myModalApproved<%out.print(i);%>">View</button></td>
                                 </tr>
                                 

@@ -1,3 +1,8 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="Model.Dao.InternshipDAO"%>
+<%@page import="Model.Entity.Internship"%>
+<%@page import="Model.Dao.UserDAO"%>
+<%@page import="Model.Entity.User"%>
 <%@page import="Model.Entity.InternshipStudent"%>
 <%@page import="Model.Dao.InternshipStudentDAO"%>
 <%@page import="java.time.LocalDate"%>
@@ -40,32 +45,58 @@
             <div class="container">
                 <h2 class="align-center">User Internship Applications</h2>
                 
-                
+                <!--tabs                -->
                 <div class="tab align-center">
-                    <button class="tablinks" onclick="openUser(event, 'approved')">Approved Applications</button>
-                    <button class="tablinks" onclick="openUser(event, 'pending')">Pending Applications</button>
-                    <button class="tablinks" onclick="openUser(event, 'rejected')">Rejected Applications</button>
+                    <button class="tablinks" onclick="openUser(event, 'confirmed')">Confirmed</button>
+                    <button class="tablinks" onclick="openUser(event, 'pendingAdmin')" id="defaultOpen">Pending Admin Action</button>
+                    <button class="tablinks" onclick="openUser(event, 'pendingUser')">Pending User Action</button>
+                    <button class="tablinks" onclick="openUser(event, 'rejected')">Rejected</button>
+                    <button class="tablinks" onclick="openUser(event, 'cancelled')">Cancelled</button>
                 </div>
                 
-                <div id="approved" class="tabcontent">
+                
+                <div id="confirmed" class="tabcontent">
                     <span onclick="this.parentElement.style.display = 'none'" class="toprightClose">&times</span>
                     <div class="row">
                     <div class="12u 12u(xsmall)">
-                        <h3 class="align-center"><b>Approved</b></h3>
                         <table class="alt align-center">
                             <thead>
                                 <tr>
-                                    <td>#</td>
-                                    <td>Name</td>
-                                    <td>Partner</td>
-                                    <td>Status</td>
-                                    <td>More Info</td>
+                                    <th class="align-center">#</th>
+                                    <th class="align-center">Partner - Internship Name</th>
+                                    <th class="align-center">Name</th>
+                                    <th class="align-center">Last Updated</th>
+                                    <th class="align-center">More Info</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <%
-                                //take from internship student - internshipStudentStatus approved
-                                ArrayList<InternshipStudent> it = InternshipStudentDAO.getAllInternshipStudents();
+                                ArrayList<InternshipStudent> confirmedInternship = InternshipStudentDAO.getAllConfirmedInternshipStudents();
+                                int countConfirmed = 0;
+                                SimpleDateFormat fromDB = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                SimpleDateFormat myFormat = new SimpleDateFormat("dd MMMM yyyy , HH:mm a");
+                                    if (confirmedInternship != null) {
+                                        for (int i = 0; i < confirmedInternship.size(); i++) {
+                                            InternshipStudent ci = confirmedInternship.get(i);
+                                            int internshipID = ci.getInternshipID();
+                                            Internship internship = InternshipDAO.getInternshipByID(internshipID);
+                                            Partner partner = PartnerDAO.getPartnerByID(internshipID);
+                                            User user = UserDAO.getUser(ci.getInternshipUserEmail());
+                                            countConfirmed += 1;
+                                            String lastUpdatedString = ci.getInternshipStudentLastUpdate();
+                                            String reformattedStr = myFormat.format(fromDB.parse(lastUpdatedString));
+                                       
+                                %>
+                                <tr>
+                                    <td><%out.print(countConfirmed);%></td>
+                                    <td><b><%out.print(partner.getPartnerName());%></b> - <%out.print(internship.getInternshipName());%></td>
+                                    <td><%out.print(user.getUserFirstName());%> <%out.print(user.getUserLastName());%></td>
+                                    <td><%out.print(reformattedStr);%></td>
+                                    <td><button type="button" class="button" data-toggle="modal" data-target="#myModalConfirmed<%out.print(i);%>">View</button></td>
+                                </tr>
+                                
+                                <%
+                                }}
                                 %>
                             </tbody>
                         </table>
@@ -74,21 +105,20 @@
                 </div>
                 </div>
                 
-                <div id="pending" class="tabcontent">
+                <div id="pendingAdmin" class="tabcontent">
                     <span onclick="this.parentElement.style.display='none'" class="toprightClose">&times</span>
                     <div class="row">
                         <div class="12u 12u(xsmall)">
-                            <h3 class="align-center"><b>Pending Approval</b></h3>
                             <table class="alt align-center">
                                 <thead>
                                     <tr>
-                                        <td>#</td>
-                                        <td>Name</td>
-                                        <td>User's Field of Study</td>
-                                        <td>Internship title</td>
-                                        <td>Continent</td>
-                                        <td>User Resume</td>
-                                        <td>More Info</td>
+                                        <th class="align-center">#</th>
+                                        <th class="align-center">Name</th>
+                                        <th class="align-center">Field of Study</th>
+                                        <th class="align-center">Status</th>
+                                        <th class="align-center">Follow-up</th>
+                                        <th class="align-center">Last Updated</th>
+                                        <th class="align-center">More Info</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -100,20 +130,45 @@
                         </div>
                     </div>
                 </div>
+                                
+                <div id="pendingUser" class="tabcontent">
+                    <span onclick="this.parentElement.style.display='none'" class="toprightClose">&times</span>
+                    <div class="row">
+                        <div class="12u 12u(xsmall)">
+                            <table class="alt align-center">
+                                <thead>
+                                    <tr>
+                                        <th class="align-center">#</th>
+                                        <th class="align-center">Name</th>
+                                        <th class="align-center">Field of Study</th>
+                                        <th class="align-center">Status</th>
+                                        <th class="align-center">Follow-up</th>
+                                        <th class="align-center">Last Updated</th>
+                                        <th class="align-center">More Info</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <%
+                                        
+                                    %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>                
                 
                 <div id="rejected" class="tabcontent">
                     <span onclick="this.parentElement.style.display='none'" class="toprightClose">&times</span>
                     <div class="row">
                         <div class="12u 12u(xsmall)">
-                            <h3 class="align-center"><b>Pending Approval</b></h3>
                             <table class="alt align-center">
                                 <thead>
                                     <tr>
-                                        <td>#</td>
-                                        <td>Name</td>
-                                        <td>Partner</td>
-                                        <td>Status</td>
-                                        <td>More Info</td>
+                                        <th class="align-center">#</th>
+                                        <th class="align-center">Name</th>
+                                        <th class="align-center">Status</th>
+                                        <th class="align-center">Last Updated</th>
+                                        <th class="align-center">More Info</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -125,7 +180,31 @@
                         </div>
                     </div>
                 </div>
+                                
 
+                <div id="cancelled" class="tabcontent">
+                    <span onclick="this.parentElement.style.display='none'" class="toprightClose">&times</span>
+                    <div class="row">
+                        <div class="12u 12u(xsmall)">
+                            <table class="alt align-center">
+                                <thead>
+                                    <tr>
+                                        <th class="align-center">#</th>
+                                        <th class="align-center">Name</th>
+                                        <th class="align-center">Partner Name</th>
+                                        <th class="align-center">Last Updated</th>
+                                        <th class="align-center">More Info</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <%
+                                        
+                                    %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>                
                
 
 <!--                <div class="modal fade" id="myModal<%//out.print(i);%>" role="dialog">

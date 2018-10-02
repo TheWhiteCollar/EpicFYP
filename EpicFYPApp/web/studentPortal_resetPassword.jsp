@@ -40,45 +40,23 @@
                         <p style="text-align:center; color: red">
 
                             <%
-                                String Student_ErrorMsg = (String) request.getAttribute("Student_ErrorMsg");
-
-                                if (Student_ErrorMsg != null) {
-                                    out.print(Student_ErrorMsg);
-                                }
-
-                                String successMessage = (String) request.getAttribute("successMessage");
-                                if (successMessage != null) {
-                                    out.print(successMessage);
-                                }
-
-                                // to check if user come to login page straight or come from study trip	
-                                String comefrom = (String) request.getParameter("comefrom");
-                                String cont = (String) request.getParameter("cont");
+                                String userEmail = (String) request.getParameter("userEmail");
                             %>
                         </p>
 
-                        <form action="LoginServlet_user" method="post">
-                            <input type="text" name="userid" placeholder="- Enter User Email -" class="align-center">
+                        <form action="resetPassword" method="post">
+                            Please enter your new password: <br><br>
+                            <input type="password" name="userpassword" placeholder="- Enter Password -" class="align-center">
                             <br>
-                            <input type="password" name="userpassword" placeholder="- Enter User Password -" class="align-center">
-                            <br>
                             <%
-                                // if user come from study trip, pass a hidden value of studyTrip to login servlet, so will send back to studyTrip instead of student portal	
-                                if (comefrom != null) { %>	
-                            <input type="hidden" name="comefrom" value="<%out.print(comefrom);%>">	
+                        // if user come from study trip, pass a hidden value of studyTrip to login servlet, so will send back to studyTrip instead of student portal	
+                        if (userEmail != null) { %>	
+                            <input type="hidden" name="userEmail" value="<%out.print(userEmail);%>">	
                             <%
-                                }
-                                if (cont != null) {
-                            %>	
-                            <input type="hidden" name="cont" value="<%out.print(cont);%>">	
-                            <%
-                                }
+                        }
                             %>
-                            <input type="submit" value="Login" class ="full_width">
+                            <input type="submit" value="Reset" class ="full_width">
                         </form> 
-                        <p><a href="forgetpassword.jsp" style="color:#ffe6e6; font-size:18px">Forgot your password?</a></p>
-                        <p><a href="signuppage.jsp" style="color:#ffe6e6; font-size:18px">Click to sign up!</a></p>
-
                         </p>
                     </div>
                 </div>

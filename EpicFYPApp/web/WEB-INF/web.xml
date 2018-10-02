@@ -72,6 +72,10 @@
         <servlet-name>addAdmin</servlet-name>
         <servlet-class>Controller.addAdmin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>resetPassword</servlet-name>
+        <servlet-class>Controller.resetPassword</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TripsDAO</servlet-name>
         <url-pattern>/TripsDAO</url-pattern>
@@ -143,6 +147,10 @@
     <servlet-mapping>
         <servlet-name>addAdmin</servlet-name>
         <url-pattern>/addAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>resetPassword</servlet-name>
+        <url-pattern>/resetPassword</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

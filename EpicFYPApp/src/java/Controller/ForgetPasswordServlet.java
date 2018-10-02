@@ -5,6 +5,8 @@
  */
 package Controller;
 
+import Model.Dao.UserDAO;
+import Model.Entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Properties;
@@ -76,44 +78,44 @@ public class ForgetPasswordServlet extends HttpServlet {
         response.setContentType("text/html");
 
         // retrieve email address
-        String email = request.getParameter("email");
+        String userEmail = request.getParameter("email");
+        
+        // our email details
+        final String ourEmail = "smuis480@gmail.com";
+        final String ourPassword = "wecandothistgt";
 
-        final String username = "smuis480@gmail.com";
-        final String password = "wecandothistgt";
-
+        // configuration for gmails
         Properties props = System.getProperties();
         props.put("mail.smtp.auth", true);
         props.put("mail.smtp.starttls.enable", true);
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.port", "587");
-        props.put("mail.smtp.user", username);
-        props.put("mail.smtp.password", password);
-        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.user", ourEmail);
+        props.put("mail.smtp.password", ourPassword);
         props.put("mail.smtp.auth", "true");
 
         Session session = Session.getInstance(props, new javax.mail.Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, password);
+                return new PasswordAuthentication(ourEmail, ourPassword);
             }
         });
 
         try {
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(email));
-            Address toAddress = new InternetAddress(email);
+            message.setFrom(new InternetAddress(ourEmail));
+            Address toAddress = new InternetAddress(userEmail);
             message.setRecipient(Message.RecipientType.TO, toAddress);
             MimeBodyPart textPart = new MimeBodyPart();
             Multipart multipart = new MimeMultipart();
-            String final_Text = "Hello, please reset your password by clicking on the link below";
+            String final_Text = "Hello, please reset your password: http://localhost:8084/EpicFYPApp/studentPortal_resetPassword.jsp?userEmail=" + userEmail;
             textPart.setText(final_Text);
-            message.setSubject("Reset Password");
             multipart.addBodyPart(textPart);
             message.setContent(multipart);
             message.setSubject("Password Reset");
             Transport.send(message);
             // After reset email is successfully change
-            request.setAttribute("PasswordSent", "An email has been send to " + email + " for you to reset your password.");
+            request.setAttribute("PasswordSent", "An email has been send to " + userEmail + " for you to reset your password.");
             request.getRequestDispatcher("forgetpassword.jsp").forward(request, response);
             return;
         } catch (Exception e) {

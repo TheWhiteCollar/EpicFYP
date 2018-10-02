@@ -169,7 +169,7 @@ public class InternshipStudentDAO {
         ArrayList<InternshipStudent> result = new ArrayList<>();
         try {
             Connection conn = ConnectionManager.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("select * from internshipstudent");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM internshipstudent ORDER BY internshipStudentLastUpdate DESC");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 result.add(new InternshipStudent(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7), rs.getString(8)));
@@ -189,7 +189,7 @@ public class InternshipStudentDAO {
         ArrayList<InternshipStudent> result = new ArrayList<>();
         try {
             Connection conn = ConnectionManager.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM internshipstudent WHERE internshipStudentAction=0");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM internshipstudent WHERE internshipStudentAction=0 ORDER BY internshipStudentLastUpdate DESC");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 result.add(new InternshipStudent(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7), rs.getString(8)));
@@ -209,7 +209,7 @@ public class InternshipStudentDAO {
         ArrayList<InternshipStudent> result = new ArrayList<>();
         try {
             Connection conn = ConnectionManager.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM internshipstudent WHERE internshipStudentAction=3");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM internshipstudent WHERE internshipStudentAction=3 ORDER BY internshipStudentLastUpdate DESC");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 result.add(new InternshipStudent(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7), rs.getString(8)));
@@ -229,7 +229,7 @@ public class InternshipStudentDAO {
         ArrayList<InternshipStudent> result = new ArrayList<>();
         try {
             Connection conn = ConnectionManager.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM internshipstudent WHERE internshipStudentAction=1");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM internshipstudent WHERE internshipStudentAction=1 ORDER BY internshipStudentLastUpdate DESC");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 result.add(new InternshipStudent(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7), rs.getString(8)));
@@ -249,7 +249,7 @@ public class InternshipStudentDAO {
         ArrayList<InternshipStudent> result = new ArrayList<>();
         try {
             Connection conn = ConnectionManager.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM internshipstudent WHERE internshipStudentAction=2");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM internshipstudent WHERE internshipStudentAction=2 ORDER BY internshipStudentLastUpdate DESC");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 result.add(new InternshipStudent(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7), rs.getString(8)));
@@ -269,7 +269,7 @@ public class InternshipStudentDAO {
         ArrayList<InternshipStudent> result = new ArrayList<>();
         try {
             Connection conn = ConnectionManager.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM internshipstudent WHERE internshipStudentAction=4");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM internshipstudent WHERE internshipStudentAction=4 ORDER BY internshipStudentLastUpdate DESC");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 result.add(new InternshipStudent(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7), rs.getString(8)));

@@ -108,7 +108,8 @@ public class ForgetPasswordServlet extends HttpServlet {
             message.setRecipient(Message.RecipientType.TO, toAddress);
             MimeBodyPart textPart = new MimeBodyPart();
             Multipart multipart = new MimeMultipart();
-            String final_Text = "Hello, please reset your password: http://localhost:8084/EpicFYPApp/studentPortal_resetPassword.jsp?userEmail=" + userEmail;
+            // use this if want test on localhost: String final_Text = "Hello, please reset your password: http://localhost:8084/EpicFYPApp/studentPortal_resetPassword.jsp?userEmail=" + userEmail;
+            String final_Text = "Hello, please reset your password: http://18.191.179.30/EpicFYPApp/studentPortal_resetPassword.jsp?userEmail=" + userEmail;
             textPart.setText(final_Text);
             multipart.addBodyPart(textPart);
             message.setContent(multipart);

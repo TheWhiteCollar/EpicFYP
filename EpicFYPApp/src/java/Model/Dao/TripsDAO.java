@@ -33,8 +33,8 @@ public class TripsDAO {
         String sql = "INSERT INTO `tripstudent` (`tripUserEmail`, `tripStudentPaymentID`, `tripStudentStatus`, `tripStudentReview`, `tripStudentRating`, `tripID`) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (
-                Connection conn = ConnectionManager.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(sql);) {
+            Connection conn = ConnectionManager.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);) {
             stmt.setString(1, tripUserEmail);
             stmt.setInt(2, tripStudentPaymentID);
             stmt.setString(3, tripStudentStatus);

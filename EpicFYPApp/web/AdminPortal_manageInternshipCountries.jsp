@@ -52,6 +52,11 @@
                     <span onclick="this.parentElement.style.display = 'none'" class="toprightClose">&times</span>
                     <div class="row">
                         <div class="12u 12u(xsmall)">
+                            <%
+                            ArrayList<CountryInternship> allAmericaCountries = CountryInternshipDAO.getAllCountryInternship("America");
+                                        int countAmerica = 0;
+                                        if (!allAmericaCountries.isEmpty()) {
+                            %>
                             <table class="alt align-center">
                                 <thead>
                                     <tr>
@@ -61,28 +66,37 @@
                                         <td>More Actions</td>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                
                                     <%
-                                        ArrayList<CountryInternship> allAmericaCountries = CountryInternshipDAO.getAllCountryInternship("America");
-                                        int countAmerica = 0;
-                                        if (allAmericaCountries != null) {
+                                        
                                             for (int i = 0; i < allAmericaCountries.size(); i++) {
                                                 CountryInternship ci = allAmericaCountries.get(i);
                                                 countAmerica += 1;
                                     %>
+                                <tbody>    
                                     <tr>
                                         <td class = "align-center"><%out.print(countAmerica);%></td>
                                         <td><%out.print(ci.getCountryName());%></td>
                                         <td><%out.print(ci.getCountryContinent());%></td>
                                         <td><button type="button" class="button" data-toggle="modal" data-target="#myModalAmericaDelete<%out.print(i);%>">Delete</button></td>
                                     </tr>
-
                                     <%
                                             }
-                                        }
+
                                     %>
+
                                 </tbody>
                             </table>
+                                    <%
+                                            
+                                        } else{
+
+                                    %>
+                                    <p class="align-center">There is no countries for America</p>
+                                    <%
+                                        }
+                                    %>
+                                
                         </div>
 
                     </div>
@@ -92,6 +106,13 @@
                     <span onclick="this.parentElement.style.display = 'none'" class="toprightClose">&times</span>
                     <div class="row">
                         <div class="12u 12u(xsmall)">
+                            
+                            <%
+                            ArrayList<CountryInternship> allAsiaCountries = CountryInternshipDAO.getAllCountryInternship("Asia");
+                                        int countAsia = 0;
+                                        if (!allAsiaCountries.isEmpty()) {
+                            
+                            %>
                             <table class="alt align-center">
                                 <thead>
                                     <tr>
@@ -103,9 +124,7 @@
                                 </thead>
                                 <tbody>
                                     <%
-                                        ArrayList<CountryInternship> allAsiaCountries = CountryInternshipDAO.getAllCountryInternship("Asia");
-                                        int countAsia = 0;
-                                        if (allAsiaCountries != null) {
+                                        
                                             for (int i = 0; i < allAsiaCountries.size(); i++) {
                                                 CountryInternship ci = allAsiaCountries.get(i);
                                                 countAsia += 1;
@@ -119,10 +138,19 @@
 
                                     <%
                                             }
-                                        }
+                                        
                                     %>
                                 </tbody>
                             </table>
+                                <%
+                                            
+                                        } else{
+
+                                    %>
+                                    <p class="align-center">There is no countries for Asia</p>
+                                    <%
+                                        }
+                                    %>
                         </div>
                     </div>
                 </div>
@@ -131,6 +159,12 @@
                     <span onclick="this.parentElement.style.display = 'none'" class="toprightClose">&times</span>
                     <div class="row">
                         <div class="12u 12u(xsmall)">
+                            
+                            <%
+                            ArrayList<CountryInternship> allAustraliaCountries = CountryInternshipDAO.getAllCountryInternship("Australia");
+                                        int countAustralia = 0;
+                                        if (!allAustraliaCountries.isEmpty()) {
+                            %>
                             <table class="alt align-center">
                                 <thead>
                                     <tr>
@@ -142,9 +176,7 @@
                                 </thead>
                                 <tbody>
                                     <%
-                                        ArrayList<CountryInternship> allAustraliaCountries = CountryInternshipDAO.getAllCountryInternship("Australia");
-                                        int countAustralia = 0;
-                                        if (allAustraliaCountries != null) {
+                                        
                                             for (int i = 0; i < allAustraliaCountries.size(); i++) {
                                                 CountryInternship ci = allAustraliaCountries.get(i);
                                                 countAustralia += 1;
@@ -158,10 +190,19 @@
 
                                     <%
                                             }
-                                        }
+                                        
                                     %>
                                 </tbody>
                             </table>
+                                <%
+                                            
+                                        } else{
+
+                                    %>
+                                    <p class="align-center">There is no countries for Australia</p>
+                                    <%
+                                        }
+                                    %>
                         </div>
                     </div>
                 </div>
@@ -170,6 +211,12 @@
                     <span onclick="this.parentElement.style.display = 'none'" class="toprightClose">&times</span>
                     <div class="row">
                         <div class="12u 12u(xsmall)">
+                            
+                            <%
+                            ArrayList<CountryInternship> allEuropeCountries = CountryInternshipDAO.getAllCountryInternship("Europe");
+                                        int countEurope = 0;
+                                        if (!allEuropeCountries.isEmpty()) {
+                            %>
                             <table class="alt align-center">
                                 <thead>
                                     <tr>
@@ -181,9 +228,7 @@
                                 </thead>
                                 <tbody>
                                     <%
-                                        ArrayList<CountryInternship> allEuropeCountries = CountryInternshipDAO.getAllCountryInternship("Europe");
-                                        int countEurope = 0;
-                                        if (allEuropeCountries != null) {
+                                        
                                             for (int i = 0; i < allEuropeCountries.size(); i++) {
                                                 CountryInternship ci = allEuropeCountries.get(i);
                                                 countEurope += 1;
@@ -197,10 +242,19 @@
 
                                     <%
                                             }
-                                        }
+                                        
                                     %>
                                 </tbody>
                             </table>
+                                <%
+                                            
+                                        } else{
+
+                                    %>
+                                    <p class="align-center">There is no countries for Europe</p>
+                                    <%
+                                        }
+                                    %>
                         </div>
                     </div>
                 </div>

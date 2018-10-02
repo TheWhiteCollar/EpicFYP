@@ -95,7 +95,8 @@ public class CountryInternshipDAO {
         ArrayList<CountryInternship> result = new ArrayList<>();
         try {
             Connection conn = ConnectionManager.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT * from countryinternship WHERE countryContinent='"+countryName+"'");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * from countryinternship WHERE countryContinent=?");
+            stmt.setString(1, countryName);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 result.add(new CountryInternship(rs.getString(1), rs.getString(2)));

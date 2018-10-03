@@ -62,7 +62,7 @@ public class addAdmin extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String adminName = request.getParameter("adminName");
-        String adminPassword = request.getParameter("adminLevel");
+        String adminPassword = request.getParameter("adminPassword");
         String adminLevel = request.getParameter("adminLevel");        
         String text = "fail";
         

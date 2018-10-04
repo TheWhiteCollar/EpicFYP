@@ -180,34 +180,20 @@
                 }
             });
         </script>
-                
-        <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
     </head>
     <body>
 
         <!-- Header -->
         <jsp:include page="header.jsp" />
 
-        <section class="wrapper">
+        <section id="main" class="wrapper">
+            
             <div class="container" >
-                
                 <h2 class="align-center">Admins' Profiles</h2>
-                <%
-                //if superadmin
-                Admin admin = (Admin) session.getAttribute("Admin");
-                if (admin != null) {
-                    String adminLevel = admin.getAdminLevel();
-                    if(adminLevel.equals("superadmin")){
-                
-                %>
                 <div class="container align-center">
                     <button type="button" class="button" data-toggle="modal" data-target="#myModalAdd">Add a new Admin</button> 
                     <button type="button" class="button" data-toggle="modal" data-target="#myModalDelete">Delete a Admin</button> 
                 </div>
-                <%
-                    }
-                }
-                %>
                 </br>
                 <div class="container">
                     <table class="alt align-center">
@@ -217,61 +203,36 @@
                                 <th class="align-center">Admin Username</th>
                                 <th class="align-center">Admin Level</th>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <%
-                                ArrayList<Admin> allAdmin = AdminDAO.getAllAdmins();
-                                int count = 0;
-                                if (!allAdmin.isEmpty()) {
-                                    for (int i = 0; i < allAdmin.size(); i++) {
-                                        Admin a = allAdmin.get(i);
-                                        count += 1;
-                            %>
-                            <tr>
-                                <td><%out.print(count);%></td>
-                                <td><% out.print(a.getAdminName()); %></td>                      
-                                <td><% out.print(a.getAdminLevel()); %></td>
-
-                            </tr>
-                            <%
-                                    }
-                                }
-                            %>
-                        </tbody>    
+                        </thead>    
                     </table>
                 </div>
-
-         
-                <div class="modal fade" id="myModalAdd" role="dialog" style="top:20%;">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title align-center"><b>Add a new Admin</b></h4>
-                            </div>
-                            <div class="modal-body">
-                                <table>
+                
+                <div id="addAdmin" class="tabcontent">
+                    <span onclick="this.parentElement.style.display = 'none'" class="toprightClose">&times</span>              
+                    <div class = "row 50% uniform">
+                        <div class = "5u 12u(xsmall) table-wrapper" id="allAdmins"></div>
+                        <div class="7u 12u(xsmall)">
+                            <table>
+                                <tbody>
                                     <tr>
-                                        <td class="align-right">Admin Username</td>
-                                        <td><input type ="text" name ="adminName" placeholder ="Admin Username *" style="width:200px;"/></td>
+                                        <td colspan="2"><h4 class="align-center">Add a new Admin</h4></td>
                                     </tr>
                                     <tr>
-                                        <td class="align-right">Admin Password</td>
-                                        <td><input type ="text" name ="adminPassword" placeholder ="Admin Password *" style="width:200px;"/></td>
+                                        <td><input type="text" name="adminName" placeholder="E.g. Emily" /></td>
+                                        <td><button onclick="addAdmin()" class="button">Add Admin</button></td>
                                     </tr>
-                                    <tr>
-                                        <td colspan="2" class="align-center"><input type="submit" value="Submit" ></td>
-                                    </tr>
-                                </table>
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="button" data-dismiss="modal">Close</button>
-                            </div>
+                                </tbody>
+                            </table>                
                         </div>
                     </div>
                 </div>
-    
+                
+                <div class ="container">
+                <br>
+                <h2>All Listed Admins</h2>
+                <div id="admins" class ="container"></div>
+                </div>
+                
             </div>
         </section>
     </body>

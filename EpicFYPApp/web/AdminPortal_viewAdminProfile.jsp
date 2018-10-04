@@ -32,7 +32,7 @@
         </noscript>
         
         <script>
-            $(function () {
+            $(function() {
                 //call get all admins using ajax get method. receives adminJson string
                 $.get('/EpicFYPApp/getAllAdminsServlet', function (adminJson) {
                     //parse string into JSON object
@@ -41,9 +41,7 @@
                     var adminHTML = '<div class="table-wrapper"><table>';
                     //loop through each admin and print out as rows in a table
                     $.each(admins, function (index, admin) {
-                        adminHTML += '<thead><tr><th>Admin Name'+"</th></tr></thead>";
-                        
-                        adminHTML += '<tr><td>Admin Name: ' + admin.adminName + "</td>";
+                        adminHTML += '<thead><tr><th>Admin Name : ' + admin.adminName +"</th></tr></thead>";
                         adminHTML += '<tr><td>Admin Level : ' + admin.adminLevel + "</td>";                    
                         adminHTML += "<tr><td><form class=\"deleteAdmin\">";
                         adminHTML += "<input style=\"display: none\" type=\"text\" name=\"adminName\" value=\"" + admin.adminName + "\"/>";
@@ -59,9 +57,9 @@
                         //store the adminname from the form
                         var adminName = "" + $(this).children("input").val();
                         var deleteData = {
-                            'id': adminName
+                            'adminName': adminName
                         };
-                        console.log("adminName: " + adminName);
+                        console.log(deleteData);
                         //send an ajax post request to the delete admin servlet with delete data
                         $.post('/EpicFYPApp/deleteAdmin', deleteData, function (response) {
                             if (response === "success") {
@@ -128,7 +126,7 @@
                 });
                 
                 function reloadTable() {
-                    $.get('/EpicFYPApp/getAllAdminsServlet', function (adminJson) {
+                $.get('/EpicFYPApp/getAllAdminsServlet', function (adminJson) {
                     //parse string into JSON object
                     var admins = JSON.parse(adminJson);
                     console.log(admins);
@@ -137,7 +135,7 @@
                     $.each(admins, function (index, admin) {
                         adminHTML += '<thead><tr><th>Admin Name : ' + admin.adminName +"</th></tr></thead>";
                         adminHTML += '<tr><td>Admin Level : ' + admin.adminLevel + "</td>";                    
-                        adminHTML += "<tr><td><form class=\"deleteAdmin\">" + "</td>";
+                        adminHTML += "<tr><td><form class=\"deleteAdmin\">";
                         adminHTML += "<input style=\"display: none\" type=\"text\" name=\"adminName\" value=\"" + admin.adminName + "\"/>";
                         adminHTML += "<button class = \"button\" type=\"submit\" id=\"asd" + index + "\">Delete Admin</button></form></td>";                    
                     });
@@ -225,5 +223,7 @@
                 
             </div>
         </section>
+        <script src="js/custom-file-input.js"></script>
+        <script src="js/tabs.js"></script>
     </body>
 </html>

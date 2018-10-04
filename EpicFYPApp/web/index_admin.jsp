@@ -42,7 +42,7 @@
         <section id="admin_dashboard" class="container wrapper">
 
             <header class="major align-center">
-                <h2>Admin Page</h2>					
+                <h2>Admin Overview</h2>					
             </header>
 
 <!--            <div class ="row">

@@ -42,10 +42,10 @@
         <section id="admin_dashboard" class="container wrapper">
 
             <header class="major align-center">
-                <h2>Admin Overview</h2>					
+                <h2>Admin Page</h2>					
             </header>
 
-            <div class ="row">
+<!--            <div class ="row">
                 <div class ="6u 12u(small)">
                     <div class = "grid-wrapper1">
                         <h3 class = "align-center">Overseas Study Trips</h3>
@@ -89,7 +89,7 @@
                         <p><a href=#"" class = "button" style="width:100% ; background-color: #66b3ff;">View/Manage all jobs</a></p>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </section>
     </body>
 </html>

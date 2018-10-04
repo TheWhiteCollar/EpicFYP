@@ -68,7 +68,7 @@
 
                         // tripHTML += "<td>Edit Button</td>" + '<td><button type="button" class="button" data-toggle="modal" data-target="#myModal">View users signed up</button></td>' + "</tr>";
 
-                       tripHTML +='<td><button type="button" class="button" data-toggle="modal" data-target="#myModal">View users signed up</button></td>' + "</tr>";
+                       //tripHTML +='<td><button type="button" class="button" data-toggle="modal" data-target="#myModal">View users signed up</button></td>' + "</tr>";
                     });
                     tripHTML += '</table></div>';
                     //adding table html tag into div which has the id "trips"

@@ -44,7 +44,7 @@
                     <button class="tablinks" onclick="openUser(event, 'asia')" id="defaultOpen">Asia</button>
                     <button class="tablinks" onclick="openUser(event, 'australia')">Australia</button>
                     <button class="tablinks" onclick="openUser(event, 'europe')">Europe</button>
-                    <button class="tablinks" onclick="openUser(event, 'addCountry')">Add a country</button>
+<!--                    <button class="tablinks" onclick="openUser(event, 'addCountry')">Add a country</button>-->
                 </div>
 
                 <!--tabs' content 1.america 2.asia 3.australia 4.europe 5.addCountry-->
@@ -63,7 +63,7 @@
                                         <td>#</td>
                                         <td>Country</td>
                                         <td>Continent</td>
-                                        <td>More Actions</td>
+<!--                                        <td>More Actions</td>-->
                                     </tr>
                                 </thead>
                                 
@@ -78,7 +78,7 @@
                                         <td class = "align-center"><%out.print(countAmerica);%></td>
                                         <td><%out.print(ci.getCountryName());%></td>
                                         <td><%out.print(ci.getCountryContinent());%></td>
-                                        <td><button type="button" class="button" data-toggle="modal" data-target="#myModalAmericaDelete<%out.print(i);%>">Delete</button></td>
+<!--                                        <td><button type="button" class="button" data-toggle="modal" data-target="#myModalAmericaDelete<%out.print(i);%>">Delete</button></td>-->
                                     </tr>
                                     <%
                                             }
@@ -119,7 +119,7 @@
                                         <td>#</td>
                                         <td>Country</td>
                                         <td>Continent</td>
-                                        <td>More Actions</td>
+<!--                                        <td>More Actions</td>-->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -133,7 +133,7 @@
                                         <td class = "align-center"><%out.print(countAsia);%></td>
                                         <td><%out.print(ci.getCountryName());%></td>
                                         <td><%out.print(ci.getCountryContinent());%></td>
-                                        <td><button type="button" class="button" data-toggle="modal" data-target="#myModalAsiaDelete<%out.print(i);%>">Delete</button></td>
+<!--                                        <td><button type="button" class="button" data-toggle="modal" data-target="#myModalAsiaDelete<%out.print(i);%>">Delete</button></td>-->
                                     </tr>
 
                                     <%
@@ -171,7 +171,7 @@
                                         <td>#</td>
                                         <td>Country</td>
                                         <td>Continent</td>
-                                        <td>More Actions</td>
+<!--                                        <td>More Actions</td>-->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -185,7 +185,7 @@
                                         <td class = "align-center"><%out.print(countAustralia);%></td>
                                         <td><%out.print(ci.getCountryName());%></td>
                                         <td><%out.print(ci.getCountryContinent());%></td>
-                                        <td><button type="button" class="button" data-toggle="modal" data-target="#myModalAustraliaDelete<%out.print(i);%>">Delete</button></td>
+ <!--                                       <td><button type="button" class="button" data-toggle="modal" data-target="#myModalAustraliaDelete<%out.print(i);%>">Delete</button></td>-->
                                     </tr>
 
                                     <%
@@ -223,7 +223,7 @@
                                         <td>#</td>
                                         <td>Country</td>
                                         <td>Continent</td>
-                                        <td>More Actions</td>
+<!--                                        <td>More Actions</td>-->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -237,7 +237,7 @@
                                         <td class = "align-center"><%out.print(countEurope);%></td>
                                         <td><%out.print(ci.getCountryName());%></td>
                                         <td><%out.print(ci.getCountryContinent());%></td>
-                                        <td><button type="button" class="button" data-toggle="modal" data-target="#myModalEuropeDelete<%out.print(i);%>">Delete</button></td>
+ <!--                                       <td><button type="button" class="button" data-toggle="modal" data-target="#myModalEuropeDelete<%out.print(i);%>">Delete</button></td>-->
                                     </tr>
 
                                     <%

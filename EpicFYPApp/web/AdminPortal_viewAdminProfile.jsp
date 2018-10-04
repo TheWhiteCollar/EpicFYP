@@ -41,7 +41,9 @@
                     var adminHTML = '<div class="table-wrapper"><table>';
                     //loop through each admin and print out as rows in a table
                     $.each(admins, function (index, admin) {
-                        adminHTML += '<thead><tr><th>Admin Name : ' + admin.adminName +"</th></tr></thead>";
+                        adminHTML += '<thead><tr><th>Admin Name'+"</th></tr></thead>";
+                        
+                        adminHTML += '<tr><td>Admin Name: ' + admin.adminName + "</td>";
                         adminHTML += '<tr><td>Admin Level : ' + admin.adminLevel + "</td>";                    
                         adminHTML += "<tr><td><form class=\"deleteAdmin\">";
                         adminHTML += "<input style=\"display: none\" type=\"text\" name=\"adminName\" value=\"" + admin.adminName + "\"/>";
@@ -135,7 +137,7 @@
                     $.each(admins, function (index, admin) {
                         adminHTML += '<thead><tr><th>Admin Name : ' + admin.adminName +"</th></tr></thead>";
                         adminHTML += '<tr><td>Admin Level : ' + admin.adminLevel + "</td>";                    
-                        adminHTML += "<tr><td><form class=\"deleteAdmin\">";
+                        adminHTML += "<tr><td><form class=\"deleteAdmin\">" + "</td>";
                         adminHTML += "<input style=\"display: none\" type=\"text\" name=\"adminName\" value=\"" + admin.adminName + "\"/>";
                         adminHTML += "<button class = \"button\" type=\"submit\" id=\"asd" + index + "\">Delete Admin</button></form></td>";                    
                     });
@@ -191,21 +193,9 @@
             <div class="container" >
                 <h2 class="align-center">Admins' Profiles</h2>
                 <div class="container align-center">
-                    <button type="button" class="button" data-toggle="modal" data-target="#myModalAdd">Add a new Admin</button> 
-                    <button type="button" class="button" data-toggle="modal" data-target="#myModalDelete">Delete a Admin</button> 
+                    <button type="button" class="button" data-toggle="modal" data-target="#myModalAdd">Add a new Admin</button>
                 </div>
                 </br>
-                <div class="container">
-                    <table class="alt align-center">
-                        <thead>
-                            <tr>
-                                <th class="align-center">#</th>
-                                <th class="align-center">Admin Username</th>
-                                <th class="align-center">Admin Level</th>
-                            </tr>
-                        </thead>    
-                    </table>
-                </div>
                 
                 <div id="addAdmin" class="tabcontent">
                     <span onclick="this.parentElement.style.display = 'none'" class="toprightClose">&times</span>              

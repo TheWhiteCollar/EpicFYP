@@ -20,9 +20,11 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
         <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap-notify.min.js"></script>
         <script src="js/skel.min.js"></script>
         <script src="js/skel-layers.min.js"></script>
         <script src="js/init.js"></script>
+        
         <noscript>
         <link rel="stylesheet" href="css/skel.css" />
         <link rel="stylesheet" href="css/style.css" />
@@ -149,7 +151,7 @@
                         var deleteData = {
                             'id': adminName
                         };
- 
+                        console.log("adminName: " + adminName);
                         //send an ajax post request to the delete admin servlet with delete data
                         $.post('/EpicFYPApp/deleteAdmin', deleteData, function (response) {
                             if (response === "success") {
@@ -173,8 +175,8 @@
                         })
                         //prevents form from being submitted
                         event.preventDefault();
-                        });
                     });
+                });
                 }
             });
         </script>

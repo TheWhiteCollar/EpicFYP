@@ -46,14 +46,19 @@
                                     out.print(Student_ErrorMsg);
                                 }
 
+                                // to check if user come to login page straight or come from study trip	
+                                String comefrom = (String) request.getParameter("comefrom");
+                                String cont = (String) request.getParameter("cont");
+                            %>
+                        </p>
+                        
+                        <p style="text-align:center; color: lime">
+
+                            <%
                                 String successMessage = (String) request.getAttribute("successMessage");
                                 if (successMessage != null) {
                                     out.print(successMessage);
                                 }
-
-                                // to check if user come to login page straight or come from study trip	
-                                String comefrom = (String) request.getParameter("comefrom");
-                                String cont = (String) request.getParameter("cont");
                             %>
                         </p>
 

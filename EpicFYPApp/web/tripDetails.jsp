@@ -96,7 +96,7 @@
                                         <td>Duration : <%out.print(tripDuration);%> days</td>
                                     </tr>
                                     <tr>
-                                        <td><a href ="downloadItinerary" class ="button">Trip Itinerary</a></td>
+                                        <td><!--<a href ="downloadItinerary" class ="button">Trip Itinerary</a></td>-->
                                         <%
                                             User User = (User) session.getAttribute("User");
                                             Admin admin = (Admin) session.getAttribute("Admin");

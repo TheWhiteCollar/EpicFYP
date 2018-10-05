@@ -116,7 +116,7 @@ public class TripsDAO {
             Logger.getLogger(TripsDAO.class.getName()).log(Level.WARNING, "Cannot get tripstudent from db", ex);
         }
 
-        String sql2 = "SELECT * FROM trip WHERE tripPrice <= 300";
+        String sql2 = "SELECT * FROM trip WHERE tripPrice <= 2000";
         try (Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql2);) {;
             ResultSet rs = stmt.executeQuery();

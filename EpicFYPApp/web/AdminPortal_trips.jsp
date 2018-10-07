@@ -414,6 +414,11 @@
                         <input type="submit" value="Apply" style="width:100%"> 
                     </form> 
                 </div>
+                            
+<!--                <form id="myDownloadServlet" action="AdminExcelFileDownload" method="post">
+                    <input type="text" id="fileName" name="fileName" />
+                    <input type="submit" id="btnDownload" name="btnDownload" value="Download Excel File" />
+                </form>     -->
 
                 <!-- Adding a trip -->
                 <div id="addTripTab" class="tabcontent">

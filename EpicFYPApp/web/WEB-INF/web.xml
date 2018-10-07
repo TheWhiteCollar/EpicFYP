@@ -80,6 +80,10 @@
         <servlet-name>accountConfirmation</servlet-name>
         <servlet-class>Controller.accountConfirmationServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminExcelFileDownload</servlet-name>
+        <servlet-class>Controller.AdminExcelFileDownload</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TripsDAO</servlet-name>
         <url-pattern>/TripsDAO</url-pattern>
@@ -159,6 +163,10 @@
     <servlet-mapping>
         <servlet-name>accountConfirmationServlet</servlet-name>
         <url-pattern>/accountConfirmationServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminExcelFileDownload</servlet-name>
+        <url-pattern>/AdminExcelFileDownload</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

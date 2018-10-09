@@ -630,10 +630,16 @@
             date1 = new Date(date1);
             var date2 = document.getElementById('tripEnd').value;
             date2 = new Date(date2);
-            var timeDiff = Math.abs(date2 - date1);
-            var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-            diffDays += 1;
-            document.getElementById("tripDuration").value = diffDays;
+            var d1 = Date.parse(date1);
+            var d2 = Date.parse(date2);
+            if (d1 < d2) {
+                var timeDiff = Math.abs(date2 - date1);
+                var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+                diffDays += 1;
+                document.getElementById("tripDuration").value = diffDays;
+            } else {
+                alert ("Start date must be earlier than End date!");
+            }
         }
     </script>
     <script src="js/custom-file-input.js"></script>

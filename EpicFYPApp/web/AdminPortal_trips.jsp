@@ -393,6 +393,7 @@
                         <div class = "row">
                             <div class="3u 12u(small)">
                                 <% LocalDate todayDate = java.time.LocalDate.now(); %>
+                                
                                 Date (min):                                                                       
                                 <input name = "startDate" type="date" min = "<% out.print(todayDate); %>" >
                             </div>

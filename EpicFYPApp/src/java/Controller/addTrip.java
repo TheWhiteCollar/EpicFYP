@@ -113,7 +113,7 @@ public class addTrip extends HttpServlet {
             request.setAttribute("gurumessage", "No File found");
         }
 
-        if (TripsDAO.insertTrip(tripTitle, tripPrice, tripItinerary, tripDescription, tripCountry, tripState, tripStart, tripEnd, tripDuration, tripActivation, tripInterest, tripTotalSignUp, tripPromo, tripPromoPercentage)) {
+        if (tripEnd.after(tripStart) && TripsDAO.insertTrip(tripTitle, tripPrice, tripItinerary, tripDescription, tripCountry, tripState, tripStart, tripEnd, tripDuration, tripActivation, tripInterest, tripTotalSignUp, tripPromo, tripPromoPercentage)) {
             text = "success";
         }
 

@@ -64,7 +64,7 @@ public class CountryInternshipDAO {
             stmt.setString(1, countryName);
             stmt.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(CountryInternshipDAO.class.getName()).log(Level.WARNING, "Unable to delete" + countryName, ex);
+            Logger.getLogger(CountryInternshipDAO.class.getName()).log(Level.WARNING, "Unable to delete country, countryName = '" + countryName, ex);
             return false;
         }
         return true;

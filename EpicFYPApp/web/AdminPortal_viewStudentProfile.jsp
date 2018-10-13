@@ -35,6 +35,7 @@
         <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="css/style-xlarge.css" />
         </noscript>
+        
         <script>
             $(function() {
                 $.get('/EpicFYPApp/getAllUsersServlet', function(userJson){

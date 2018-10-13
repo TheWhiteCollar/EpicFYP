@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Model.Dao.CountryInternshipDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -32,18 +33,6 @@ public class deleteCountryInternship extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet deleteCountryInternship</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet deleteCountryInternship at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -72,6 +61,14 @@ public class deleteCountryInternship extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String countryName = request.getParameter("countryName");
+        String text = "fail";
+        if(CountryInternshipDAO.deleteCountryInternship(countryName)){
+           text = "success";
+        }
+        response.setContentType("text/plain");  // Set content type of the response so that jQuery knows what it can expect.
+        response.setCharacterEncoding("UTF-8"); // You want world domination, huh?
+        response.getWriter().write(text);       // Write response body.
         processRequest(request, response);
     }
 

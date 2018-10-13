@@ -461,7 +461,7 @@
                                 
                             <div class = "4u 12u(xsmall)">
                                 <p>
-                                    Trip End (dd-mm-yyyy): <input name="tripEnd" id="tripEnd" required type="date" min = "<% out.print(todayDate);%>" ">
+                                    Trip End (dd-mm-yyyy): <input name="tripEnd" id="tripEnd" required type="date" min = "<% out.print(todayDate); %>">
                                 </p>
                             </div>
                                 

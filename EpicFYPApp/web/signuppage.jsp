@@ -84,16 +84,16 @@
                                 <div class="6u 12u(xsmall)">
                                     <select name="occupation" >
                                         <option disabled selected value style="display:none"> - select an occupation - </option>
-                                        <option value="Not Applicable">-  Student</option>
-                                            <option value="Not Applicable">-  Business Executive/Agent</option>
-                                            <option value="Not Applicable">-  Financial Executive</option>
-                                            <option value="Not Applicable">-  Teacher/Trainer/Instructor</option>
-                                            <option value="Not Applicable">-  Medical Practitioner</option>
-                                            <option value="Not Applicable">-  Architecture/Engineer/Operator</option>
-                                            <option value="Not Applicable">-  Artist/Designer</option>
-                                            <option value="Not Applicable">-  Specialist/Scientist</option>
-                                            <option value="Not Applicable">-  Law Practitioner</option>
-                                            <option value="Not Applicable">-  Others</option>
+                                        <option value="Student">-  Student</option>
+                                            <option value="Business Executive/Agent">-  Business Executive/Agent</option>
+                                            <option value="Financial Executive">-  Financial Executive</option>
+                                            <option value="Teacher/Trainer/Instructor">-  Teacher/Trainer/Instructor</option>
+                                            <option value="Medical Practitioner">-  Medical Practitioner</option>
+                                            <option value="Architecture/Engineer/Operator">-  Architecture/Engineer/Operator</option>
+                                            <option value="Artist/Designer">-  Artist/Designer</option>
+                                            <option value="Specialist/Scientiste">-  Specialist/Scientist</option>
+                                            <option value="Law Practitioner">-  Law Practitioner</option>
+                                            <option value="Others">-  Others</option>
                                     </select>
                                 </div>
                                 <div class="6u 12u(xsmall)">
@@ -112,9 +112,9 @@
                                     <label for="SG_PR">Singapore PR</label>
                                 </div>
                                 <div class="4u 12u(small)">
-                                    <input type="radio" name="citizenship" id ="other">
+                                    <input type="radio" name="citizenship" id ="other" value = "Others">
                                     <label for="other">
-                                        <select name="citizenship" style = "height: 1.9em">
+                                        <select name="others_citizenship" style = "height: 1.9em">
                                             <option disabled selected value style="display:none"> - Other - </option>
 
                                             <option value="Afghan">Afghan</option>

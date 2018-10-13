@@ -55,9 +55,11 @@ public class signupServlet extends HttpServlet {
         int userPhone = Integer.parseInt(phone);
         String userGender = request.getParameter("gender");
         String userCitizenship = request.getParameter("citizenship");
+        if (userCitizenship.equals("Others")) {
+            userCitizenship = request.getParameter("others_citizenship");
+        }
         String yob = request.getParameter("yob");
         int yearOfBirth = Integer.parseInt(yob);
-        //Date date = Date.valueOf("1995-08-26");
         //profile pic
         String userProfilePic = "pretty.jpg";
         String userInterest = request.getParameter("interest");
@@ -121,7 +123,7 @@ public class signupServlet extends HttpServlet {
                     textPart.setText(final_Text);
                     multipart.addBodyPart(textPart);
                     message.setContent(multipart);
-                    message.setSubject("Password Reset");
+                    message.setSubject("Verify your account");
                     Transport.send(message);
                     // After reset email is successfully change
                     request.setAttribute("successMessage", "You have signed up successfully. An email have been sent to you for verification.");

@@ -85,15 +85,15 @@
                                     <select name="occupation" >
                                         <option disabled selected value style="display:none"> - select an occupation - </option>
                                         <option value="Student">-  Student</option>
-                                            <option value="Business Executive/Agent">-  Business Executive/Agent</option>
-                                            <option value="Financial Executive">-  Financial Executive</option>
-                                            <option value="Teacher/Trainer/Instructor">-  Teacher/Trainer/Instructor</option>
-                                            <option value="Medical Practitioner">-  Medical Practitioner</option>
-                                            <option value="Architecture/Engineer/Operator">-  Architecture/Engineer/Operator</option>
-                                            <option value="Artist/Designer">-  Artist/Designer</option>
-                                            <option value="Specialist/Scientiste">-  Specialist/Scientist</option>
-                                            <option value="Law Practitioner">-  Law Practitioner</option>
-                                            <option value="Others">-  Others</option>
+                                        <option value="Business Executive/Agent">-  Business Executive/Agent</option>
+                                        <option value="Financial Executive">-  Financial Executive</option>
+                                        <option value="Teacher/Trainer/Instructor">-  Teacher/Trainer/Instructor</option>
+                                        <option value="Medical Practitioner">-  Medical Practitioner</option>
+                                        <option value="Architecture/Engineer/Operator">-  Architecture/Engineer/Operator</option>
+                                        <option value="Artist/Designer">-  Artist/Designer</option>
+                                        <option value="Specialist/Scientiste">-  Specialist/Scientist</option>
+                                        <option value="Law Practitioner">-  Law Practitioner</option>
+                                        <option value="Others">-  Others</option>
                                     </select>
                                 </div>
                                 <div class="6u 12u(xsmall)">
@@ -315,6 +315,7 @@
                             </br>
                             <div class="row uniform 50%"> 
 
+                                <!-- can do for loop for the years, dun need all write manually -->
                                 <div class="6u 12u(xsmall)">
                                     <select name = "yob">
                                         <option disabled selected value style="display:none"> - Year of birth - </option>
@@ -433,7 +434,6 @@
                         </div>
                         <div class="signup-tab">
                             <h2 class = "align-center">User Interests</h2>
-                            <p class = "align-center" style="color: red;font-weight: bold;">Note: Press Ctrl or Command key to select multiple options</p>
                             <div class="row uniform 50%">   
                                 <div class="6u 12u(xsmall)">
                                     <h3>Field of Study interested in:</h3> 
@@ -452,30 +452,23 @@
                                             }
 
                                         %>
-
-
                                     </select> 
-
-
                                 </div>
                                 <div class="6u 12u(xsmall)">
                                     <h3>Study Trips interested in:</h3> 
-                                    <select name="interest" multiple="multiple" style="height: 200px;">
-                                        <option disabled selected value style="display:none"> - Interests - </option>
-                                        <%                                            
-                                            ArrayList<String> allInterests = InterestDAO.getInterests();
+                                    <%                                            
+                                        ArrayList<String> allInterests = InterestDAO.getInterests();
 
-                                            if (!allInterests.isEmpty()) {
-                                                for (int i = 0; i < allInterests.size(); i++) {
-                                                    String interests = allInterests.get(i);
+                                        if (!allInterests.isEmpty()) {
+                                            for (int i = 0; i < allInterests.size(); i++) {
+                                                String interests = allInterests.get(i);
 
-                                        %>
-                                        <option value="<%out.print(interests);%>"><%out.print(interests);%></option>
-                                        <%    }
-                                            }
+                                    %>
+                                    <input type="checkbox" name="interest" value="<%out.print(interests);%>" style="opacity:1;-webkit-appearance: checkbox; margin-right: 1em;"> <%out.print(interests);%><br>
+                                    <%    }
+                                        }
 
-                                        %>
-                                    </select>                                  
+                                    %>                                 
                                 </div>
                             </div>
 

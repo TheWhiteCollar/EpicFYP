@@ -62,7 +62,14 @@ public class signupServlet extends HttpServlet {
         int yearOfBirth = Integer.parseInt(yob);
         //profile pic
         String userProfilePic = "pretty.jpg";
-        String userInterest = request.getParameter("interest");
+        String[] userInterestString = request.getParameterValues("interest");
+        String userInterest = "";
+        for (int i = 0; i < userInterestString.length; i++) {
+            userInterest += "" + userInterestString[i];
+            if (i != userInterestString.length - 1) {
+                userInterest += ", ";
+            }
+        }
         String userPassword = request.getParameter("password");
         String userOccupation = request.getParameter("occupation");
         //resume

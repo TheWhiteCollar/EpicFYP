@@ -25,9 +25,11 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
         <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap-notify.min.js"></script>
         <script src="js/skel.min.js"></script>
         <script src="js/skel-layers.min.js"></script>
         <script src="js/init.js"></script>
+        
         <noscript>
         <link rel="stylesheet" href="css/skel.css" />
         <link rel="stylesheet" href="css/style.css" />
@@ -40,10 +42,9 @@
                      console.log(users);
                     var userHTML = '<div class="table-wrapper"><table>';
                     $.each(users, function(index, user) {
-                        userHTML += '<thead><tr><th>User ID : ' + user.userEmail + '</th><th colspan="3">' + user.userFirstName + "</th></tr></thead>";
                         userHTML += "<tr><td><form class=\"deleteUserServlet\">";
                         userHTML += "<input style=\"display: none\" type=\"text\" name=\"userEmail\" value=\"" + user.userEmail + "\"/>";
-                        userHTML += "<button class = \"button\" type=\"submit\" id=\"asd" + index + "\">Delete User</button></form></td>";
+                        userHTML += 'User Name : ' + user.userFirstName + " " + user.userLastName + '\t' + "<button class = \"button\" type=\"submit\" id=\"asd" + index + "\">Delete</button></form></td>";
                     });
                     userHTML += '</table></div>';
                     $("#users").append(userHTML);
@@ -51,8 +52,9 @@
                     $(".deleteUserServlet").submit(function(event) {
                         var userEmail = "" + $(this).children("input").val();
                         var deleteData = {
-                            'email': userEmail
+                            'userEmail': userEmail
                         };
+                        console.log(deleteData);
                         
                         $.post('/EpicFYPApp/deleteUserServlet', deleteData, function (response){
                             if(response === "success") {
@@ -73,27 +75,29 @@
                         event.preventDefault();
                     });
                 });
-                
+            });
                 function reloadTable(){
                     $.get('/EpicFYPApp/getAllUsersServlet', function(userJson){
                         var users = JSON.parse(userJson);
-                        $("#users").empty();
+                        console.log(admins);
+                        
                         var userHTML = '<div class="table-wrapper"><table>';
                         $.each(users, function(index, user) {
-                            userHTML += '<thead><tr><th>User ID : ' + user.userEmail + '</th><th colspan="3">' + user.userFirstName + "</th></tr></thead>";
-                            userHTML += '<tr><td>User last name : ' + user.userLastName + "</td><td> User Phone : " + user.userPhone + "</td>";
-                            userHTML += "<tr><td><form class=\"deleteUser\">";
-                            userHTML += "<input style=\"display: none\" type=\"text\" name=\"userEmail\" value=\"" + user.userEmail + "\"/>";
-                            userHTML += "<button class = \"button\" type=\"submit\" id=\"asd" + index + "\">Delete User</button></form></td>";
+                        userHTML += "<tr><td><form class=\"deleteUserServlet\">";
+                        userHTML += "<input style=\"display: none\" type=\"text\" name=\"userEmail\" value=\"" + user.userEmail + "\"/>";
+                        userHTML += 'User Name : ' + user.userFirstName + " " + user.userLastName + '\t' + "<button class = \"button\" type=\"submit\" id=\"asd" + index + "\">Delete</button></form></td>";
                         });
                         userHTML += '</table></div>';
+                        
+                        $("#users").empty();
                         $("#users").append(userHTML);
                     
                         $(".deleteUserServlet").submit(function(event) {
                             var userEmail = "" + $(this).children("input").val();
                             var deleteData = {
-                                'email': userEmail
+                                'userEmail': userEmail
                             };
+                            console.log("userEmail: " + userEmail);
 
                             $.post('/EpicFYPApp/deleteUserServlet', deleteData, function (response){
                                 if(response === "success") {
@@ -115,10 +119,8 @@
                         });
                     });
                 }
-            });
+            
         </script>
-        
-        <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
     </head>
     <body>
 
@@ -162,7 +164,6 @@
                             <th>Email</th>
                             <th class = "align-center">Contact</th>
                             <th class = "align-center">More information</th>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -178,7 +179,6 @@
                             <td><% out.print(u.getUserEmail()); %></td>
                             <td class = "align-center"><% out.print(u.getUserPhone()); %></td>
                             <td class = "align-center"><button type="button" class="button" data-toggle="modal" data-target="#myModal<%out.print(i);%>">View</button></td>
-                            
                             
                         </tr>
                         <%
@@ -336,9 +336,14 @@
                         }
                     }
                 %>
-
-            </div>
+                
+            <div class ="container">
+                <br>
+                <h2 class="align-center">Delete Students</h2>
+                <div id="users" class ="container"></div>
+            </div>  
         </section>
+        <script src="js/custom-file-input.js"></script>
+        <script src="js/tabs.js"></script>
     </body>
-</html>
-                           
+</html>             

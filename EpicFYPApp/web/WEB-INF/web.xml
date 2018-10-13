@@ -84,6 +84,10 @@
         <servlet-name>AdminExcelFileDownload</servlet-name>
         <servlet-class>Controller.AdminExcelFileDownload</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>deleteCountryInternship</servlet-name>
+        <servlet-class>Controller.deleteCountryInternship</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TripsDAO</servlet-name>
         <url-pattern>/TripsDAO</url-pattern>
@@ -167,6 +171,10 @@
     <servlet-mapping>
         <servlet-name>AdminExcelFileDownload</servlet-name>
         <url-pattern>/AdminExcelFileDownload</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteCountryInternship</servlet-name>
+        <url-pattern>/deleteCountryInternship</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

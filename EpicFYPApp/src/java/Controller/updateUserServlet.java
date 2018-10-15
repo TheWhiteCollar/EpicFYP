@@ -48,7 +48,7 @@ public class updateUserServlet extends HttpServlet {
             throws ServletException, IOException {
         
         // retrieve user input
-        String userEmail = request.getParameter("email");
+        String userEmail = request.getParameter("userEmail");
         String userFirstName = request.getParameter("firstName");
         String userLastName = request.getParameter("lastName");
         String phone = request.getParameter("phone");
@@ -59,13 +59,22 @@ public class updateUserServlet extends HttpServlet {
         int yearOfBirth = Integer.parseInt(yob);
         //profile pic
         Part userProfilePic = request.getPart("profilePicture");
-        String userInterest = request.getParameter("interest");
+        String[] userInterestString = request.getParameterValues("interest");
+        String userInterest = "";
+        for (int i = 0; i < userInterestString.length; i++) {
+            userInterest += "" + userInterestString[i];
+            if (i != userInterestString.length - 1) {
+                userInterest += ", ";
+            }
+        }
+        
         String userPassword = request.getParameter("password");
         String userOccupation = request.getParameter("occupation");
         
         String userHighestEducation = request.getParameter("highest_qualification");
+        
         String userFieldOfStudy = request.getParameter("fos");
-        String userDescription = request.getParameter("message");
+        String userDescription = request.getParameter("description");
         String userSchool = request.getParameter("school");
 
         if (!userFirstName.equals("") && !userLastName.equals("") && !userCitizenship.equals("") && !userHighestEducation.equals("") && !userSchool.equals("") && !userFieldOfStudy.equals("")) {

@@ -88,6 +88,10 @@
         <servlet-name>deleteCountryInternship</servlet-name>
         <servlet-class>Controller.deleteCountryInternship</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>getAllCountryInternship</servlet-name>
+        <servlet-class>Controller.getAllCountryInternship</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TripsDAO</servlet-name>
         <url-pattern>/TripsDAO</url-pattern>
@@ -175,6 +179,10 @@
     <servlet-mapping>
         <servlet-name>deleteCountryInternship</servlet-name>
         <url-pattern>/deleteCountryInternship</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getAllCountryInternship</servlet-name>
+        <url-pattern>/getAllCountryInternship</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

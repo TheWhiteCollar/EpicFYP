@@ -90,6 +90,24 @@ public class CountryInternshipDAO {
         return null;
     }
     
+    public static ArrayList<String> getAllCountryInternshipString() {
+
+        ArrayList<String> countryInternshipNames = new ArrayList<>();
+        String sql = "SELECT * FROM countryinternship ORDER BY countryName ASC";
+
+        try (Connection conn = ConnectionManager.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                countryInternshipNames.add(rs.getString(1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CountryInternshipDAO.class.getName()).log(Level.WARNING, "Unable to retrieve countries", ex);
+        }
+
+        return countryInternshipNames;
+    }
+    
     //get all countryinternship names with contient America
     public static ArrayList<CountryInternship> getAllCountryInternship(String countryName) {
         ArrayList<CountryInternship> result = new ArrayList<>();

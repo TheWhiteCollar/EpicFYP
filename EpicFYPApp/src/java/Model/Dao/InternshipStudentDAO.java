@@ -17,44 +17,21 @@ import java.util.logging.Logger;
 
 public class InternshipStudentDAO {
     
-//update status and corresponding follow-up action, with respective timestamp and last update timestamp
-    public static boolean updateInternshipStudentStatusUpdate(String internshipUserEmail, String internshipStudentContinent, String internshipStudentCycle, String internshipStudentStatus, String internshipStudentDatetime, int internshipStudentAction, String internshipStudentLastUpdate) {
+    //update status and corresponding follow-up action, with respective timestamp and last update timestamp
+    //if cancel internship, remember to increase vacancy by one =>  InternshipDAO.updateInternshipVacancyIncrease(internshipID);
+    public static boolean updateInternshipStudentStatusUpdate(String internshipUserEmail, String internshipStudentContinent, String yearApplied, String internshipStudentStatus, String internshipStudentDatetime, String internshipStudentLastUpdate) {
 
-        String sql = "UPDATE internshipstudent SET internshipStudentStatus=?, internshipStudentDatetime=?, internshipStudentAction=?, internshipStudentLastUpdate=? WHERE internshipUserEmail=? AND internshipStudentContinent=? and internshipStudentCycle=?";
+        String sql = "UPDATE internshipstudent SET internshipStudentStatus=?, internshipStudentDatetime=?, internshipStudentLastUpdate=? WHERE internshipUserEmail=? AND internshipStudentContinent=? and YEAR(internshipStudentTimeApplied)=?";
 
         try (Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
 
             stmt.setString(1, internshipStudentStatus);
             stmt.setString(2, internshipStudentDatetime);
-            stmt.setInt(3, internshipStudentAction);
-            stmt.setString(4, internshipStudentLastUpdate);
+            stmt.setString(3, internshipStudentLastUpdate);
             stmt.setString(5, internshipUserEmail);
             stmt.setString(6, internshipStudentContinent);
-            stmt.setString(7, internshipStudentCycle);
-
-            int result = stmt.executeUpdate();
-            if (result == 0) {
-                return false;
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(InternshipStudentDAO.class.getName()).log(Level.WARNING, "Failed to update new internshipStudent information", ex);
-        }
-        return true;
-    }
-    
-    //update cycle from "processing" to "done" - to use with status update
-    public static boolean updateInternshipStudentCompleteCycle(String internshipUserEmail, String internshipStudentContinent) {
-
-        String sql = "UPDATE internshipstudent SET internshipStudentCycle=? WHERE internshipUserEmail=? AND internshipStudentContinent=? and internshipStudentCycle='processing'";
-
-        try (Connection conn = ConnectionManager.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(sql);) {
-
-            stmt.setString(1, "done");
-            stmt.setString(2, internshipUserEmail);
-            stmt.setString(3, internshipStudentContinent);
-            
+            stmt.setString(7, yearApplied);
 
             int result = stmt.executeUpdate();
             if (result == 0) {
@@ -120,40 +97,11 @@ public class InternshipStudentDAO {
         
         return true;
     }
-    
-    //cancel internship after processCycle is complete (to use with status update)
-    //auto increase one vacancy
-    public static boolean updateInternshipStudentCancelInternshipAssignment(String internshipUserEmail, String internshipStudentContinent, int internshipID) {
-
-        String sql = "UPDATE internshipstudent SET internshipStudentAction=? WHERE internshipUserEmail=? AND internshipStudentContinent=? AND internshipID=?";
-
-        try (Connection conn = ConnectionManager.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(sql);) {
-
-           
-            stmt.setInt(1, 4);
-            stmt.setString(2, internshipUserEmail);
-            stmt.setString(3, internshipStudentContinent);
-            stmt.setInt(4, internshipID);
-            
-
-            int result = stmt.executeUpdate();
-            if (result == 0) {
-                return false;
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(InternshipStudentDAO.class.getName()).log(Level.WARNING, "Failed to update new internshipStudent information", ex);
-        }
-        
-        InternshipDAO.updateInternshipVacancyIncrease(internshipID);
-        
-        return true;
-    }
-
+   
     // Add existing InternshipStudent/bulk new InternshipStudent (to use with status update)
-    public static boolean addInternshipStudent(int internshipID, String internshipUserEmail, String internshipStudentStatus, String internshipStudentContinent, String internshipStudentDatetime, int internshipStudentAction, String internshipStudentCycle, String internshipStudentLastUpdate) {
+    public static boolean addInternshipStudent(int internshipID, String internshipUserEmail, String internshipStudentStatus, String internshipStudentContinent, String internshipStudentDatetime, String internshipStudentDatetimeApplied, String internshipStudentLastUpdate) {
 
-        String sql = "INSERT INTO internshipstudent (internshipID, internshipUserEmail, internshipStudentStatus, internshipStudentContinent, internshipStudentDatetime,internshipStudentAction,internshipStudentCycle,internshipStudentLastUpdate) VALUES (?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO internshipstudent (internshipID, internshipUserEmail, internshipStudentStatus, internshipStudentContinent, internshipStudentDatetime,internshipStudentDatetimeApplied,internshipStudentLastUpdate) VALUES (?,?,?,?,?,?,?)";
 
         try (Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
@@ -162,9 +110,8 @@ public class InternshipStudentDAO {
             stmt.setString(3, internshipStudentStatus);
             stmt.setString(4, internshipStudentContinent);
             stmt.setString(5, internshipStudentDatetime);
-            stmt.setInt(6, internshipStudentAction);
-            stmt.setString(7, internshipStudentCycle);
-            stmt.setString(8, internshipStudentLastUpdate);
+            stmt.setString(6, internshipStudentDatetimeApplied);
+            stmt.setString(7, internshipStudentLastUpdate);
 
             int result = stmt.executeUpdate();
             if (result == 0) {
@@ -173,6 +120,7 @@ public class InternshipStudentDAO {
         } catch (SQLException ex) {
             Logger.getLogger(InternshipStudentDAO.class.getName()).log(Level.WARNING, "Failed to add new internshipStudent information", ex);
         }
+
         return true;
     }
 
@@ -184,7 +132,7 @@ public class InternshipStudentDAO {
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM internshipstudent ORDER BY internshipStudentLastUpdate DESC");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                result.add(new InternshipStudent(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7), rs.getString(8)));
+                result.add(new InternshipStudent(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
             }
             rs.close();
             stmt.close();
@@ -193,7 +141,7 @@ public class InternshipStudentDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return result;
     }
     
     //get List of rejected internshipstudent, action=0
@@ -201,10 +149,10 @@ public class InternshipStudentDAO {
         ArrayList<InternshipStudent> result = new ArrayList<>();
         try {
             Connection conn = ConnectionManager.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM internshipstudent WHERE internshipStudentAction=0 ORDER BY internshipStudentLastUpdate DESC");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM internshipstudent WHERE RIGHT(internshipStudentStatus,1)=0 ORDER BY internshipStudentLastUpdate DESC");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                result.add(new InternshipStudent(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7), rs.getString(8)));
+                result.add(new InternshipStudent(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
             }
             rs.close();
             stmt.close();
@@ -213,7 +161,7 @@ public class InternshipStudentDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return result;
     }
     
     //get List of confirmed internshipstudent action=3
@@ -221,10 +169,10 @@ public class InternshipStudentDAO {
         ArrayList<InternshipStudent> result = new ArrayList<>();
         try {
             Connection conn = ConnectionManager.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM internshipstudent WHERE internshipStudentAction=3 ORDER BY internshipStudentLastUpdate DESC");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM internshipstudent WHERE RIGHT(internshipStudentStatus,1)=3 ORDER BY internshipStudentLastUpdate DESC");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                result.add(new InternshipStudent(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7), rs.getString(8)));
+                result.add(new InternshipStudent(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
             }
             rs.close();
             stmt.close();
@@ -233,7 +181,7 @@ public class InternshipStudentDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return result;
     }
     
     //get List of pending admin action internshipstudent action=1
@@ -241,10 +189,10 @@ public class InternshipStudentDAO {
         ArrayList<InternshipStudent> result = new ArrayList<>();
         try {
             Connection conn = ConnectionManager.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM internshipstudent WHERE internshipStudentAction=1 ORDER BY internshipStudentLastUpdate DESC");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM internshipstudent WHERE RIGHT(internshipStudentStatus,1)=1 ORDER BY internshipStudentLastUpdate DESC");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                result.add(new InternshipStudent(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7), rs.getString(8)));
+                result.add(new InternshipStudent(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
             }
             rs.close();
             stmt.close();
@@ -253,7 +201,7 @@ public class InternshipStudentDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return result;
     }
     
     //get List of pending user action internshipstudent action=2
@@ -261,10 +209,10 @@ public class InternshipStudentDAO {
         ArrayList<InternshipStudent> result = new ArrayList<>();
         try {
             Connection conn = ConnectionManager.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM internshipstudent WHERE internshipStudentAction=2 ORDER BY internshipStudentLastUpdate DESC");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM internshipstudent WHERE RIGHT(internshipStudentStatus,1)=2 ORDER BY internshipStudentLastUpdate DESC");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                result.add(new InternshipStudent(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7), rs.getString(8)));
+                result.add(new InternshipStudent(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
             }
             rs.close();
             stmt.close();
@@ -273,7 +221,7 @@ public class InternshipStudentDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return result;
     }
     
     //get List of cancelled internshipstudent action=4
@@ -281,10 +229,10 @@ public class InternshipStudentDAO {
         ArrayList<InternshipStudent> result = new ArrayList<>();
         try {
             Connection conn = ConnectionManager.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM internshipstudent WHERE internshipStudentAction=4 ORDER BY internshipStudentLastUpdate DESC");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM internshipstudent WHERE RIGHT(internshipStudentStatus,1)=4 ORDER BY internshipStudentLastUpdate DESC");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                result.add(new InternshipStudent(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7), rs.getString(8)));
+                result.add(new InternshipStudent(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
             }
             rs.close();
             stmt.close();
@@ -293,7 +241,7 @@ public class InternshipStudentDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return result;
     }
 
     //delete a particular InternshipStudent row
@@ -323,7 +271,7 @@ public class InternshipStudentDAO {
             stmt.setString(1, internshipUserEmail);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                result.add(new InternshipStudent(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7), rs.getString(8)));
+                result.add(new InternshipStudent(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
             }
             rs.close();
             stmt.close();
@@ -336,15 +284,17 @@ public class InternshipStudentDAO {
     }
     
     //count number of continent of a particular user (used to check if user alr signed up to a continent)
-    public static int countInternshipStudentByCont(String internshipUserEmail, String continent) {
+    public static int countInternshipStudentByCont(String internshipUserEmail, String continent, int currentYear) {
 
         int count = 0;
-        String sql = "SELECT COUNT(internshipUserEmail) from internshipstudent WHERE internshipUserEmail=? AND internshipStudentContinent=? AND internshipStudentCycle='processing'";
+        String sql = "SELECT COUNT(internshipUserEmail) from internshipstudent WHERE internshipUserEmail=? AND internshipStudentContinent=? AND YEAR(internshipStudentDatetimeApplied)=?";
         try {
             Connection conn = ConnectionManager.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, internshipUserEmail);
             stmt.setString(2, continent);
+            stmt.setInt(3, currentYear);
+            
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 count = rs.getInt(1);

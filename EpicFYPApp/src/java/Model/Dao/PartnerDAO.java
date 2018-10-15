@@ -7,6 +7,8 @@ package Model.Dao;
 
 import Controller.ConnectionManager;
 import Model.Entity.Partner;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,13 +16,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.Part;
 
 public class PartnerDAO {
     
     //update a particular partner row
-    public static boolean updatePartner(int partnerID, String partnerName, String partnerCountry, String partnerState, String partnerDescription, String partnerPassword, String partnerPicture) {
+    public static boolean updatePartner(int partnerID, String partnerName, String partnerCountry, String partnerState, String partnerDescription, String partnerPassword, Part partnerPicture, String partnerHRName, String partnerHREmail){
 
-        String sql = "UPDATE partner SET partnerName=?, partnerCountry=?, partnerState=?, partnerDescription=?, partnerPassword=?, partnerPicture=? WHERE partnerID=?";
+        String sql = "UPDATE partner SET partnerName=?, partnerCountry=?, partnerState=?, partnerDescription=?, partnerPassword=?, partnerPicture=?, partnerHRName=?,partnerHREmail=? WHERE partnerID=?";
 
         try (Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
@@ -30,8 +33,30 @@ public class PartnerDAO {
             stmt.setString(3, partnerState);
             stmt.setString(4, partnerDescription);
             stmt.setString(5, partnerPassword);
-            stmt.setString(6, partnerPicture);
-            stmt.setInt(7, partnerID);
+            stmt.setString(7, partnerHRName);
+            stmt.setString(8, partnerHREmail);
+            stmt.setInt(9, partnerID);
+            
+            //picture update
+            InputStream picInputStream = null;
+            if (partnerPicture != null){
+                System.out.println(partnerPicture.getName());
+                System.out.println(partnerPicture.getSize());
+                System.out.println(partnerPicture.getContentType());
+                
+                try{
+                    picInputStream = partnerPicture.getInputStream();
+                }catch(IOException e){
+                    Logger.getLogger(PartnerDAO.class.getName()).log(Level.WARNING, "Failed to upload picture into database", e);
+                }
+                
+            }
+            
+            if(picInputStream!= null){
+                stmt.setBinaryStream(6, picInputStream, (int) partnerPicture.getSize());
+            }else{
+                stmt.setNull(6, java.sql.Types.BLOB);
+            }
 
             int result = stmt.executeUpdate();
             if (result == 0) {
@@ -44,9 +69,9 @@ public class PartnerDAO {
     }
 
     // Add existing partner/bulk new partners
-    public static boolean addPartner(int partnerID, String partnerName, String partnerCountry, String partnerState, String partnerDescription, String partnerPassword, String partnerPicture) {
+    public static boolean addPartner(int partnerID, String partnerName, String partnerCountry, String partnerState, String partnerDescription, String partnerPassword, Part partnerPicture, String partnerHRName, String partnerHREmail) {
 
-        String sql = "INSERT INTO partner (partnerID, partnerName, partnerCountry, partnerState, partnerDescription, partnerPassword, partnerPicture) VALUES (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO partner (partnerID, partnerName, partnerCountry, partnerState, partnerDescription, partnerPassword, partnerPicture) VALUES (?,?,?,?,?,?,?,?,?)";
 
         try (Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
@@ -56,8 +81,29 @@ public class PartnerDAO {
             stmt.setString(4, partnerState);
             stmt.setString(5, partnerDescription);
             stmt.setString(6, partnerPassword);
-            stmt.setString(7, partnerPicture);
+            stmt.setString(8, partnerHRName);
+            stmt.setString(9, partnerHRName);
 
+            //picture update
+            InputStream picInputStream = null;
+            if (partnerPicture != null){
+                System.out.println(partnerPicture.getName());
+                System.out.println(partnerPicture.getSize());
+                System.out.println(partnerPicture.getContentType());
+
+                try{
+                    picInputStream = partnerPicture.getInputStream();
+                }catch(IOException e){
+                    Logger.getLogger(PartnerDAO.class.getName()).log(Level.WARNING, "Failed to upload picture into database", e);
+                }
+            }
+            
+            if(picInputStream!= null){
+                stmt.setBinaryStream(7, picInputStream, (int) partnerPicture.getSize());
+            }else{
+                stmt.setNull(7, java.sql.Types.BLOB);
+            }
+            
             int result = stmt.executeUpdate();
             if (result == 0) {
                 return false;
@@ -76,7 +122,7 @@ public class PartnerDAO {
             PreparedStatement stmt = conn.prepareStatement("select * from partner WHERE partnerID<>0 ORDER BY partnerName ASC");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                result.add(new Partner(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
+                result.add(new Partner(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getBlob(7),rs.getString(8),rs.getString(9)));
             }
             rs.close();
             stmt.close();
@@ -97,7 +143,7 @@ public class PartnerDAO {
             stmt.setInt(1, partnerID);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                partner = new Partner(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
+                partner = new Partner(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getBlob(7),rs.getString(8),rs.getString(9));
             }
             rs.close();
             stmt.close();

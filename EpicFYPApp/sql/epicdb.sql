@@ -186,7 +186,7 @@ INSERT INTO `internship` (`internshipID`, `internshipName`, `internshipApproval`
 
 CREATE TABLE IF NOT EXISTS `internshipstudentstatus` (
   `internshipStudentStatusID` int(2) NOT NULL,
-  `internshipStudentStatusName` varchar(50) NOT NULL,
+  `internshipStudentStatusName` varchar(100) NOT NULL,
   `internshipStudentStatusAction` int(1) NOT NULL,
   `internshipStudentStatusCycle` varchar(10) NOT NULL,
   PRIMARY KEY (`internshipStudentStatusID`)

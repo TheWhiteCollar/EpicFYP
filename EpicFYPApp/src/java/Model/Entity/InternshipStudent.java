@@ -8,12 +8,11 @@ package Model.Entity;
 /* Database sequence
     #1: internshipID (int 11)
     #2: internshipUserEmail (varchar 50)
-    #3: internshipStudentStatus (varchar 300)
+    #3: internshipStudentStatus (varchar 25)
     #4: internshipStudentContinent (varchar 15)
     #5: internshipStudentDatetime (varchar 160)
-    #6: internshipStudentAction (int 1) 0=rejected, 1=admin action, 2=user action, 3=internship confirmed, 4=cancelled
-    #7: internshipStudentCycle (varchar 10) done, processing
-    #8: internshipStudentLastUpdate (datetime YYYY-MM-DD HH:MM:SS)
+    #6: internshipStudentDatetimeApplied (datetime YYYY-MM-DD HH:MM:SS)
+    #7: internshipStudentLastUpdate (datetime YYYY-MM-DD HH:MM:SS)
  */
 
 public class InternshipStudent {
@@ -23,18 +22,16 @@ public class InternshipStudent {
     private String internshipStudentStatus;
     private String internshipStudentContinent;
     private String internshipStudentDatetime;
-    private int internshipStudentAction;
-    private String internshipStudentCycle;
+    private String internshipStudentDatetimeApplied;
     private String internshipStudentLastUpdate;
 
-    public InternshipStudent(int internshipID, String internshipUserEmail, String internshipStudentStatus, String internshipStudentContinent, String internshipStudentDatetime, int internshipStudentAction, String internshipStudentCycle, String internshipStudentLastUpdate) {
+    public InternshipStudent(int internshipID, String internshipUserEmail, String internshipStudentStatus, String internshipStudentContinent, String internshipStudentDatetime, String internshipStudentDatetimeApplied, String internshipStudentLastUpdate) {
         this.internshipID = internshipID;
         this.internshipUserEmail = internshipUserEmail;
         this.internshipStudentStatus = internshipStudentStatus;
         this.internshipStudentContinent = internshipStudentContinent;
         this.internshipStudentDatetime = internshipStudentDatetime;
-        this.internshipStudentAction = internshipStudentAction;
-        this.internshipStudentCycle = internshipStudentCycle;
+        this.internshipStudentDatetimeApplied = internshipStudentDatetimeApplied;
         this.internshipStudentLastUpdate = internshipStudentLastUpdate;
     }
 
@@ -78,20 +75,12 @@ public class InternshipStudent {
         this.internshipStudentDatetime = internshipStudentDatetime;
     }
 
-    public int getInternshipStudentAction() {
-        return internshipStudentAction;
+    public String getInternshipStudentDatetimeApplied() {
+        return internshipStudentDatetimeApplied;
     }
 
-    public void setInternshipStudentAction(int internshipStudentAction) {
-        this.internshipStudentAction = internshipStudentAction;
-    }
-
-    public String getInternshipStudentCycle() {
-        return internshipStudentCycle;
-    }
-
-    public void setInternshipStudentCycle(String internshipStudentCycle) {
-        this.internshipStudentCycle = internshipStudentCycle;
+    public void setInternshipStudentDatetimeApplied(String internshipStudentDatetimeApplied) {
+        this.internshipStudentDatetimeApplied = internshipStudentDatetimeApplied;
     }
 
     public String getInternshipStudentLastUpdate() {

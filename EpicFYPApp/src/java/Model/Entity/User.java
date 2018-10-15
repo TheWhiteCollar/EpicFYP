@@ -5,6 +5,8 @@
  */
 package Model.Entity;
 
+import java.sql.Blob;
+
 /* Database sequence
 
     #1: userEmail (varchar 50)
@@ -14,11 +16,11 @@ package Model.Entity;
     #5: userGender (varchar 1)
     #6: userCitizenship (varchar 100)
     #7: userDOB (year 4)
-    #8: userProfilePic (varchar 100)
+    #8: userProfilePic (mediumblob)
     #9: userInterest (varchar 1000)
     #10: userPassword (varchar 50)
     #11: userOccupation (varchar 100)
-    #12: userResume (varchar 100)
+    #12: userResume (mediumblob)
     #13: userIsEmailConfirm (varchar 10)
     #14: userHighestEducation (varchar 100)
     #15: userFieldOfStudy (varchar 100)
@@ -36,18 +38,18 @@ public class User {
     private String userGender;
     private String userCitizenship;
     private int userDOB;
-    private String userProfilePic;
+    private Blob userProfilePic;
     private String userInterest;
     private String userPassword;
     private String userOccupation;
-    private String userResume;
+    private Blob userResume;
     private String userIsEmailConfirm;
     private String userHighestEducation;
     private String userFieldOfStudy;
     private String userDescription;
     private String userSchool;
 
-    public User(String userEmail, String userFirstName, String userLastName, int userPhone, String userGender, String userCitizenship, int userDOB, String userProfilePic, String userInterest, String userPassword, String userOccupation, String userResume, String userIsEmailConfirm, String userHighestEducation, String userFieldOfStudy, String userDescription, String userSchool) {
+    public User(String userEmail, String userFirstName, String userLastName, int userPhone, String userGender, String userCitizenship, int userDOB, Blob userProfilePic, String userInterest, String userPassword, String userOccupation, Blob userResume, String userIsEmailConfirm, String userHighestEducation, String userFieldOfStudy, String userDescription, String userSchool) {
         this.userEmail = userEmail;
         this.userFirstName = userFirstName;
         this.userLastName = userLastName;
@@ -123,11 +125,11 @@ public class User {
         this.userDOB = userDOB;
     }
 
-    public String getUserProfilePic() {
+    public Blob getUserProfilePic() {
         return userProfilePic;
     }
 
-    public void setUserProfilePic(String userProfilePic) {
+    public void setUserProfilePic(Blob userProfilePic) {
         this.userProfilePic = userProfilePic;
     }
 
@@ -155,11 +157,11 @@ public class User {
         this.userOccupation = userOccupation;
     }
 
-    public String getUserResume() {
+    public Blob getUserResume() {
         return userResume;
     }
 
-    public void setUserResume(String userResume) {
+    public void setUserResume(Blob userResume) {
         this.userResume = userResume;
     }
 

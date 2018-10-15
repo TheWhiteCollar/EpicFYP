@@ -5,6 +5,8 @@
  */
 package Model.Entity;
 
+import java.sql.Blob;
+
 /* Database sequence
     #1: partnerID (int 11)
     #2: partnerName (varchar 100)
@@ -13,6 +15,8 @@ package Model.Entity;
     #5: partnerDescription (varchar 1000)
     #6: partnerPassword (varchar 50)
     #7: partnerPicture (varchar 100)
+    #8: partnerHRName (varchar 50)
+    #9: partnerHREmail (varchar 50)
  */
 
 public class Partner {
@@ -23,9 +27,11 @@ public class Partner {
     private String partnerState;
     private String partnerDescription;
     private String partnerPassword;
-    private String partnerPicture;
+    private Blob partnerPicture;
+    private String partnerHRName;
+    private String partnerHREmail;
 
-    public Partner(int partnerID, String partnerName, String partnerCountry, String partnerState, String partnerDescription, String partnerPassword, String partnerPicture) {
+    public Partner(int partnerID, String partnerName, String partnerCountry, String partnerState, String partnerDescription, String partnerPassword, Blob partnerPicture, String partnerHRName, String partnerHREmail) {
         this.partnerID = partnerID;
         this.partnerName = partnerName;
         this.partnerCountry = partnerCountry;
@@ -33,6 +39,8 @@ public class Partner {
         this.partnerDescription = partnerDescription;
         this.partnerPassword = partnerPassword;
         this.partnerPicture = partnerPicture;
+        this.partnerHRName = partnerHRName;
+        this.partnerHREmail = partnerHREmail;
     }
 
     public int getPartnerID() {
@@ -83,11 +91,29 @@ public class Partner {
         this.partnerPassword = partnerPassword;
     }   
 
-    public String getPartnerPicture() {
+    public Blob getPartnerPicture() {
         return partnerPicture;
     }
 
-    public void setPartnerPicture(String partnerPicture) {
+    public void setPartnerPicture(Blob partnerPicture) {
         this.partnerPicture = partnerPicture;
     }
+
+    public String getPartnerHRName() {
+        return partnerHRName;
+    }
+
+    public void setPartnerHRName(String partnerHRName) {
+        this.partnerHRName = partnerHRName;
+    }
+
+    public String getPartnerHREmail() {
+        return partnerHREmail;
+    }
+
+    public void setPartnerHREmail(String partnerHREmail) {
+        this.partnerHREmail = partnerHREmail;
+    }
+    
+    
 }

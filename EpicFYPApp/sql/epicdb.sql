@@ -224,7 +224,7 @@ CREATE TABLE IF NOT EXISTS `internshipstudent` (
   `internshipUserEmail` varchar(50) CHARACTER SET utf8 NOT NULL,
   `internshipStudentStatus` varchar(25) NOT NULL,
   `internshipStudentContinent` varchar(15) NOT NULL,
-  `internshipStudentDatetime` varchar(160) NOT NULL,
+  `internshipStudentDatetime` varchar(210) NOT NULL,
   `internshipStudentDatetimeApplied` datetime NOT NULL,
   `internshipStudentLastUpdate` datetime NOT NULL,
   PRIMARY KEY (`internshipUserEmail`,`internshipStudentContinent`,`internshipStudentDatetimeApplied`),

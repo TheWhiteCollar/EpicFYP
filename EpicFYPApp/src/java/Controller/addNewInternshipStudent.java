@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 @WebServlet(name = "addNewInternshipStudent", urlPatterns = {"/addNewInternshipStudent"})
 public class addNewInternshipStudent extends HttpServlet {
@@ -42,23 +43,24 @@ public class addNewInternshipStudent extends HttpServlet {
         String userSchool = request.getParameter("school");
         String userFieldOfStudy = request.getParameter("fos");
         
+        //format date correctly
         java.util.Date dt = new java.util.Date();
         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String currentTime = sdf.format(dt);
 
         //get the resume parameter
-        
+        Part filePart = request.getPart("uploadedfile"); 
      
         //update user
-        //updateUser(String userEmail, String userFirstName, String userLastName, int userPhone, String userGender, String userCitizenship, int userDOB, String userProfilePic, String userInterest, String userPassword, String userOccupation, String userResume, String userIsEmailConfirm, String userHighestEducation, String userFieldOfStudy, String userDescription, String userSchool)
+        //updateUser(String userEmail, String userFirstName, String userLastName, int userPhone, String userGender, String userCitizenship, int userDOB, String userProfilePic, String userInterest, String userPassword, String userOccupation, String userResume, String userIsEmailConfirm, String userHighestEducation, String userFieldOfStudy, String userDescription, String userSchool, Part userResume)
         //add into internshipStudent
         //
         // validate fields are not empty and insert into database - should do it in frontend?
-        if (!userFirstName.equals("") && !userLastName.equals("") && !userCitizenship.equals("") && !userHighestEducation.equals("") && !userSchool.equals("") && !userFieldOfStudy.equals("")) {
+        if (!userFirstName.equals("") && !userLastName.equals("") && !userCitizenship.equals("") && !userHighestEducation.equals("") && !userSchool.equals("") && !userFieldOfStudy.equals("") && filePart!=null) {
 
             // Insert into database
-            boolean insertedUser = UserDAO.updateUser(userEmail, userFirstName, userLastName, userPhone, userCitizenship, userHighestEducation, userFieldOfStudy, userSchool);
-            boolean insertedInternshipStudent = InternshipStudentDAO.addInternshipStudent(0, userEmail, "user applied - pending admin confirmation", continent,currentTime,1,"processing",currentTime);
+            boolean insertedUser = UserDAO.updateUser(userEmail, userFirstName, userLastName, userPhone, userCitizenship, userHighestEducation, userFieldOfStudy, userSchool,filePart);
+            boolean insertedInternshipStudent = InternshipStudentDAO.addInternshipStudent(0, userEmail, "1", continent, currentTime,currentTime,currentTime);
             if (insertedUser==true && insertedInternshipStudent==true) {
                 response.sendRedirect("applyInternshipSucceed.jsp");
                 return;

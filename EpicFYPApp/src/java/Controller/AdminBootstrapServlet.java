@@ -72,7 +72,7 @@ public class AdminBootstrapServlet extends HttpServlet {
                     String userDescription = user[15];
                     String userSchool = user[16];
 
-                    Boolean inserted = UserDAO.addUser(userEmail, userFirstName, userLastName, userPhone, userGender, userCitizenship, yearOfBirth, userProfilePic, userInterest, userPassword, userOccupation, userResume, userIsEmailConfirm, userHighestEducation, userFieldOfStudy, userDescription, userSchool);
+                    Boolean inserted = UserDAO.addUser(userEmail, userFirstName, userLastName, userPhone, userGender, userCitizenship, yearOfBirth, null, userInterest, userPassword, userOccupation, null, userIsEmailConfirm, userHighestEducation, userFieldOfStudy, userDescription, userSchool);
 
                 }
             } else {

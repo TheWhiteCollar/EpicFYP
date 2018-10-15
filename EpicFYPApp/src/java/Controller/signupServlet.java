@@ -60,8 +60,7 @@ public class signupServlet extends HttpServlet {
         }
         String yob = request.getParameter("yob");
         int yearOfBirth = Integer.parseInt(yob);
-        //profile pic
-        String userProfilePic = "pretty.jpg";
+        
         String[] userInterestString = request.getParameterValues("interest");
         String userInterest = "";
         for (int i = 0; i < userInterestString.length; i++) {
@@ -72,8 +71,7 @@ public class signupServlet extends HttpServlet {
         }
         String userPassword = request.getParameter("password");
         String userOccupation = request.getParameter("occupation");
-        //resume
-        String userResume = "MyResume.pdf";
+        
         String userIsEmailConfirm = "pending"; // by right should be boolean
         String userHighestEducation = request.getParameter("highest_qualification");
 
@@ -93,7 +91,7 @@ public class signupServlet extends HttpServlet {
         if (!userFirstName.equals("") && !userLastName.equals("") && !userEmail.equals("") && !userPassword.equals("") && !userOccupation.equals("")) {
 
             // Insert into database
-            Boolean inserted = UserDAO.addUser(userEmail, userFirstName, userLastName, userPhone, userGender, userCitizenship, yearOfBirth, userProfilePic, userInterest, userPassword, userOccupation, userResume, userIsEmailConfirm, userHighestEducation, userFieldOfStudy, userDescription, userSchool);
+            Boolean inserted = UserDAO.addUser(userEmail, userFirstName, userLastName, userPhone, userGender, userCitizenship, yearOfBirth, null, userInterest, userPassword, userOccupation, null, userIsEmailConfirm, userHighestEducation, userFieldOfStudy, userDescription, userSchool);
 
             if (inserted == true) {
 

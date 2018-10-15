@@ -24,7 +24,7 @@
         <script src="js/skel.min.js"></script>
         <script src="js/skel-layers.min.js"></script>
         <script src="js/init.js"></script>
-        
+
         <noscript>
         <link rel="stylesheet" href="css/skel.css" />
         <link rel="stylesheet" href="css/style.css" />
@@ -41,8 +41,8 @@
                     var adminHTML = '<div class="table-wrapper"><table>';
                     //loop through each admin and print out as rows in a table
                     $.each(admins, function (index, admin) {
-                        adminHTML += '<thead><tr><th>Admin Name : ' + admin.adminName +"</th></tr></thead>";
-                        adminHTML += '<tr><td>Admin Level : ' + admin.adminLevel + "</td>";                    
+                          adminHTML += '<thead><tr><th>Admin Name : ' + admin.adminName + '</th><th colspan="3">'
+                                +  'Admin Level : '+ admin.adminLevel + "</th></tr></thead>";
                         adminHTML += "<tr><td><form class=\"deleteAdmin\">";
                         adminHTML += "<input style=\"display: none\" type=\"text\" name=\"adminName\" value=\"" + admin.adminName + "\"/>";
                         adminHTML += "<button class = \"button\" type=\"submit\" id=\"asd" + index + "\">Delete Admin</button></form></td>";                    
@@ -86,46 +86,48 @@
                         // validate and process form here
                     });
                 });
-                // wait for add trip submit event 
-                $("#addAdmin").submit(function (event) {
-                    let adminName = $('input[name="adminName"]').val();
-                    let adminPassword = $('input[name="adminPassword"]').val();
-                    let adminLevel = $('input[name="adminLevel"]').val();
-                    
-                    let adminData = {
-                        "adminName": adminName,
-                        "adminPassword": adminPassword,
-                        "adminLevel": adminLevel
+            });
+            
+            // wait for add trip submit event 
+            function addingAdmin() {
+                let adminName = $('input[name="adminName"]').val();
+                let adminPassword = $('input[name="adminPassword"]').val();
+                let adminLevel = $('input[name="adminLevel"]').val();
+
+                let adminData = {
+                    "adminName": adminName,
+                    "adminPassword": adminPassword,
+                    "adminLevel": adminLevel
+                }
+
+                console.log("this is admin data");
+                console.log(adminData);
+                //send ajax post request to addAdmin servlet with adminData
+                $.post('/EpicFYPApp/addAdmin', adminData, function (response) {
+                    $('button[data-dismiss="modal"]').click();
+                    reloadTable();
+                    if (response === "success") {
+                        $.notify({
+                            // options
+                            message: 'Successfully inserted admin'
+                        }, {
+                            // settings
+                            type: 'success'
+                        });
+                    } else {
+                        $.notify({
+                            // options
+                            message: 'Fail to insert admin'
+                        }, {
+                            // settings
+                            type: 'danger'
+                        });
                     }
-                    
-                    console.log("this is admin data");
-                    console.log(adminData);
-                    //send ajax post request to addAdmin servlet with adminData
-                    $.post('/EpicFYPApp/addAdmin', adminData, function (response) {
-                        $('button[data-dismiss="modal"]').click();
-                        reloadTable();
-                        if (response === "success") {
-                            $.notify({
-                                // options
-                                message: 'Successfully inserted admin'
-                            }, {
-                                // settings
-                                type: 'success'
-                            });
-                        } else {
-                            $.notify({
-                                // options
-                                message: 'Fail to insert admin'
-                            }, {
-                                // settings
-                                type: 'danger'
-                            });
-                        }
-                    });
-                    event.preventDefault();
                 });
-                
-                function reloadTable() {
+                event.preventDefault();
+            }
+            
+            function reloadTable() {
                 $.get('/EpicFYPApp/getAllAdminsServlet', function (adminJson) {
                     //parse string into JSON object
                     var admins = JSON.parse(adminJson);
@@ -133,8 +135,8 @@
                     var adminHTML = '<div class="table-wrapper"><table>';
                     //loop through each admin and print out as rows in a table
                     $.each(admins, function (index, admin) {
-                        adminHTML += '<thead><tr><th>Admin Name : ' + admin.adminName +"</th></tr></thead>";
-                        adminHTML += '<tr><td>Admin Level : ' + admin.adminLevel + "</td>";                    
+                          adminHTML += '<thead><tr><th>Admin Name : ' + admin.adminName + '</th><th colspan="3">'
+                                +  'Admin Level : '+ admin.adminLevel + "</th></tr></thead>";
                         adminHTML += "<tr><td><form class=\"deleteAdmin\">";
                         adminHTML += "<input style=\"display: none\" type=\"text\" name=\"adminName\" value=\"" + admin.adminName + "\"/>";
                         adminHTML += "<button class = \"button\" type=\"submit\" id=\"asd" + index + "\">Delete Admin</button></form></td>";                    
@@ -142,6 +144,7 @@
                     
                     adminHTML += '</table></div>';
                     
+                    $("#admins").empty();
                     $("#admins").append(adminHTML);
 
                     //wait for delete admin form to be submited
@@ -149,7 +152,7 @@
                         //store the adminname from the form
                         var adminName = "" + $(this).children("input").val();
                         var deleteData = {
-                            'id': adminName
+                            'adminName': adminName
                         };
                         console.log("adminName: " + adminName);
                         //send an ajax post request to the delete admin servlet with delete data
@@ -177,108 +180,22 @@
                         event.preventDefault();
                     });
                 });
-                }
-            });
+            }
         </script>
     </head>
     <body>
 
         <!-- Header -->
         <jsp:include page="header.jsp" />
-        
-        <section class="wrapper">
-            <div class="container" >
-                
-                <h2 class="align-center">Admins' Profiles</h2>
-                <%
-                //if superadmin
-                Admin admin = (Admin) session.getAttribute("Admin");
-                if (admin != null) {
-                    String adminLevel = admin.getAdminLevel();
-                    if(adminLevel.equals("superadmin")){
-                
-                %>
-             <!--   <div class="container align-center">
-                    <button type="button" class="button" data-toggle="modal" data-target="#myModalAdd">Add a new Admin</button> 
-                    <button type="button" class="button" data-toggle="modal" data-target="#myModalDelete">Delete a Admin</button> 
-                </div>-->
-                <%
-                    }
-                }
-                %>
-                </br>
-                <div class="container">
-                    <table class="alt align-center">
-                        <thead>
-                            <tr>
-                                <th class="align-center">#</th>
-                                <th class="align-center">Admin Username</th>
-                                <th class="align-center">Admin Level</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <%
-                                ArrayList<Admin> allAdmin = AdminDAO.getAllAdmins();
-                                int count = 0;
-                                if (!allAdmin.isEmpty()) {
-                                    for (int i = 0; i < allAdmin.size(); i++) {
-                                        Admin a = allAdmin.get(i);
-                                        count += 1;
-                            %>
-                            <tr>
-                                <td><%out.print(count);%></td>
-                                <td><% out.print(a.getAdminName()); %></td>                      
-                                <td><% out.print(a.getAdminLevel()); %></td>
 
-                            </tr>
-                            <%
-                                    }
-                                }
-                            %>
-                        </tbody>    
-                    </table>
-                </div>
-
-         
-                <div class="modal fade" id="myModalAdd" role="dialog" style="top:20%;">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title align-center"><b>Add a new Admin</b></h4>
-                            </div>
-                            <div class="modal-body">
-                                <table>
-                                    <tr>
-                                        <td class="align-right">Admin Username</td>
-                                        <td><input type ="text" name ="adminName" placeholder ="Admin Username *" style="width:200px;"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="align-right">Admin Password</td>
-                                        <td><input type ="text" name ="adminPassword" placeholder ="Admin Password *" style="width:200px;"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2" class="align-center"><input type="submit" value="Submit" ></td>
-                                    </tr>
-                                </table>
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="button" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-    
-            </div>
-        </section>
-
-<!--        <section id="main" class="wrapper">
+        <section id="main" class="wrapper">
             
             <div class="container" >
                 <h2 class="align-center">Admins' Profiles</h2>
                 <div class="container align-center">
-                    <button type="button" class="button" data-toggle="modal" data-target="#myModalAdd">Add a new Admin</button>
+                    <div class="tab">
+                        <button class="tablinks" onclick="openUser(event, 'addAdmin')">Add New Admin</button>
+                    </div>
                 </div>
                 </br>
                 
@@ -286,15 +203,14 @@
                     <span onclick="this.parentElement.style.display = 'none'" class="toprightClose">&times</span>              
                     <div class = "row 50% uniform">
                         <div class = "5u 12u(xsmall) table-wrapper" id="allAdmins"></div>
-                        <div class="7u 12u(xsmall)">
+                        <div class="11u 10u(xsmall)">
                             <table>
                                 <tbody>
                                     <tr>
-                                        <td colspan="2"><h4 class="align-center">Add a new Admin</h4></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="text" name="adminName" placeholder="E.g. Emily" /></td>
-                                        <td><button onclick="addAdmin()" class="button">Add Admin</button></td>
+                                        <td colspan="2"><h4 class="align-center">Admin Name <input type="text" name="adminName" placeholder="E.g. Emily" /></h4></td>
+                                        <td colspan="2"><h4 class="align-center">Admin Password <input type="password" name="adminPassword"/></h4></td>
+                                        <td colspan="2"><h4 class="align-center">Admin Level <input type="text" name="adminLevel" placeholder="E.g. superuser" /></h4></td>
+                                        <td><button onclick="addingAdmin()">Add Admin</button></td>
                                     </tr>
                                 </tbody>
                             </table>                
@@ -309,7 +225,7 @@
                 </div>
                 
             </div>
-        </section>-->
+        </section>
         <script src="js/custom-file-input.js"></script>
         <script src="js/tabs.js"></script>
     </body>

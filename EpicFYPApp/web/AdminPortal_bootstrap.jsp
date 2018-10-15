@@ -43,9 +43,9 @@
                 <header class="major">
                     <h2>Bulk uploads</h2>
                     <p>Upload .xlsx or .csv files for bulk updates to database</p> <br>
-                    <a href="AdminBootstrapFileDownloadForUserServlet">Download user file format here</a> <br>
-                     <a href="AdminBootstrapFileDownloadForTripServlet">Download trip file format here</a> <br>
-                     <a href="AdminBootstrapFileDownloadForTripStudentServlet">Download tripstudent file format here</a> <br>
+                    <a href="documents/user_blank.csv" download="User Template File">Download user file format here</a> <br>
+                     <a href="download/trip_blank.csv" download="Trip Template File">Download trip file format here</a> <br>
+                     <a href="download/tripstudent_blank.csv" download="Student applied to Trip Template File">Download tripstudent file format here</a> <br>
                 </header> 
 
                 <p style="text-align:center; color: red">

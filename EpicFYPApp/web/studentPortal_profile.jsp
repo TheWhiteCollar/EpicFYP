@@ -10,10 +10,9 @@
 <%
     /*
      Things undone:
-     - Drop down of interest? (based off database)
-     - taking into account if there is blanks in db (check if can make it send blank instead
+   
+ 
      - reading profile picture from db
-     - default image to show to users with no profile picture
     
      */
 %>
@@ -497,7 +496,6 @@
                                         <tr>
                                             <td class="align-right"><b>Interest</b></td>
                                             <td>
-                                                <select name="interest" multiple style="height: 100px;">
                                                     <%
                                                         //user selected put in an arraylist
                                                         ArrayList<String> selectedInterestitems = new ArrayList<String>(Arrays.asList(interest.split("\\s*,\\s*")));
@@ -505,7 +503,8 @@
                                                         for (int i = 0; i < selectedInterestitems.size(); i++) {
                                                             String interestName = selectedInterestitems.get(i);
                                                     %>
-                                                    <option selected value="<%out.print(interestName);%>"><%out.print(interestName);%></option>
+                                                    <input type="checkbox" id="interests<%out.print(i);%>" name="interest" value="<%out.print(interestName);%>" checked>
+                                                        <label for="interests<%out.print(i);%>"><%out.print(interestName);%></label><br>
                                                     <%
                                                         }
                                                         ArrayList<String> allUserInterest = InterestDAO.getInterests();
@@ -516,12 +515,12 @@
                                                                 String interestList = allUserInterest.get(i);
 
                                                     %>
-                                                    <option value="<%out.print(interestList);%>"><%out.print(interestList);%></option>
+                                                    <input type="checkbox" id="interestu<%out.print(i);%>" name="interest" value="<%out.print(interestList);%>">
+                                                        <label for="interestu<%out.print(i);%>"><%out.print(interestList);%></label><br>
                                                     <%    }
                                                         }
 
                                                     %>
-                                                </select> 
 
                                             </td>
 
@@ -545,7 +544,6 @@
                         <%
                             }
                         %> 
-
                 </form>
 
 

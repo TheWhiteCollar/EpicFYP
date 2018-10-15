@@ -168,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `internship` (
 --
 
 INSERT INTO `internship` (`internshipID`, `internshipName`, `internshipApproval`, `internshipFieldOfStudy`, `internshipDescription`, `internshipStart`, `internshipEnd`, `internshipPay`, `internshipSupervisor`, `internshipSupervisorEmail`, `internshipVacancy`, `internshipPartnerID`,`internshipDatetime`) VALUES
-(0, 'not assigned', 'not assigned', 'not assigned', 'not assigned', '2018-11-11', '2019-01-01', '0', 'ot assigned', 'not assigned', 0, 0,"0000-00-00 00:00:00"),
+(0, 'not assigned', 'not assigned', 'not assigned', 'not assigned', '2018-11-11', '2019-01-01', '0', 'not assigned', 'not assigned', 0, 0,"0000-00-00 00:00:00"),
 (1, 'Data Analytics Intern', 'approved', 'Business, Accountancy', 'This intern position is within the Business Intelligence Department and will support the team with data analysis, model development, data visualizations and decision support for various departments.', '2018-11-11', '2019-11-11', '1000.00', 'Tommy Lau', 'tommy.lau@xwy.com', 3, 1, "2018-08-08 12:40:30, 2018-09-08 12:40:30"),
 (2, 'Business and Science Intern', 'approved', 'Business, Science', 'This intern position is within the Business Science Department. Interns will have to conduct science experiments with a business angle, and acheive suitable actionable results for the company to take.', '2018-11-11', '2019-11-11', '1000.00', 'Tommy Lau', 'tommy.lau@xwy.com', 4, 1, "2018-08-08 12:40:30, 2018-09-08 12:40:30"),
 (3, 'Music Assistant', 'approved', 'Music', 'Intern is required to have strong foundational knowledge in music. At least of Grade 5. Strong sight-reading skills is required.', '2018-11-11', '2019-11-11', '1000.00', 'Tommy Lau', 'tommy.lau@xwy.com', 2, 1, "2018-08-08 12:40:30, 2018-09-08 12:40:30"),
@@ -178,6 +178,40 @@ INSERT INTO `internship` (`internshipID`, `internshipName`, `internshipApproval`
 (7, 'Nurse Intern', 'rejected', 'Medicine', 'Possess strong emotional strength. It is preferrable if intern is able to speak in dialect.', '2018-11-11', '2019-11-11', '1000.00', 'Mary Tan', 'mary.tan@xwy.com', 1, 3, "2018-08-08 12:40:30, 2018-09-08 12:40:30"),
 (8, 'Machine Learning Intern', 'rejected', 'Computing', 'Intern is expected to be self-directed and motivated. Project requires strong foundational knowledge of Machine Learning concepts. ', '2018-11-11', '2019-11-11', '1000.00', 'Mary Tan', 'mary.tan@xwy.com', 2, 3, "2018-08-08 12:40:30, 2018-09-08 12:40:30"),
 (9, 'English Researcher Intern', 'rejected', 'History','Interns will be researching into the history of words, and curating how the language has evolved overtime. If intern has the language capabilities, he/she might have the opportunity to collaborate in a research paper.', '2018-11-11', '2019-11-11', '1000.00', 'Sally Pi', 'sally.pi@xwy.com', 3, 4, "2018-08-08 12:40:30, 2018-09-08 12:40:30");
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `internshipstudentstatus`
+--
+
+CREATE TABLE IF NOT EXISTS `internshipstudentstatus` (
+  `internshipStudentStatusID` int(2) NOT NULL,
+  `internshipStudentStatusName` varchar(50) NOT NULL,
+  `internshipStudentStatusAction` int(1) NOT NULL,
+  `internshipStudentStatusCycle` varchar(10) NOT NULL,
+  PRIMARY KEY (`internshipStudentStatusID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `internshipstudentstatus`
+--
+
+INSERT INTO `internshipstudentstatus` (`internshipStudentStatusID`, `internshipStudentStatusName`, `internshipStudentStatusAction`,`internshipStudentStatusCycle`) VALUES
+(1, 'User submitted application - Admin to review application',1, 'processing'),
+(2, 'Application fails application review', 0, 'done'),
+(3, 'Admin approves application - Send email with internship details for interest confirmation', 1, 'processing'),
+(4, 'Sent interest email - Waiting for user reply', 2, 'processing'),
+(5, 'Application withdrawn. No interview scheduled', 0, 'done'),
+(6, 'User accepts - Send email to schedule interview', 1, 'processing'),
+(7, 'Sent interview schedule email - Waiting for user reply', 2, 'processing'),
+(8, 'User withdraws from scheduled interview', 0, 'done'),
+(9, 'Interview scheduled - Pending interview', 2, 'processing'),
+(10, 'Interview completed - Review interview', 1, 'processing'),
+(11, 'Internship not offered', 0, 'done'),
+(12, 'Internship offered - Pending user internship acceptance', 2, 'processing'),
+(13, 'User rejects internship offer', 0, 'done'),
+(14, 'User accepted internship offer', 3, 'done'),
+(15, 'Internship Cancelled', 4, 'done');
 
 -- --------------------------------------------------------
 
@@ -188,13 +222,12 @@ INSERT INTO `internship` (`internshipID`, `internshipName`, `internshipApproval`
 CREATE TABLE IF NOT EXISTS `internshipstudent` (
   `internshipID` int(11) NOT NULL,
   `internshipUserEmail` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `internshipStudentStatus` varchar(410) NOT NULL,
+  `internshipStudentStatus` varchar(25) NOT NULL,
   `internshipStudentContinent` varchar(15) NOT NULL,
   `internshipStudentDatetime` varchar(160) NOT NULL,
-  `internshipStudentAction` int(1) NOT NULL,
-  `internshipStudentCycle` varchar(10) NOT NULL,
+  `internshipStudentDatetimeApplied` datetime NOT NULL,
   `internshipStudentLastUpdate` datetime NOT NULL,
-  PRIMARY KEY (`internshipUserEmail`,`internshipStudentContinent`,`internshipStudentCycle`,`internshipStudentLastUpdate`),
+  PRIMARY KEY (`internshipUserEmail`,`internshipStudentContinent`,`internshipStudentDatetimeApplied`),
   KEY `internshipUserEmail` (`internshipUserEmail`),
   KEY `internshipID` (`internshipID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -203,12 +236,10 @@ CREATE TABLE IF NOT EXISTS `internshipstudent` (
 -- Dumping data for table `internshipstudent`
 --
 
-INSERT INTO `internshipstudent` (`internshipID`, `internshipUserEmail`, `internshipStudentStatus`, `internshipStudentContinent`,`internshipStudentDatetime`, `internshipStudentAction`, `internshipStudentCycle`, `internshipStudentLastUpdate`) VALUES
-(0, 'mediani.2015@sis.smu.edu.sg', 'User submitted application - Admin to review application, Admin approves application- Send email with internship details for interest confirmation', 'Asia','2018-04-05 12:32:21, 2018-04-10 08:34:54', 2, 'processing' , '2018-04-10 08:34:54'),
-(0, 'rachael.low.2015@sis.smu.edu.sg', 'User submitted application - Admin to review application', 'Asia','2018-10-02 12:32:21', 1, 'processing' , '2018-10-02 12:32:21'),
-(0, 'rachael.low.2015@sis.smu.edu.sg', 'User submitted application - Admin to review application, Admin approves application- Send email with internship details for interest confirmation, Application withdraws. No interview scheduled', 'Europe','2018-04-05 12:32:21, 2018-04-10 08:34:54, 2018-04-15 07:02:10', 0, 'done', '2018-04-15 07:02:10'),
-(1, 'xiuwen.yeo@gmail.com', 'User submitted application - Admin to review application, Admin approves application- Send email with internship details for interest confirmation, User accepts - Send email to schedule interview, Interview scheduled - Pending interview, Interview completed - Send email about interview results, Internship offered - Pending user internship acceptance, User accepted internship offer', 'Asia','2018-04-05 12:32:21, 2018-04-10 08:34:54, 2018-04-15 09:20:54, 2018-04-20 06:34:54, 2018-04-25 08:12:09, 2018-04-26 10:50:54, 2018-05-03 19:02:54', 3, 'done', '2018-05-03 19:02:54'),
-(2, 'yijing.oon.2015@smu.edu.sg', 'User submitted application - Admin to review application, Admin approves application- Send email with internship details for interest confirmation, User accepts - Send email to schedule interview, Interview scheduled - Pending interview, Interview completed - Send email about interview results, Internship offered - Pending user internship acceptance, User accepted internship offer, Internship Cancelled', 'Asia','2018-04-05 12:32:21, 2018-04-10 08:34:54, 2018-04-15 09:20:54, 2018-04-20 06:34:54, 2018-04-25 08:12:09, 2018-04-26 10:50:54, 2018-05-03 19:02:54, 2018-05-10 08:34:54', 4, 'done', '2018-05-10 08:34:54');
+INSERT INTO `internshipstudent` (`internshipID`, `internshipUserEmail`, `internshipStudentStatus`, `internshipStudentContinent`,`internshipStudentDatetime`, `internshipStudentDatetimeApplied`, `internshipStudentLastUpdate`) VALUES
+(0, 'mediani.2015@sis.smu.edu.sg', '1, 3, 4', 'Asia','2018-04-05 12:32:21, 2018-04-10 08:34:54, 2018-04-15 08:34:54', '2018-04-05 12:32:21', '2018-04-15 08:34:54'),
+(0, 'rachael.low.2015@sis.smu.edu.sg', '1', 'Asia','2018-10-02 12:32:21', '2018-10-02 12:32:21', '2018-10-02 12:32:21');
+
 
 -- --------------------------------------------------------
 
@@ -221,9 +252,11 @@ CREATE TABLE IF NOT EXISTS `partner` (
   `partnerName` varchar(100) NOT NULL,
   `partnerCountry` varchar(100) NOT NULL,
   `partnerState` varchar(100) NOT NULL,
-  `partnerDescription` varchar(1000) NOT NULL,
+  `partnerDescription` varchar(500) NOT NULL,
   `partnerPassword` varchar(50) NOT NULL,
   `partnerPicture` varchar(100) NOT NULL DEFAULT '',
+  `partnerHRName` varchar(50) NOT NULL,
+  `partnerHREmail` varchar(50) NOT NULL,
   PRIMARY KEY (`partnerID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
@@ -231,12 +264,12 @@ CREATE TABLE IF NOT EXISTS `partner` (
 -- Dumping data for table `partner`
 --
 
-INSERT INTO `partner` (`partnerID`, `partnerName`, `partnerCountry`, `partnerState`, `partnerDescription`, `partnerPassword`, `partnerPicture`) VALUES
-(0, 'not assigned', 'Myanmar', 'not assigned', 'not assigned', '', ''),
-(1, 'AA Pte Ltd', 'Myanmar', 'Shan', 'Here are AA Pte Ltd, we believe that only the best should be given to our customers.', 'test', ''),
-(2, 'BB Pte Ltd', 'Singapore', 'Singapore', 'Here are BB Pte Ltd, we believe that only the best should be given to our customers.', 'test', ''),
-(3, 'CC Pte Ltd', 'Malaysia', 'Kuala Lumpur', 'Here are CC Pte Ltd, we believe that only the best should be given to our customers.', 'test', ''),
-(4, 'DD Pte Ltd', 'China', 'Shanghai', 'Here are DD Pte Ltd, we believe that only the best should be given to our customers.', 'test', '');
+INSERT INTO `partner` (`partnerID`, `partnerName`, `partnerCountry`, `partnerState`, `partnerDescription`, `partnerPassword`, `partnerPicture`,`partnerHRName`,`partnerHREmail`) VALUES
+(0, 'not assigned', 'Myanmar', 'not assigned', 'not assigned', '', '','',''),
+(1, 'AA Pte Ltd', 'Myanmar', 'Shan', 'Here are AA Pte Ltd, we believe that only the best should be given to our customers.', 'test', '','Tom Tan', 'tom.tan@aa.com.sg'),
+(2, 'BB Pte Ltd', 'Singapore', 'Singapore', 'Here are BB Pte Ltd, we believe that only the best should be given to our customers.', 'test', '','Mary Tan', 'mary.tan@bb.com.sg'),
+(3, 'CC Pte Ltd', 'Malaysia', 'Kuala Lumpur', 'Here are CC Pte Ltd, we believe that only the best should be given to our customers.', 'test', '','Shaun Tan', 'shaun.tan@cc.com.sg'),
+(4, 'DD Pte Ltd', 'China', 'Shanghai', 'Here are DD Pte Ltd, we believe that only the best should be given to our customers.', 'test', '','Gary Tan', 'gary.tan@dd.com.sg');
 
 -- --------------------------------------------------------
 
@@ -337,11 +370,11 @@ CREATE TABLE IF NOT EXISTS `user` (
   `userGender` varchar(1) NOT NULL,
   `userCitizenship` varchar(100) NOT NULL,
   `userDOB` year(4) NOT NULL,
-  `userProfilePic` varchar(100) NOT NULL,
+  `userProfilePic` mediumblob DEFAULT NULL,
   `userInterest` varchar(1000) DEFAULT NULL,
   `userPassword` varchar(50) NOT NULL,
   `userOccupation` varchar(100) NOT NULL,
-  `userResume` varchar(100) NOT NULL DEFAULT '',
+  `userResume` mediumblob DEFAULT NULL,
   `userIsEmailConfirm` varchar(10) NOT NULL DEFAULT 'pending',
   `userHighestEducation` varchar(100) NOT NULL,
   `userFieldOfStudy` varchar(1000) DEFAULT NULL,
@@ -355,10 +388,10 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`userEmail`, `userFirstName`, `userLastName`, `userPhone`, `userGender`, `userCitizenship`, `userDOB`, `userProfilePic`, `userInterest`, `userPassword`, `userOccupation`, `userResume`, `userIsEmailConfirm`, `userHighestEducation`, `userFieldOfStudy`, `userDescription`, `userSchool`) VALUES
-('mediani.2015@sis.smu.edu.sg', 'Mediani', 'Law', 83036983, 'F', 'Singapore PR', 1996, '', 'Service & Social Innovation, Academic & Business', '1234', 'Student', '', 'pending', 'Bachelor Degree', 'Law', 'I love the exercise! It is my favourite thing. It makes me happy and beautiful.', 'SMU'),
-('rachael.low.2015@sis.smu.edu.sg', 'Rachael', 'Low', 91234567, 'M', 'Algerian', 1995, '', 'Academic & Business', 'fyp1234', 'Student', '', 'confirmed', 'ITE', 'History', 'Weeee. The life of greatness and happiness is amazinggggg.', 'NTU'),
-('xiuwen.yeo@gmail.com', 'Xiu Wen', 'Yeo', 98769876, 'F', 'Singaporean', 1994, '', 'Nature & Culture', '1234', 'Student', '', 'pending', 'Postgraduate Diploma', 'Computing', 'I am really into helping others. When others feel happy, I feel happy too.', 'SMU'),
-('yijing.oon.2015@smu.edu.sg', 'Yi Jing', 'Oon', 98766789, 'F', 'Singapore PR', 1993, '', 'Nature & Culture, Service & Social Innovation', 'oonyijing', 'Student', '', 'confirmed', 'Masters/Doctorate', 'Computing', 'Greatness is in the eye of the beholder. I believe with great power comes great responsibility.', 'NTU');
+('mediani.2015@sis.smu.edu.sg', 'Mediani', 'Law', 83036983, 'F', 'Singapore PR', 1996, NULL, 'Service & Social Innovation, Academic & Business', '1234', 'Student', NULL, 'pending', 'Bachelor Degree', 'Law', 'I love the exercise! It is my favourite thing. It makes me happy and beautiful.', 'SMU'),
+('rachael.low.2015@sis.smu.edu.sg', 'Rachael', 'Low', 91234567, 'M', 'Algerian', 1995, NULL, 'Academic & Business', 'fyp1234', 'Student', NULL, 'confirmed', 'ITE', 'History', 'Weeee. The life of greatness and happiness is amazinggggg.', 'NTU'),
+('xiuwen.yeo@gmail.com', 'Xiu Wen', 'Yeo', 98769876, 'F', 'Singaporean', 1994, NULL, 'Nature & Culture', '1234', 'Student', NULL, 'pending', 'Postgraduate Diploma', 'Computing', 'I am really into helping others. When others feel happy, I feel happy too.', 'SMU'),
+('yijing.oon.2015@smu.edu.sg', 'Yi Jing', 'Oon', 98766789, 'F', 'Singapore PR', 1993, NULL, 'Nature & Culture, Service & Social Innovation', 'oonyijing', 'Student', NULL, 'confirmed', 'Masters/Doctorate', 'Computing', 'Greatness is in the eye of the beholder. I believe with great power comes great responsibility.', 'NTU');
 
 --
 -- Constraints for dumped tables

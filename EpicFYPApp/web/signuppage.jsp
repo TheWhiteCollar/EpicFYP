@@ -456,6 +456,7 @@
                                 </div>
                                 <div class="6u 12u(xsmall)">
                                     <h3>Study Trips interested in:</h3> 
+                                    
                                     <%                                            
                                         ArrayList<String> allInterests = InterestDAO.getInterests();
 
@@ -464,7 +465,8 @@
                                                 String interests = allInterests.get(i);
 
                                     %>
-                                    <input type="checkbox" name="interest" value="<%out.print(interests);%>" style="opacity:1;-webkit-appearance: checkbox; margin-right: 1em;"> <%out.print(interests);%><br>
+                                   <input type="checkbox" id="interest<%out.print(i);%>" name="interest" value="<%out.print(interests);%>">
+					<label for="interest<%out.print(i);%>"><%out.print(interests);%></label><br>
                                     <%    }
                                         }
 
@@ -485,6 +487,7 @@
                     </div>
                 </div>
                 </br>
+                
                 <div style="overflow:auto;">
                     <div style="float:left;">
                         <button type="button" id="prevBtn" class = "button" onclick="nextPrev(-1)">Previous</button>

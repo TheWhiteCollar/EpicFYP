@@ -1,3 +1,4 @@
+<%@page import="java.util.Calendar"%>
 <%@page import="Model.Dao.InternshipStudentDAO"%>
 <%@page import="Model.Dao.FieldOfStudyDAO"%>
 <%@page import="Model.Entity.CountryInternship"%>
@@ -98,8 +99,8 @@
                                 String highest_qualification = User.getUserHighestEducation();
                                 String school = User.getUserSchool();
                                 String userFOS = User.getUserFieldOfStudy();
-
-                                if (InternshipStudentDAO.countInternshipStudentByCont(email, contient) != 0) {
+                                int year = Calendar.getInstance().get(Calendar.YEAR);
+                                if (InternshipStudentDAO.countInternshipStudentByCont(email, contient, year) != 0) {
                                     //you alr signed up
                         %>
                         <h3 class="align-center">You have already signed up for an internship to <%out.print(contient);%></h3>  
@@ -111,7 +112,7 @@
                         <h3 class="align-center">Please confirm your particulars</h3>
                         <div align="center"><p>Note: These fields will be used by the system to track your application process</p></div>
 
-                        <form action="addNewInternshipStudent" method="post">
+                        <form action="addNewInternshipStudent" method="post" enctype="multipart/form-data">
                             <div class="12u 12u(xsmall)">
                                 <div class="table-wrapper">
                                     <table class="blank">

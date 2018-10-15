@@ -1,4 +1,5 @@
 
+<%@page import="java.sql.Blob"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="Model.Dao.InterestDAO"%>
 <%@page import="Model.Dao.FieldOfStudyDAO"%>
@@ -73,7 +74,7 @@
                                 String qualification = User.getUserHighestEducation();
                                 String school = User.getUserSchool();
                                 String description = User.getUserDescription();
-                                String profilePic = User.getUserProfilePic();
+                                Blob profilePic = User.getUserProfilePic();
                         %>
                         <div class="3u 12u(xsmall)" align="center"> 
                             <% if (profilePic != null) {%>

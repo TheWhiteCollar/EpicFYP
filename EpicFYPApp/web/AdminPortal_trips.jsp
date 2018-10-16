@@ -58,17 +58,13 @@
                         if (trip.activated) {
                             tripHTML += '<tr><td colspan="3">Activated</td>';
                         } else {
-
                             tripHTML += '<tr><td colspan="3">Not Activated : ' + number + " more to activate this trip</td>";
                         }
                         tripHTML += "<td>" + trip.signedUpEmails.length + " signed up</td></tr>";
                         tripHTML += "<tr><td><form class=\"deleteTrip\">";
                         tripHTML += "<input style=\"display: none\" type=\"text\" name=\"tripID\" value=\"" + trip.tripID + "\"/>";
                         tripHTML += "<button class = \"button\" type=\"submit\" id=\"asd" + index + "\">Delete Trip</button></form></td>";
-
-                        // tripHTML += "<td>Edit Button</td>" + '<td><button type="button" class="button" data-toggle="modal" data-target="#myModal">View users signed up</button></td>' + "</tr>";
-
-                       //tripHTML +='<td><button type="button" class="button" data-toggle="modal" data-target="#myModal">View users signed up</button></td>' + "</tr>";
+                        tripHTML += '<td><button type="button" class="button" data-toggle="" data-target="">Edit Button</button></td>' + '<td><button type="button" class="button" data-toggle="modal" data-target="#myModal">View users signed up</button></td>' + "</tr>";
                     });
                     tripHTML += '</table></div>';
                     //adding table html tag into div which has the id "trips"
@@ -136,7 +132,6 @@
                         "tripTotalSignUp": tripTotalSignUp
                     }
                     
-                    console.log("this is trip data");
                     console.log(tripData);
                     //send ajax post request to addTrip servlet with tripData
                     $.post('/EpicFYPApp/addTrip', tripData, function (response) {
@@ -186,7 +181,7 @@
                             tripHTML += "<tr><td><form class=\"deleteTrip\">";
                             tripHTML += "<input style=\"display: none\" type=\"text\" name=\"tripID\" value=\"" + trip.tripID + "\"/>";
                             tripHTML += "<button class = \"button\" type=\"submit\" id=\"asd" + index + "\">Delete Trip</button></form></td>";
-                            tripHTML += "<td>Edit Button</td>" + "<td>View users signed up</td>" + "</tr>";
+                            tripHTML += '<td><button type="button" class="button" data-toggle="" data-target="">Edit Button</button></td>' + "</tr>";
                         });
                         tripHTML += '</table></div>';
                         $("#trips").append(tripHTML);
@@ -526,9 +521,9 @@
                             <div class = "12u 12u(xsmall)">
                                 <p>
                                     <input type="file" name="tripItineray" id="file-1" class="inputfile inputfile-1" style="visibility:hidden" accept=".pdf"/>
-<!--                                    <label for="file-1" class = "button special"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> 
+                                    <label for="file-1" class = "button special"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> 
                                         <span>Upload Trip Itinerary</span>
-                                    </label> -->
+                                    </label>
                                 </p>
                             </div>
                         </div>

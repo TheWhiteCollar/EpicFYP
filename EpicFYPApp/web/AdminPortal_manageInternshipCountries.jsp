@@ -19,15 +19,216 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
         <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap-notify.min.js"></script>
         <script src="js/skel.min.js"></script>
         <script src="js/skel-layers.min.js"></script>
         <script src="js/init.js"></script>
+        
         <noscript>
         <link rel="stylesheet" href="css/skel.css" />
         <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="css/style-xlarge.css" />
         </noscript>
-        <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+        
+<!--        <script>
+            $(function() {
+                $.get('/EpicFYPApp/getAllCountryInternship', function(countryJson){
+                    var countries = JSON.parse(countryJson);
+                     console.log(countries);
+                    var countryHTML = '<div class="table-wrapper"><table>';
+                    $.each(countries, function(index, countryinternship) {
+                        countryHTML += "<tr><td><form class=\"deleteCountryInternship\">";
+                        countryHTML += "<input style=\"display: none\" type=\"text\" name=\"countryName\" value=\"" + countryinternship.countryName + "\"/>";
+                        countryHTML += 'Country Name : ' + countryinternship.countryName + " " + countryinternship.countryContinent + '\t' + "<button class = \"button\" type=\"submit\" id=\"asd" + index + "\">Delete</button></form></td>";
+                    });
+                    
+                    countryHTML += '</table></div>';
+                    $("#countries").append(countryHTML);
+                    
+                    $(".deleteCountryInternship").submit(function(event) {
+                        var countryName = "" + $(this).children("input").val();
+                        var deleteData = {
+                            'countryName': countryName
+                        };
+                        console.log(deleteData);
+                        
+                        $.post('/EpicFYPApp/deleteCountryInternship', deleteData, function (response){
+                            if(response === "success") {
+                                $.notify({
+                                    message: 'Successfully deleted internship country'
+                                }, {
+                                    type: 'success'
+                                });
+                            } else {
+                                $.notify({
+                                    message: 'Fail to delete internship country'
+                                }, {
+                                    type: 'danger'
+                                });
+                            }
+                            reloadTable();
+                        })
+                        event.preventDefault();
+                    });
+                });
+            });
+                function reloadTable(){
+                    $.get('/EpicFYPApp/getAllCountryInternship', function(countryJson){
+                        var countries = JSON.parse(countryJson);
+                        
+                        var countryHTML = '<div class="table-wrapper"><table>';
+                        $.each(countries, function(index, countryinternship) {
+                        countryHTML += "<tr><td><form class=\"deleteCountryInternship\">";
+                        countryHTML += "<input style=\"display: none\" type=\"text\" name=\"countryName\" value=\"" + countryinternship.countryName + "\"/>";
+                        countryHTML += 'Country Name : ' + countryinternship.countryName + " " + countryinternship.countryContinent + '\t' + "<button class = \"button\" type=\"submit\" id=\"asd" + index + "\">Delete</button></form></td>";
+                        });
+                        countryHTML += '</table></div>';
+                        
+                        $("#countries").empty();
+                        $("#countries").append(countryHTML);
+                    
+                        $(".deleteCountryInternship").submit(function(event) {
+                            var countryName = "" + $(this).children("input").val();
+                            var deleteData = {
+                                'countryName': countryName
+                            };
+                            console.log("countryName: " + countryName);
+
+                            $.post('/EpicFYPApp/deleteCountryInternship', deleteData, function (response){
+                                if(response === "success") {
+                                    $.notify({
+                                        message: 'Successfully deleted internship country'
+                                    }, {
+                                        type: 'success'
+                                    });
+                                } else {
+                                    $.notify({
+                                        message: 'Fail to delete internship country'
+                                    }, {
+                                        type: 'danger'
+                                    });
+                                }
+                                reloadTable();
+                            })
+                            event.preventDefault();
+                        });
+                    });
+                }
+            
+        </script>-->
+
+            <script>
+            $(function() {
+                $.get('/EpicFYPApp/getAllCountryInternship', function (countryJson) {
+                    //parse string into JSON object
+                    var countries = JSON.parse(countryJson);
+                    console.log(countries);
+                    var countryHTML = '<div class="table-wrapper"><table>';
+                   
+                    $.each(countries, function (index, countryinternship) {
+                        countryHTML += '<thead><tr><th>Country Name : ' + countryinternship.countryName + '</th><th colspan="3">'
+                                +  'Continent : '+ countryinternship.countryContinent + "</th></tr></thead>";
+                        countryHTML += "<tr><td><form class=\"deleteCountryInternship\">";
+                        countryHTML += "<input style=\"display: none\" type=\"text\" name=\"countryName\" value=\"" + countryinternship.countryName + "\"/>";
+                        countryHTML += "<button class = \"button\" type=\"submit\" id=\"asd" + index + "\">Delete Country</button></form></td>";                    
+                    });
+                    
+                    countryHTML += '</table></div>';
+                    
+                    $("#countries").append(countryHTML);
+
+                    //wait for delete country form to be submited
+                    $(".deleteCountryInternship").submit(function (event) {
+                        //store the countryname from the form
+                        var countryName = "" + $(this).children("input").val();
+                        var deleteData = {
+                            'countryName': countryName
+                        };
+                        console.log(deleteData);
+                        //send an ajax post request to the delete country servlet with delete data
+                        $.post('/EpicFYPApp/deleteCountryInternship', deleteData, function (response) {
+                            if (response === "success") {
+                                $.notify({
+                                    // options
+                                    message: 'Successfully deleted country'
+                                }, {
+                                    // settings
+                                    type: 'success'
+                                });
+                            } else {
+                                $.notify({
+                                    // options
+                                    message: 'Fail to delete country'
+                                }, {
+                                    // settings
+                                    type: 'danger'
+                                });
+                            }
+                            reloadTable();
+                        })
+                        //prevents form from being submitted
+                        event.preventDefault();
+                        // validate and process form here
+                    });
+                });
+            });
+
+            function reloadTable() {
+                $.get('/EpicFYPApp/getAllCountryInternship', function (countryJson) {
+                    //parse string into JSON object
+                    var countries = JSON.parse(countryJson);
+                    console.log(countries);
+                    var countryHTML = '<div class="table-wrapper"><table>';
+                   
+                    $.each(countries, function (index, countryinternship) {
+                        countryHTML += '<thead><tr><th>Country Name : ' + countryinternship.countryName + '</th><th colspan="3">'
+                                +  'Continent : '+ countryinternship.countryContinent + "</th></tr></thead>";
+                        countryHTML += "<tr><td><form class=\"deleteCountryInternship\">";
+                        countryHTML += "<input style=\"display: none\" type=\"text\" name=\"countryName\" value=\"" + countryinternship.countryName + "\"/>";
+                        countryHTML += "<button class = \"button\" type=\"submit\" id=\"asd" + index + "\">Delete Country</button></form></td>";                    
+                    });
+                    
+                    countryHTML += '</table></div>';
+                    
+                    $("#countries").append(countryHTML);
+
+                    //wait for delete country form to be submited
+                    $(".deleteCountryInternship").submit(function (event) {
+                        //store the countryname from the form
+                        var countryName = "" + $(this).children("input").val();
+                        var deleteData = {
+                            'countryName': countryName
+                        };
+                        console.log(deleteData);
+                        //send an ajax post request to the delete country servlet with delete data
+                        $.post('/EpicFYPApp/deleteCountryInternship', deleteData, function (response) {
+                            if (response === "success") {
+                                $.notify({
+                                    // options
+                                    message: 'Successfully deleted country'
+                                }, {
+                                    // settings
+                                    type: 'success'
+                                });
+                            } else {
+                                $.notify({
+                                    // options
+                                    message: 'Fail to delete country'
+                                }, {
+                                    // settings
+                                    type: 'danger'
+                                });
+                            }
+                            reloadTable();
+                        })
+                        //prevents form from being submitted
+                        event.preventDefault();
+                        // validate and process form here
+                    });
+                });
+            }
+        </script>
+
     </head>
     <body>
 
@@ -414,10 +615,17 @@
                     }
                 %>
 
-
-
             </div>
+                
+            <div class ="container">
+                <br>
+                <h2 class="align-center">Delete Countries</h2>
+                <div id="countries" class ="container"></div>
+            </div>  
+                
         </section>
+                
+        <script src="js/custom-file-input.js"></script>
+        <script src="js/tabs.js"></script>
     </body>
-    <script src="js/tabs.js"></script>
 </html>

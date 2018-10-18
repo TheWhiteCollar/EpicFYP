@@ -1,3 +1,5 @@
+<%@page import="Model.Entity.InternshipStudentStatus"%>
+<%@page import="Model.Dao.InternshipStudentStatusDAO"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="Model.Dao.InternshipDAO"%>
@@ -151,10 +153,13 @@
 
                                             String lastUpdatedString = ci.getInternshipStudentLastUpdate();
                                             String reformattedStr = myFormat.format(fromDB.parse(lastUpdatedString));
-
+                                            
+                                            
+                                            
                                             String[] statusFollowupList = ci.getInternshipStudentStatus().split("\\s*,\\s*");
-                                            String lastStatus = statusFollowupList[statusFollowupList.length - 1];
-                                            String[] statusFollowup = lastStatus.split("\\s*-\\s*");
+                                            String lastStatusInt = statusFollowupList[statusFollowupList.length - 1];
+                                            InternshipStudentStatus lastStatusWord = InternshipStudentStatusDAO.getinternshipStudentStatusByID(lastStatusInt);
+                                            String[] statusFollowup = lastStatusWord.getInternshipStudentStatusName().split("\\s*-\\s*");
                                     %>
                                     <tr>
                                         <td><%out.print(countPendingAdmin);%></td>

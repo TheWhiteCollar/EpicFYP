@@ -11,7 +11,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,14 +21,14 @@ methods needed:
  */
 public class InternshipStudentStatusDAO {
     // get internshipStudentStatus
-    public static InternshipStudentStatus getinternshipStudentStatusByID(int internshipStudentStatusID) {
+    public static InternshipStudentStatus getinternshipStudentStatusByID(String internshipStudentStatusID) {
 
         InternshipStudentStatus internshipStudentStatus = null;
         String sql = "SELECT * FROM internshipstudentstatus WHERE internshipStudentStatusID=?";
 
         try (Connection conn = ConnectionManager.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql);) {
-            stmt.setInt(1, internshipStudentStatusID);
+            stmt.setString(1, internshipStudentStatusID);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 internshipStudentStatus = new InternshipStudentStatus(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getString(4));

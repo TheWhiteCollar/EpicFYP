@@ -82,8 +82,8 @@
                             <input type="submit" value="Login" class ="full_width">
                         </form> 
                         <p><a href="forgetpassword.jsp" style="color:#ffe6e6; font-size:18px">Forgot your password?</a></p>
-                        <p><a href="signuppage.jsp" style="color:#ffe6e6; font-size:18px">Click to sign up!</a></p>
-
+                        <p><a href="signuppage.jsp" style="color:#ffe6e6; font-size:18px">Click to sign up as User!</a></p>
+                        <p><a href="signuppagepartner.jsp" style="color:#ffe6e6; font-size:18px">Click to sign up as Partner!</a></p>
                         </p>
                     </div>
                 </div>

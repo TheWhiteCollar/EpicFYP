@@ -30,93 +30,6 @@
         <link rel="stylesheet" href="css/style-xlarge.css" />
         </noscript>
         
-<!--        <script>
-            $(function() {
-                $.get('/EpicFYPApp/getAllCountryInternship', function(countryJson){
-                    var countries = JSON.parse(countryJson);
-                     console.log(countries);
-                    var countryHTML = '<div class="table-wrapper"><table>';
-                    $.each(countries, function(index, countryinternship) {
-                        countryHTML += "<tr><td><form class=\"deleteCountryInternship\">";
-                        countryHTML += "<input style=\"display: none\" type=\"text\" name=\"countryName\" value=\"" + countryinternship.countryName + "\"/>";
-                        countryHTML += 'Country Name : ' + countryinternship.countryName + " " + countryinternship.countryContinent + '\t' + "<button class = \"button\" type=\"submit\" id=\"asd" + index + "\">Delete</button></form></td>";
-                    });
-                    
-                    countryHTML += '</table></div>';
-                    $("#countries").append(countryHTML);
-                    
-                    $(".deleteCountryInternship").submit(function(event) {
-                        var countryName = "" + $(this).children("input").val();
-                        var deleteData = {
-                            'countryName': countryName
-                        };
-                        console.log(deleteData);
-                        
-                        $.post('/EpicFYPApp/deleteCountryInternship', deleteData, function (response){
-                            if(response === "success") {
-                                $.notify({
-                                    message: 'Successfully deleted internship country'
-                                }, {
-                                    type: 'success'
-                                });
-                            } else {
-                                $.notify({
-                                    message: 'Fail to delete internship country'
-                                }, {
-                                    type: 'danger'
-                                });
-                            }
-                            reloadTable();
-                        })
-                        event.preventDefault();
-                    });
-                });
-            });
-                function reloadTable(){
-                    $.get('/EpicFYPApp/getAllCountryInternship', function(countryJson){
-                        var countries = JSON.parse(countryJson);
-                        
-                        var countryHTML = '<div class="table-wrapper"><table>';
-                        $.each(countries, function(index, countryinternship) {
-                        countryHTML += "<tr><td><form class=\"deleteCountryInternship\">";
-                        countryHTML += "<input style=\"display: none\" type=\"text\" name=\"countryName\" value=\"" + countryinternship.countryName + "\"/>";
-                        countryHTML += 'Country Name : ' + countryinternship.countryName + " " + countryinternship.countryContinent + '\t' + "<button class = \"button\" type=\"submit\" id=\"asd" + index + "\">Delete</button></form></td>";
-                        });
-                        countryHTML += '</table></div>';
-                        
-                        $("#countries").empty();
-                        $("#countries").append(countryHTML);
-                    
-                        $(".deleteCountryInternship").submit(function(event) {
-                            var countryName = "" + $(this).children("input").val();
-                            var deleteData = {
-                                'countryName': countryName
-                            };
-                            console.log("countryName: " + countryName);
-
-                            $.post('/EpicFYPApp/deleteCountryInternship', deleteData, function (response){
-                                if(response === "success") {
-                                    $.notify({
-                                        message: 'Successfully deleted internship country'
-                                    }, {
-                                        type: 'success'
-                                    });
-                                } else {
-                                    $.notify({
-                                        message: 'Fail to delete internship country'
-                                    }, {
-                                        type: 'danger'
-                                    });
-                                }
-                                reloadTable();
-                            })
-                            event.preventDefault();
-                        });
-                    });
-                }
-            
-        </script>-->
-
             <script>
             $(function() {
                 $.get('/EpicFYPApp/getAllCountryInternship', function (countryJson) {
@@ -190,6 +103,7 @@
                     
                     countryHTML += '</table></div>';
                     
+                    $("#countries").empty();
                     $("#countries").append(countryHTML);
 
                     //wait for delete country form to be submited

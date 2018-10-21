@@ -20,34 +20,32 @@ import javax.servlet.http.Part;
 
 public class PartnerDAO {
     
-    //update a particular company row
-    public static boolean updateCompany(int companyID, String companyEmail, int companyTermsAndConditions, String companyName, int companyContact, String companyContinent, String companyCountry, String companyState, String companyDescription, String companyPassword, Part companyLogo){
+    //update a particular partner row
+    public static boolean updatePartner(int partnerID, String partnerName, String partnerCountry, String partnerState, String partnerDescription, String partnerPassword, Part partnerPicture, String partnerHRName, String partnerHREmail){
 
-        String sql = "UPDATE company SET companyEmail=? companyTermsAndConditions=? companyName=? companyContact=? companyContinent=? companyCountry=? companyState=? companyDescription=? companyPassword=? companyLogo=? WHERE companyID=?";
+        String sql = "UPDATE partner SET partnerName=?, partnerCountry=?, partnerState=?, partnerDescription=?, partnerPassword=?, partnerPicture=?, partnerHRName=?,partnerHREmail=? WHERE partnerID=?";
 
         try (Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
             
-            stmt.setString(1, companyEmail);
-            stmt.setInt(2, companyTermsAndConditions);
-            stmt.setString(3, companyName);
-            stmt.setInt(4, companyContact);
-            stmt.setString(5, companyContinent);
-            stmt.setString(6, companyCountry);
-            stmt.setString(7, companyState);
-            stmt.setString(8, companyDescription);
-            stmt.setString(9, companyPassword);
-            stmt.setInt (11, companyID);
+            stmt.setString(1, partnerName);
+            stmt.setString(2, partnerCountry);
+            stmt.setString(3, partnerState);
+            stmt.setString(4, partnerDescription);
+            stmt.setString(5, partnerPassword);
+            stmt.setString(7, partnerHRName);
+            stmt.setString(8, partnerHREmail);
+            stmt.setInt(9, partnerID);
             
             //picture update
             InputStream picInputStream = null;
-            if (companyLogo != null){
-                System.out.println(companyLogo.getName());
-                System.out.println(companyLogo.getSize());
-                System.out.println(companyLogo.getContentType());
+            if (partnerPicture != null){
+                System.out.println(partnerPicture.getName());
+                System.out.println(partnerPicture.getSize());
+                System.out.println(partnerPicture.getContentType());
                 
                 try{
-                    picInputStream = companyLogo.getInputStream();
+                    picInputStream = partnerPicture.getInputStream();
                 }catch(IOException e){
                     Logger.getLogger(PartnerDAO.class.getName()).log(Level.WARNING, "Failed to upload picture into database", e);
                 }
@@ -55,7 +53,7 @@ public class PartnerDAO {
             }
             
             if(picInputStream!= null){
-                stmt.setBinaryStream(6, picInputStream, (int) companyLogo.getSize());
+                stmt.setBinaryStream(6, picInputStream, (int) partnerPicture.getSize());
             }else{
                 stmt.setNull(6, java.sql.Types.BLOB);
             }
@@ -71,39 +69,37 @@ public class PartnerDAO {
     }
 
     // Add existing partner/bulk new partners
-    public static boolean addCompany(int companyID, String companyEmail, int companyTermsAndConditions, String companyName, int companyContact, String companyContinent, String companyCountry, String companyState, String companyDescription, String companyPassword, Part companyLogo) {
+    public static boolean addPartner(int partnerID, String partnerName, String partnerCountry, String partnerState, String partnerDescription, String partnerPassword, Part partnerPicture, String partnerHRName, String partnerHREmail) {
 
-        String sql = "INSERT INTO company (int companyID, String companyEmail, int companyTermsAndConditions, String companyName, int companyContact, String companyContinent, String companyCountry, String companyState, String companyDescription, String companyPassword, Part companyLogo) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO partner (partnerID, partnerName, partnerCountry, partnerState, partnerDescription, partnerPassword, partnerPicture) VALUES (?,?,?,?,?,?,?,?,?)";
 
         try (Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
-            stmt.setInt (1, companyID);
-            stmt.setString(2, companyEmail);
-            stmt.setInt(3, companyTermsAndConditions);
-            stmt.setString(4, companyName);
-            stmt.setInt(5, companyContact);
-            stmt.setString(6, companyContinent);
-            stmt.setString(7, companyCountry);
-            stmt.setString(8, companyState);
-            stmt.setString(9, companyDescription);
-            stmt.setString(10, companyPassword);
+            stmt.setInt(1, partnerID);
+            stmt.setString(2, partnerName);
+            stmt.setString(3, partnerCountry);
+            stmt.setString(4, partnerState);
+            stmt.setString(5, partnerDescription);
+            stmt.setString(6, partnerPassword);
+            stmt.setString(8, partnerHRName);
+            stmt.setString(9, partnerHRName);
 
             //picture update
             InputStream picInputStream = null;
-            if (companyLogo != null){
-                System.out.println(companyLogo.getName());
-                System.out.println(companyLogo.getSize());
-                System.out.println(companyLogo.getContentType());
+            if (partnerPicture != null){
+                System.out.println(partnerPicture.getName());
+                System.out.println(partnerPicture.getSize());
+                System.out.println(partnerPicture.getContentType());
 
                 try{
-                    picInputStream = companyLogo.getInputStream();
+                    picInputStream = partnerPicture.getInputStream();
                 }catch(IOException e){
                     Logger.getLogger(PartnerDAO.class.getName()).log(Level.WARNING, "Failed to upload picture into database", e);
                 }
             }
             
             if(picInputStream!= null){
-                stmt.setBinaryStream(7, picInputStream, (int) companyLogo.getSize());
+                stmt.setBinaryStream(7, picInputStream, (int) partnerPicture.getSize());
             }else{
                 stmt.setNull(7, java.sql.Types.BLOB);
             }
@@ -119,11 +115,11 @@ public class PartnerDAO {
     }
     
     // get all existing partners
-    public static ArrayList<Partner> getAllCompanies() {
+    public static ArrayList<Partner> getAllPartners() {
         ArrayList<Partner> result = new ArrayList<>();
         try {
                 Connection conn = ConnectionManager.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("select * from company WHERE companyID<>0 ORDER BY partnerName ASC");
+            PreparedStatement stmt = conn.prepareStatement("select * from partner WHERE partnerID<>0 ORDER BY partnerName ASC");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 result.add(new Partner(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getBlob(7),rs.getString(8),rs.getString(9)));
@@ -139,12 +135,12 @@ public class PartnerDAO {
     }
     
     // get partner by ID
-    public static Partner getCompanyByID(int companyID) {
+    public static Partner getPartnerByID(int partnerID) {
         Partner partner = null;
         try {
                 Connection conn = ConnectionManager.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("select * from company WHERE companyID=?");
-            stmt.setInt(1, companyID);
+            PreparedStatement stmt = conn.prepareStatement("select * from partner WHERE partnerID=?");
+            stmt.setInt(1, partnerID);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 partner = new Partner(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getBlob(7),rs.getString(8),rs.getString(9));
@@ -161,17 +157,17 @@ public class PartnerDAO {
     
 
     //delete a particular partner row
-    public static boolean deleteCompany(int companyID) {
+    public static boolean deletePartner(int partnerID) {
 
-        String sql1 = "DELETE FROM company WHERE companyID=?";
+        String sql1 = "DELETE FROM partner WHERE partnerID=?";
 
         try (
                 Connection conn = ConnectionManager.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql1);) {
-            stmt.setInt(1, companyID);
+            stmt.setInt(1, partnerID);
             stmt.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(PartnerDAO.class.getName()).log(Level.WARNING, "Unable to delete partner, companyID = '" + companyID, ex);
+            Logger.getLogger(PartnerDAO.class.getName()).log(Level.WARNING, "Unable to delete partner, partnerID = '" + partnerID, ex);
             return false;
         }
         return true;

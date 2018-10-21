@@ -55,17 +55,6 @@
 
                 <p><a href="partnerWithUs.jsp#footer">Contact us</a> if you are passionate about developing youths for the future of your business, your community, and generations ahead.</p>
             </div>
-            
-        </section>
-        <section id="corporate" class="wrapper align-center">
-            <div class="container">
-                <ul class="actions">
-                    <li>
-                        <a href="signuppagepartner.jsp" class="button big">Partner with us now</a>
-                    </li>
-                </ul>
-                <a href="termsandconditions.jsp"><ul>Terms and Conditions Apply</ul></a>
-            </div>
         </section>
         <!--Partner testimony -->
         <section id="partnertestimony" class="wrapper">

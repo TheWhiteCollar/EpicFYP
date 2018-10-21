@@ -12,6 +12,7 @@
                 </library>
                 <library dirs="200">
                     <file>${file.reference.commons-fileupload-1.3.3.jar}</file>
+<<<<<<< HEAD
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
@@ -29,6 +30,20 @@
                 <library dirs="200">
                     <file>${file.reference.javax.mail.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
+=======
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.commons-io-2.6.jar}</file>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.gson-2.8.5.jar}</file>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.opencsv-4.1.jar}</file>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.javax.mail.jar}</file>
+>>>>>>> 1bca8aaa3484d65944fb96bfd1940a3f01248ed8
                 </library>
             </web-module-libraries>
             <web-module-additional-libraries/>
